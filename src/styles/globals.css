@@ -1,0 +1,10 @@
+@import './reset.css';
+@import './pretendard.css';
+
+body {
+  font-family: 'pretendard';
+}
+
+* {
+  box-sizing: border-box;
+}
