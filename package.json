@@ -30,7 +30,8 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
-    "prettier": "^2.8.8",
-    "msw": "^1.2.1"
+    "@svgr/webpack": "^8.0.1",
+    "msw": "^1.2.1",
+    "prettier": "^2.8.8"
   }
 }

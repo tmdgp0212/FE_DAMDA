@@ -1,7 +1,7 @@
 import React from 'react';
 
 function ClosetPage() {
-  return <div></div>;
+  return <div>ClosetPage</div>;
 }
 
 export default ClosetPage;

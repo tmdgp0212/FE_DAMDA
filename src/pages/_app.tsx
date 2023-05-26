@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider, Hydrate } from '@tanstack/react-query
 import { server } from '@/mocks/server';
 import theme from '@/styles/theme';
 import GlobalHead from '@/components/common/GlobalHead';
+import Layout from '@/components/common/Layout';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,7 +26,9 @@ export default function App({ Component, pageProps }: AppProps) {
       <Hydrate state={pageProps?.dehydratedState}>
         <ThemeProvider theme={theme}>
           <GlobalHead />
-          <Component {...pageProps} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         </ThemeProvider>
       </Hydrate>
     </QueryClientProvider>

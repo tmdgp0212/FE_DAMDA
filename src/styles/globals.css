@@ -2,7 +2,9 @@
 @import './pretendard.css';
 
 body {
+  overflow: hidden;
   font-family: 'pretendard';
+  background-color: #aaa;
 }
 
 * {

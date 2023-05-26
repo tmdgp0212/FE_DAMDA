@@ -1,7 +1,7 @@
 import React from 'react';
 
 function SalePage() {
-  return <div></div>;
+  return <div>SalePage</div>;
 }
 
 export default SalePage;
