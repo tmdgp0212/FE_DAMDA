@@ -15,8 +15,13 @@ const colors = {
   yolda_gray_5: '#C7C7C7',
 };
 
+const padding = {
+  mobile: '0 2rem',
+};
+
 const theme = {
   colors,
+  padding,
 };
 
 export default theme;
