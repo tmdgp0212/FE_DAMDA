@@ -1,8 +1,8 @@
+import MainLayOut from '@/components/main/MainLayOut';
+
 function Home() {
   return (
-    <main>
-      <div>home</div>
-    </main>
+    <MainLayOut/>
   );
 }
 

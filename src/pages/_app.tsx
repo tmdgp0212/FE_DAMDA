@@ -6,6 +6,7 @@ import { server } from '@/mocks/server';
 import theme from '@/styles/theme';
 import GlobalHead from '@/components/common/GlobalHead';
 import Layout from '@/components/common/Layout';
+import { AnimatePresence } from 'framer-motion';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,10 +26,12 @@ export default function App({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps?.dehydratedState}>
         <ThemeProvider theme={theme}>
-          <GlobalHead />
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <AnimatePresence>
+            <GlobalHead />
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </AnimatePresence>
         </ThemeProvider>
       </Hydrate>
     </QueryClientProvider>
