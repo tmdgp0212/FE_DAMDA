@@ -1,15 +1,8 @@
 import React from 'react';
 import * as S from '@/styles/Main.styled';
-import { BsArrowUpRight } from 'react-icons/bs';
-
-const buttonElementGroup = [
-  '설문을 작성하고 간편하게 신청하세요!',
-  '정리수납 전문가들을 연결해드립니다!',
-  '정리 서비스와 함께 정리 팁도 알려드려요!',
-  '결제는 서비스를 받으신 후에!',
-];
-
-const buttonRequestGroup = ['간편 견적', '상담 신청'];
+import FirstButtonGroup from '@/components/main/FirstButtonGroup';
+import { MainContentSection, MainPersonButton, MainSvg } from '@/styles/Main.styled';
+import { buttonPersonGroup } from '@/constants/mainButtonText';
 
 function MainLayOut() {
   return (
@@ -23,35 +16,36 @@ function MainLayOut() {
         </p>
       </S.MainTitleContainer>
       <S.MainContentContainer>
-        <S.MainButtonGroupContainer>
-          {buttonElementGroup.map((element, index) => {
-            if (index === 1)
-              return (
-                <>
-                  <S.MainRequestGroupContainer>
-                    <div className="desc">
-                      <BsArrowUpRight />
-                      <p>이렇게 진행됩니다!</p>
-                    </div>
-                    <div className="btn">
-                      {buttonRequestGroup.map((item) => (
-                        <S.MainRequestButton key={item}>{item}</S.MainRequestButton>
-                      ))}
-                    </div>
-                  </S.MainRequestGroupContainer>
-                  <S.MainContentButton index={index} key={index}>
-                    {index + 1}. {element}
-                  </S.MainContentButton>
-                </>
-              );
-
-            return (
-              <S.MainContentButton index={index} key={index}>
-                {index + 1}. {element}
-              </S.MainContentButton>
-            );
-          })}
-        </S.MainButtonGroupContainer>
+        <S.MainContentSection>
+          <S.MainButtonGroupContainer groupIndex={0}>{<FirstButtonGroup />}</S.MainButtonGroupContainer>
+        </S.MainContentSection>
+        <S.MainContentSection>
+          <S.MainDescContainer>
+            <span>🤔</span>
+            <p>우리집은 비용이 얼마나 들까요?</p>
+            <h1>
+              열다 서비스 <br /> 가구 당 평균 가격
+            </h1>
+          </S.MainDescContainer>
+          <S.MainButtonGroupContainer groupIndex={1}>
+            {buttonPersonGroup.map((item, index) => (
+              <S.MainPersonButton key={item.title} itemIndex={index}>
+                <p>{item.title}</p>
+                <h2>{item.price}원</h2>
+                <S.MainSvg index={index} />
+              </S.MainPersonButton>
+            ))}
+          </S.MainButtonGroupContainer>
+        </S.MainContentSection>
+        <S.MainContentSection>
+          <S.MainDescContainer>
+            <span>⏳</span>
+            <p>합리적이고 투명한 </p>
+            <h1>
+              시간당 가격 정찰제를 <br /> 도입했어요
+            </h1>
+          </S.MainDescContainer>
+        </S.MainContentSection>
       </S.MainContentContainer>
     </S.MainContainer>
   );

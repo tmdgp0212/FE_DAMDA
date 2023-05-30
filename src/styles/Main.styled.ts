@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 52px;
   height: fit-content;
   position: relative;
 `;
@@ -48,11 +47,12 @@ export const MainContentContainer = styled.div`
   padding: ${({ theme }) => theme.padding.mobile};
   display: flex;
   flex-direction: column;
+  gap: 7.2rem;
 `;
 
-export const MainButtonGroupContainer = styled.div`
+export const MainButtonGroupContainer = styled.div<{ groupIndex: number }>`
   display: grid;
-  grid-template-rows: 1fr 2fr 1fr 1fr;
+  grid-template-rows: ${({ groupIndex }) => (groupIndex === 0 ? '1fr 2fr 1fr 1fr' : 'repeat(3, 1fr)')};
 `;
 
 export const MainRequestGroupContainer = styled.div`
@@ -71,6 +71,7 @@ export const MainRequestGroupContainer = styled.div`
     svg {
       width: 24px;
       height: 24px;
+      stroke-width: 1px;
     }
 
     p {
@@ -100,7 +101,7 @@ export const MainRequestButton = styled.button`
   text-align: start;
 `;
 
-export const MainContentButton = styled.button<{ index: number }>`
+export const MainContentButton = styled.button<{ index?: number }>`
   background-color: #fff;
   border: 1px solid #212121;
   padding: 1rem;
@@ -113,4 +114,79 @@ export const MainContentButton = styled.button<{ index: number }>`
 
   width: ${({ index }) => (index === 3 ? '80%' : '100%')};
   justify-self: ${({ index }) => (index === 3 ? 'end' : 'start')};
+`;
+
+export const MainContentSection = styled.section``;
+
+export const MainPersonButton = styled(MainContentButton)<{ itemIndex: number }>`
+  padding: 1rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  position: relative;
+  width: ${({ itemIndex }) => {
+    switch (itemIndex) {
+      case 0:
+        return '50%';
+      case 1:
+        return '70%';
+      case 2:
+        return '100%';
+    }
+  }};
+
+  span {
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+`;
+
+export const MainSvg = styled.h1<{ index: number }>`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  background-image: ${({ index }) => `url(/icons/${index + 1}-person.svg)`};
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+
+  width: ${({ index }) => {
+    switch (index) {
+      case 0:
+        return '28px';
+      case 1:
+        return '54px';
+      case 2:
+        return '85px';
+    }
+  }};
+  height: 46px;
+`;
+
+export const MainDescContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 3.2rem;
+
+  p {
+    font-size: 1.4rem;
+    font-weight: 400;
+  }
+
+  span {
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+
+  h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+  }
 `;
