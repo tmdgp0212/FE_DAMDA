@@ -36,4 +36,7 @@ export const buttonPriceGroup: buttonTitlePriceType[] = [
     title: '회원 할인가',
     price: '59,900',
   },
+  {
+    title: '무료 견적 받기',
+  },
 ];

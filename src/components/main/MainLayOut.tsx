@@ -2,8 +2,7 @@ import React from 'react';
 import * as S from '@/styles/Main.styled';
 import FirstButtonGroup from '@/components/main/FirstButtonGroup';
 import { buttonPersonGroup, buttonPriceGroup } from '@/constants/mainButtonText';
-import { BsArrowDown, BsChevronDown } from 'react-icons/bs';
-import { AiOutlineDown } from 'react-icons/ai';
+import { BsChevronDown } from 'react-icons/bs';
 
 function MainLayOut() {
   return (
@@ -47,14 +46,35 @@ function MainLayOut() {
             </h1>
           </S.MainDescContainer>
           <S.MainButtonGroupContainer groupIndex={2}>
-            {buttonPriceGroup.map((item, index) => (
-              <S.MainPriceButton key={item.title} index={index}>
-                <p>{item.title}</p>
-                <h2>{item.price}원</h2>
-                {index === 2 && <BsChevronDown />}
-              </S.MainPriceButton>
-            ))}
+            {buttonPriceGroup.map((item, index) => {
+              if (index === 3) {
+                return (
+                  <S.MainRequestButton key={item.title} width={45}>
+                    {item.title}
+                  </S.MainRequestButton>
+                );
+              }
+              return (
+                <S.MainPriceButton key={item.title} index={index}>
+                  <p>{item.title}</p>
+                  <h2>{item.price}원</h2>
+                  {index === 2 && <BsChevronDown />}
+                </S.MainPriceButton>
+              );
+            })}
           </S.MainButtonGroupContainer>
+        </S.MainContentSection>
+        <S.MainContentSection>
+          <S.MainDescContainer>
+            <span>💸</span>
+            <h1>
+              안 입는 옷도 <br />
+              새로운 방향으로
+            </h1>
+            <p>
+              서비스를 이용하신 후에 정리된 안 입는 옷은 <br /> 열다에서 전문 셀러를 통해 수익화하세요
+            </p>
+          </S.MainDescContainer>
         </S.MainContentSection>
       </S.MainContentContainer>
     </S.MainContainer>

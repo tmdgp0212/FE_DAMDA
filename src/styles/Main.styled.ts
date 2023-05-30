@@ -88,7 +88,7 @@ export const MainRequestGroupContainer = styled.div`
   }
 `;
 
-export const MainRequestButton = styled.button`
+export const MainRequestButton = styled.button<{ width?: number }>`
   background-color: ${({ theme }) => theme.colors.main_blue};
   border: 1px solid #212121;
   padding: 1.6rem;
@@ -99,6 +99,8 @@ export const MainRequestButton = styled.button`
   line-height: 19px;
   height: 5.5rem;
   text-align: start;
+
+  width: ${({ width }) => (width ? `${width}%` : '100%')};
 `;
 
 export const MainContentButton = styled.button<{ index?: number }>`
