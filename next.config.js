@@ -23,6 +23,14 @@ const nextConfig = {
     });
     return config;
   },
+  async rewrites() {
+    return [
+      {
+        source: '/kakaoApi/:path*',
+        destination: 'https://kauth.kakao.com/:path*', // 실제 API 서버 주소로 변경
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
