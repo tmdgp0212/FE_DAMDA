@@ -1,8 +1,9 @@
 import React from 'react';
 import * as S from '@/styles/Main.styled';
 import FirstButtonGroup from '@/components/main/FirstButtonGroup';
-import { MainContentSection, MainPersonButton, MainSvg } from '@/styles/Main.styled';
-import { buttonPersonGroup } from '@/constants/mainButtonText';
+import { buttonPersonGroup, buttonPriceGroup } from '@/constants/mainButtonText';
+import { BsArrowDown, BsChevronDown } from 'react-icons/bs';
+import { AiOutlineDown } from 'react-icons/ai';
 
 function MainLayOut() {
   return (
@@ -45,6 +46,15 @@ function MainLayOut() {
               시간당 가격 정찰제를 <br /> 도입했어요
             </h1>
           </S.MainDescContainer>
+          <S.MainButtonGroupContainer groupIndex={2}>
+            {buttonPriceGroup.map((item, index) => (
+              <S.MainPriceButton key={item.title} index={index}>
+                <p>{item.title}</p>
+                <h2>{item.price}원</h2>
+                {index === 2 && <BsChevronDown />}
+              </S.MainPriceButton>
+            ))}
+          </S.MainButtonGroupContainer>
         </S.MainContentSection>
       </S.MainContentContainer>
     </S.MainContainer>

@@ -146,6 +146,51 @@ export const MainPersonButton = styled(MainContentButton)<{ itemIndex: number }>
   }
 `;
 
+export const MainPriceButton = styled(MainContentButton)<{ index: number }>`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: ${({ index }) => {
+    switch (index) {
+      case 0:
+        return '100%';
+      case 1:
+        return '70%';
+      case 2:
+        return '50%';
+    }
+  }};
+
+  color: ${({ theme, index }) => {
+    switch (index) {
+      case 0:
+        return theme.colors.yolda_gray_4;
+      case 1:
+        return theme.colors.yolda_gray_2;
+      case 2:
+        return theme.colors.yolda_black_1;
+    }
+  }};
+  text-decoration: ${({ index }) => (index === 1 ? 'line-through' : 'none')};
+  p {
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+  svg {
+    width: 2rem;
+    height: 2rem;
+    stroke-width: 0.8px;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+`;
+
 export const MainSvg = styled.h1<{ index: number }>`
   position: absolute;
   bottom: 0;
