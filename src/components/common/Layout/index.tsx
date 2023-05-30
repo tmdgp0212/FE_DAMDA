@@ -2,7 +2,7 @@ import * as S from './style';
 import Footer from '../Footer';
 import Header from '../Header';
 
-function Layout({ children, hasHeader }: { children: React.ReactNode; hasHeader?: boolean }) {
+function Layout({ children }: { children: React.ReactNode }) {
   return (
     <S.Layout>
       <Header />
