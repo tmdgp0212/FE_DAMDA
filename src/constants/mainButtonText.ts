@@ -1,4 +1,4 @@
-import { buttonElementGroupType, buttonRequestGroupType, buttonTitlePriceType } from '@/types/constants/mainButtonType';
+import { buttonElementGroupType, buttonRequestGroupType, buttonTitlePriceType } from '@/types/constants/mainPageTypes';
 
 export const buttonElementGroup: buttonElementGroupType = [
   '설문을 작성하고 간편하게 신청하세요!',
