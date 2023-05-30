@@ -2,7 +2,9 @@ import React from 'react';
 import * as S from '@/styles/Main.styled';
 import FirstButtonGroup from '@/components/main/FirstButtonGroup';
 import { buttonPersonGroup, buttonPriceGroup } from '@/constants/mainButtonText';
-import { BsChevronDown } from 'react-icons/bs';
+import { BsArrowUpRight, BsChevronDown } from 'react-icons/bs';
+import { mainGraphData } from '@/constants/mainGraph';
+import { MainReSellerTableContainer } from '@/styles/Main.styled';
 
 function MainLayOut() {
   return (
@@ -75,6 +77,24 @@ function MainLayOut() {
               서비스를 이용하신 후에 정리된 안 입는 옷은 <br /> 열다에서 전문 셀러를 통해 수익화하세요
             </p>
           </S.MainDescContainer>
+          <S.MainReSellerContent>
+            <h1>
+              판매액이 높을수록 <br /> 수수료가 낮아집니다.
+              <BsArrowUpRight />
+            </h1>
+            <p>판매 금액대별 대행 수수료</p>
+            <S.MainReSellerTable>
+              {mainGraphData.map((mainGraphDatum) => (
+                <S.MainReSellerTableContainer key={mainGraphDatum.graphValue}>
+                  <p>{mainGraphDatum.title}</p>
+                  <div className="graph">
+                    <S.MainReSellerTableGraph graphSize={mainGraphDatum.graphSize} />
+                    <p>{mainGraphDatum.graphValue}</p>
+                  </div>
+                </S.MainReSellerTableContainer>
+              ))}
+            </S.MainReSellerTable>
+          </S.MainReSellerContent>
         </S.MainContentSection>
       </S.MainContentContainer>
     </S.MainContainer>

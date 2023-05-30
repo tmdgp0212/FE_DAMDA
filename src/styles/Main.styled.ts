@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { motion } from 'framer-motion';
 
 export const MainContainer = styled.div`
   display: flex;
@@ -236,4 +237,52 @@ export const MainDescContainer = styled.div`
     font-size: 2.4rem;
     font-weight: 700;
   }
+`;
+
+export const MainReSellerContent = styled.div`
+  border: 1px solid ${({ theme }) => theme.colors.yolda_black_1};
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+  gap: 24px;
+  border-radius: 5px;
+
+  h1 {
+    width: 100%;
+    font-size: 2rem;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  p {
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 1px;
+  }
+`;
+
+export const MainReSellerTable = styled.div``;
+
+export const MainReSellerTableContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 90px;
+
+  .graph {
+    display: flex;
+    align-items: center;
+  }
+`;
+
+export const MainReSellerTableGraph = styled(motion.div)<{ graphSize: number }>`
+  width: ${({ graphSize }) => `${graphSize * 40}px`};
+  height: 2rem;
 `;
