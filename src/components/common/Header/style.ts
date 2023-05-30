@@ -5,23 +5,25 @@ export const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   padding: 0 25px;
   width: 100%;
   height: 52px;
-  /* color: ${theme.colors.main_blue}; */
-  border-bottom: 1px solid ${theme.colors.yolda_gray_5};
-  background-color: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(3px);
+  background-color: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(4px);
   z-index: 5;
 `;
 
 export const Logo = styled.h1`
-  width: 53px;
-  height: 25px;
-  background-image: url('/icons/Yolda_logo.svg');
+  a {
+    display: block;
+    width: 53px;
+    height: 25px;
+    background-image: url('/icons/Yolda_logo.svg');
+    cursor: pointer;
+  }
 `;
 
 export const HeaderButtons = styled.div`
@@ -41,11 +43,13 @@ export const EstimateButton = styled.button`
   font-size: 1.6rem;
   background-color: ${theme.colors.main_blue};
   border-radius: 6px;
+  cursor: pointer;
 `;
 
 const Icon = styled.div`
   width: 24px;
   height: 24px;
+  cursor: pointer;
 `;
 
 export const LoginButton = styled(Icon)`
