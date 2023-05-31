@@ -1,3 +1,5 @@
+import React from 'react';
+
 export type buttonElementGroupType = string[];
 export type buttonRequestGroupType = string[];
 export interface buttonTitlePriceType {
@@ -9,4 +11,11 @@ export type mainGraphDataType = {
   title: string;
   graphSize: number;
   graphValue: string;
+};
+
+export type mainContentsDataType = {
+  emoji?: string;
+  title?: string;
+  description?: string;
+  contents?: React.ReactNode;
 };
