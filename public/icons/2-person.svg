@@ -1,0 +1,25 @@
+<svg width="54" height="47" viewBox="0 0 54 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g clip-path="url(#clip0_395_5387)">
+        <rect x="30" y="4.99414" width="24" height="42" rx="2" stroke="#80CFFF"/>
+        <path d="M30 6.99414C30 5.88957 30.8954 4.99414 32 4.99414H42V30.9941H30V6.99414Z" stroke="#80CFFF"/>
+        <path d="M42 4.99414H52C53.1046 4.99414 54 5.88957 54 6.99414V30.9941H42V4.99414Z" stroke="#80CFFF"/>
+        <rect x="30" y="30.9941" width="24" height="5" stroke="#80CFFF"/>
+        <rect x="30" y="35.9941" width="24" height="5" stroke="#80CFFF"/>
+        <rect x="30" y="40.9941" width="24" height="6" stroke="#80CFFF"/>
+        <path d="M8 23.9941C8 22.8896 8.89543 21.9941 10 21.9941H19V28.9941H8V23.9941Z" stroke="#80CFFF"/>
+        <path d="M19 21.9941H28C29.1046 21.9941 30 22.8896 30 23.9941V28.9941H19V21.9941Z" stroke="#80CFFF"/>
+        <rect x="8" y="28.9941" width="22" height="6" stroke="#80CFFF"/>
+        <rect x="8" y="34.9941" width="22" height="6" stroke="#80CFFF"/>
+        <path d="M8 40.9941H30V44.9941C30 46.0987 29.1046 46.9941 28 46.9941H10C8.89543 46.9941 8 46.0987 8 44.9941V40.9941Z" stroke="#80CFFF"/>
+        <circle cx="14" cy="25.9941" r="1" fill="#80CFFF"/>
+        <circle cx="25" cy="25.9941" r="1" fill="#80CFFF"/>
+        <circle cx="19" cy="31.9941" r="1" fill="#80CFFF"/>
+        <circle cx="19" cy="37.9941" r="1" fill="#80CFFF"/>
+        <circle cx="19" cy="43.9941" r="1" fill="#80CFFF"/>
+    </g>
+    <defs>
+        <clipPath id="clip0_395_5387">
+            <path d="M0 0.994141H54V41.9941C54 44.7556 51.7614 46.9941 49 46.9941H0V0.994141Z" fill="white"/>
+        </clipPath>
+    </defs>
+</svg>

@@ -1,0 +1,35 @@
+<svg width="85" height="47" viewBox="0 0 85 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g clip-path="url(#clip0_395_5390)">
+        <path d="M61 6.99414C61 5.88957 61.8954 4.99414 63 4.99414H73V30.9941H61V6.99414Z" stroke="#80CFFF"/>
+        <path d="M73 4.99414H83C84.1046 4.99414 85 5.88957 85 6.99414V30.9941H73V4.99414Z" stroke="#80CFFF"/>
+        <rect x="61" y="30.9941" width="24" height="5" stroke="#80CFFF"/>
+        <rect x="61" y="35.9941" width="24" height="5" stroke="#80CFFF"/>
+        <path d="M61 40.9941H85V44.9941C85 46.0987 84.1046 46.9941 83 46.9941H63C61.8954 46.9941 61 46.0987 61 44.9941V40.9941Z" stroke="#80CFFF"/>
+        <rect x="38" y="4.99414" width="23" height="42" rx="2" stroke="#80CFFF"/>
+        <rect x="58" y="11.9941" width="1" height="26" rx="0.5" fill="#80CFFF"/>
+        <rect x="55" y="11.9941" width="1" height="26" rx="0.5" fill="#80CFFF"/>
+        <rect x="52" y="11.9941" width="1" height="26" rx="0.5" fill="#80CFFF"/>
+        <rect x="49" y="11.9941" width="1" height="26" rx="0.5" fill="#80CFFF"/>
+        <rect x="46" y="11.9941" width="1" height="15" rx="0.5" fill="#80CFFF"/>
+        <rect x="43" y="11.9941" width="1" height="15" rx="0.5" fill="#80CFFF"/>
+        <rect x="40" y="11.9941" width="1" height="15" rx="0.5" fill="#80CFFF"/>
+        <rect x="40.5" y="30.4941" width="6" height="7" rx="1.5" stroke="#80CFFF"/>
+        <rect x="40.5" y="40.4941" width="18" height="4" rx="0.5" stroke="#80CFFF"/>
+        <rect x="40" y="8.99414" width="19" height="1" rx="0.5" fill="#80CFFF"/>
+        <path d="M16 23.9941C16 22.8896 16.8954 21.9941 18 21.9941H27V28.9941H16V23.9941Z" stroke="#80CFFF"/>
+        <path d="M27 21.9941H36C37.1046 21.9941 38 22.8896 38 23.9941V28.9941H27V21.9941Z" stroke="#80CFFF"/>
+        <rect x="16" y="28.9941" width="22" height="6" stroke="#80CFFF"/>
+        <rect x="16" y="34.9941" width="22" height="6" stroke="#80CFFF"/>
+        <path d="M16 40.9941H38V44.9941C38 46.0987 37.1046 46.9941 36 46.9941H18C16.8954 46.9941 16 46.0987 16 44.9941V40.9941Z" stroke="#80CFFF"/>
+        <circle cx="22" cy="25.9941" r="1" fill="#80CFFF"/>
+        <circle cx="33" cy="25.9941" r="1" fill="#80CFFF"/>
+        <circle cx="27" cy="31.9941" r="1" fill="#80CFFF"/>
+        <circle cx="27" cy="37.9941" r="1" fill="#80CFFF"/>
+        <circle cx="27" cy="43.9941" r="1" fill="#80CFFF"/>
+    </g>
+    <defs>
+        <clipPath id="clip0_395_5390">
+            <path d="M0 0.994141H85V41.9941C85 44.7556 82.7614 46.9941 80 46.9941H0V0.994141Z" fill="white"/>
+        </clipPath>
+    </defs>
+</svg>
