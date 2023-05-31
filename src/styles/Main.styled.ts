@@ -6,6 +6,13 @@ export const MainContainer = styled.div`
   flex-direction: column;
   height: fit-content;
   position: relative;
+  margin-bottom: 34rem;
+`;
+
+export const MainFABContainer = styled.div`
+  position: fixed;
+  bottom: 258px;
+  right: 0;
 `;
 
 export const MainTitleContainer = styled.div`
@@ -43,7 +50,7 @@ export const MainTitleContainer = styled.div`
 `;
 
 export const MainContentContainer = styled.div`
-  margin-top: -24%;
+  margin-top: -10%;
   width: 100%;
   padding: ${({ theme }) => theme.padding.mobile};
   display: flex;
@@ -89,7 +96,7 @@ export const MainRequestGroupContainer = styled.div`
   }
 `;
 
-export const MainRequestButton = styled.button<{ width?: number }>`
+export const MainRequestButton = styled(motion.button)<{ width?: number }>`
   background-color: ${({ theme }) => theme.colors.main_blue};
   border: 1px solid #212121;
   padding: 1.6rem;
@@ -222,10 +229,13 @@ export const MainDescContainer = styled.div`
   flex-direction: column;
   gap: 4px;
   margin-bottom: 3.2rem;
+  position: relative;
 
+  z-index: 9;
   p {
     font-size: 1.4rem;
     font-weight: 400;
+    line-height: 160%;
   }
 
   span {
@@ -236,6 +246,7 @@ export const MainDescContainer = styled.div`
   h1 {
     font-size: 2.4rem;
     font-weight: 700;
+    line-height: 135%;
   }
 `;
 
@@ -306,9 +317,9 @@ export const MainReSellerTableContainer = styled.div`
   }
 `;
 
-export const MainReSellerTableGraph = styled(motion.div)<{ graphSize: number }>`
-  width: ${({ graphSize }) => {
-    switch (graphSize) {
+export const MainReSellerTableGraph = styled(motion.div)<{ graphsize: number }>`
+  width: ${({ graphsize }) => {
+    switch (graphsize) {
       case 0:
         return '10%';
       case 1:
@@ -327,8 +338,60 @@ export const MainReSellerTableGraph = styled(motion.div)<{ graphSize: number }>`
 `;
 
 export const MainUserReviewContainer = styled.div`
-  width: 32rem;
+  width: 100%;
   height: 32rem;
   border: 2px solid ${({ theme }) => theme.colors.sub_blue_1};
   border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+
+  .review-img {
+    width: 100%;
+    height: 70%;
+    background-image: url('/img/MainReview.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .review-desc {
+    padding: 1.4rem;
+    width: 100%;
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+    p {
+      font-size: 1.4rem;
+      font-weight: 400;
+    }
+  }
+`;
+
+export const MainMoreReviewButton = styled.div`
+  margin-top: 2.4rem;
+  display: flex;
+  justify-content: end;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: ${({ theme }) => theme.colors.main_blue};
+  text-decoration-line: underline;
+`;
+
+export const MainYoldaService = styled.img`
+  width: 380px;
+  height: 40rem;
+  position: absolute;
+  border: none;
+  right: -20px;
+  top: -26px;
+  z-index: -99;
 `;
