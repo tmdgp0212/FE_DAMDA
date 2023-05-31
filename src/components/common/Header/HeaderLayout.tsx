@@ -1,15 +1,15 @@
 import Link from 'next/link';
 import * as S from './style';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { UseMutateFunction } from '@tanstack/react-query';
 
 interface HeaderProps {
   mutate: UseMutateFunction<void, unknown, void, unknown>;
   isMenuOpen: boolean;
-  setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  menuHandler: () => void;
 }
 
-function HeaderLayout({ mutate, isMenuOpen, setIsMenuOpen }: HeaderProps) {
+function HeaderLayout({ mutate, isMenuOpen, menuHandler }: HeaderProps) {
   return (
     <>
       <S.Logo className="ir-text">
@@ -21,13 +21,7 @@ function HeaderLayout({ mutate, isMenuOpen, setIsMenuOpen }: HeaderProps) {
         <S.LoginButton className="ir-text" onClick={() => mutate()}>
           login
         </S.LoginButton>
-        <S.SideMenuButton
-          className="ir-text"
-          isMenuOpen={isMenuOpen}
-          onClick={() => {
-            setIsMenuOpen((prev) => !prev);
-          }}
-        >
+        <S.SideMenuButton className="ir-text" isMenuOpen={isMenuOpen} onClick={menuHandler}>
           menu
         </S.SideMenuButton>
       </S.HeaderButtons>

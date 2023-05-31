@@ -2,29 +2,36 @@ import * as S from './style';
 import HeaderLayout from './HeaderLayout';
 import { useMutation } from '@tanstack/react-query';
 import { getAuthorize } from '@/apis/oauth';
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import Menu from './Menu';
+import { LayoutContext } from '../Layout';
 
 function Header() {
   const { mutate: test } = useMutation(() => getAuthorize());
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const showVariants = {
-    hidden: { x: 300 },
-    visible: { x: 0 },
-  };
+  const context = useContext(LayoutContext);
+  if (!context) {
+    throw new Error();
+  }
+  const { setDisabledScroll } = context;
 
-  const hiddenVariants = {
-    hidden: { x: 0 },
-    visible: { x: 300 },
+  const menuHandler = () => {
+    if (isMenuOpen) {
+      setIsMenuOpen(false);
+      setDisabledScroll(false);
+    } else {
+      setIsMenuOpen(true);
+      setDisabledScroll(true);
+    }
   };
 
   return (
     <>
       <S.Header isMenuOpen={isMenuOpen}>
-        <HeaderLayout mutate={test} setIsMenuOpen={setIsMenuOpen} isMenuOpen={isMenuOpen} />
+        <HeaderLayout mutate={test} isMenuOpen={isMenuOpen} menuHandler={menuHandler} />
       </S.Header>
-      {isMenuOpen && <Menu isMenuOpen={isMenuOpen} showVariants={showVariants} hiddenVariants={hiddenVariants} />}
+      <Menu isMenuOpen={isMenuOpen} menuHandler={menuHandler} />
     </>
   );
 }

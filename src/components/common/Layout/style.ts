@@ -1,12 +1,13 @@
+import theme from '@/styles/theme';
 import styled from '@emotion/styled';
 
-export const Layout = styled.div`
+export const Layout = styled.div<{ disabledScroll: boolean }>`
   display: grid;
   grid-template-rows: auto 1fr auto;
   position: relative;
-  overflow-y: scroll;
+  overflow-y: ${({ disabledScroll }) => (disabledScroll ? 'hidden' : 'scroll')};
   margin: 0 auto;
-  width: 360px; // 임시
+  max-width: ${theme.size.max_width};
   height: 100vh;
   background-color: #fff;
 

@@ -2,24 +2,25 @@ import theme from '@/styles/theme';
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 
-export const MenuContainer = styled(motion.div)`
-  display: flex;
-  justify-content: right;
+export const MenuBackground = styled(motion.div)`
+  overflow: hidden;
   position: fixed;
   top: ${theme.size.header_height};
-  /* top: 0; */
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  height: calc(100vh - ${theme.size.header_height});
+  left: calc(50% - ${theme.size.max_width} / 2);
+  width: ${theme.size.max_width};
+  height: 100%;
   backdrop-filter: blur(4px);
-  z-index: 9;
   transition: all 0.2;
+  z-index: 9;
 `;
 
-export const MenuBar = styled(motion.div)`
+export const MenuBarContainer = styled(motion.div)`
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: calc(50% - ${theme.size.max_width} / 2);
   width: 278px;
-  height: 100vh;
+  height: 100%;
   padding: 42px 25px;
   background-color: #fff;
 `;
@@ -33,6 +34,7 @@ export const Section = styled.div`
     height: 37px;
     color: ${theme.colors.yolda_gray_3};
     font-size: 1.4rem;
+    cursor: default;
   }
 
   .links {

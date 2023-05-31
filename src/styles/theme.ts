@@ -20,6 +20,7 @@ const padding = {
 };
 
 const size = {
+  max_width: '360px',
   header_height: '52px',
 };
 

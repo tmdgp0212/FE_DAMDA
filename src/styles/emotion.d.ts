@@ -20,6 +20,7 @@ declare module '@emotion/react' {
       mobile: string;
     };
     size: {
+      max_width: string;
       header_height: string;
     };
   }
