@@ -3,8 +3,7 @@ import * as S from '@/styles/Main.styled';
 import FirstButtonGroup from '@/components/main/FirstButtonGroup';
 import { buttonPersonGroup, buttonPriceGroup } from '@/constants/mainButtonText';
 import { BsArrowUpRight, BsChevronDown } from 'react-icons/bs';
-import { mainGraphData } from '@/constants/mainGraph';
-import { MainReSellerTableContainer } from '@/styles/Main.styled';
+import MainResellerGraph from '@/components/main/MainResellerGraph';
 
 function MainLayOut() {
   return (
@@ -83,19 +82,18 @@ function MainLayOut() {
               <BsArrowUpRight />
             </h1>
             <p>판매 금액대별 대행 수수료</p>
-            <S.MainReSellerTable>
-              {mainGraphData.map((mainGraphDatum) => (
-                <S.MainReSellerTableContainer key={mainGraphDatum.graphValue}>
-                  <p>{mainGraphDatum.title}</p>
-                  <div className="graph">
-                    <S.MainReSellerTableGraph graphSize={mainGraphDatum.graphSize} />
-                    <p>{mainGraphDatum.graphValue}</p>
-                  </div>
-                </S.MainReSellerTableContainer>
-              ))}
-            </S.MainReSellerTable>
+            <MainResellerGraph />
           </S.MainReSellerContent>
         </S.MainContentSection>
+        <S.MainContentSection>
+          <S.MainDescContainer>
+            <span>‍🙆‍♀️</span>
+            <h1>
+              먼저 열다를 만나신 분들의 <br /> 이야기도 들어보세요
+            </h1>
+          </S.MainDescContainer>
+        </S.MainContentSection>
+        <S.MainUserReviewContainer></S.MainUserReviewContainer>
       </S.MainContentContainer>
     </S.MainContainer>
   );

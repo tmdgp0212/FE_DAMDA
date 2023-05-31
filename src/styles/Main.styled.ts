@@ -258,7 +258,6 @@ export const MainReSellerContent = styled.div`
 
   p {
     font-size: 1.4rem;
-    margin-bottom: 1.2rem;
   }
 
   .svg {
@@ -268,21 +267,68 @@ export const MainReSellerContent = styled.div`
   }
 `;
 
-export const MainReSellerTable = styled.div``;
+export const MainReSellerTable = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+`;
 
 export const MainReSellerTableContainer = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  gap: 90px;
+  align-items: start;
+  gap: 70px;
+  height: 2rem;
 
+  .paragraph {
+    display: flex;
+    font-size: 1.4rem;
+    font-weight: 400;
+    flex-wrap: nowrap;
+    width: 20rem;
+  }
   .graph {
+    width: 100%;
+    height: 2rem;
     display: flex;
     align-items: center;
+    justify-content: start;
+    position: relative;
+    p {
+      position: absolute;
+      right: 0;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: ${({ theme }) => theme.colors.yolda_black_1};
+    }
   }
 `;
 
 export const MainReSellerTableGraph = styled(motion.div)<{ graphSize: number }>`
-  width: ${({ graphSize }) => `${graphSize * 40}px`};
+  width: ${({ graphSize }) => {
+    switch (graphSize) {
+      case 0:
+        return '10%';
+      case 1:
+        return '18%';
+      case 2:
+        return '27%';
+      case 3:
+        return '40%';
+      case 4:
+        return '65%';
+    }
+  }};
   height: 2rem;
+  background-color: ${({ theme }) => theme.colors.sub_blue_2};
+  border-radius: 3px;
+`;
+
+export const MainUserReviewContainer = styled.div`
+  width: 32rem;
+  height: 32rem;
+  border: 2px solid ${({ theme }) => theme.colors.sub_blue_1};
+  border-radius: 5px;
 `;
