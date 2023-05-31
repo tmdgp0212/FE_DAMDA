@@ -230,8 +230,7 @@ export const MainDescContainer = styled.div`
   gap: 4px;
   margin-bottom: 3.2rem;
   position: relative;
-
-  z-index: 9;
+  z-index: 2;
   p {
     font-size: 1.4rem;
     font-weight: 400;
@@ -393,5 +392,5 @@ export const MainYoldaService = styled.img`
   border: none;
   right: -20px;
   top: -26px;
-  z-index: -99;
+  z-index: -9;
 `;

@@ -17,5 +17,6 @@ export type mainContentsDataType = {
   emoji?: string;
   title?: string;
   description?: string;
+  type: 'button' | 'carousel' | 'graph' | 'text' | 'image';
   contents?: React.ReactNode;
 };
