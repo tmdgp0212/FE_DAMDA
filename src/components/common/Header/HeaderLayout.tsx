@@ -5,9 +5,11 @@ import { UseMutateFunction } from '@tanstack/react-query';
 
 interface HeaderProps {
   mutate: UseMutateFunction<void, unknown, void, unknown>;
+  isMenuOpen: boolean;
+  setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function HeaderLayout({ mutate }: HeaderProps) {
+function HeaderLayout({ mutate, isMenuOpen, setIsMenuOpen }: HeaderProps) {
   return (
     <>
       <S.Logo className="ir-text">
@@ -19,7 +21,15 @@ function HeaderLayout({ mutate }: HeaderProps) {
         <S.LoginButton className="ir-text" onClick={() => mutate()}>
           login
         </S.LoginButton>
-        <S.SideMenuButton className="ir-text">menu</S.SideMenuButton>
+        <S.SideMenuButton
+          className="ir-text"
+          isMenuOpen={isMenuOpen}
+          onClick={() => {
+            setIsMenuOpen((prev) => !prev);
+          }}
+        >
+          menu
+        </S.SideMenuButton>
       </S.HeaderButtons>
     </>
   );

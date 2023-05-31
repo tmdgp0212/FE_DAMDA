@@ -19,9 +19,14 @@ const padding = {
   mobile: '0 2rem',
 };
 
+const size = {
+  header_height: '52px',
+};
+
 const theme = {
   colors,
   padding,
+  size,
 };
 
 export default theme;

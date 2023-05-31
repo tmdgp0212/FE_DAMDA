@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import theme from '@/styles/theme';
 
-export const Header = styled.header`
+export const Header = styled.header<{ isMenuOpen: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -10,10 +10,12 @@ export const Header = styled.header`
   left: 0;
   padding: 0 25px;
   width: 100%;
-  height: 52px;
+  height: ${theme.size.header_height};
   background-color: rgba(255, 255, 255, 0.55);
+  /* background-color: ${({ isMenuOpen }) => (isMenuOpen ? 'rgba(255, 255, 255, 1)' : 'rgba(255, 255, 255, 0.55)')}; */
   backdrop-filter: blur(4px);
-  z-index: 5;
+  transition: background-color 0.2s;
+  z-index: 10;
 `;
 
 export const Logo = styled.h1`
@@ -56,6 +58,8 @@ export const LoginButton = styled(Icon)`
   background-image: url('/icons/login-icon.svg');
 `;
 
-export const SideMenuButton = styled(Icon)`
-  background-image: url('/icons/menu-icon.svg');
+export const SideMenuButton = styled(Icon)<{ isMenuOpen: boolean }>`
+  background-image: ${({ isMenuOpen }) =>
+    isMenuOpen ? "url('/icons/close-icon.svg')" : "url('/icons/menu-icon.svg')"};
+  transition: all 0.2s;
 `;

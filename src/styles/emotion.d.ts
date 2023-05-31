@@ -1,4 +1,3 @@
-
 import '@emotion/react';
 
 declare module '@emotion/react' {
@@ -20,6 +19,8 @@ declare module '@emotion/react' {
     padding: {
       mobile: string;
     };
+    size: {
+      header_height: string;
+    };
   }
 }
-

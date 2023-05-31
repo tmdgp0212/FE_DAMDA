@@ -22,13 +22,4 @@ export const Layout = styled.div`
       display: none;
     }
   }
-
-  /* @media (max-width: 1200px) {
-    //태블릿 대응
-    width: 100vw;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  } */
 `;
