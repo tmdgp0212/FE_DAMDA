@@ -6,7 +6,7 @@ export const Layout = styled.div`
   position: relative;
   overflow-y: scroll;
   margin: 0 auto;
-  width: 360px;
+  width: 360px; // 임시
   height: 100vh;
   background-color: #fff;
 
