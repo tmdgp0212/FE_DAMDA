@@ -2,11 +2,10 @@ import '@/styles/globals.css';
 import { AppProps } from 'next/app';
 import { ThemeProvider } from '@emotion/react';
 import { QueryClient, QueryClientProvider, Hydrate } from '@tanstack/react-query';
-import { server } from '@/mocks/server';
+// import { server } from '@/mocks/server';
 import theme from '@/styles/theme';
 import GlobalHead from '@/components/common/GlobalHead';
 import Layout from '@/components/common/Layout';
-import { AnimatePresence } from 'framer-motion';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,7 +17,7 @@ const queryClient = new QueryClient({
 
 if (process.env.NODE_ENV === 'development') {
   // mock API server 실행함수
-  server.listen();
+  // server.listen();
 }
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -26,12 +25,10 @@ export default function App({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps?.dehydratedState}>
         <ThemeProvider theme={theme}>
-          <AnimatePresence>
-            <GlobalHead />
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </AnimatePresence>
+          <GlobalHead />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         </ThemeProvider>
       </Hydrate>
     </QueryClientProvider>
