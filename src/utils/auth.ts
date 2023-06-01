@@ -2,7 +2,7 @@ import axios from 'axios';
 import { NextRouter } from 'next/router';
 import querystring from 'querystring';
 
-const REST_API_KEY = '56a73d5166d4c92264833034100ab59b';
+const REST_API_KEY = '60f77739714285a54306be265e701791';
 const REDIRECT_URI = 'http://localhost:3000/login';
 
 /**

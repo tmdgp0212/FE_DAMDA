@@ -30,6 +30,11 @@ const font = {
     'font-weight': '900',
     'line-height': '1.6',
   },
+  bold_30_135: {
+    'font-size': '3rem',
+    'font-weight': '900',
+    'line-height': '1.35',
+  },
   bold_24: {
     'font-size': '2.4rem',
     'font-weight': '900',
