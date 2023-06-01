@@ -336,44 +336,6 @@ export const MainReSellerTableGraph = styled(motion.div)<{ graphsize: number }>`
   border-radius: 3px;
 `;
 
-export const MainUserReviewContainer = styled.div`
-  width: 100%;
-  height: 32rem;
-  border: 2px solid ${({ theme }) => theme.colors.sub_blue_1};
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-
-  .review-img {
-    width: 100%;
-    height: 70%;
-    background-image: url('/img/MainReview.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-  }
-
-  .review-desc {
-    padding: 1.4rem;
-    width: 100%;
-    display: flex;
-    gap: 8px;
-    flex-direction: column;
-    align-items: start;
-    justify-content: start;
-
-    h1 {
-      font-size: 1.8rem;
-      font-weight: 700;
-    }
-    p {
-      font-size: 1.4rem;
-      font-weight: 400;
-    }
-  }
-`;
-
 export const MainMoreReviewButton = styled.div`
   margin-top: 2.4rem;
   display: flex;
