@@ -1,15 +1,19 @@
 import styled from '@emotion/styled';
+import theme from './theme';
+import { motion } from 'framer-motion';
 
-export const ReviewContainer = styled.div``;
+export const ReviewContainer = styled.div`
+  padding-top: 92px;
+`;
 
 export const TitleLarge = styled.h2`
-  padding: 25px;
-  font-size: 24px;
-  font-weight: 900;
+  margin-bottom: 20px;
+  padding: 0 25px;
+  ${theme.font.bold_24}
 
   span {
     display: block;
-    line-height: 1.6;
+    line-height: 1.35;
   }
 `;
 
@@ -31,9 +35,45 @@ export const Description = styled.p`
   }
 `;
 
-export const SlideContainer = styled.div``;
+export const SlideContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: ${theme.size.max_width};
+  overflow: hidden;
+`;
 
-export const Slider = styled.div``;
+export const Slider = styled(motion.div)`
+  display: flex;
+  gap: 16px;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+export const SlideItem = styled(motion.div)`
+  width: 130px;
+  height: 130px;
+  border-radius: 5px;
+  scroll-snap-align: 'center';
+  overflow: hidden;
+
+  img {
+    object-fit: cover;
+  }
+`;
+
+export const ScrollDown = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  padding: 30px;
+`;
 
 export const Reviews = styled.div`
   padding: 0 25px;
