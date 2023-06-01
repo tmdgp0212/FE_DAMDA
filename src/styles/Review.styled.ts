@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
+import theme from './theme';
 
 export const ReviewContainer = styled.div``;
 
 export const TitleLarge = styled.h2`
   padding: 25px;
-  font-size: 24px;
-  font-weight: 900;
+  ${theme.font.bold_24}
 
   span {
     display: block;

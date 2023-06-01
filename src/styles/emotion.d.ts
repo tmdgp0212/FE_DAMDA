@@ -23,5 +23,52 @@ declare module '@emotion/react' {
       max_width: string;
       header_height: string;
     };
+    font: {
+      bold_30: {
+        'font-size': string;
+        'font-weight': string;
+        'line-height': string;
+      };
+      bold_24: {
+        'font-size': string;
+        'font-weight': string;
+        'line-height': string;
+      };
+      bold_24_135: {
+        'font-size': string;
+        'font-weight': string;
+        'line-height': string;
+      };
+      bold_19: {
+        'font-size': string;
+        'font-weight': string;
+        'line-height': string;
+      };
+      bold_16: {
+        'font-size': string;
+        'font-weight': string;
+        'line-height': string;
+      };
+      bold_14: {
+        'font-size': string;
+        'font-weight': string;
+        'line-height': string;
+      };
+      regular_14: {
+        'font-size': string;
+        'font-weight': string;
+        'line-height': string;
+      };
+      regular_12: {
+        'font-size': string;
+        'font-weight': string;
+        'line-height': string;
+      };
+      light_14: {
+        'font-size': string;
+        'font-weight': string;
+        'line-height': string;
+      };
+    };
   }
 }

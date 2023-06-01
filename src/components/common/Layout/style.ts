@@ -1,11 +1,11 @@
 import theme from '@/styles/theme';
 import styled from '@emotion/styled';
 
-export const Layout = styled.div<{ disabledScroll: boolean }>`
+export const Layout = styled.div`
   display: grid;
   grid-template-rows: auto 1fr auto;
   position: relative;
-  overflow-y: ${({ disabledScroll }) => (disabledScroll ? 'hidden' : 'scroll')};
+  overflow-y: scroll;
   margin: 0 auto;
   max-width: ${theme.size.max_width};
   height: 100vh;
