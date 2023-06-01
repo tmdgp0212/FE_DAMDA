@@ -6,7 +6,7 @@ import { CarouselItem } from '@/components/common/Carousel/type';
 import UserReview from '@/components/common/Carousel/UserReview';
 
 const variants = {
-  enter: (direction: number) => {
+  enter: ({ direction }: { direction: number }) => {
     return {
       x: direction > 0 ? 1000 : -1000,
       opacity: 0,
@@ -21,7 +21,7 @@ const variants = {
       duration: 0.4,
     },
   },
-  exit: (direction: number) => {
+  exit: ({ direction }: { direction: number }) => {
     return {
       zIndex: 0,
       x: direction < 0 ? 1000 : -1000,
@@ -59,21 +59,19 @@ function Index({ carouselItems, isNextBySide, width, height }: CarouselProps) {
 
   return (
     <S.CarouselWrapper>
-      <AnimatePresence initial={false} custom={direction}>
-        <S.CarouselItemWrapper
-          key={page}
-          custom={direction}
-          variants={variants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-        >
+      <AnimatePresence initial={false} custom={{ direction }}>
+        <S.CarouselItemWrapper key={page} custom={{ direction }}>
           {seenItem.map((carouselItem, index) =>
             index === 0 ? (
               <S.CarouselItem
+                variants={variants}
+                initial="enter"
+                animate="center"
+                exit="exit"
                 height={height}
                 index={index}
                 key={carouselItem.id}
+                custom={{ direction }}
                 transition={{
                   ease: 'easeOut',
                   opacity: { duration: 0.2 },
@@ -94,7 +92,17 @@ function Index({ carouselItems, isNextBySide, width, height }: CarouselProps) {
                 <UserReview carouselItems={carouselItem} />
               </S.CarouselItem>
             ) : (
-              <S.CarouselItem height={height} index={index} key={carouselItem.id} isNextBySide={isNextBySide}>
+              <S.CarouselItem
+                variants={variants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                custom={{ direction }}
+                height={height}
+                index={index}
+                key={carouselItem.id}
+                isNextBySide={isNextBySide}
+              >
                 <UserReview carouselItems={carouselItem} />
               </S.CarouselItem>
             ),
