@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider, Hydrate } from '@tanstack/react-query
 import theme from '@/styles/theme';
 import GlobalHead from '@/components/common/GlobalHead';
 import Layout from '@/components/common/Layout';
+import { CookiesProvider } from 'react-cookie';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,15 +23,17 @@ if (process.env.NODE_ENV === 'development') {
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <QueryClientProvider client={queryClient}>
-      <Hydrate state={pageProps?.dehydratedState}>
-        <ThemeProvider theme={theme}>
-          <GlobalHead />
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </ThemeProvider>
-      </Hydrate>
-    </QueryClientProvider>
+    <CookiesProvider>
+      <QueryClientProvider client={queryClient}>
+        <Hydrate state={pageProps?.dehydratedState}>
+          <ThemeProvider theme={theme}>
+            <GlobalHead />
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </ThemeProvider>
+        </Hydrate>
+      </QueryClientProvider>
+    </CookiesProvider>
   );
 }

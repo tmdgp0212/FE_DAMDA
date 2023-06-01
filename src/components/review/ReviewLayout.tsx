@@ -2,6 +2,10 @@ import * as S from '../../styles/Review.styled';
 import BestBadge from '../../../public/icons/badge_best.svg';
 import CleanerBadge from '../../../public/icons/badge_cleaner.svg';
 import ReviewItem from './ReviewItem';
+import DownArrow from '../../../public/icons/angle-down.svg';
+import Image from 'next/image';
+import { AnimatePresence } from 'framer-motion';
+import { slide1, slide2 } from '@/constants/reviewPageSlideItems';
 
 const dummy = [
   {
@@ -44,10 +48,11 @@ const dummy = [
 
 function ReviewLayout() {
   return (
-    <>
+    <AnimatePresence>
       <S.TitleLarge>
-        <span>옷장 정리 후에 바뀐 생활을</span>
-        <span>체험해 보세요.</span>
+        <span>옷장 정리로</span>
+        <span>더 깔끔한 일상을</span>
+        <span>만나보세요.</span>
       </S.TitleLarge>
       <S.Description>
         <span>열다 서비스의 전문적인 청소 시스템으로</span>
@@ -55,13 +60,40 @@ function ReviewLayout() {
       </S.Description>
 
       <S.SlideContainer className="slide-container">
-        <S.Slider className="image-slider-1"></S.Slider>
-        <S.Slider className="image-slider-2"></S.Slider>
+        <S.Slider className="image-slider-1">
+          {slide1.map((slide, idx) => (
+            <S.SlideItem
+              key={idx}
+              // animate={{
+              //   x: `-${idx * 100}%`,
+              // }}
+              transition={{
+                duration: 0.5,
+                ease: 'easeInOut',
+                loop: Infinity,
+                repeatDelay: 1,
+              }}
+            >
+              <Image src={`${slide}`} alt="열다 서비스 이미지" width={130} height={130} />
+            </S.SlideItem>
+          ))}
+        </S.Slider>
+        <S.Slider className="image-slider-2">
+          {slide2.map((slide, idx) => (
+            <S.SlideItem key={idx}>
+              <Image src={`${slide}`} alt="열다 서비스 이미지" width={130} height={130} />
+            </S.SlideItem>
+          ))}
+        </S.Slider>
       </S.SlideContainer>
 
+      <S.ScrollDown>
+        <span>내려서 더 보기</span>
+        <DownArrow />
+      </S.ScrollDown>
       <S.TitleLarge>
-        <span>열다 회원님들의</span>
-        <span>소중한 후기</span>
+        <span>열다를 만나신 분들의</span>
+        <span>이야기를 들어보세요</span>
       </S.TitleLarge>
       <S.Description>
         <span>사진을 클릭하시면 열다 서비스를 사용하신</span>
@@ -95,7 +127,7 @@ function ReviewLayout() {
         </S.AllReview>
         <S.Pagenation>1 2 3 4 </S.Pagenation>
       </S.Reviews>
-    </>
+    </AnimatePresence>
   );
 }
 

@@ -1,15 +1,26 @@
 import * as S from './style';
 import HeaderLayout from './HeaderLayout';
-import { useMutation } from '@tanstack/react-query';
-import { getAuthorize } from '@/apis/oauth';
+import { useState } from 'react';
+import Menu from './Menu';
 
 function Header() {
-  const { mutate: test } = useMutation(() => getAuthorize());
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const menuHandler = () => {
+    if (isMenuOpen) {
+      setIsMenuOpen(false);
+    } else {
+      setIsMenuOpen(true);
+    }
+  };
 
   return (
-    <S.Header>
-      <HeaderLayout mutate={test} />
-    </S.Header>
+    <>
+      <S.Header isMenuOpen={isMenuOpen}>
+        <HeaderLayout isMenuOpen={isMenuOpen} menuHandler={menuHandler} />
+      </S.Header>
+      <Menu isMenuOpen={isMenuOpen} menuHandler={menuHandler} />
+    </>
   );
 }
 
