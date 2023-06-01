@@ -19,7 +19,7 @@ function ThirdButtonGroup() {
         if (index === 2) {
           if (isOpen) {
             return (
-              <S.MainPriceContent key={item.title}>
+              <S.MainPriceContent key={item.title} onClick={() => setIsOpen(false)}>
                 <div className="head">
                   <p>{item.title}</p>
                   <h2>{item.price}원</h2>
@@ -34,7 +34,7 @@ function ThirdButtonGroup() {
                     시간당 추가 요금이 발생합니다.
                   </span>
                 </div>
-                <BsArrowUpLeft onClick={() => setIsOpen(false)} />
+                <BsArrowUpLeft />
               </S.MainPriceContent>
             );
           }
