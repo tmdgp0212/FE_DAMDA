@@ -57,11 +57,11 @@ function ManagerApplyLayout() {
       </S.PreferenceContainer>
 
       <S.BenefitContainer>
-        <div>
+        <S.Title>
           <h2>열다 매니저 혜택</h2>
 
           <p>열다의 매니저가 되시면 이런 혜택을 받으실수 있어요!</p>
-        </div>
+        </S.Title>
 
         <Image src={ManagerApplyBenefitImg} alt="매니저 혜택 영역 이미지" width={370} height={300} />
       </S.BenefitContainer>

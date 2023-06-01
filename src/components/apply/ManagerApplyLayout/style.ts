@@ -72,10 +72,15 @@ export const BenefitContainer = styled.section`
   display: block;
   height: 792px; // TODO:
 
-  div {
-    padding-left: 22px;
-    margin-bottom: 20px;
+  img {
+    display: block;
+    width: 100%;
   }
+`;
+
+export const Title = styled.header`
+  padding-left: 22px;
+  margin-bottom: 20px;
 
   h2 {
     margin-bottom: 6px;
@@ -88,12 +93,6 @@ export const BenefitContainer = styled.section`
     font-size: 14px;
     font-weight: 300;
     line-height: 160%;
-  }
-
-  img {
-    position: relative;
-    display: block;
-    width: 100%;
   }
 `;
 
