@@ -2,7 +2,6 @@ import * as S from '@/styles/Main.styled';
 import { buttonElementGroup, buttonRequestGroup } from '@/constants/mainButtonText';
 import { BsArrowUpRight } from 'react-icons/bs';
 import React from 'react';
-import { log } from 'util';
 
 function FirstButtonGroup() {
   return (

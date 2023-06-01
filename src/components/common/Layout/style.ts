@@ -1,3 +1,4 @@
+import theme from '@/styles/theme';
 import styled from '@emotion/styled';
 
 export const Layout = styled.div`
@@ -6,7 +7,7 @@ export const Layout = styled.div`
   position: relative;
   overflow-y: scroll;
   margin: 0 auto;
-  width: 360px; // 임시
+  max-width: ${theme.size.max_width};
   height: 100vh;
   background-color: #fff;
 
@@ -22,13 +23,4 @@ export const Layout = styled.div`
       display: none;
     }
   }
-
-  /* @media (max-width: 1200px) {
-    //태블릿 대응
-    width: 100vw;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  } */
 `;

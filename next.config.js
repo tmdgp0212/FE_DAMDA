@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   compiler: {
     emotion: true,
   },
@@ -22,14 +22,6 @@ const nextConfig = {
       use: ['@svgr/webpack'],
     });
     return config;
-  },
-  async rewrites() {
-    return [
-      {
-        source: '/kakaoApi/:path*',
-        destination: 'https://kauth.kakao.com/:path*',
-      },
-    ];
   },
 };
 
