@@ -1,13 +1,10 @@
 import * as S from './style';
 import HeaderLayout from './HeaderLayout';
-import { useMutation } from '@tanstack/react-query';
-import { getAuthorize } from '@/apis/oauth';
 import { useState, useContext, useEffect } from 'react';
-import Menu from './Menu';
 import { LayoutContext } from '../Layout';
+import Menu from './Menu';
 
 function Header() {
-  const { mutate: test } = useMutation(() => getAuthorize());
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const context = useContext(LayoutContext);
@@ -29,7 +26,7 @@ function Header() {
   return (
     <>
       <S.Header isMenuOpen={isMenuOpen}>
-        <HeaderLayout mutate={test} isMenuOpen={isMenuOpen} menuHandler={menuHandler} />
+        <HeaderLayout isMenuOpen={isMenuOpen} menuHandler={menuHandler} />
       </S.Header>
       <Menu isMenuOpen={isMenuOpen} menuHandler={menuHandler} />
     </>

@@ -56,6 +56,11 @@ const Icon = styled.div`
 
 export const LoginButton = styled(Icon)`
   background-image: url('/icons/login-icon.svg');
+  a {
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
 `;
 
 export const SideMenuButton = styled(Icon)<{ isMenuOpen: boolean }>`
