@@ -53,7 +53,7 @@ const font = {
   bold_14: {
     'font-size': '1.4rem',
     'font-weight': '700',
-    'line-height': 1.4,
+    'line-height': '1.4',
   },
   regular_14: {
     'font-size': '1.4rem',
