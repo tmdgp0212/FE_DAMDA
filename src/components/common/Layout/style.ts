@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const Layout = styled.div`
   display: grid;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: auto 1fr auto;
   position: relative;
   overflow-y: scroll;
   margin: 0 auto;
