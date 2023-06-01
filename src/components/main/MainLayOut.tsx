@@ -17,12 +17,21 @@ function MainLayOut() {
       </S.MainTitleContainer>
       <S.MainContentContainer>
         {mainContentSection.map((item, index) => (
-          <S.MainContentSection key={item.title}>
-            {item.title && (
+          <S.MainContentSection key={item.emoji}>
+            {item.emoji && (
               <S.MainDescContainer>
                 <span>{item.emoji}</span>
-                <p dangerouslySetInnerHTML={makeBrTagsBybr(item.title)}></p>
-                {item.description && <h1 dangerouslySetInnerHTML={makeBrTagsBybr(item.description)}></h1>}
+                {item.reverse ? (
+                  <>
+                    {item.h1 && <h1 dangerouslySetInnerHTML={makeBrTagsBybr(item.h1)}></h1>}
+                    {item.p && <p dangerouslySetInnerHTML={makeBrTagsBybr(item.p)}></p>}
+                  </>
+                ) : (
+                  <>
+                    {item.p && <p dangerouslySetInnerHTML={makeBrTagsBybr(item.p)}></p>}
+                    {item.h1 && <h1 dangerouslySetInnerHTML={makeBrTagsBybr(item.h1)}></h1>}
+                  </>
+                )}
                 {item.type === 'image' && <S.MainYoldaService src="/img/yoldaService.png" />}
               </S.MainDescContainer>
             )}
@@ -45,7 +54,7 @@ export default MainLayOut;
 // </S.MainContentSection>
 // <S.MainContentSection>
 //   <S.MainDescContainer>
-//     <span>🤔</span>
+//     <p>🤔</p>
 //     <p>우리집은 비용이 얼마나 들까요?</p>
 //     <h1>
 //       열다 서비스 <br /> 가구 당 평균 가격
@@ -57,7 +66,7 @@ export default MainLayOut;
 // </S.MainContentSection>
 // <S.MainContentSection>
 //   <S.MainDescContainer>
-//     <span>⏳</span>
+//     <p>⏳</p>
 //     <p>합리적이고 투명한 </p>
 //     <h1>
 //       시간당 가격 정찰제를 <br /> 도입했어요
@@ -69,7 +78,7 @@ export default MainLayOut;
 // </S.MainContentSection>
 // <S.MainContentSection>
 //   <S.MainDescContainer>
-//     <span>💸</span>
+//     <p>💸</p>
 //     <h1>
 //       안 입는 옷도 <br />
 //       새로운 방향으로
@@ -82,7 +91,7 @@ export default MainLayOut;
 // </S.MainContentSection>
 // <S.MainContentSection>
 //   <S.MainDescContainer>
-//     <span>‍🙆‍♀️</span>
+//     <p>‍🙆‍♀️</p>
 //     <h1>
 //       먼저 열다를 만나신 분들의 <br /> 이야기도 들어보세요
 //     </h1>
@@ -91,7 +100,7 @@ export default MainLayOut;
 // </S.MainContentSection>
 // <S.MainContentSection>
 //   <S.MainDescContainer>
-//     <span>🚚</span>
+//     <p>🚚</p>
 //     <h1>지금 열다는</h1>
 //     <p>
 //       서울과 경기 일부 지역에서만 <br /> 서비스 하고 있습니다. <br /> 다른 지역으로도 확대할 예정이니 <br />
