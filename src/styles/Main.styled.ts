@@ -59,8 +59,9 @@ export const MainContentContainer = styled.div`
 `;
 
 export const MainButtonGroupContainer = styled.div<{ groupIndex: number }>`
-  display: grid;
+  display: ${({ groupIndex }) => (groupIndex === 2 ? 'flex' : 'grid')};
   grid-template-rows: ${({ groupIndex }) => (groupIndex === 0 ? '1fr 2fr 1fr 1fr' : 'repeat(3, 1fr)')};
+  flex-direction: column;
 `;
 
 export const MainRequestGroupContainer = styled.div`
@@ -184,7 +185,7 @@ export const MainPriceButton = styled(MainContentButton)<{ index: number }>`
   }};
   text-decoration: ${({ index }) => (index === 1 ? 'line-through' : 'none')};
   p {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: 400;
   }
   h2 {
@@ -198,6 +199,78 @@ export const MainPriceButton = styled(MainContentButton)<{ index: number }>`
     position: absolute;
     top: 1rem;
     right: 1rem;
+    cursor: pointer;
+  }
+
+  .how {
+    position: absolute;
+    right: -50%;
+  }
+`;
+
+export const MainPriceContent = styled.div`
+  position: relative;
+  padding: 1rem 3.6rem 1rem 1rem;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  height: fit-content;
+  border: 2px solid ${({ theme }) => theme.colors.main_blue};
+  border-radius: 5px;
+
+  .head {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    p {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 17px;
+    }
+
+    h2 {
+      font-weight: 700;
+      font-size: 18px;
+    }
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background-color: ${({ theme }) => theme.colors.yolda_gray_3};
+  }
+
+  .desc {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    h1 {
+      font-weight: 800;
+      font-size: 2.4rem;
+      line-height: 135%;
+    }
+    span {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 17px;
+      strong {
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 135%;
+        margin-right: 2px;
+      }
+    }
+  }
+
+  svg {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    stroke-width: 0.8px;
   }
 `;
 
@@ -334,44 +407,6 @@ export const MainReSellerTableGraph = styled(motion.div)<{ graphsize: number }>`
   height: 2rem;
   background-color: ${({ theme }) => theme.colors.sub_blue_2};
   border-radius: 3px;
-`;
-
-export const MainUserReviewContainer = styled.div`
-  width: 100%;
-  height: 32rem;
-  border: 2px solid ${({ theme }) => theme.colors.sub_blue_1};
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-
-  .review-img {
-    width: 100%;
-    height: 70%;
-    background-image: url('/img/MainReview.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-  }
-
-  .review-desc {
-    padding: 1.4rem;
-    width: 100%;
-    display: flex;
-    gap: 8px;
-    flex-direction: column;
-    align-items: start;
-    justify-content: start;
-
-    h1 {
-      font-size: 1.8rem;
-      font-weight: 700;
-    }
-    p {
-      font-size: 1.4rem;
-      font-weight: 400;
-    }
-  }
 `;
 
 export const MainMoreReviewButton = styled.div`
