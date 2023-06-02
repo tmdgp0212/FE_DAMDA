@@ -70,7 +70,6 @@ export const PreferenceContainer = styled.section`
 export const BenefitContainer = styled.section`
   position: relative;
   display: block;
-  height: 792px; // TODO:
 
   img {
     display: block;
