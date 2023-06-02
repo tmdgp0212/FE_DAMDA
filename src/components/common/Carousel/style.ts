@@ -5,30 +5,15 @@ export const CarouselWrapper = styled(motion.div)`
   position: relative;
   width: 100%;
   height: 32rem;
+
+  .swiper-item {
+    width: 100%;
+    height: 32rem;
+  }
 `;
 
 export const CarouselItemWrapper = styled(motion.div)`
   position: relative;
-`;
-
-export const CarouselItem = styled(motion.div)<{
-  index: number;
-  isNextBySide?: boolean;
-  width?: number;
-  height: number;
-}>`
-  position: absolute;
-  ${({ index, isNextBySide }) => {
-    if (index === 0) {
-      return 'left: 0;';
-    }
-    if (index === 1) {
-      if (!isNextBySide) return 'right: -103%;';
-      return 'right: -100%;';
-    }
-  }}
-  width: ${({ width }) => (width ? `${width}%` : '100%')};
-  height: ${({ height }) => `${height}rem`};
 `;
 
 export const UserReviewWrapper = styled.div<{
@@ -47,6 +32,7 @@ export const UserReviewWrapper = styled.div<{
     background-position: center;
     border-radius: 5px;
     border: 2px solid ${({ theme }) => theme.colors.main_blue};
+    border-bottom: none;
   }
 
   .desc {
