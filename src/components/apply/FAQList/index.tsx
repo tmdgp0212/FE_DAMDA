@@ -1,8 +1,14 @@
 import React from 'react';
+
 import FAQItem from '../FAQItem';
+import { faqType } from '@/types/constants/managerApplyPageTypes';
 import * as S from './style';
 
-function FAQList({ managerApplyFAQs }) {
+interface FAQListProps {
+  managerApplyFAQs: faqType[];
+}
+
+function FAQList({ managerApplyFAQs }: FAQListProps) {
   return (
     <S.FAQList>
       {managerApplyFAQs.map((faq) => (

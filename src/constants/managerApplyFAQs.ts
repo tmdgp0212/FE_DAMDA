@@ -1,4 +1,6 @@
-export const managerApplyFAQs = [
+import { faqType } from '@/types/constants/managerApplyPageTypes';
+
+export const managerApplyFAQs: faqType[] = [
   {
     info: '업계 최고 시급',
     title: '시급 15,000~18,000원',

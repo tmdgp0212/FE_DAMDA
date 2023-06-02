@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const FAQItem = styled.li`
+export const FAQItem = styled.li<{ isFAQOpen: boolean }>`
   width: 320px;
   background-color: #ffffff;
   border: ${({ theme, isFAQOpen }) =>

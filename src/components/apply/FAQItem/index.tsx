@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
-import { replaceStringsWithTags } from '@/utils';
-
-import * as S from './style';
 import { FiArrowUpLeft, FiArrowDownRight } from 'react-icons/fi';
 
-function FAQItem({ faq }) {
+import { faqType } from '@/types/constants/managerApplyPageTypes';
+import { replaceStringsWithTags } from '@/utils';
+import * as S from './style';
+
+interface FAQItemProps {
+  faq: faqType;
+}
+
+function FAQItem({ faq }: FAQItemProps) {
   const [isFAQOpen, setIsFAQOpen] = useState(false);
   const { info, title, description } = faq;
 
