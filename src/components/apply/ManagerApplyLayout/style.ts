@@ -119,7 +119,6 @@ export const Title = styled.header`
 
 export const InstitutionContainer = styled.section`
   padding: 80px 24px 80px 20px;
-  margin-bottom: 65px;
 
   h2 {
     margin-bottom: 17px;
