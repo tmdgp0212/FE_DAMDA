@@ -4,7 +4,6 @@ import CleanerBadge from '../../../public/icons/badge_cleaner.svg';
 import ReviewItem from './ReviewItem';
 import DownArrow from '../../../public/icons/angle-down.svg';
 import Image from 'next/image';
-import { AnimatePresence } from 'framer-motion';
 import { slide1, slide2 } from '@/constants/reviewPageSlideItems';
 
 const dummy = [
@@ -14,7 +13,10 @@ const dummy = [
     body: '너무 좋아요 어쩌구',
     userName: '김아무개',
     isNew: true,
-    imageBefore: '',
+    isBest: false,
+    location: '서울시 강남구',
+    time: '2022-03-19',
+    imageBefore: 'https://cdn.univ20.com/wp-content/uploads/2016/03/099cb95e398e9f8d74f63eccb5c75db2.jpg',
     imageAfter: 'https://img.etoday.co.kr/pto_db/2019/02/600/20190225135415_1304548_1200_800.jpg',
   },
   {
@@ -23,7 +25,10 @@ const dummy = [
     body: '너무 좋아요 어쩌구',
     userName: '강아무개',
     isNew: true,
-    imageBefore: '',
+    isBest: false,
+    location: '서울시 강남구',
+    time: '2022-03-19',
+    imageBefore: 'https://cdn.univ20.com/wp-content/uploads/2016/03/099cb95e398e9f8d74f63eccb5c75db2.jpg',
     imageAfter: 'https://img.etoday.co.kr/pto_db/2019/02/600/20190225135415_1304548_1200_800.jpg',
   },
   {
@@ -32,23 +37,30 @@ const dummy = [
     body: '너무 좋아요 어쩌구',
     userName: '박아무개',
     isNew: true,
-    imageBefore: '',
-    imageAfter: 'https://img.etoday.co.kr/pto_db/2019/02/600/20190225135415_1304548_1200_800.jpg',
-  },
-  {
-    id: 4,
-    title: '열다 서비스를 받고 옷입는 시간이 줄었어요',
-    body: '너무 좋아요 어쩌구',
-    userName: '최아무개',
-    isNew: true,
-    imageBefore: '',
+    isBest: false,
+    location: '서울시 강남구',
+    time: '2022-03-19',
+    imageBefore: 'https://cdn.univ20.com/wp-content/uploads/2016/03/099cb95e398e9f8d74f63eccb5c75db2.jpg',
     imageAfter: 'https://img.etoday.co.kr/pto_db/2019/02/600/20190225135415_1304548_1200_800.jpg',
   },
 ];
 
+const dummyBest = {
+  id: 4,
+  title: '열다 서비스를 받고 옷입는 시간이 줄었어요',
+  body: '너무 좋아요 어쩌구',
+  userName: '박아무개',
+  isNew: false,
+  isBest: true,
+  location: '서울시 강남구',
+  time: '2022-03-19',
+  imageBefore: 'https://cdn.univ20.com/wp-content/uploads/2016/03/099cb95e398e9f8d74f63eccb5c75db2.jpg',
+  imageAfter: 'https://img.etoday.co.kr/pto_db/2019/02/600/20190225135415_1304548_1200_800.jpg',
+};
+
 function ReviewLayout() {
   return (
-    <AnimatePresence>
+    <>
       <S.TitleLarge>
         <span>옷장 정리로</span>
         <span>더 깔끔한 일상을</span>
@@ -62,18 +74,7 @@ function ReviewLayout() {
       <S.SlideContainer className="slide-container">
         <S.Slider className="image-slider-1">
           {slide1.map((slide, idx) => (
-            <S.SlideItem
-              key={idx}
-              // animate={{
-              //   x: `-${idx * 100}%`,
-              // }}
-              transition={{
-                duration: 0.5,
-                ease: 'easeInOut',
-                loop: Infinity,
-                repeatDelay: 1,
-              }}
-            >
+            <S.SlideItem key={idx}>
               <Image src={`${slide}`} alt="열다 서비스 이미지" width={130} height={130} />
             </S.SlideItem>
           ))}
@@ -106,7 +107,9 @@ function ReviewLayout() {
           베스트 이용후기
         </S.TitleMedium>
         <S.BestReview className="best-review">
-          <div className="image">이미지</div>
+          <div className="image">
+            <Image src={`${dummyBest.imageAfter}`} alt="베스트리뷰" width={200} height={200} />
+          </div>
           <div className="review-title">시간을 벌었어요!</div>
           <div className="review-content">
             <div className="user">사용자 : 김**님</div>
@@ -127,7 +130,7 @@ function ReviewLayout() {
         </S.AllReview>
         <S.Pagenation>1 2 3 4 </S.Pagenation>
       </S.Reviews>
-    </AnimatePresence>
+    </>
   );
 }
 
