@@ -66,7 +66,10 @@ function ManagerApplyLayout() {
 
         <Image src={ManagerApplyBenefitImg} alt="매니저 혜택 영역 이미지" width={370} height={300} />
 
-        <FrequentlyAskedQuestions />
+        <S.StyleWrapper>
+          <FrequentlyAskedQuestions />
+          <Link href="/">매니저 지원</Link>
+        </S.StyleWrapper>
       </S.BenefitContainer>
 
       <S.InstitutionContainer>

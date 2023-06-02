@@ -75,6 +75,28 @@ export const BenefitContainer = styled.section`
     display: block;
     width: 100%;
   }
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 154px;
+    height: 55px;
+    border: 1px solid ${({ theme }) => theme.colors.yolda_black_1};
+    border-radius: 5px;
+    background-color: ${({ theme }) => theme.colors.main_blue};
+    color: #ffffff;
+    font-size: 19px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+`;
+
+export const StyleWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0 20px;
 `;
 
 export const Title = styled.header`
