@@ -20,15 +20,18 @@ export const TitleLarge = styled.h2`
 export const TitleMedium = styled.h3`
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin: 12px 0;
+  gap: 8px;
+  margin: 53px 0 17px;
   font-size: 1.4rem;
   font-weight: 500;
 `;
 
 export const Description = styled.p`
+  position: relative;
   padding: 0 25px;
   line-height: 1.6;
+  margin-bottom: -20px;
+  z-index: 1;
 
   span {
     display: block;
@@ -37,16 +40,30 @@ export const Description = styled.p`
 
 export const SlideContainer = styled.div`
   display: flex;
+  position: relative;
   flex-direction: column;
   gap: 16px;
   width: ${theme.size.max_width};
   overflow: hidden;
+
+  &::after {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 66px;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    content: '';
+  }
 `;
 
-export const Slider = styled(motion.div)`
+export const Slider = styled.div`
   display: flex;
-  gap: 16px;
   overflow-x: scroll;
+  width: calc(130 * 3 + 16 * 2);
+  height: 130px;
   scroll-snap-type: x mandatory;
 
   &::-webkit-scrollbar {
@@ -54,12 +71,13 @@ export const Slider = styled(motion.div)`
   }
 `;
 
-export const SlideItem = styled(motion.div)`
+export const SlideItem = styled.div`
   width: 130px;
   height: 130px;
   border-radius: 5px;
   scroll-snap-align: 'center';
   overflow: hidden;
+  z-index: 0;
 
   img {
     object-fit: cover;
@@ -79,7 +97,15 @@ export const Reviews = styled.div`
   padding: 0 25px;
 `;
 
-export const BestReview = styled.div``;
+export const BestReview = styled.div`
+  image {
+    display: block;
+    position: relative;
+    width: 200px;
+    height: 300px;
+    border: 1px solid;
+  }
+`;
 
 export const AllReview = styled.div`
   display: grid;
