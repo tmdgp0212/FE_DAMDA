@@ -5,6 +5,7 @@ import ReviewItem from './ReviewItem';
 import DownArrow from '../../../public/icons/angle-down.svg';
 import Image from 'next/image';
 import { slide1, slide2 } from '@/constants/reviewPageSlideItems';
+import Pagination from 'react-js-pagination';
 
 const dummy = [
   {
@@ -106,16 +107,23 @@ function ReviewLayout() {
           <BestBadge />
           베스트 이용후기
         </S.TitleMedium>
-        <S.BestReview className="best-review">
-          <div className="image">
-            <Image src={`${dummyBest.imageAfter}`} alt="베스트리뷰" width={200} height={200} />
+        <S.BestReview className="best_review">
+          <div className="prograss_container">
+            <Image src={`${dummyBest.imageAfter}`} alt="베스트리뷰" fill />
           </div>
-          <div className="review-title">시간을 벌었어요!</div>
-          <div className="review-content">
-            <div className="user">사용자 : 김**님</div>
+          {/* 컴포넌트 가져오기 */}
+          <div className="review_container">
+            <div className="review_header">
+              <div className="flex_box">
+                <div className="user">
+                  {dummyBest.location} {dummyBest.userName}님
+                </div>
+                <div className="time">{dummyBest.time}</div>
+              </div>
+              <div className="review_title">{dummyBest.title}</div>
+            </div>
             <div className="preview">
-              <span>옷장 정리가 되니까</span>
-              <span>옷 찾는 시간이 줄었어요.</span>
+              옷장정리를 너무 꼼꼼히 해주셔서 옷 찾는 시간이 많이 줄었어요! 친절하게 설명도 해주시고 너무 감사합니다!
             </div>
           </div>
         </S.BestReview>
@@ -128,8 +136,18 @@ function ReviewLayout() {
             <ReviewItem key={review.id} review={review} />
           ))}
         </S.AllReview>
-        <S.Pagenation>1 2 3 4 </S.Pagenation>
       </S.Reviews>
+      <S.Pagenation>
+        <Pagination
+          activePage={1}
+          itemsCountPerPage={3}
+          totalItemsCount={4}
+          hideFirstLastPages={true}
+          linkClassPrev="prev"
+          linkClassNext="next"
+          onChange={() => {}}
+        />
+      </S.Pagenation>
     </>
   );
 }
