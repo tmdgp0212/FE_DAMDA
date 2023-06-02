@@ -97,6 +97,7 @@ export const StyleWrapper = styled.div`
   flex-direction: column;
   align-items: flex-end;
   padding: 0 20px;
+  margin-top: -65px;
 `;
 
 export const Title = styled.header`
