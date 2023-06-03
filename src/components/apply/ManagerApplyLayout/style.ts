@@ -70,12 +70,34 @@ export const PreferenceContainer = styled.section`
 export const BenefitContainer = styled.section`
   position: relative;
   display: block;
-  height: 792px; // TODO:
 
   img {
     display: block;
     width: 100%;
   }
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 154px;
+    height: 55px;
+    border: 1px solid ${({ theme }) => theme.colors.yolda_black_1};
+    border-radius: 5px;
+    background-color: ${({ theme }) => theme.colors.main_blue};
+    color: #ffffff;
+    font-size: 19px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+`;
+
+export const StyleWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0 20px;
+  margin-top: -65px;
 `;
 
 export const Title = styled.header`
@@ -98,7 +120,6 @@ export const Title = styled.header`
 
 export const InstitutionContainer = styled.section`
   padding: 80px 24px 80px 20px;
-  margin-bottom: 65px;
 
   h2 {
     margin-bottom: 17px;
