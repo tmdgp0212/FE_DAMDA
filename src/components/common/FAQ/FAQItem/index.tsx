@@ -3,8 +3,13 @@ import { replaceStringsWithTags } from '@/utils';
 
 import { FiArrowUpLeft, FiArrowDownRight } from 'react-icons/fi';
 import * as S from './style';
+import { faqType } from '@/types/constants/faqType';
 
-function FAQItem({ faq }) {
+interface FAQItemProps {
+  faq: faqType;
+}
+
+function FAQItem({ faq }: FAQItemProps) {
   const [isFAQOpen, setIsFAQOpen] = useState(false);
   const { title, description, info, category } = faq;
 

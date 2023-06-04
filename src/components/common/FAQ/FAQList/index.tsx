@@ -1,7 +1,12 @@
 import React from 'react';
 import FAQItem from '../FAQItem';
+import { faqType } from '@/types/constants/faqType';
 
-function FAQList({ faqList }) {
+interface FAQListProps {
+  faqList: faqType[];
+}
+
+function FAQList({ faqList }: FAQListProps) {
   return (
     <ul>
       {faqList.map((faq) => (
