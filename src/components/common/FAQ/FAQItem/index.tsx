@@ -1,17 +1,12 @@
 import React, { useState } from 'react';
-import { FiArrowUpLeft, FiArrowDownRight } from 'react-icons/fi';
-
-import { faqType } from '@/types/constants/managerApplyPageTypes';
 import { replaceStringsWithTags } from '@/utils';
+
+import { FiArrowUpLeft, FiArrowDownRight } from 'react-icons/fi';
 import * as S from './style';
 
-interface FAQItemProps {
-  faq: faqType;
-}
-
-function FAQItem({ faq }: FAQItemProps) {
+function FAQItem({ faq }) {
   const [isFAQOpen, setIsFAQOpen] = useState(false);
-  const { info, title, description } = faq;
+  const { title, description, info, category } = faq;
 
   return (
     <S.FAQItem onClick={() => setIsFAQOpen(!isFAQOpen)} isFAQOpen={isFAQOpen}>
@@ -19,7 +14,7 @@ function FAQItem({ faq }: FAQItemProps) {
         {isFAQOpen ? <FiArrowUpLeft /> : <FiArrowDownRight />}
 
         <S.CardHeader>
-          <strong>{info}</strong>
+          <strong>{info || category}</strong>
           <h3>{title}</h3>
         </S.CardHeader>
 

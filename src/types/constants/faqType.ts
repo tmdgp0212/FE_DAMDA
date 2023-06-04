@@ -1,5 +1,6 @@
 export type faqType = {
-  info: string;
   title: string;
   description: string;
+  info?: string;
+  category?: string;
 };
