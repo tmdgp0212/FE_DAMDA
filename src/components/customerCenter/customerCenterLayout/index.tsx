@@ -20,16 +20,18 @@ function CustomerCenterLayout() {
         </S.Description>
       </S.CustomerCenterHeader>
 
-      <FrequentlyAskedQuestions enteredFAQs={customerCenterFAQs} />
+      <S.CustomerCenterContent>
+        <FrequentlyAskedQuestions enteredFAQs={customerCenterFAQs} />
 
-      <S.PersonalConsultation>
-        <h2>
-          찾으시는
-          <br /> 내용이 없으신가요?
-        </h2>
+        <S.PersonalConsultation>
+          <h2>
+            찾으시는
+            <br /> 내용이 없으신가요?
+          </h2>
 
-        <Link href="/">1:1 상담 신청</Link>
-      </S.PersonalConsultation>
+          <Link href="/">1:1 상담 신청</Link>
+        </S.PersonalConsultation>
+      </S.CustomerCenterContent>
     </div>
   );
 }

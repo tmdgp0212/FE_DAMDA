@@ -6,6 +6,10 @@ export const CustomerCenterHeader = styled.header`
   height: 412px;
 `;
 
+export const CustomerCenterContent = styled.div`
+  padding: ${({ theme }) => theme.padding.mobile};
+`;
+
 export const Description = styled.div`
   position: absolute;
   bottom: 67px;
@@ -21,7 +25,8 @@ export const Description = styled.div`
 `;
 
 export const PersonalConsultation = styled.div`
-  padding: 48px 20px 52px;
+  padding-top: 48px;
+  padding-bottom: 52px;
 
   h2 {
     margin-bottom: 32px;
