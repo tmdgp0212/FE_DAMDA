@@ -95,9 +95,12 @@ export const BenefitContainer = styled.section`
 export const StyleWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   padding: 0 20px;
   margin-top: -65px;
+
+  a {
+    align-self: flex-end;
+  }
 `;
 
 export const Title = styled.header`
