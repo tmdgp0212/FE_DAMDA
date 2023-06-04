@@ -1,6 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+
+import FrequentlyAskedQuestions from '@/components/common/FAQ/FrequentlyAskedQuestions';
+import { customerCenterFAQs } from '@/constants/customerCenterFAQs';
 import customerCenterImg from 'public/img/customerServiceCenter.png';
 
 import * as S from './style';
@@ -16,6 +19,8 @@ function CustomerCenterLayout() {
           <p>열다에 대한 궁금증을 해소하세요!</p>
         </S.Description>
       </S.CustomerCenterHeader>
+
+      <FrequentlyAskedQuestions enteredFAQs={customerCenterFAQs} />
 
       <S.PersonalConsultation>
         <h2>
