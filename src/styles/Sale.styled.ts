@@ -1,5 +1,6 @@
 import MainResellerGraph from '@/components/main/MainResellerGraph';
 import styled from '@emotion/styled';
+import Swiper from 'swiper';
 
 export const SaleContainer = styled.div`
   display: flex;
@@ -27,8 +28,8 @@ export const SaleTitleContainer = styled.div`
   position: relative;
 `;
 
-export const SaleTitleImg = styled.div`
-  background-image: url('/img/sale_main1.png');
+export const SaleTitleImg = styled.div<{ backgorundImg: string }>`
+  background-image: ${({ backgorundImg }) => `url(${backgorundImg})`};
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 70%;
@@ -100,24 +101,27 @@ export const SaleClosetContainer = styled.div`
   width: 100%;
   height: 100%;
   padding: ${({ theme }) => theme.padding.mobile};
+  h1 {
+    margin-bottom: 1rem;
+  }
 `;
 
-export const PopupContainer = styled.div<{ onPopup?: boolean }>`
+export const PopupContainer = styled.div<{ popup?: boolean; height: string }>`
   transition: max-height 0.3s ease-in-out;
   width: 100%;
-  max-height: ${({ onPopup }) => (onPopup ? '70px' : '150px')};
+  max-height: ${({ popup, height }) => (popup ? height : '70px')};
   height: auto;
-  border: ${({ onPopup }) => (onPopup ? '1px solid black' : '2px solid #0061FF')};
+  border: ${({ popup }) => (popup ? '2px solid #0061FF' : '1px solid black')};
   border-radius: 0.6rem;
   padding: 1rem;
   overflow: hidden;
-  margin-top: 1.4rem;
   h2 {
     ${({ theme }) => theme.font.bold_19};
   }
 `;
 
 export const PopupWrap = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   span {
@@ -131,7 +135,10 @@ export const PopupTitle = styled.div`
 `;
 
 export const PopupDesc = styled.p`
-  padding: 0 10px;
+  padding: 0 5px 0 10px;
+  strong {
+    font-weight: 700;
+  }
 `;
 
 // 그래프 섹션
@@ -178,4 +185,19 @@ export const EstimateCover = styled.div`
   top: 10rem;
   left: 0;
   display: flex;
+`;
+
+export const SaleButton = styled.div`
+  width: 60%;
+  background-color: #fff;
+  border: 2px solid ${({ theme }) => theme.colors.main_blue};
+  border-radius: 0.6rem;
+  padding: 0.6rem 1rem 0.6rem 2rem;
+  position: absolute;
+  bottom: 6rem;
+  display: flex;
+  justify-content: space-between;
+  span {
+    ${({ theme }) => theme.font.bold_19};
+  }
 `;

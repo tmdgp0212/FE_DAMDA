@@ -1,32 +1,26 @@
 import React from 'react';
 import * as S from '../../styles/Sale.styled';
-import Image from 'next/image';
-import { MainReSellerContent } from '@/styles/Main.styled';
 import MainResellerGraph from '@/components/main/MainResellerGraph';
-import { BsLine } from 'react-icons/bs';
 import { FiArrowDownRight, FiArrowUpLeft } from 'react-icons/fi';
 import BlueButton from '@/components/common/BlueButton';
-
-const popupData = [
-  {
-    title: '나에게는 안입는 옷이 누군가에게는 It item!',
-    subtitle: '수익창출',
-    description: '옷장안에 잠들어 있는 옷으로 부가 수익을 창출하세요.',
-  },
-  // ... 다른 popup 데이터 객체들
-];
+import { salePopupData } from '../../constants/saleData';
+import { replaceStringsWithTags } from '@/utils';
 
 function SalePage() {
-  const [isPopup, setIsPopup] = React.useState(false);
+  const [popupStates, setPopupStates] = React.useState(salePopupData.map(() => false));
 
-  const onPopupControll = () => {
-    setIsPopup(!isPopup);
+  const onPopupControll = (index: number) => {
+    setPopupStates((prevState) => {
+      const newState = [...prevState];
+      newState[index] = !prevState[index];
+      return newState;
+    });
   };
 
   return (
     <S.SaleContainer>
       <S.SaleTitleContainer>
-        <S.SaleTitleImg></S.SaleTitleImg>
+        <S.SaleTitleImg backgorundImg={'/img/sale_main1.png'} />
         <S.ImgCover>
           <h1>
             안 입는 옷도
@@ -60,20 +54,23 @@ function SalePage() {
           안 입는 옷으로
           <br /> 판매수익도 챙기세요.
         </h1>
-        {popupData.map((popup, index) => (
-          <S.PopupContainer key={index} onPopup={isPopup}>
+        {salePopupData.map((popup, index) => (
+          <S.PopupContainer key={index} popup={popupStates[index]} height={popup.height}>
             <S.PopupWrap>
               <div>
                 <S.PopupTitle>
                   <p>{popup.title}</p>
                   <h2>{popup.subtitle}</h2>
                 </S.PopupTitle>
-                <S.PopupDesc>{popup.description}</S.PopupDesc>
+                <S.PopupDesc dangerouslySetInnerHTML={replaceStringsWithTags(popup.description)} />
               </div>
-              {isPopup ? (
-                <FiArrowUpLeft style={{ fontSize: '3rem' }} onClick={onPopupControll} />
+              {popupStates[index] ? (
+                <FiArrowUpLeft style={{ fontSize: '30px', cursor: 'pointer' }} onClick={() => onPopupControll(index)} />
               ) : (
-                <FiArrowDownRight style={{ fontSize: '3rem' }} onClick={onPopupControll} />
+                <FiArrowDownRight
+                  style={{ fontSize: '30px', cursor: 'pointer' }}
+                  onClick={() => onPopupControll(index)}
+                />
               )}
             </S.PopupWrap>
           </S.PopupContainer>
@@ -111,6 +108,14 @@ function SalePage() {
         </S.EstimateTitle>
         <S.EstimateCover />
         <S.EstimateImg />
+        <S.SaleButton>
+          <p>
+            회원 할인가
+            <br />
+            <span>59,900원</span>
+          </p>
+          <FiArrowDownRight style={{ fontSize: '30px' }} />
+        </S.SaleButton>
         <BlueButton title="무료 견적 받기" width="50%" />
       </S.SaleEstimateContainer>
     </S.SaleContainer>
