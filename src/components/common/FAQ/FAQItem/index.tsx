@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { replaceStringsWithTags } from '@/utils';
 
 import { FiArrowUpLeft, FiArrowDownRight } from 'react-icons/fi';
@@ -11,7 +11,12 @@ interface FAQItemProps {
 
 function FAQItem({ faq }: FAQItemProps) {
   const [isFAQOpen, setIsFAQOpen] = useState(false);
+  const descRef = useRef<HTMLDivElement | null>(null);
   const { title, description, info, category } = faq;
+
+  const cardContentStyle = {
+    height: isFAQOpen && descRef.current ? `${descRef.current.getBoundingClientRect().height + 16}px` : '0px',
+  };
 
   return (
     <S.FAQItem onClick={() => setIsFAQOpen(!isFAQOpen)} isFAQOpen={isFAQOpen}>
@@ -23,9 +28,10 @@ function FAQItem({ faq }: FAQItemProps) {
           <h3>{title}</h3>
         </S.CardHeader>
 
-        {isFAQOpen && (
-          <S.CardContent>{<p dangerouslySetInnerHTML={replaceStringsWithTags(description)}></p>}</S.CardContent>
-        )}
+        <S.CardContent isFAQOpen={isFAQOpen} style={cardContentStyle}>
+          <hr />
+          {<p dangerouslySetInnerHTML={replaceStringsWithTags(description)} ref={descRef}></p>}
+        </S.CardContent>
       </S.FAQCard>
     </S.FAQItem>
   );
