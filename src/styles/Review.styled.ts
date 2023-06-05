@@ -32,6 +32,7 @@ export const Description = styled.p`
   padding: 0 25px;
   line-height: 1.6;
   cursor: default;
+  z-index: 1;
 
   span {
     display: block;
@@ -43,6 +44,7 @@ export const SlideContainer = styled.div`
   flex-direction: column;
   position: relative;
   gap: 16px;
+  margin-top: -20px;
   width: ${theme.size.max_width};
   height: calc(130px * 2 + 14px);
   overflow: hidden;

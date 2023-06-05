@@ -7,6 +7,7 @@ export const FAQItem = styled.li<{ isFAQOpen: boolean }>`
   border: ${({ theme, isFAQOpen }) =>
     isFAQOpen ? `2px solid ${theme.colors.main_blue}` : `1px solid ${theme.colors.yolda_black_1}`};
   border-radius: 5px;
+  cursor: pointer;
 `;
 
 export const FAQCard = styled.article`

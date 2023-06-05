@@ -8,6 +8,7 @@ import { slide1, slide2 } from '@/constants/reviewPageSlideItems';
 import Pagination from 'react-js-pagination';
 import BannerSlide from './BannerSlide';
 import FAQItem from '../common/FAQ/FAQItem';
+import { dateFormatter } from '@/utils/date';
 
 const dummy = [
   {
@@ -62,6 +63,7 @@ const dummyBest = {
 };
 
 function ReviewLayout() {
+  console.log(dateFormatter('2023-5-1'));
   return (
     <>
       <S.TitleLarge>
@@ -75,7 +77,7 @@ function ReviewLayout() {
       </S.Description>
 
       <S.SlideContainer className="slide-container">
-        <BannerSlide slideItems={slide1}/>
+        <BannerSlide slideItems={slide1} />
         <BannerSlide slideItems={slide2} reverse={true} />
       </S.SlideContainer>
 
@@ -105,7 +107,7 @@ function ReviewLayout() {
             faq={{
               title: `${dummyBest.title}`,
               description: `${dummyBest.body}`,
-              info: `${dummyBest.location} ${dummyBest.userName}님`,
+              info: `${dummyBest.location} ${dummyBest.userName}님 ${dateFormatter(dummyBest.time)}`,
             }}
           />
         </S.BestReview>
