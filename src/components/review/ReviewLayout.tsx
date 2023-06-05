@@ -3,12 +3,13 @@ import BestBadge from '../../../public/icons/badge_best.svg';
 import CleanerBadge from '../../../public/icons/badge_cleaner.svg';
 import ReviewItem from './ReviewItem';
 import DownArrow from '../../../public/icons/angle-down.svg';
-import Image from 'next/image';
-import { slide1, slide2 } from '@/constants/reviewPageSlideItems';
+import UpArrow from '../../../public/icons/angle-up.svg';
 import Pagination from 'react-js-pagination';
 import BannerSlide from './BannerSlide';
-import FAQItem from '../common/FAQ/FAQItem';
+import ImageSlide from './ImageSlide';
+import { slide1, slide2 } from '@/constants/reviewPageSlideItems';
 import { dateFormatter } from '@/utils/date';
+import { useState } from 'react';
 
 const dummy = [
   {
@@ -18,7 +19,7 @@ const dummy = [
     userName: '김아무개',
     isNew: true,
     isBest: false,
-    location: '서울시 강남구',
+    location: '강남구',
     time: '2022-03-19',
     imageBefore: 'https://cdn.univ20.com/wp-content/uploads/2016/03/099cb95e398e9f8d74f63eccb5c75db2.jpg',
     imageAfter: 'https://img.etoday.co.kr/pto_db/2019/02/600/20190225135415_1304548_1200_800.jpg',
@@ -30,7 +31,7 @@ const dummy = [
     userName: '강아무개',
     isNew: true,
     isBest: false,
-    location: '서울시 강남구',
+    location: '강남구',
     time: '2022-03-19',
     imageBefore: 'https://cdn.univ20.com/wp-content/uploads/2016/03/099cb95e398e9f8d74f63eccb5c75db2.jpg',
     imageAfter: 'https://img.etoday.co.kr/pto_db/2019/02/600/20190225135415_1304548_1200_800.jpg',
@@ -42,7 +43,7 @@ const dummy = [
     userName: '박아무개',
     isNew: true,
     isBest: false,
-    location: '서울시 강남구',
+    location: '강남구',
     time: '2022-03-19',
     imageBefore: 'https://cdn.univ20.com/wp-content/uploads/2016/03/099cb95e398e9f8d74f63eccb5c75db2.jpg',
     imageAfter: 'https://img.etoday.co.kr/pto_db/2019/02/600/20190225135415_1304548_1200_800.jpg',
@@ -52,18 +53,19 @@ const dummy = [
 const dummyBest = {
   id: 4,
   title: '열다 서비스를 받고 옷입는 시간이 줄었어요',
-  body: '너무 좋아요 어쩌구',
+  body: '열다 서비스를 받고 옷입는 시간이 줄었어요 너무 좋아요 어쩌구',
   userName: '박아무개',
   isNew: false,
   isBest: true,
-  location: '서울시 강남구',
-  time: '2022-03-19',
+  location: '강남구',
+  time: '2023-03-19',
   imageBefore: 'https://cdn.univ20.com/wp-content/uploads/2016/03/099cb95e398e9f8d74f63eccb5c75db2.jpg',
   imageAfter: 'https://img.etoday.co.kr/pto_db/2019/02/600/20190225135415_1304548_1200_800.jpg',
 };
 
 function ReviewLayout() {
-  console.log(dateFormatter('2023-5-1'));
+  const [isCardOpen, setIsCardOpen] = useState(false);
+
   return (
     <>
       <S.TitleLarge>
@@ -101,15 +103,21 @@ function ReviewLayout() {
         </S.TitleMedium>
         <S.BestReview className="best_review">
           <div className="prograss_container">
-            <Image src={`${dummyBest.imageAfter}`} alt="베스트리뷰" fill />
+            <ImageSlide beforeImage={dummyBest.imageBefore} afterImage={dummyBest.imageAfter} />
           </div>
-          <FAQItem
-            faq={{
-              title: `${dummyBest.title}`,
-              description: `${dummyBest.body}`,
-              info: `${dummyBest.location} ${dummyBest.userName}님 ${dateFormatter(dummyBest.time)}`,
-            }}
-          />
+          <S.ReviewCard isCardOpen={isCardOpen} onClick={() => setIsCardOpen(!isCardOpen)}>
+            <div className="card_header">
+              <div className="arrow_icon">{isCardOpen ? <UpArrow /> : <DownArrow />}</div>
+              <div className="flex_box">
+                <span className="auth">
+                  {dummyBest.location} {dummyBest.userName.replace(/(?<=.{1})./gi, '*')}님
+                </span>
+                <span className="date">{dateFormatter(dummyBest.time)}</span>
+              </div>
+              <div className="title">{dummyBest.title}</div>
+            </div>
+            {isCardOpen && <div className="card_content">{dummyBest.body}</div>}
+          </S.ReviewCard>
         </S.BestReview>
         <S.TitleMedium>
           <CleanerBadge />
