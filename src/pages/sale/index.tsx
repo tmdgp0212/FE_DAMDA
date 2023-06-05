@@ -1,7 +1,5 @@
 import React from 'react';
 import * as S from '../../styles/Sale.styled';
-import Image from 'next/image';
-import { MainReSellerContent } from '@/styles/Main.styled';
 import MainResellerGraph from '@/components/main/MainResellerGraph';
 import { BsLine } from 'react-icons/bs';
 import { FiArrowDownRight, FiArrowUpLeft } from 'react-icons/fi';

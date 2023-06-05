@@ -22,7 +22,7 @@ function UserReview() {
   ];
   return (
     <>
-      <Carousel carouselItems={carouselItems} height={32} width={100} isNextBySide={true} />
+      <Carousel carouselItems={carouselItems} height={32} width={100} />
       <S.MainMoreReviewButton>더 많은 후기 보러가기</S.MainMoreReviewButton>
     </>
   );

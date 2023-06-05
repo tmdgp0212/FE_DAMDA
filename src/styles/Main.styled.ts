@@ -32,9 +32,7 @@ export const MainTitleContainer = styled.div`
   h1 {
     margin-top: 10%;
     width: 60%;
-    font-size: 3rem;
-    font-weight: 900;
-    line-height: 42px;
+    ${({ theme }) => theme.font.bold_30_135};
     color: ${({ theme }) => theme.colors.yolda_black_1};
     background: linear-gradient(90deg, #ffffff 23.04%, rgba(255, 255, 255, 0) 100%);
   }
@@ -84,9 +82,8 @@ export const MainRequestGroupContainer = styled.div`
     }
 
     p {
-      font-size: 2rem;
+      ${({ theme }) => theme.font.bold_16};
       font-weight: 500;
-      line-height: 28px;
     }
   }
 
@@ -121,7 +118,7 @@ export const MainContentButton = styled.button<{ index?: number }>`
   font-size: 1.8rem;
   font-weight: 500;
   line-height: 19px;
-  height: 5.5rem;
+  height: 6rem;
 
   width: ${({ index }) => (index === 3 ? '80%' : '100%')};
   justify-self: ${({ index }) => (index === 3 ? 'end' : 'start')};
@@ -146,14 +143,13 @@ export const MainPersonButton = styled(MainContentButton)<{ itemIndex: number }>
     }
   }};
 
-  span {
-    font-size: 1.2rem;
-    font-weight: 400;
+  p {
+    ${({ theme }) => theme.font.light_14};
   }
 
   h2 {
-    font-size: 1.8rem;
-    font-weight: 700;
+    ${({ theme }) => theme.font.bold_19};
+    font-size: 1.6rem;
   }
 `;
 
@@ -185,12 +181,10 @@ export const MainPriceButton = styled(MainContentButton)<{ index: number }>`
   }};
   text-decoration: ${({ index }) => (index === 1 ? 'line-through' : 'none')};
   p {
-    font-size: 1.4rem;
-    font-weight: 400;
+    ${({ theme }) => theme.font.light_14};
   }
   h2 {
-    font-size: 1.8rem;
-    font-weight: 700;
+    ${({ theme }) => theme.font.bold_19};
   }
   svg {
     width: 2rem;
@@ -224,14 +218,11 @@ export const MainPriceContent = styled.div`
     gap: 2px;
 
     p {
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 17px;
+      ${({ theme }) => theme.font.light_14};
     }
 
     h2 {
-      font-weight: 700;
-      font-size: 18px;
+      ${({ theme }) => theme.font.bold_19};
     }
   }
 
@@ -246,19 +237,12 @@ export const MainPriceContent = styled.div`
     flex-direction: column;
     gap: 1.6rem;
     h1 {
-      font-weight: 800;
-      font-size: 2.4rem;
-      line-height: 135%;
+      ${({ theme }) => theme.font.bold_24};
     }
     span {
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 17px;
+      ${({ theme }) => theme.font.light_14};
       strong {
-        font-weight: 700;
-        font-size: 18px;
-        line-height: 135%;
-        margin-right: 2px;
+        ${({ theme }) => theme.font.bold_19};
       }
     }
   }
@@ -305,20 +289,16 @@ export const MainDescContainer = styled.div`
   position: relative;
   z-index: 2;
   p {
-    font-size: 1.4rem;
+    ${({ theme }) => theme.font.light_14};
     font-weight: 400;
-    line-height: 160%;
   }
 
   span {
-    font-size: 1.8rem;
-    font-weight: 700;
+    ${({ theme }) => theme.font.bold_19};
   }
 
   h1 {
-    font-size: 2.4rem;
-    font-weight: 700;
-    line-height: 135%;
+    ${({ theme }) => theme.font.bold_24};
   }
 `;
 
@@ -333,14 +313,14 @@ export const MainReSellerContent = styled.div`
 
   h1 {
     width: 100%;
+    ${({ theme }) => theme.font.bold_19};
     font-size: 2rem;
-    font-weight: 700;
     display: flex;
     justify-content: space-between;
   }
 
   p {
-    font-size: 1.4rem;
+    ${({ theme }) => theme.font.light_14};
   }
 
   .svg {
@@ -367,8 +347,7 @@ export const MainReSellerTableContainer = styled.div`
 
   .paragraph {
     display: flex;
-    font-size: 1.4rem;
-    font-weight: 400;
+    ${({ theme }) => theme.font.light_14};
     flex-wrap: nowrap;
     width: 20rem;
   }
@@ -382,8 +361,7 @@ export const MainReSellerTableContainer = styled.div`
     p {
       position: absolute;
       right: 0;
-      font-size: 1.4rem;
-      font-weight: 400;
+      ${({ theme }) => theme.font.light_14};
       color: ${({ theme }) => theme.colors.yolda_black_1};
     }
   }
