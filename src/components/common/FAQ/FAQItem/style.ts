@@ -34,12 +34,21 @@ export const CardHeader = styled.header`
   }
 `;
 
-export const CardContent = styled.div`
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px solid ${({ theme }) => theme.colors.yolda_black_1};
+export const CardContent = styled.div<{ isFAQOpen: boolean }>`
+  transition: height 300ms ease-in-out;
+  overflow: hidden;
 
   strong {
     font-weight: 700;
+  }
+
+  a {
+    color: ${({ theme }) => theme.colors.sub_blue_2};
+    text-decoration: underline;
+
+    &:hover {
+      color: ${({ theme }) => theme.colors.sub_blue_1};
+      text-decoration: none;
+    }
   }
 `;

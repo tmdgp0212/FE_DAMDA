@@ -10,6 +10,13 @@ export const CustomerCenterContent = styled.div`
   padding: ${({ theme }) => theme.padding.mobile};
 `;
 
+export const Title = styled.h2`
+  position: relative;
+  margin-top: -19px;
+  margin-bottom: 32px;
+  ${({ theme }) => theme.font.bold_24_135}
+`;
+
 export const Description = styled.div`
   position: absolute;
   bottom: 67px;
