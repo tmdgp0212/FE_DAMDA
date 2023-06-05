@@ -1,7 +1,7 @@
 import '@/styles/globals.css';
 import { AppProps } from 'next/app';
 import { ThemeProvider } from '@emotion/react';
-import { QueryClient, QueryClientProvider, Hydrate } from '@tanstack/react-query';
+import { Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 // import { server } from '@/mocks/server';
 import theme from '@/styles/theme';
 import GlobalHead from '@/components/common/GlobalHead';

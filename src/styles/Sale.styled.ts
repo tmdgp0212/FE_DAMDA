@@ -1,4 +1,3 @@
-import MainResellerGraph from '@/components/main/MainResellerGraph';
 import styled from '@emotion/styled';
 
 export const SaleContainer = styled.div`

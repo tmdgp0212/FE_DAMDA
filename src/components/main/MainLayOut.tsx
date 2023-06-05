@@ -17,7 +17,7 @@ function MainLayOut() {
       </S.MainTitleContainer>
       <S.MainContentContainer>
         {mainContentSection.map((item, index) => (
-          <S.MainContentSection key={item.emoji}>
+          <S.MainContentSection key={index}>
             {item.emoji && (
               <S.MainDescContainer>
                 <span>{item.emoji}</span>
