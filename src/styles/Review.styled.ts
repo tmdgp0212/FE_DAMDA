@@ -31,8 +31,6 @@ export const Description = styled.p`
   position: relative;
   padding: 0 25px;
   line-height: 1.6;
-  margin-bottom: -20px;
-  z-index: 1;
   cursor: default;
 
   span {
@@ -42,10 +40,11 @@ export const Description = styled.p`
 
 export const SlideContainer = styled.div`
   display: flex;
-  position: relative;
   flex-direction: column;
+  position: relative;
   gap: 16px;
   width: ${theme.size.max_width};
+  height: calc(130px * 2 + 14px);
   overflow: hidden;
 
   &::after {
@@ -58,31 +57,6 @@ export const SlideContainer = styled.div`
     background: rgb(255, 255, 255);
     background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
     content: '';
-  }
-`;
-
-export const Slider = styled.div`
-  display: flex;
-  overflow-x: scroll;
-  width: calc(130 * 3 + 16 * 2);
-  height: 130px;
-  scroll-snap-type: x mandatory;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`;
-
-export const SlideItem = styled.div`
-  width: 130px;
-  height: 130px;
-  border-radius: 5px;
-  scroll-snap-align: 'center';
-  overflow: hidden;
-  z-index: 0;
-
-  img {
-    object-fit: cover;
   }
 `;
 

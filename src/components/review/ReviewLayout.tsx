@@ -6,6 +6,8 @@ import DownArrow from '../../../public/icons/angle-down.svg';
 import Image from 'next/image';
 import { slide1, slide2 } from '@/constants/reviewPageSlideItems';
 import Pagination from 'react-js-pagination';
+import BannerSlide from './BannerSlide';
+import FAQItem from '../common/FAQ/FAQItem';
 
 const dummy = [
   {
@@ -73,20 +75,8 @@ function ReviewLayout() {
       </S.Description>
 
       <S.SlideContainer className="slide-container">
-        <S.Slider className="image-slider-1">
-          {slide1.map((slide, idx) => (
-            <S.SlideItem key={idx}>
-              <Image src={`${slide}`} alt="열다 서비스 이미지" width={130} height={130} />
-            </S.SlideItem>
-          ))}
-        </S.Slider>
-        <S.Slider className="image-slider-2">
-          {slide2.map((slide, idx) => (
-            <S.SlideItem key={idx}>
-              <Image src={`${slide}`} alt="열다 서비스 이미지" width={130} height={130} />
-            </S.SlideItem>
-          ))}
-        </S.Slider>
+        <BannerSlide slideItems={slide1}/>
+        <BannerSlide slideItems={slide2} reverse={true} />
       </S.SlideContainer>
 
       <S.ScrollDown>
@@ -111,21 +101,13 @@ function ReviewLayout() {
           <div className="prograss_container">
             <Image src={`${dummyBest.imageAfter}`} alt="베스트리뷰" fill />
           </div>
-          {/* 컴포넌트 가져오기 */}
-          <div className="review_container">
-            <div className="review_header">
-              <div className="flex_box">
-                <div className="user">
-                  {dummyBest.location} {dummyBest.userName}님
-                </div>
-                <div className="time">{dummyBest.time}</div>
-              </div>
-              <div className="review_title">{dummyBest.title}</div>
-            </div>
-            <div className="preview">
-              옷장정리를 너무 꼼꼼히 해주셔서 옷 찾는 시간이 많이 줄었어요! 친절하게 설명도 해주시고 너무 감사합니다!
-            </div>
-          </div>
+          <FAQItem
+            faq={{
+              title: `${dummyBest.title}`,
+              description: `${dummyBest.body}`,
+              info: `${dummyBest.location} ${dummyBest.userName}님`,
+            }}
+          />
         </S.BestReview>
         <S.TitleMedium>
           <CleanerBadge />
