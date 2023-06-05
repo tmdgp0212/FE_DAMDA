@@ -1,4 +1,4 @@
-import { faqType } from '@/types/constants/managerApplyPageTypes';
+import { faqType } from '@/types/constants/faqType';
 
 export const managerApplyFAQs: faqType[] = [
   {

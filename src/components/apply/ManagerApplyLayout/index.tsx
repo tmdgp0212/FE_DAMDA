@@ -4,7 +4,8 @@ import Link from 'next/link';
 
 import ManagerApplyFamilyImg from 'public/img/managerApplyFamily.png';
 import ManagerApplyBenefitImg from 'public/img/managerApplyBenefit.png';
-import FrequentlyAskedQuestions from '../FrequentlyAskedQuestions';
+import FrequentlyAskedQuestions from '@/components/common/FAQ/FrequentlyAskedQuestions';
+import { managerApplyFAQs } from '@/constants/managerApplyFAQs';
 
 import * as S from './style';
 import { FiArrowUpRight } from 'react-icons/fi';
@@ -67,7 +68,7 @@ function ManagerApplyLayout() {
         <Image src={ManagerApplyBenefitImg} alt="매니저 혜택 영역 이미지" width={370} height={300} />
 
         <S.StyleWrapper>
-          <FrequentlyAskedQuestions />
+          <FrequentlyAskedQuestions enteredFAQs={managerApplyFAQs} />
           <Link href="/">매니저 지원</Link>
         </S.StyleWrapper>
       </S.BenefitContainer>
