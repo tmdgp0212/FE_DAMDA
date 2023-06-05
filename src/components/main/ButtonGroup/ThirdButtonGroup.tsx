@@ -11,7 +11,7 @@ function ThirdButtonGroup() {
       {buttonPriceGroup.map((item, index) => {
         if (index === 3) {
           return (
-            <S.MainRequestButton key={item.title} width={45}>
+            <S.MainRequestButton key={index} width={45}>
               {item.title}
             </S.MainRequestButton>
           );
@@ -19,7 +19,7 @@ function ThirdButtonGroup() {
         if (index === 2) {
           if (isOpen) {
             return (
-              <S.MainPriceContent key={item.title} onClick={() => setIsOpen(false)}>
+              <S.MainPriceContent key={index} onClick={() => setIsOpen(false)}>
                 <div className="head">
                   <p>{item.title}</p>
                   <h2>{item.price}원</h2>
@@ -39,21 +39,19 @@ function ThirdButtonGroup() {
             );
           }
           return (
-            <>
-              <S.MainPriceButton onClick={() => setIsOpen(true)} key={item.title} index={index}>
-                <p>{item.title}</p>
-                <h2>{item.price}원</h2>
-                <BsChevronDown />
-                <p className="how">
-                  어떻게 이런 가격이 <br /> 나오나요?
-                </p>
-              </S.MainPriceButton>
-            </>
+            <S.MainPriceButton onClick={() => setIsOpen(true)} key={index} index={index}>
+              <p>{item.title}</p>
+              <h2>{item.price}원</h2>
+              <BsChevronDown />
+              <p className="how">
+                어떻게 이런 가격이 <br /> 나오나요?
+              </p>
+            </S.MainPriceButton>
           );
         }
 
         return (
-          <S.MainPriceButton key={item.title} index={index}>
+          <S.MainPriceButton key={index} index={index}>
             <p>{item.title}</p>
             <h2>{item.price}원</h2>
           </S.MainPriceButton>

@@ -1,4 +1,3 @@
-import MainResellerGraph from '@/components/main/MainResellerGraph';
 import styled from '@emotion/styled';
 import Swiper from 'swiper';
 
