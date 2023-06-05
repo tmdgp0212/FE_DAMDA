@@ -41,4 +41,14 @@ export const CardContent = styled.div<{ isFAQOpen: boolean }>`
   strong {
     font-weight: 700;
   }
+
+  a {
+    color: ${({ theme }) => theme.colors.sub_blue_2};
+    text-decoration: underline;
+
+    &:hover {
+      color: ${({ theme }) => theme.colors.sub_blue_1};
+      text-decoration: none;
+    }
+  }
 `;
