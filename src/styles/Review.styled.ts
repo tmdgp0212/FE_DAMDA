@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import theme from './theme';
-import { motion } from 'framer-motion';
 
 export const ReviewContainer = styled.div`
   padding-top: 92px;

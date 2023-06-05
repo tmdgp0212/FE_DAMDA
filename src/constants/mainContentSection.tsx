@@ -44,5 +44,6 @@ export const mainContentSection: mainContentsDataType[] = [
     p: '서울과 경기 일부 지역에서만 br 서비스 하고 있습니다. br 다른 지역으로도 확대할 예정이니 br 조금만 기다려주세요!',
     h1: '지금 열다는',
     type: 'image',
+    reverse: true,
   },
 ];
