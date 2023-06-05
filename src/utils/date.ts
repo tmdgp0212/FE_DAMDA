@@ -35,3 +35,18 @@ export const dateFormatter = (date: string): string => {
 
   return createdDateToString;
 };
+
+/**
+ * @description 리뷰 작성일자로 부터 2일까지 true
+ * @param date
+ */
+export const isNewReview = (date: string): boolean => {
+  const createdDate = new Date(date);
+  const nowDate = new Date();
+  const diff = (nowDate.getTime() - createdDate.getTime()) / 1000;
+
+  const inTwoDays = 60 * 60 * 24 * 2;
+
+  if (diff < inTwoDays) return true;
+  return false;
+};

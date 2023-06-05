@@ -25,6 +25,7 @@ export const Badges = styled.div`
   top: 8px;
   left: 8px;
   gap: 6px;
+  z-index: 1;
 `;
 
 export const ReviewAuth = styled.div`
@@ -34,6 +35,10 @@ export const ReviewAuth = styled.div`
   margin-top: 5px;
   color: ${theme.colors.yolda_gray_3};
   cursor: default;
+
+  .time {
+    margin-left: 16px;
+  }
 `;
 
 export const ReviewTitle = styled.h4`

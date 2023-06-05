@@ -17,10 +17,9 @@ const dummy = [
     title: '열다 서비스를 받고 옷입는 시간이 줄었어요',
     body: '너무 좋아요 어쩌구',
     userName: '김아무개',
-    isNew: true,
     isBest: false,
     location: '강남구',
-    time: '2022-03-19',
+    time: '2023-06-04',
     imageBefore: 'https://cdn.univ20.com/wp-content/uploads/2016/03/099cb95e398e9f8d74f63eccb5c75db2.jpg',
     imageAfter: 'https://img.etoday.co.kr/pto_db/2019/02/600/20190225135415_1304548_1200_800.jpg',
   },
@@ -29,10 +28,9 @@ const dummy = [
     title: '열다 서비스를 받고 옷입는 시간이 줄었어요',
     body: '너무 좋아요 어쩌구',
     userName: '강아무개',
-    isNew: true,
     isBest: false,
     location: '강남구',
-    time: '2022-03-19',
+    time: '2023-05-19',
     imageBefore: 'https://cdn.univ20.com/wp-content/uploads/2016/03/099cb95e398e9f8d74f63eccb5c75db2.jpg',
     imageAfter: 'https://img.etoday.co.kr/pto_db/2019/02/600/20190225135415_1304548_1200_800.jpg',
   },
@@ -41,10 +39,9 @@ const dummy = [
     title: '열다 서비스를 받고 옷입는 시간이 줄었어요',
     body: '너무 좋아요 어쩌구',
     userName: '박아무개',
-    isNew: true,
     isBest: false,
     location: '강남구',
-    time: '2022-03-19',
+    time: '2023-03-19',
     imageBefore: 'https://cdn.univ20.com/wp-content/uploads/2016/03/099cb95e398e9f8d74f63eccb5c75db2.jpg',
     imageAfter: 'https://img.etoday.co.kr/pto_db/2019/02/600/20190225135415_1304548_1200_800.jpg',
   },
@@ -55,7 +52,6 @@ const dummyBest = {
   title: '열다 서비스를 받고 옷입는 시간이 줄었어요',
   body: '열다 서비스를 받고 옷입는 시간이 줄었어요 너무 좋아요 어쩌구',
   userName: '박아무개',
-  isNew: false,
   isBest: true,
   location: '강남구',
   time: '2023-03-19',
@@ -103,7 +99,7 @@ function ReviewLayout() {
         </S.TitleMedium>
         <S.BestReview className="best_review">
           <div className="prograss_container">
-            <ImageSlide beforeImage={dummyBest.imageBefore} afterImage={dummyBest.imageAfter} />
+            <ImageSlide beforeImage={dummyBest.imageBefore} afterImage={dummyBest.imageAfter} isBest={true} />
           </div>
           <S.ReviewCard isCardOpen={isCardOpen} onClick={() => setIsCardOpen(!isCardOpen)}>
             <div className="card_header">

@@ -85,7 +85,7 @@ export const BestReview = styled.div`
     width: 100%;
     height: 214px;
     border: 1px solid ${theme.colors.main_blue};
-    border-color: ${theme.colors.main_blue} ${theme.colors.main_blue} transparent ${theme.colors.main_blue};
+    border-color: ${theme.colors.main_blue} ${theme.colors.main_blue} none ${theme.colors.main_blue};
     border-radius: 5px;
   }
 `;
