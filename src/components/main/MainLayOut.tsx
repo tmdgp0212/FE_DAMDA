@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import * as S from '@/styles/Main.styled';
 import { mainContentSection } from '@/constants/mainContentSection';
 import { makeBrTagsBybr } from '@/utils';
+import FABButton from '@/components/main/FABButton';
 
 function MainLayOut() {
+  const mainCotainerRef = useRef<HTMLDivElement | null>(null);
+
+  const goToTop = () => {
+    if (mainCotainerRef.current) {
+      mainCotainerRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <S.MainContainer>
-      {<S.MainFABContainer>asdf</S.MainFABContainer>}
+    <S.MainContainer ref={mainCotainerRef}>
+      <FABButton goTop={goToTop} />
       <S.MainTitleContainer>
         <h1>
           내 옷장 속 <br /> 숨겨진 가능성을 <br /> 열다

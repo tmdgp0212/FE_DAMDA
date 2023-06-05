@@ -16,7 +16,7 @@ function Index({ carouselItems }: CarouselProps) {
   return (
     <S.CarouselWrapper>
       <Swiper
-        spaceBetween={30}
+        spaceBetween={0}
         effect={'coverflow'}
         grabCursor={true}
         centeredSlides={true}

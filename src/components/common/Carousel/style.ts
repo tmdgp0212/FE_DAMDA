@@ -6,6 +6,10 @@ export const CarouselWrapper = styled(motion.div)`
   width: 100%;
   height: 32rem;
 
+  .mySwiper {
+    overflow: visible;
+  }
+
   .swiper-item {
     width: 100%;
     height: 32rem;
