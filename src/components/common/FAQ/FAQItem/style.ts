@@ -3,9 +3,11 @@ import styled from '@emotion/styled';
 export const FAQItem = styled.li<{ isFAQOpen: boolean }>`
   width: 320px;
   background-color: #ffffff;
+  list-style: none;
   border: ${({ theme, isFAQOpen }) =>
     isFAQOpen ? `2px solid ${theme.colors.main_blue}` : `1px solid ${theme.colors.yolda_black_1}`};
   border-radius: 5px;
+  cursor: pointer;
 `;
 
 export const FAQCard = styled.article`
@@ -34,12 +36,21 @@ export const CardHeader = styled.header`
   }
 `;
 
-export const CardContent = styled.div`
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px solid ${({ theme }) => theme.colors.yolda_black_1};
+export const CardContent = styled.div<{ isFAQOpen: boolean }>`
+  transition: height 300ms ease-in-out;
+  overflow: hidden;
 
   strong {
     font-weight: 700;
+  }
+
+  a {
+    color: ${({ theme }) => theme.colors.sub_blue_2};
+    text-decoration: underline;
+
+    &:hover {
+      color: ${({ theme }) => theme.colors.sub_blue_1};
+      text-decoration: none;
+    }
   }
 `;

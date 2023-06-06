@@ -49,6 +49,11 @@ declare module '@emotion/react' {
         'font-weight': string;
         'line-height': string;
       };
+      bold_18_135: {
+        'font-size': string;
+        'font-weight': string;
+        'line-height': string;
+      };
       bold_16: {
         'font-size': string;
         'font-weight': string;
