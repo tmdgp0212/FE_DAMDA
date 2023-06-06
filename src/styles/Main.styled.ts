@@ -125,6 +125,7 @@ export const MainRequestButton = styled(motion.button)<{ width?: number }>`
   line-height: 19px;
   height: 5.5rem;
   text-align: start;
+  cursor: pointer;
 
   width: ${({ width }) => (width ? `${width}%` : '100%')};
 `;
