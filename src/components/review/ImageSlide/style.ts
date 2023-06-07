@@ -36,7 +36,7 @@ export const SwiperContainer = styled.div<{ isBest: boolean | undefined }>`
                 animation: ${ProgressBar} 6s linear infinite;
               `
             : css`
-                animation: ${ProgressBar} 3.001s linear infinite;
+                animation: ${ProgressBar} 3s linear infinite;
               `};
       }
     }

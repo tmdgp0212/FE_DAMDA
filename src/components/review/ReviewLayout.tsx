@@ -9,43 +9,8 @@ import BannerSlide from './BannerSlide';
 import ImageSlide from './ImageSlide';
 import { slide1, slide2 } from '@/constants/reviewPageSlideItems';
 import { dateFormatter } from '@/utils/date';
-import { useState } from 'react';
-
-const dummy = [
-  {
-    id: 1,
-    title: '열다 서비스를 받고 옷입는 시간이 줄었어요',
-    body: '너무 좋아요 어쩌구',
-    userName: '김아무개',
-    isBest: false,
-    location: '강남구',
-    time: '2023-06-04',
-    imageBefore: 'https://cdn.univ20.com/wp-content/uploads/2016/03/099cb95e398e9f8d74f63eccb5c75db2.jpg',
-    imageAfter: 'https://img.etoday.co.kr/pto_db/2019/02/600/20190225135415_1304548_1200_800.jpg',
-  },
-  {
-    id: 2,
-    title: '열다 서비스를 받고 옷입는 시간이 줄었어요',
-    body: '너무 좋아요 어쩌구',
-    userName: '강아무개',
-    isBest: false,
-    location: '강남구',
-    time: '2023-05-19',
-    imageBefore: 'https://cdn.univ20.com/wp-content/uploads/2016/03/099cb95e398e9f8d74f63eccb5c75db2.jpg',
-    imageAfter: 'https://img.etoday.co.kr/pto_db/2019/02/600/20190225135415_1304548_1200_800.jpg',
-  },
-  {
-    id: 3,
-    title: '열다 서비스를 받고 옷입는 시간이 줄었어요',
-    body: '너무 좋아요 어쩌구',
-    userName: '박아무개',
-    isBest: false,
-    location: '강남구',
-    time: '2023-03-19',
-    imageBefore: 'https://cdn.univ20.com/wp-content/uploads/2016/03/099cb95e398e9f8d74f63eccb5c75db2.jpg',
-    imageAfter: 'https://img.etoday.co.kr/pto_db/2019/02/600/20190225135415_1304548_1200_800.jpg',
-  },
-];
+import React, { useState } from 'react';
+import { ReviewRes } from '@/types/review';
 
 const dummyBest = {
   id: 4,
@@ -59,7 +24,14 @@ const dummyBest = {
   imageAfter: 'https://img.etoday.co.kr/pto_db/2019/02/600/20190225135415_1304548_1200_800.jpg',
 };
 
-function ReviewLayout() {
+interface ReviewProps {
+  posts: ReviewRes[];
+  page: number;
+  pageLength: number;
+  pagingHandler: (page: number) => void;
+}
+
+function ReviewLayout({ posts, page, pageLength, pagingHandler }: ReviewProps) {
   const [isCardOpen, setIsCardOpen] = useState(false);
 
   return (
@@ -120,20 +92,20 @@ function ReviewLayout() {
           열다의 모든 후기
         </S.TitleMedium>
         <S.AllReview>
-          {dummy.map((review) => (
+          {posts.map((review) => (
             <ReviewItem key={review.id} review={review} />
           ))}
         </S.AllReview>
       </S.Reviews>
       <S.Pagenation>
         <Pagination
-          activePage={1}
+          activePage={page}
           itemsCountPerPage={3}
-          totalItemsCount={4}
+          totalItemsCount={pageLength}
           hideFirstLastPages={true}
           linkClassPrev="prev"
           linkClassNext="next"
-          onChange={() => {}}
+          onChange={pagingHandler}
         />
       </S.Pagenation>
     </>

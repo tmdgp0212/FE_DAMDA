@@ -3,7 +3,6 @@ import BestBadge from '../../../public/icons/badge_best.svg';
 import * as S from './style';
 import ImageSlide from './ImageSlide';
 import { dateFormatter, isNewReview } from '@/utils/date';
-import { useState } from 'react';
 
 interface ReviewProps {
   review: {
