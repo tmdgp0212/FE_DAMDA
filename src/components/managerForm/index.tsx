@@ -2,7 +2,7 @@ import React from 'react';
 
 import IntroductionForm from './introductionForm';
 
-import { BsChevronLeft } from 'react-icons/bs';
+import { BsChevronLeft, BsChevronDown } from 'react-icons/bs';
 import * as S from './style';
 
 function ManagerForm() {
@@ -52,6 +52,53 @@ function ManagerForm() {
           <label htmlFor="sun">일</label>
         </S.DaySelectionForm>
       </S.StyleWrapper>
+
+      <div>
+        <S.Headline>
+          매니저님의 경력정보를
+          <br />
+          알려주세요.
+        </S.Headline>
+
+        <S.CertificateForm>
+          <S.SubTitle>
+            보유하고 계신 <br />
+            정리수납전문가 자격증을 선택해주세요.
+          </S.SubTitle>
+
+          <span>(1개만 선택가능)</span>
+
+          <S.CertificateButton type="button">
+            자격증 선택하기
+            <BsChevronDown />
+          </S.CertificateButton>
+          <ul>
+            <li>
+              <S.OptionButton type="button">1급 (오프라인 취득)</S.OptionButton>
+            </li>
+
+            <li>
+              <S.OptionButton type="button">2급 (오프라인 취득)</S.OptionButton>
+            </li>
+
+            <li>
+              <S.OptionButton type="button">1급 (온라인 취득)</S.OptionButton>
+            </li>
+
+            <li>
+              <S.OptionButton type="button">2급 (온라인 취득)</S.OptionButton>
+            </li>
+
+            <li>
+              <S.OptionButton type="button">없음</S.OptionButton>
+            </li>
+
+            <li>
+              <S.OptionButton type="button">기타</S.OptionButton>
+            </li>
+          </ul>
+        </S.CertificateForm>
+      </div>
     </S.ManagerFormContainer>
   );
 }
