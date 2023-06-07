@@ -24,6 +24,7 @@ function ImageSlide({ beforeImage, afterImage, isBest }: ImageSlideProps) {
         speed={isBest ? 1000 : 1}
         resistance={false}
         simulateTouch={false}
+        touchRatio={0}
         pagination={true}
       >
         <SwiperSlide className="before">

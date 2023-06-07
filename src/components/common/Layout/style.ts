@@ -18,6 +18,7 @@ export const Layout = styled.div`
   @media (max-width: 810px) {
     //모바일 대응
     width: 100vw;
+    max-width: 100vw;
 
     &::-webkit-scrollbar {
       display: none;
