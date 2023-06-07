@@ -4,6 +4,24 @@ interface MarginProps {
   large?: boolean;
 }
 
+// Common
+export const Headline = styled.h2`
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 135%;
+`;
+
+export const StyleWrapper = styled.div<MarginProps>`
+  margin-bottom: ${({ large }) => (large ? '72px' : '32px')};
+`;
+
+export const SubTitle = styled.h3`
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 160%;
+`;
+
+// Styled-Components
 export const ManagerFormContainer = styled.div`
   padding: 8px 20px 172px;
 `;
@@ -20,22 +38,6 @@ export const ManagerFormHeader = styled.header`
     font-size: 20px;
     line-height: 20px;
   }
-`;
-
-export const Headline = styled.h2`
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 135%;
-`;
-
-export const StyleWrapper = styled.div<MarginProps>`
-  margin-bottom: ${({ large }) => (large ? '72px' : '32px')};
-`;
-
-export const SubTitle = styled.h3`
-  font-size: 16px;
-  font-weight: 800;
-  line-height: 160%;
 `;
 
 export const ManagerSupportButton = styled.button`
