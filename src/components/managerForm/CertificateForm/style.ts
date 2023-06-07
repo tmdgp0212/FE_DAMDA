@@ -38,6 +38,7 @@ export const SelectButton = styled.button`
   justify-content: space-between;
   align-items: center;
   padding: 0 10px;
+  cursor: pointer;
 `;
 
 export const OptionButton = styled.button`
@@ -49,4 +50,9 @@ export const OptionButton = styled.button`
   background-color: #ffffff;
   outline: none;
   text-align: left;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #ccecff;
+  }
 `;

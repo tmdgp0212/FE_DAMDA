@@ -28,6 +28,7 @@ export const InputRadioGroup = styled.div`
 
   label {
     width: 100%;
+    cursor: pointer;
   }
 
   input[name='main_job'],

@@ -22,6 +22,7 @@ export const DaySelectionForm = styled.div`
       border-radius: 5px;
       color: ${({ theme }) => theme.colors.yolda_gray_3};
       font-size: 14px;
+      cursor: pointer;
 
       &:not(:last-child) {
         margin-right: 6px;
