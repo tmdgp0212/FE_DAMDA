@@ -5,6 +5,10 @@ export const RadioButtonFormContainer = styled.div`
     margin-bottom: 32px;
   }
 
+  &:last-child {
+    margin-bottom: 72px;
+  }
+
   h3 {
     margin-bottom: 16px;
     font-size: 16px;
