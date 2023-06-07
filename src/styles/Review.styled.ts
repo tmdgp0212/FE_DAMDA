@@ -50,6 +50,10 @@ export const SlideContainer = styled.div`
   height: calc(130px * 2 + 14px);
   overflow: hidden;
 
+  @media (max-width: 420px) {
+    width: 100vw;
+  }
+
   &::after {
     display: block;
     position: absolute;

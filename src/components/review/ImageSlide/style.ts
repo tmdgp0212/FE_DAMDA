@@ -12,6 +12,10 @@ export const SwiperContainer = styled.div<{ isBest: boolean | undefined }>`
   width: calc(${theme.size.max_width} - 52px);
   height: 214px;
 
+  @media (max-width: 420px) {
+    width: calc(100vw - 52px);
+  }
+
   .swiper-pagination {
     display: flex;
     position: absolute;
