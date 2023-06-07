@@ -33,7 +33,7 @@ function CertificateForm() {
               type="button"
               onClick={() => {
                 setIsOptionsOpen(false);
-                selectOptionHandler('1급 (오프라인 취득');
+                selectOptionHandler('1급 (오프라인 취득)');
               }}
             >
               1급 (오프라인 취득)
@@ -45,7 +45,7 @@ function CertificateForm() {
               type="button"
               onClick={() => {
                 setIsOptionsOpen(false);
-                selectOptionHandler('2급 (오프라인 취득');
+                selectOptionHandler('2급 (오프라인 취득)');
               }}
             >
               2급 (오프라인 취득)
@@ -57,7 +57,7 @@ function CertificateForm() {
               type="button"
               onClick={() => {
                 setIsOptionsOpen(false);
-                selectOptionHandler('1급 (온라인 취득');
+                selectOptionHandler('1급 (온라인 취득)');
               }}
             >
               1급 (온라인 취득)
@@ -69,7 +69,7 @@ function CertificateForm() {
               type="button"
               onClick={() => {
                 setIsOptionsOpen(false);
-                selectOptionHandler('2급 (온라인 취득');
+                selectOptionHandler('2급 (온라인 취득)');
               }}
             >
               2급 (온라인 취득)
