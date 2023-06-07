@@ -12,8 +12,11 @@ const dummy: ReviewRes[] = [
     isBest: false,
     location: '강남구',
     time: '2023-06-04',
-    imageBefore: 'https://cdn.univ20.com/wp-content/uploads/2016/03/099cb95e398e9f8d74f63eccb5c75db2.jpg',
-    imageAfter: 'https://img.etoday.co.kr/pto_db/2019/02/600/20190225135415_1304548_1200_800.jpg',
+    imageBefore: [
+      'https://cdn.univ20.com/wp-content/uploads/2016/03/099cb95e398e9f8d74f63eccb5c75db2.jpg',
+      'https://cdn.univ20.com/wp-content/uploads/2016/03/099cb95e398e9f8d74f63eccb5c75db2.jpg',
+    ],
+    imageAfter: ['https://img.etoday.co.kr/pto_db/2019/02/600/20190225135415_1304548_1200_800.jpg'],
   },
   {
     id: 2,
@@ -23,8 +26,8 @@ const dummy: ReviewRes[] = [
     isBest: false,
     location: '강남구',
     time: '2023-05-19',
-    imageBefore: 'https://cdn.univ20.com/wp-content/uploads/2016/03/099cb95e398e9f8d74f63eccb5c75db2.jpg',
-    imageAfter: 'https://img.etoday.co.kr/pto_db/2019/02/600/20190225135415_1304548_1200_800.jpg',
+    imageBefore: ['https://cdn.univ20.com/wp-content/uploads/2016/03/099cb95e398e9f8d74f63eccb5c75db2.jpg'],
+    imageAfter: ['https://img.etoday.co.kr/pto_db/2019/02/600/20190225135415_1304548_1200_800.jpg'],
   },
   {
     id: 3,
@@ -34,8 +37,8 @@ const dummy: ReviewRes[] = [
     isBest: false,
     location: '강남구',
     time: '2023-03-19',
-    imageBefore: 'https://cdn.univ20.com/wp-content/uploads/2016/03/099cb95e398e9f8d74f63eccb5c75db2.jpg',
-    imageAfter: 'https://img.etoday.co.kr/pto_db/2019/02/600/20190225135415_1304548_1200_800.jpg',
+    imageBefore: ['https://cdn.univ20.com/wp-content/uploads/2016/03/099cb95e398e9f8d74f63eccb5c75db2.jpg'],
+    imageAfter: ['https://img.etoday.co.kr/pto_db/2019/02/600/20190225135415_1304548_1200_800.jpg'],
   },
   {
     id: 4,
@@ -45,8 +48,8 @@ const dummy: ReviewRes[] = [
     isBest: false,
     location: '강남구',
     time: '2023-03-19',
-    imageBefore: 'https://static.cdn.soomgo.com/upload/talkboard/0aad0072-af34-4891-afd5-a492de7534ea.jpeg',
-    imageAfter: 'https://live.lge.co.kr/wp-content/uploads/2020/12/2020-closet-clean-03-201211.png',
+    imageBefore: ['https://static.cdn.soomgo.com/upload/talkboard/0aad0072-af34-4891-afd5-a492de7534ea.jpeg'],
+    imageAfter: ['https://live.lge.co.kr/wp-content/uploads/2020/12/2020-closet-clean-03-201211.png'],
   },
   {
     id: 5,
@@ -56,8 +59,8 @@ const dummy: ReviewRes[] = [
     isBest: false,
     location: '강남구',
     time: '2023-03-19',
-    imageBefore: 'https://static.cdn.soomgo.com/upload/talkboard/0aad0072-af34-4891-afd5-a492de7534ea.jpeg',
-    imageAfter: 'https://live.lge.co.kr/wp-content/uploads/2020/12/2020-closet-clean-03-201211.png',
+    imageBefore: ['https://static.cdn.soomgo.com/upload/talkboard/0aad0072-af34-4891-afd5-a492de7534ea.jpeg'],
+    imageAfter: ['https://live.lge.co.kr/wp-content/uploads/2020/12/2020-closet-clean-03-201211.png'],
   },
 ];
 
@@ -69,8 +72,8 @@ const dummyBest = {
   isBest: true,
   location: '강남구',
   time: '2023-03-19',
-  imageBefore: 'https://cdn.univ20.com/wp-content/uploads/2016/03/099cb95e398e9f8d74f63eccb5c75db2.jpg',
-  imageAfter: 'https://img.etoday.co.kr/pto_db/2019/02/600/20190225135415_1304548_1200_800.jpg',
+  imageBefore: ['https://cdn.univ20.com/wp-content/uploads/2016/03/099cb95e398e9f8d74f63eccb5c75db2.jpg'],
+  imageAfter: ['https://img.etoday.co.kr/pto_db/2019/02/600/20190225135415_1304548_1200_800.jpg'],
 };
 
 function ReviewPage() {
@@ -91,7 +94,13 @@ function ReviewPage() {
 
   return (
     <S.ReviewContainer>
-      <ReviewLayout posts={pagedReviews} page={page} pageLength={dummy.length} pagingHandler={reviewPaging} />
+      <ReviewLayout
+        posts={pagedReviews}
+        bestReview={dummyBest}
+        page={page}
+        pageLength={dummy.length}
+        pagingHandler={reviewPaging}
+      />
     </S.ReviewContainer>
   );
 }

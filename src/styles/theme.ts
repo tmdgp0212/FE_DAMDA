@@ -68,12 +68,12 @@ const font = {
   },
   regular_14: {
     'font-size': '1.4rem',
-    'font-weight': '400',
+    'font-weight': '500',
     'line-height': '1.6',
   },
   regular_12: {
     'font-size': '1.4rem',
-    'font-weight': '400',
+    'font-weight': '500',
     'line-height': '1.6',
   },
   light_14: {

@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import ISwiper, { FreeMode, Navigation, Thumbs } from 'swiper';
+import Image from 'next/image';
 import * as S from './style';
 
 import 'swiper/css';
 import 'swiper/css/free-mode';
-import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-import Image from 'next/image';
 
-function SlideGallery() {
+interface SlideProps {
+  images: string[];
+}
+
+function SlideGallery({ images }: SlideProps) {
   const [thumbsSwiper, setThumbsSwiper] = useState<ISwiper>();
+
   return (
     <S.SwiperContainer>
       <Swiper
@@ -19,15 +23,11 @@ function SlideGallery() {
         modules={[FreeMode, Navigation, Thumbs]}
         className="main_swiper"
       >
-        <SwiperSlide>
-          <Image alt="sample" src="https://swiperjs.com/demos/images/nature-1.jpg" width={300} height={300} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image alt="sample" src="https://swiperjs.com/demos/images/nature-2.jpg" width={300} height={300} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image alt="sample" src="https://swiperjs.com/demos/images/nature-3.jpg" width={300} height={300} />
-        </SwiperSlide>
+        {images.map((image, idx) => (
+          <SwiperSlide key={idx}>
+            <Image alt="Before/After image" src={image} width={300} height={300} />
+          </SwiperSlide>
+        ))}
       </Swiper>
       <Swiper
         onSwiper={setThumbsSwiper}
@@ -39,15 +39,11 @@ function SlideGallery() {
         modules={[FreeMode, Navigation, Thumbs]}
         className="gallery"
       >
-        <SwiperSlide>
-          <Image alt="sample" src="https://swiperjs.com/demos/images/nature-1.jpg" fill />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image alt="sample" src="https://swiperjs.com/demos/images/nature-2.jpg" fill />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image alt="sample" src="https://swiperjs.com/demos/images/nature-3.jpg" fill />
-        </SwiperSlide>
+        {images.map((image, idx) => (
+          <SwiperSlide key={idx}>
+            <Image alt="Before/After image thumbnail" src={image} fill />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </S.SwiperContainer>
   );

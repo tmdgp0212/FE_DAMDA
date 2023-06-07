@@ -6,6 +6,6 @@ export interface ReviewRes {
   isBest: boolean;
   location: string;
   time: string;
-  imageBefore: string;
-  imageAfter: string;
+  imageBefore: string[];
+  imageAfter: string[];
 }

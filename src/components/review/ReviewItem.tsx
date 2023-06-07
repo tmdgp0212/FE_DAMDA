@@ -5,19 +5,11 @@ import ImageSlide from './ImageSlide';
 import { dateFormatter, isNewReview } from '@/utils/date';
 import { useState } from 'react';
 import ReviewModal from './ReviewModal';
+import { ReviewRes } from '@/types/review';
+import { nameMarker } from '@/utils/nameMarker';
 
 interface ReviewProps {
-  review: {
-    id: number;
-    title: string;
-    body: string;
-    userName: string;
-    isBest: boolean;
-    location: string;
-    time: string;
-    imageBefore: string;
-    imageAfter: string;
-  };
+  review: ReviewRes;
 }
 
 function ReviewItem({ review }: ReviewProps) {
@@ -28,7 +20,7 @@ function ReviewItem({ review }: ReviewProps) {
     <>
       <S.ReviewItem onClick={() => setIsModalOpen(true)}>
         <S.ImageContainer className="image-before">
-          <ImageSlide afterImage={review.imageAfter} beforeImage={review.imageBefore} isBest={false} />
+          <ImageSlide afterImage={review.imageAfter[0]} beforeImage={review.imageBefore[0]} isBest={false} />
           <S.Badges>
             {review.isBest && <BestBadge />}
             {isNew && <NewBadge />}
@@ -36,12 +28,12 @@ function ReviewItem({ review }: ReviewProps) {
         </S.ImageContainer>
         <S.ReviewAuth>
           <span className="location">{review.location}</span>
-          <span className="name">{review.userName.replace(/(?<=.{1})./gi, '*')}님</span>
+          <span className="name">{nameMarker(review.userName)}님</span>
           <span className="time">{dateFormatter(review.time)}</span>
         </S.ReviewAuth>
         <S.ReviewTitle>{review.title}</S.ReviewTitle>
       </S.ReviewItem>
-      {isModalOpen && <ReviewModal />}
+      {isModalOpen && <ReviewModal review={review} setIsModalOpen={setIsModalOpen} />}
     </>
   );
 }

@@ -55,6 +55,7 @@ export const TransitionButtons = styled.div`
 
 export const TransitionButton = styled.button`
   ${theme.font.bold_14}
+  padding: 0 12px;
   width: 100%;
   height: 36px;
   text-align: left;
@@ -74,6 +75,7 @@ export const ReviewDetail = styled.div`
 export const Badges = styled.div`
   display: flex;
   gap: 5px;
+  margin: -5px 0 5px;
 `;
 
 export const Title = styled.h3`

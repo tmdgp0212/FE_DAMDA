@@ -12,26 +12,15 @@ import { dateFormatter } from '@/utils/date';
 import React, { useState } from 'react';
 import { ReviewRes } from '@/types/review';
 
-const dummyBest = {
-  id: 4,
-  title: '열다 서비스를 받고 옷입는 시간이 줄었어요',
-  body: '열다 서비스를 받고 옷입는 시간이 줄었어요 너무 좋아요 어쩌구',
-  userName: '박아무개',
-  isBest: true,
-  location: '강남구',
-  time: '2023-03-19',
-  imageBefore: 'https://cdn.univ20.com/wp-content/uploads/2016/03/099cb95e398e9f8d74f63eccb5c75db2.jpg',
-  imageAfter: 'https://img.etoday.co.kr/pto_db/2019/02/600/20190225135415_1304548_1200_800.jpg',
-};
-
 interface ReviewProps {
   posts: ReviewRes[];
+  bestReview: ReviewRes;
   page: number;
   pageLength: number;
   pagingHandler: (page: number) => void;
 }
 
-function ReviewLayout({ posts, page, pageLength, pagingHandler }: ReviewProps) {
+function ReviewLayout({ posts, bestReview, page, pageLength, pagingHandler }: ReviewProps) {
   const [isCardOpen, setIsCardOpen] = useState(false);
 
   return (
@@ -71,20 +60,20 @@ function ReviewLayout({ posts, page, pageLength, pagingHandler }: ReviewProps) {
         </S.TitleMedium>
         <S.BestReview className="best_review">
           <div className="prograss_container">
-            <ImageSlide beforeImage={dummyBest.imageBefore} afterImage={dummyBest.imageAfter} isBest={true} />
+            <ImageSlide beforeImage={bestReview.imageBefore[0]} afterImage={bestReview.imageAfter[0]} isBest={true} />
           </div>
           <S.ReviewCard isCardOpen={isCardOpen} onClick={() => setIsCardOpen(!isCardOpen)}>
             <div className="card_header">
               <div className="arrow_icon">{isCardOpen ? <UpArrow /> : <DownArrow />}</div>
               <div className="flex_box">
                 <span className="auth">
-                  {dummyBest.location} {dummyBest.userName.replace(/(?<=.{1})./gi, '*')}님
+                  {bestReview.location} {bestReview.userName.replace(/(?<=.{1})./gi, '*')}님
                 </span>
-                <span className="date">{dateFormatter(dummyBest.time)}</span>
+                <span className="date">{dateFormatter(bestReview.time)}</span>
               </div>
-              <div className="title">{dummyBest.title}</div>
+              <div className="title">{bestReview.title}</div>
             </div>
-            {isCardOpen && <div className="card_content">{dummyBest.body}</div>}
+            {isCardOpen && <div className="card_content">{bestReview.body}</div>}
           </S.ReviewCard>
         </S.BestReview>
         <S.TitleMedium>

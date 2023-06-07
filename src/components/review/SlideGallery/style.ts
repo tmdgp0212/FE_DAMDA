@@ -7,6 +7,12 @@ export const SwiperContainer = styled.div`
     height: 250px;
   }
 
+  .swiper-slide {
+    img {
+      object-fit: cover;
+    }
+  }
+
   .gallery {
     display: flex;
     position: relative;
@@ -21,10 +27,6 @@ export const SwiperContainer = styled.div`
       border-radius: 5px;
       box-sizing: border-box;
       border: 2px solid transparent;
-
-      img {
-        object-fit: cover;
-      }
     }
 
     .swiper-slide-thumb-active {
