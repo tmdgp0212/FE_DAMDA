@@ -3,6 +3,10 @@ import styled from '@emotion/styled';
 export const FormInput = styled.div`
   position: relative;
 
+  &:first-child {
+    margin-top: 32px;
+  }
+
   &:not(:last-child) {
     margin-bottom: 12px;
   }

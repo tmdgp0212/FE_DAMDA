@@ -41,6 +41,10 @@ export const SubTitle = styled.h3`
 export const DaySelectionForm = styled.div`
   margin-bottom: 32px;
 
+  > div {
+    margin-top: 12px;
+  }
+
   input[name='day'] {
     display: none;
   }
@@ -73,8 +77,13 @@ export const DaySelectionForm = styled.div`
 export const CertificateForm = styled.div`
   margin-bottom: 32px;
 
+  h3 {
+    margin-top: 24px;
+  }
+
   span {
     display: block;
+    margin-top: 4px;
     margin-bottom: 16px;
     font-size: 14px;
     color: ${({ theme }) => theme.colors.yolda_gray_4};
@@ -120,6 +129,7 @@ export const FieldExperienceForm = styled.div`
   margin-bottom: 32px;
 
   p {
+    margin-top: 4px;
     margin-bottom: 16px;
     color: ${({ theme }) => theme.colors.yolda_gray_3};
     ${({ theme }) => theme.font.regular_14}
@@ -148,7 +158,11 @@ export const FieldExperienceForm = styled.div`
 `;
 
 export const ServiceGuide = styled.div`
-  margin-bottom: 84px;
+  margin-bottom: 72px;
+
+  > div {
+    margin-top: 16px;
+  }
 `;
 
 export const GuideDetail = styled.div`
