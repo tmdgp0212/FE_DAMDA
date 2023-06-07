@@ -26,6 +26,31 @@ function ManagerForm() {
           <IntroductionForm info="이름" placeholder="김열다" />
           <IntroductionForm info="연락처" placeholder="010-0000-0000" />
         </S.StyleWrapper>
+
+        <S.DaySelectionForm>
+          <S.SubTitle>활동 가능한 요일을 선택해주세요.</S.SubTitle>
+
+          <input type="checkbox" name="day" id="mon" />
+          <label htmlFor="mon">월</label>
+
+          <input type="checkbox" name="day" id="tue" />
+          <label htmlFor="tue">화</label>
+
+          <input type="checkbox" name="day" id="wed" />
+          <label htmlFor="wed">수</label>
+
+          <input type="checkbox" name="day" id="thu" />
+          <label htmlFor="thu">목</label>
+
+          <input type="checkbox" name="day" id="fri" />
+          <label htmlFor="fri">금</label>
+
+          <input type="checkbox" name="day" id="sat" />
+          <label htmlFor="sat">토</label>
+
+          <input type="checkbox" name="day" id="sun" />
+          <label htmlFor="sun">일</label>
+        </S.DaySelectionForm>
       </div>
     </S.ManagerFormContainer>
   );
