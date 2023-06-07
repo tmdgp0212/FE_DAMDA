@@ -15,7 +15,7 @@ function ManagerForm() {
         <h1>열다 옷장정리 매니저 신청</h1>
       </S.ManagerFormHeader>
 
-      <div>
+      <S.StyleWrapper large>
         <S.Headline>
           환영합니다, 매니저님!
           <br />
@@ -51,7 +51,7 @@ function ManagerForm() {
           <input type="checkbox" name="day" id="sun" />
           <label htmlFor="sun">일</label>
         </S.DaySelectionForm>
-      </div>
+      </S.StyleWrapper>
     </S.ManagerFormContainer>
   );
 }

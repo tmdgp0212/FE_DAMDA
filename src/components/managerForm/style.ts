@@ -1,5 +1,9 @@
 import styled from '@emotion/styled';
 
+interface MarginProps {
+  large?: boolean;
+}
+
 export const ManagerFormContainer = styled.div`
   padding: 8px 20px 172px;
 `;
@@ -24,8 +28,8 @@ export const Headline = styled.h2`
   line-height: 135%;
 `;
 
-export const StyleWrapper = styled.div`
-  margin-bottom: 32px;
+export const StyleWrapper = styled.div<MarginProps>`
+  margin-bottom: ${({ large }) => (large ? '72px' : '32px')};
 `;
 
 export const SubTitle = styled.h3`
