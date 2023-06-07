@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { ChangeEvent, useState } from 'react';
 
 import * as G from '../style';
 import * as S from './style';
 
 function FieldExperienceForm() {
+  const [enteredText, setEnteredText] = useState('');
+
+  const textChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setEnteredText(e.target.value);
+  };
+
+  const characterCountWithoutSpaces = enteredText.replace(/\s/g, '').length;
+
   return (
     <S.FieldExperienceForm>
       <G.SubTitle>
@@ -19,9 +27,12 @@ function FieldExperienceForm() {
         id=""
         placeholder="현장 파견 20회 이상, 옷장 정리 경험 10회 이상"
         style={{ resize: 'none' }}
+        onChange={textChangeHandler}
       ></textarea>
 
-      <span>0 / 150</span>
+      <S.Count textLength={enteredText.length}>
+        <span>{characterCountWithoutSpaces}</span> / 150
+      </S.Count>
     </S.FieldExperienceForm>
   );
 }

@@ -22,12 +22,13 @@ export const FieldExperienceForm = styled.div`
       ${({ theme }) => theme.font.light_14}
     }
   }
+`;
+
+export const Count = styled.p<{ textLength: number }>`
+  color: ${({ theme, textLength }) => (textLength > 150 ? theme.colors.red_1 : theme.colors.yolda_gray_2)};
+  text-align: right;
 
   span {
-    display: block;
-    padding: 8px;
-    color: ${({ theme }) => theme.colors.yolda_gray_2};
-    ${({ theme }) => theme.font.regular_12}
-    text-align: right;
+    color: ${({ theme, textLength }) => textLength > 150 && theme.colors.red_1};
   }
 `;
