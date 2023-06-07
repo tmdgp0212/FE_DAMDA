@@ -150,6 +150,8 @@ function ManagerForm() {
           </S.InputCheckbox>
         </div>
       </S.ServiceGuide>
+
+      <S.ManagerSupportButton type="button">지원하기</S.ManagerSupportButton>
     </S.ManagerFormContainer>
   );
 }

@@ -182,3 +182,15 @@ export const InputCheckbox = styled.div`
     margin-right: 19px;
   }
 `;
+
+export const ManagerSupportButton = styled.button`
+  display: flex;
+  align-items: center;
+  width: 154px;
+  height: 50px;
+  padding: 10px;
+  border: 1px solid ${({ theme }) => theme.colors.yolda_gray_4};
+  border-radius: 5px;
+  color: ${({ theme }) => theme.colors.yolda_gray_4};
+  background-color: #ffffff;
+`;
