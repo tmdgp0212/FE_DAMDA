@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 
 import IntroductionForm from './introductionForm';
 import DaySelectionForm from './DaySelectionForm';
@@ -7,16 +8,18 @@ import FieldExperienceForm from './FieldExperienceForm';
 import RadioButtonForm from './RadioButtonForm';
 import ServiceGuide from './ServiceGuide';
 
-import { BsChevronLeft } from 'react-icons/bs';
+import { FiChevronLeft } from 'react-icons/fi';
 import * as S from './style';
 
 function ManagerForm() {
+  const router = useRouter();
+
   return (
     <S.ManagerFormContainer>
       <S.ManagerFormHeader>
-        <p>
-          <BsChevronLeft />
-        </p>
+        <button type="button" onClick={() => router.back()}>
+          <FiChevronLeft />
+        </button>
         <h1>열다 옷장정리 매니저 신청</h1>
       </S.ManagerFormHeader>
 

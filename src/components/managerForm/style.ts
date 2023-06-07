@@ -29,8 +29,22 @@ export const ManagerFormContainer = styled.div`
 export const ManagerFormHeader = styled.header`
   margin-bottom: 47px;
 
-  svg {
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
     margin-bottom: 20px;
+    border: none;
+    color: ${({ theme }) => theme.colors.yolda_black_1};
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+  }
+
+  svg {
     font-size: 24px;
   }
 
