@@ -1,6 +1,7 @@
 import React from 'react';
 
 import IntroductionForm from './introductionForm';
+import RadioButtonForm from './RadioButtonForm';
 
 import { BsChevronLeft, BsChevronDown } from 'react-icons/bs';
 import * as S from './style';
@@ -117,6 +118,8 @@ function ManagerForm() {
 
           <span>0 / 150</span>
         </S.FieldExperienceForm>
+
+        <RadioButtonForm />
       </div>
     </S.ManagerFormContainer>
   );
