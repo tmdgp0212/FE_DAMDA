@@ -6,20 +6,12 @@ import Menu from './Menu';
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const menuHandler = () => {
-    if (isMenuOpen) {
-      setIsMenuOpen(false);
-    } else {
-      setIsMenuOpen(true);
-    }
-  };
-
   return (
     <>
       <S.Header isMenuOpen={isMenuOpen}>
-        <HeaderLayout isMenuOpen={isMenuOpen} menuHandler={menuHandler} />
+        <HeaderLayout isMenuOpen={isMenuOpen} menuHandler={setIsMenuOpen} />
       </S.Header>
-      <Menu isMenuOpen={isMenuOpen} menuHandler={menuHandler} />
+      <Menu isMenuOpen={isMenuOpen} menuHandler={setIsMenuOpen} />
     </>
   );
 }

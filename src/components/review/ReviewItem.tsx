@@ -3,6 +3,8 @@ import BestBadge from '../../../public/icons/badge_best.svg';
 import * as S from './style';
 import ImageSlide from './ImageSlide';
 import { dateFormatter, isNewReview } from '@/utils/date';
+import { useState } from 'react';
+import ReviewModal from './ReviewModal';
 
 interface ReviewProps {
   review: {
@@ -19,24 +21,28 @@ interface ReviewProps {
 }
 
 function ReviewItem({ review }: ReviewProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const isNew = isNewReview(review.time);
 
   return (
-    <S.ReviewItem>
-      <S.ImageContainer className="image-before">
-        <ImageSlide afterImage={review.imageAfter} beforeImage={review.imageBefore} isBest={false} />
-        <S.Badges>
-          {review.isBest && <BestBadge />}
-          {isNew && <NewBadge />}
-        </S.Badges>
-      </S.ImageContainer>
-      <S.ReviewAuth>
-        <span className="location">{review.location}</span>
-        <span className="name">{review.userName.replace(/(?<=.{1})./gi, '*')}님</span>
-        <span className="time">{dateFormatter(review.time)}</span>
-      </S.ReviewAuth>
-      <S.ReviewTitle>{review.title}</S.ReviewTitle>
-    </S.ReviewItem>
+    <>
+      <S.ReviewItem onClick={() => setIsModalOpen(true)}>
+        <S.ImageContainer className="image-before">
+          <ImageSlide afterImage={review.imageAfter} beforeImage={review.imageBefore} isBest={false} />
+          <S.Badges>
+            {review.isBest && <BestBadge />}
+            {isNew && <NewBadge />}
+          </S.Badges>
+        </S.ImageContainer>
+        <S.ReviewAuth>
+          <span className="location">{review.location}</span>
+          <span className="name">{review.userName.replace(/(?<=.{1})./gi, '*')}님</span>
+          <span className="time">{dateFormatter(review.time)}</span>
+        </S.ReviewAuth>
+        <S.ReviewTitle>{review.title}</S.ReviewTitle>
+      </S.ReviewItem>
+      {isModalOpen && <ReviewModal />}
+    </>
   );
 }
 

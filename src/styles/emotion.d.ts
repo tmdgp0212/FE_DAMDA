@@ -7,6 +7,7 @@ declare module '@emotion/react' {
       main_blue: string;
       sub_blue_1: string;
       sub_blue_2: string;
+      sub_blue_3: string;
       red_1: string;
       green_1: string;
       yellow_1: string;

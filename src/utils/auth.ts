@@ -53,7 +53,7 @@ export const handleRedirect = async (router: NextRouter) => {
       const accessToken = await getToken(code);
       // 액세스 토큰을 사용하여 필요한 작업을 수행
       console.log('Access Token:', accessToken);
-      router.push('/');
+      // router.push('/');
     } catch (error) {
       console.error('Failed to fetch access token:', error);
     }

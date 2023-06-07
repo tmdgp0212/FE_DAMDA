@@ -4,7 +4,7 @@ import React from 'react';
 
 interface HeaderProps {
   isMenuOpen: boolean;
-  menuHandler: () => void;
+  menuHandler: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function HeaderLayout({ isMenuOpen, menuHandler }: HeaderProps) {
@@ -19,7 +19,7 @@ function HeaderLayout({ isMenuOpen, menuHandler }: HeaderProps) {
         <S.LoginButton className="ir-text">
           <Link href={'/login'}>login</Link>
         </S.LoginButton>
-        <S.SideMenuButton className="ir-text" isMenuOpen={isMenuOpen} onClick={menuHandler}>
+        <S.SideMenuButton className="ir-text" isMenuOpen={isMenuOpen} onClick={() => menuHandler((prev) => !prev)}>
           menu
         </S.SideMenuButton>
       </S.HeaderButtons>
