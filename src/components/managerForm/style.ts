@@ -23,3 +23,7 @@ export const Headline = styled.h2`
   font-weight: 700;
   line-height: 135%;
 `;
+
+export const StyleWrapper = styled.div`
+  margin-bottom: 32px;
+`;
