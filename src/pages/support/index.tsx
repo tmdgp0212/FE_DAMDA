@@ -1,7 +1,8 @@
 import React from 'react';
+import CustomerCenterLayout from '@/components/customerCenter/customerCenterLayout';
 
 function SupportPage() {
-  return <div>SupportPage</div>;
+  return <CustomerCenterLayout />;
 }
 
 export default SupportPage;

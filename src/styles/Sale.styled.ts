@@ -9,9 +9,7 @@ export const SaleContainer = styled.div`
   margin-bottom: 10rem;
   margin-top: -4rem;
   h1 {
-    font-size: 2.4rem;
-    font-weight: 900;
-    line-height: 1.35;
+    ${({ theme }) => theme.font.bold_24_135};
     margin-bottom: 0.6rem;
   }
   p {
@@ -37,7 +35,7 @@ export const SaleTitleImg = styled.div`
 `;
 
 export const ImgCover = styled.div`
-  background: linear-gradient(90deg, #ffffff 20.04%, rgba(255, 255, 255, 0) 95%);
+  background: linear-gradient(to right, #ffffff 20.04%, rgba(255, 255, 255, 0) 95%);
   position: absolute;
   width: 100%;
   height: 100%;
@@ -95,9 +93,88 @@ export const SaleProcedureImg = styled.div<{ img?: string }>`
   border-radius: 0.6rem;
 `;
 
+// 옷장 정리 페이지 이동
+
+export const SaleClosetContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  padding: ${({ theme }) => theme.padding.mobile};
+`;
+
+export const PopupContainer = styled.div<{ onPopup?: boolean }>`
+  transition: max-height 0.3s ease-in-out;
+  width: 100%;
+  max-height: ${({ onPopup }) => (onPopup ? '70px' : '150px')};
+  height: auto;
+  border: ${({ onPopup }) => (onPopup ? '1px solid black' : '2px solid #0061FF')};
+  border-radius: 0.6rem;
+  padding: 1rem;
+  overflow: hidden;
+  margin-top: 1.4rem;
+  h2 {
+    ${({ theme }) => theme.font.bold_19};
+  }
+`;
+
+export const PopupWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  span {
+    font-weight: 700;
+  }
+`;
+export const PopupTitle = styled.div`
+  border-bottom: 1px solid black;
+  padding: 0 10px 10px;
+  margin-bottom: 10px;
+`;
+
+export const PopupDesc = styled.p`
+  padding: 0 10px;
+`;
+
 // 그래프 섹션
 export const SaleGraphContainer = styled.div`
   width: 100%;
   height: 100%;
   padding: ${({ theme }) => theme.padding.mobile};
+`;
+
+// 견적 신청
+export const SaleEstimateContainer = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  height: 46rem;
+  padding: ${({ theme }) => theme.padding.mobile};
+  padding: 0 2rem;
+  overflow: hidden;
+  position: relative;
+`;
+
+export const EstimateTitle = styled.div`
+  position: absolute;
+  z-index: 1;
+`;
+
+export const EstimateImg = styled.div`
+  width: 100%;
+  height: 65%;
+  background-image: url('/img/sale_main2.png');
+  background-repeat: no-repeat;
+  background-size: 140%;
+  background-position: center;
+  margin-top: 10rem;
+  p {
+    ${({ theme }) => theme.font.regular_14};
+  }
+`;
+
+export const EstimateCover = styled.div`
+  width: 100%;
+  height: 15%;
+  background: linear-gradient(to top, rgba(255, 255, 255, 1%), #fff);
+  position: absolute;
+  top: 10rem;
+  left: 0;
+  display: flex;
 `;

@@ -50,6 +50,11 @@ const font = {
     'font-weight': '700',
     'line-height': '1.6',
   },
+  bold_18_135: {
+    'font-size': '1.8rem',
+    'font-weight': '700',
+    'line-height': '1.35',
+  },
   bold_16: {
     'font-size': '1.6rem',
     'font-weight': '700',
