@@ -25,7 +25,8 @@ export const FieldExperienceForm = styled.div`
 `;
 
 export const Count = styled.p<{ textLength: number }>`
-  color: ${({ theme, textLength }) => (textLength > 150 ? theme.colors.red_1 : theme.colors.yolda_gray_2)};
+  ${({ theme }) => theme.font.regular_12};
+  color: ${({ theme }) => theme.colors.yolda_gray_2};
   text-align: right;
 
   span {
