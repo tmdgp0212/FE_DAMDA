@@ -9,7 +9,6 @@ interface MenuProps {
 }
 
 function Menu({ isMenuOpen, menuHandler }: MenuProps) {
-  console.log(isMenuOpen);
   return (
     <AnimatePresence>
       {isMenuOpen && (

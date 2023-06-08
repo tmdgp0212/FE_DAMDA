@@ -11,6 +11,7 @@ import { slide1, slide2 } from '@/constants/reviewPageSlideItems';
 import { dateFormatter } from '@/utils/date';
 import React, { useState } from 'react';
 import { ReviewRes } from '@/types/review';
+import { nameMarker } from '@/utils/nameMarker';
 
 interface ReviewProps {
   posts: ReviewRes[];
@@ -60,20 +61,20 @@ function ReviewLayout({ posts, bestReview, page, pageLength, pagingHandler }: Re
         </S.TitleMedium>
         <S.BestReview className="best_review">
           <div className="prograss_container">
-            <ImageSlide beforeImage={bestReview.imageBefore[0]} afterImage={bestReview.imageAfter[0]} isBest={true} />
+            <ImageSlide beforeImage={bestReview.before[0]} afterImage={bestReview.after[0]} isBest={true} />
           </div>
           <S.ReviewCard isCardOpen={isCardOpen} onClick={() => setIsCardOpen(!isCardOpen)}>
             <div className="card_header">
               <div className="arrow_icon">{isCardOpen ? <UpArrow /> : <DownArrow />}</div>
               <div className="flex_box">
                 <span className="auth">
-                  {bestReview.location} {bestReview.userName.replace(/(?<=.{1})./gi, '*')}님
+                  {bestReview.address} {nameMarker(bestReview.name)}님
                 </span>
-                <span className="date">{dateFormatter(bestReview.time)}</span>
+                <span className="date">{dateFormatter(bestReview.date)}</span>
               </div>
               <div className="title">{bestReview.title}</div>
             </div>
-            {isCardOpen && <div className="card_content">{bestReview.body}</div>}
+            {isCardOpen && <div className="card_content">{bestReview.content}</div>}
           </S.ReviewCard>
         </S.BestReview>
         <S.TitleMedium>
@@ -81,8 +82,8 @@ function ReviewLayout({ posts, bestReview, page, pageLength, pagingHandler }: Re
           열다의 모든 후기
         </S.TitleMedium>
         <S.AllReview>
-          {posts.map((review) => (
-            <ReviewItem key={review.id} review={review} />
+          {posts.map((review, idx) => (
+            <ReviewItem key={idx} review={review} />
           ))}
         </S.AllReview>
       </S.Reviews>

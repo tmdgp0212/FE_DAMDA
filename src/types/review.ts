@@ -1,11 +1,10 @@
 export interface ReviewRes {
-  id: number;
+  name: string;
+  address: string;
+  date: string;
   title: string;
-  body: string;
-  userName: string;
-  isBest: boolean;
-  location: string;
-  time: string;
-  imageBefore: string[];
-  imageAfter: string[];
+  content: string;
+  before: string[];
+  after: string[];
+  bestReview: boolean;
 }

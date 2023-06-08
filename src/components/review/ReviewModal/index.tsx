@@ -46,11 +46,7 @@ function ReviewModal({ review, setIsModalOpen }: ModalProps) {
               정리 후
             </S.TransitionButton>
           </S.TransitionButtons>
-          {filter === 'BEFORE' ? (
-            <SlideGallery images={review.imageBefore} />
-          ) : (
-            <SlideGallery images={review.imageAfter} />
-          )}
+          {filter === 'BEFORE' ? <SlideGallery images={review.before} /> : <SlideGallery images={review.after} />}
         </S.Gallery>
         <S.ReviewDetail>
           <S.Badges>
@@ -60,11 +56,11 @@ function ReviewModal({ review, setIsModalOpen }: ModalProps) {
           <S.Title>{review.title}</S.Title>
           <S.Auth>
             <span>
-              {review.location} {nameMarker(review.userName)}님
+              {review.address} {nameMarker(review.name)}님
             </span>
-            <span className="date">{dateFormatter(review.time)}</span>
+            <span className="date">{dateFormatter(review.date)}</span>
           </S.Auth>
-          <S.Body>{review.body}</S.Body>
+          <S.Body>{review.content}</S.Body>
         </S.ReviewDetail>
       </S.Modal>
     </S.ModalBackground>

@@ -16,11 +16,6 @@ const queryClient = new QueryClient({
   },
 });
 
-if (process.env.NODE_ENV === 'development') {
-  // mock API server 실행함수
-  server.listen();
-}
-
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <CookiesProvider>

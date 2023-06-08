@@ -18,6 +18,20 @@ export const Header = styled.header<{ isMenuOpen: boolean }>`
   z-index: 10;
 `;
 
+export const ProfileImage = styled.div`
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border: 1px solid ${theme.colors.main_blue};
+  border-radius: 4px;
+
+  img {
+    object-fit: cover;
+    border: 1px solid #fff;
+    border-radius: 4px;
+  }
+`;
+
 export const Logo = styled.h1`
   a {
     display: block;

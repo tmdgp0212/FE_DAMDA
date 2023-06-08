@@ -2,10 +2,11 @@ import axios, { AxiosRequestConfig } from 'axios';
 
 const getAxiosInstance = () => {
   const config: AxiosRequestConfig = {
-    // baseURL: 'https://api.damda.store/',
+    baseURL: 'https://api.damda.store',
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': 'https://api.damda.store',
+      'Access-Control-Allow-Credentials': true,
     },
     withCredentials: true,
   };
