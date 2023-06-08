@@ -22,7 +22,7 @@ export const SubTitle = styled.h3`
 `;
 
 // Styled-Components
-export const ManagerFormContainer = styled.div`
+export const ManagerFormContainer = styled.form`
   padding: 8px 20px 172px;
 `;
 

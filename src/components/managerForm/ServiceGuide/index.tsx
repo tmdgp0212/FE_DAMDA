@@ -3,7 +3,7 @@ import React from 'react';
 import * as G from '../style';
 import * as S from './style';
 
-function ServiceGuide() {
+function ServiceGuide({ register }: { register: any }) {
   return (
     <S.ServiceGuide>
       <G.Headline>
@@ -28,7 +28,7 @@ function ServiceGuide() {
         </S.GuideDetail>
 
         <S.InputCheckbox>
-          <input type="checkbox" id="agreement" />
+          <input type="checkbox" id="agreement" {...register('checkbox_guide')} />
           <label htmlFor="agreement">네, 가능합니다!</label>
         </S.InputCheckbox>
       </div>

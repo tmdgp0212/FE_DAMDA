@@ -7,11 +7,11 @@ export const DaySelectionForm = styled.div`
     margin-top: 12px;
   }
 
-  input[name='day'] {
+  input[type='checkbox'] {
     display: none;
   }
 
-  input[name='day'] {
+  input[type='checkbox'] {
     & + label {
       display: inline-flex;
       justify-content: center;

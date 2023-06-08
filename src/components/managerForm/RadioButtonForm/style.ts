@@ -21,8 +21,8 @@ export const InputRadioGroup = styled.div`
   display: flex;
   gap: 12px;
 
-  input[name='main_job'],
-  input[name='manager_vehicle'] {
+  input[type='radio'],
+  input[type='radio'] {
     display: none;
   }
 
@@ -31,8 +31,8 @@ export const InputRadioGroup = styled.div`
     cursor: pointer;
   }
 
-  input[name='main_job'],
-  input[name='manager_vehicle'] {
+  input[type='radio'],
+  input[type='radio'] {
     & + label {
       display: inline-flex;
       justify-content: center;

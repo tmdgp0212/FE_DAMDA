@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { FormEvent } from 'react';
 import { useRouter } from 'next/router';
+import { useForm, SubmitHandler } from 'react-hook-form';
 
 import IntroductionForm from './introductionForm';
 import DaySelectionForm from './DaySelectionForm';
@@ -13,9 +14,20 @@ import * as S from './style';
 
 function ManagerForm() {
   const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data, e) => {
+    e.preventDefault();
+
+    console.log(data);
+  };
 
   return (
-    <S.ManagerFormContainer>
+    <S.ManagerFormContainer onSubmit={handleSubmit(onSubmit)}>
       <S.ManagerFormHeader>
         <button type="button" onClick={() => router.back()}>
           <FiChevronLeft />
@@ -31,11 +43,11 @@ function ManagerForm() {
         </S.Headline>
 
         <S.StyleWrapper>
-          <IntroductionForm info="이름" placeholder="김열다" />
-          <IntroductionForm info="연락처" placeholder="010-0000-0000" />
+          <IntroductionForm info="이름" placeholder="김열다" register={register} />
+          <IntroductionForm info="연락처" placeholder="010-0000-0000" register={register} />
         </S.StyleWrapper>
 
-        <DaySelectionForm />
+        <DaySelectionForm register={register} />
       </S.StyleWrapper>
 
       <S.StyleWrapper large>
@@ -45,13 +57,13 @@ function ManagerForm() {
           알려주세요.
         </S.Headline>
 
-        <CertificateForm />
-        <FieldExperienceForm />
-        <RadioButtonForm />
+        <CertificateForm register={register} />
+        <FieldExperienceForm register={register} />
+        <RadioButtonForm register={register} />
       </S.StyleWrapper>
 
-      <ServiceGuide />
-      <S.ManagerSupportButton type="button">지원하기</S.ManagerSupportButton>
+      <ServiceGuide register={register} />
+      <S.ManagerSupportButton type="submit">지원하기</S.ManagerSupportButton>
     </S.ManagerFormContainer>
   );
 }

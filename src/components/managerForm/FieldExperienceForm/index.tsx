@@ -3,7 +3,7 @@ import React, { ChangeEvent, useState } from 'react';
 import * as G from '../style';
 import * as S from './style';
 
-function FieldExperienceForm() {
+function FieldExperienceForm({ register }: { register: any }) {
   const [enteredText, setEnteredText] = useState('');
 
   const textChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -28,6 +28,7 @@ function FieldExperienceForm() {
         placeholder="현장 파견 20회 이상, 옷장 정리 경험 10회 이상"
         style={{ resize: 'none' }}
         onChange={textChangeHandler}
+        {...register('field_experience')}
       ></textarea>
 
       <S.Count textLength={enteredText.length}>
