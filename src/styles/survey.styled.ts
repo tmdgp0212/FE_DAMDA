@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { motion } from 'framer-motion';
 
 export const UserSurveyWrapper = styled.div`
   display: flex;
@@ -112,6 +113,7 @@ export const UserSurveyFormSelectWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin-bottom: 1.8rem;
 
   .title {
     font-weight: 800;
@@ -164,4 +166,66 @@ export const UserSurveyFormSelectBox = styled.div`
       border: 2px solid ${({ theme }) => theme.colors.sub_blue_2};
     }
   }
+`;
+
+export const UserSurveyFormRadioWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1.9rem;
+
+  .title {
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 160%;
+  }
+
+  .radio-wrapper {
+    display: flex;
+    gap: 12px;
+
+    .radio-item {
+      flex-basis: 100%;
+      height: 5rem;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      border: 1px solid #a6a6a6;
+      border-radius: 5px;
+      cursor: pointer;
+      color: ${({ theme }) => theme.colors.yolda_gray_4};
+      span {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+      }
+    }
+  }
+
+  a {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: right;
+    text-decoration-line: underline;
+    color: ${({ theme }) => theme.colors.main_blue};
+  }
+`;
+
+export const UserSurveyFormNextBox = styled(motion.div)`
+  margin-top: 6rem;
+  margin-bottom: 6rem;
+  width: 45%;
+  height: 5rem;
+  padding: 1rem;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  border: 1px solid ${({ theme }) => theme.colors.yolda_gray_4};
+  border-radius: 5px;
+  cursor: revert;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: ${({ theme }) => theme.colors.yolda_gray_4};
 `;
