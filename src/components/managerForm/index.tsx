@@ -1,6 +1,6 @@
-import React, { FormEvent } from 'react';
+import React, { useReducer } from 'react';
 import { useRouter } from 'next/router';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { managerFormReducer } from '@/reducers/managerFormReducer';
 
 import IntroductionForm from './introductionForm';
 import DaySelectionForm from './DaySelectionForm';
@@ -14,21 +14,25 @@ import { FiChevronLeft } from 'react-icons/fi';
 import * as S from './style';
 
 function ManagerForm() {
+  const [state, dispatch] = useReducer(managerFormReducer, {
+    manager_name: '',
+    manager_phone: '',
+    activity_day: [],
+    activity_region: {},
+    manager_license: '',
+    field_experience: '',
+    main_job: null,
+    manager_drive: null,
+  });
   const router = useRouter();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
 
-  const onSubmit = (data, e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
-
-    console.log(data);
+    console.log(state);
   };
 
   return (
-    <S.ManagerFormContainer onSubmit={handleSubmit(onSubmit)}>
+    <S.ManagerFormContainer onSubmit={submitHandler}>
       <S.ManagerFormHeader>
         <button type="button" onClick={() => router.back()}>
           <FiChevronLeft />
@@ -44,12 +48,10 @@ function ManagerForm() {
         </S.Headline>
 
         <S.StyleWrapper>
-          <IntroductionForm info="이름" placeholder="김열다" register={register} />
-          <IntroductionForm info="연락처" placeholder="010-0000-0000" register={register} />
+          <IntroductionForm dispatch={dispatch} />
         </S.StyleWrapper>
 
-        <DaySelectionForm register={register} />
-        <LocationSelectionForm register={register} />
+        <DaySelectionForm dispatch={dispatch} />
       </S.StyleWrapper>
 
       <S.StyleWrapper large>
@@ -59,12 +61,12 @@ function ManagerForm() {
           알려주세요.
         </S.Headline>
 
-        <CertificateForm register={register} />
-        <FieldExperienceForm register={register} />
-        <RadioButtonForm register={register} />
+        <CertificateForm dispatch={dispatch} />
+        <FieldExperienceForm dispatch={dispatch} />
+        <RadioButtonForm dispatch={dispatch} />
       </S.StyleWrapper>
 
-      <ServiceGuide register={register} />
+      <ServiceGuide />
       <S.ManagerSupportButton type="submit">지원하기</S.ManagerSupportButton>
     </S.ManagerFormContainer>
   );

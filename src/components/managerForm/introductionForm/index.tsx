@@ -1,44 +1,32 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent } from 'react';
 import * as S from './style';
 import Image from 'next/image';
 
 interface IntroductionFormProps {
-  info: string;
-  placeholder: string;
-  register: any;
+  dispatch: any;
 }
 
-function IntroductionForm({ info, placeholder, register }: IntroductionFormProps) {
-  const [inputValue, setInputValue] = useState('');
-
-  const inputChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+function IntroductionForm({ dispatch }: IntroductionFormProps) {
+  const nameChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch({ type: 'NAME', payload: { name: e.target.value } });
   };
 
-  const inputCleaerHandler = () => {
-    setInputValue('');
+  const phoneNumberChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch({ type: 'PHONE_NUMBER', payload: { phoneNumber: e.target.value } });
   };
 
   return (
-    <S.FormInput>
-      <span>{info}</span>
+    <>
+      <S.FormInput>
+        <span>이름</span>
+        <input type="text" placeholder="김열다" onChange={nameChangeHandler} />
+      </S.FormInput>
 
-      <S.InputWrapper>
-        <input
-          type="text"
-          value={inputValue}
-          placeholder={placeholder}
-          {...register(info)}
-          onChange={inputChangeHandler}
-        />
-
-        {inputValue.length > 0 && (
-          <S.InputClearButton type="button" onClick={inputCleaerHandler}>
-            <Image src="/icons/input-clear-icon.svg" alt="input-clear-icon" fill />
-          </S.InputClearButton>
-        )}
-      </S.InputWrapper>
-    </S.FormInput>
+      <S.FormInput>
+        <span>연락처</span>
+        <input type="text" placeholder="010-0000-0000" onChange={phoneNumberChangeHandler} />
+      </S.FormInput>
+    </>
   );
 }
 
