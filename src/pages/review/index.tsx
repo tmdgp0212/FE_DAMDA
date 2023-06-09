@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as S from '../../styles/Review.styled';
 import ReviewLayout from '@/components/review/ReviewLayout';
 import { ReviewRes } from '@/types/review';
+import { getReviews } from '@/apis/review';
 
 const dummy: ReviewRes[] = [
   {
@@ -71,7 +72,20 @@ const dummyBest = {
   after: ['https://img.etoday.co.kr/pto_db/2019/02/600/20190225135415_1304548_1200_800.jpg'],
 };
 
-function ReviewPage() {
+interface ReviewPageProps {
+  reviews: ReviewRes[];
+}
+
+// export const getStaticProps = async () => {
+//   try {
+//     const reviews = getReviews();
+//     return { props: { reviews }, revalidate: 60 * 60 };
+//   } catch (error) {
+//     return { props: { review: null }, revalidate: 60 };
+//   }
+// };
+
+function ReviewPage({ reviews }: ReviewPageProps) {
   const [page, setPage] = useState(1);
   const [pagedReviews, setPagedReviews] = useState<ReviewRes[]>([]);
 

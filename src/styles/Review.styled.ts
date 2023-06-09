@@ -67,13 +67,15 @@ export const SlideContainer = styled.div`
   }
 `;
 
-export const ScrollDown = styled.div`
+export const ScrollDown = styled.div<{ isInView: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 4px;
   padding: 30px;
+  opacity: ${({ isInView }) => (isInView ? 0 : 1)};
+  transition: opacity 0.5s;
   cursor: default;
 `;
 

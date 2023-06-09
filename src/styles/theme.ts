@@ -83,11 +83,19 @@ const font = {
   },
 };
 
+const border = {
+  inputBorder: {
+    border: '1px solid #212121',
+    'border-radius': '5px',
+  },
+};
+
 const theme = {
   colors,
   padding,
   size,
   font,
+  border,
 };
 
 export default theme;

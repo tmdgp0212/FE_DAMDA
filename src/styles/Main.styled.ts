@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
+import theme from '@/styles/theme';
 
 export const MainContainer = styled.div`
   display: flex;
@@ -12,7 +13,27 @@ export const MainContainer = styled.div`
 export const MainFABContainer = styled.div`
   position: fixed;
   bottom: 258px;
-  right: 0;
+  right: calc(50% - ${theme.size.max_width} / 2);
+  display: flex;
+  flex-direction: column;
+  z-index: 3;
+`;
+
+export const MainFABButton = styled.button<{ color: string }>`
+  cursor: pointer;
+  width: 5.8rem;
+  height: 4.5rem;
+  border-width: 1px 0 1px 1px;
+  border-style: solid;
+  border-color: #212121;
+  border-radius: 5px 0 0 5px;
+  padding: 0 0.8rem;
+  background-color: ${({ color }) => color};
+
+  svg {
+    width: 3rem;
+    height: 3rem;
+  }
 `;
 
 export const MainTitleContainer = styled.div`
@@ -58,7 +79,6 @@ export const MainContentContainer = styled.div`
 
 export const MainButtonGroupContainer = styled.div<{ groupIndex: number }>`
   display: ${({ groupIndex }) => (groupIndex === 2 ? 'flex' : 'grid')};
-  grid-template-rows: ${({ groupIndex }) => (groupIndex === 0 ? '1fr 2fr 1fr 1fr' : 'repeat(3, 1fr)')};
   flex-direction: column;
 `;
 
@@ -105,6 +125,7 @@ export const MainRequestButton = styled(motion.button)<{ width?: number }>`
   line-height: 19px;
   height: 5.5rem;
   text-align: start;
+  cursor: pointer;
 
   width: ${({ width }) => (width ? `${width}%` : '100%')};
 `;
@@ -198,7 +219,7 @@ export const MainPriceButton = styled(MainContentButton)<{ index: number }>`
 
   .how {
     position: absolute;
-    right: -50%;
+    right: -100%;
   }
 `;
 

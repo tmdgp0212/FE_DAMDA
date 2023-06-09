@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import theme from './theme';
-import { keyframes } from '@emotion/react';
 
 export const LoginPage = styled.div`
   display: flex;

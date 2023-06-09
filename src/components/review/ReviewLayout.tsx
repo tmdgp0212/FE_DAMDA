@@ -9,9 +9,10 @@ import BannerSlide from './BannerSlide';
 import ImageSlide from './ImageSlide';
 import { slide1, slide2 } from '@/constants/reviewPageSlideItems';
 import { dateFormatter } from '@/utils/date';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ReviewRes } from '@/types/review';
 import { nameMarker } from '@/utils/nameMarker';
+import { useInView } from 'framer-motion';
 
 interface ReviewProps {
   posts: ReviewRes[];
@@ -22,6 +23,8 @@ interface ReviewProps {
 }
 
 function ReviewLayout({ posts, bestReview, page, pageLength, pagingHandler }: ReviewProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref);
   const [isCardOpen, setIsCardOpen] = useState(false);
 
   return (
@@ -41,7 +44,7 @@ function ReviewLayout({ posts, bestReview, page, pageLength, pagingHandler }: Re
         <BannerSlide slideItems={slide2} reverse={true} />
       </S.SlideContainer>
 
-      <S.ScrollDown>
+      <S.ScrollDown isInView={isInView}>
         <span>내려서 더 보기</span>
         <DownArrow />
       </S.ScrollDown>
@@ -59,7 +62,7 @@ function ReviewLayout({ posts, bestReview, page, pageLength, pagingHandler }: Re
           <BestBadge />
           베스트 이용후기
         </S.TitleMedium>
-        <S.BestReview className="best_review">
+        <S.BestReview className="best_review" ref={ref}>
           <div className="prograss_container">
             <ImageSlide beforeImage={bestReview.before[0]} afterImage={bestReview.after[0]} isBest={true} />
           </div>
