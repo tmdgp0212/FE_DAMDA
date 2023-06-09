@@ -4,11 +4,12 @@ import * as G from '../style';
 import * as S from './style';
 
 function FieldExperienceForm({ dispatch }: any) {
-  const [enteredText, setEnteredText] = useState('');
+  const [count, setCount] = useState(0);
 
   const textChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const characterCountWithoutSpaces = e.target.value.replace(/\s/g, '').length;
+    setCount(characterCountWithoutSpaces);
     dispatch({ type: 'FIELD_EXPERIENCE', payload: { field_experience: e.target.value } });
-    setEnteredText(e.target.value);
   };
 
   return (
