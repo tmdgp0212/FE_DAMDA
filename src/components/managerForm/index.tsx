@@ -48,7 +48,7 @@ function ManagerForm() {
         </S.Headline>
 
         <S.StyleWrapper>
-          <IntroductionForm dispatch={dispatch} />
+          <IntroductionForm state={state} dispatch={dispatch} />
         </S.StyleWrapper>
 
         <DaySelectionForm dispatch={dispatch} />
