@@ -18,6 +18,7 @@ export const FormInput = styled.div`
     ${({ theme }) => theme.font.bold_14}
     color: ${({ theme }) => theme.colors.yolda_gray_2};
     font-weight: 600;
+    z-index: 10;
   }
 
   input {
@@ -38,4 +39,24 @@ export const FormInput = styled.div`
       line-height: 135%;
     }
   }
+`;
+
+export const InputWrapper = styled.div`
+  position: relative;
+`;
+
+export const InputClearButton = styled.button`
+  position: absolute;
+  top: 32px;
+  right: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
 `;
