@@ -4,11 +4,12 @@ import { BsChevronDown } from 'react-icons/bs';
 import * as G from '../style';
 import * as S from './style';
 
-function CertificateForm({ register }: { register: any }) {
+function CertificateForm({ dispatch }: any) {
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState('자격증 선택하기');
 
   const selectOptionHandler = (option: string) => {
+    dispatch({ type: 'CERTIFICATE', payload: { certificate: option } });
     setSelectedOption(option);
   };
 
@@ -31,10 +32,9 @@ function CertificateForm({ register }: { register: any }) {
           <li>
             <S.OptionButton
               type="button"
-              onClick={() => {
+              onClick={(e) => {
                 setIsOptionsOpen(false);
                 selectOptionHandler('1급 (오프라인 취득)');
-                register('certificate_option', { value: '1급 (오프라인 취득)' });
               }}
             >
               1급 (오프라인 취득)
@@ -47,7 +47,6 @@ function CertificateForm({ register }: { register: any }) {
               onClick={() => {
                 setIsOptionsOpen(false);
                 selectOptionHandler('2급 (오프라인 취득)');
-                register('certificate_option', { value: '2급 (오프라인 취득)' });
               }}
             >
               2급 (오프라인 취득)
@@ -60,7 +59,6 @@ function CertificateForm({ register }: { register: any }) {
               onClick={() => {
                 setIsOptionsOpen(false);
                 selectOptionHandler('1급 (온라인 취득)');
-                register('certificate_option', { value: '1급 (온라인 취득)' });
               }}
             >
               1급 (온라인 취득)
@@ -73,7 +71,6 @@ function CertificateForm({ register }: { register: any }) {
               onClick={() => {
                 setIsOptionsOpen(false);
                 selectOptionHandler('2급 (온라인 취득)');
-                register('certificate_option', { value: '2급 (온라인 취득)' });
               }}
             >
               2급 (온라인 취득)
@@ -86,7 +83,6 @@ function CertificateForm({ register }: { register: any }) {
               onClick={() => {
                 setIsOptionsOpen(false);
                 selectOptionHandler('없음');
-                register('certificate_option', { value: '없음' });
               }}
             >
               없음
@@ -99,7 +95,6 @@ function CertificateForm({ register }: { register: any }) {
               onClick={(e) => {
                 setIsOptionsOpen(false);
                 selectOptionHandler('기타');
-                register('certificate_option', { value: '기타' });
               }}
             >
               기타
