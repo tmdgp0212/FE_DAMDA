@@ -4,6 +4,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 
 import IntroductionForm from './introductionForm';
 import DaySelectionForm from './DaySelectionForm';
+import LocationSelectionForm from './LocationSelectionForm';
 import CertificateForm from './CertificateForm';
 import FieldExperienceForm from './FieldExperienceForm';
 import RadioButtonForm from './RadioButtonForm';
@@ -48,6 +49,7 @@ function ManagerForm() {
         </S.StyleWrapper>
 
         <DaySelectionForm register={register} />
+        <LocationSelectionForm register={register} />
       </S.StyleWrapper>
 
       <S.StyleWrapper large>
