@@ -1,7 +1,10 @@
 import React from 'react';
 
 export type buttonElementGroupType = string[];
-export type buttonRequestGroupType = string[];
+export type buttonRequestGroupType = {
+  title: string;
+  to: string;
+};
 export interface buttonTitlePriceType {
   title: string;
   price?: string;

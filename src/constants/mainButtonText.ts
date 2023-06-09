@@ -6,7 +6,16 @@ export const buttonElementGroup: buttonElementGroupType = [
   '정리 서비스와 함께 정리 팁도 알려드려요!',
   '결제는 서비스를 받으신 후에!',
 ];
-export const buttonRequestGroup: buttonRequestGroupType = ['간편 견적', '상담 신청'];
+export const buttonRequestGroup: buttonRequestGroupType[] = [
+  {
+    title: '간편 견적',
+    to: '/usersurvey',
+  },
+  {
+    title: '상담 신청',
+    to: '/request',
+  },
+];
 
 export const buttonPersonGroup: buttonTitlePriceType[] = [
   {
