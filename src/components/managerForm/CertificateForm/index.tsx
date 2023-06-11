@@ -48,6 +48,7 @@ function CertificateForm({ state, dispatch }: { state: any; dispatch: any }) {
                 onClick={(e) => {
                   setIsOptionsOpen(false);
                   selectOptionHandler('1급 (오프라인 취득)');
+                  setIsEtcClicked(false);
                 }}
               >
                 1급 (오프라인 취득)
@@ -60,6 +61,7 @@ function CertificateForm({ state, dispatch }: { state: any; dispatch: any }) {
                 onClick={() => {
                   setIsOptionsOpen(false);
                   selectOptionHandler('2급 (오프라인 취득)');
+                  setIsEtcClicked(false);
                 }}
               >
                 2급 (오프라인 취득)
@@ -72,6 +74,7 @@ function CertificateForm({ state, dispatch }: { state: any; dispatch: any }) {
                 onClick={() => {
                   setIsOptionsOpen(false);
                   selectOptionHandler('1급 (온라인 취득)');
+                  setIsEtcClicked(false);
                 }}
               >
                 1급 (온라인 취득)
@@ -84,6 +87,7 @@ function CertificateForm({ state, dispatch }: { state: any; dispatch: any }) {
                 onClick={() => {
                   setIsOptionsOpen(false);
                   selectOptionHandler('2급 (온라인 취득)');
+                  setIsEtcClicked(false);
                 }}
               >
                 2급 (온라인 취득)
@@ -96,6 +100,7 @@ function CertificateForm({ state, dispatch }: { state: any; dispatch: any }) {
                 onClick={() => {
                   setIsOptionsOpen(false);
                   selectOptionHandler('없음');
+                  setIsEtcClicked(false);
                 }}
               >
                 없음
