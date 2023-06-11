@@ -17,9 +17,10 @@ export const RadioButtonFormContainer = styled.div`
   }
 `;
 
-export const InputRadioGroup = styled.div`
+export const InputRadioGroup = styled.div<{ isMainJobExist?: boolean }>`
   display: flex;
   gap: 12px;
+  margin-bottom: ${({ isMainJobExist }) => isMainJobExist && '16px'};
 
   input[type='radio'],
   input[type='radio'] {

@@ -23,6 +23,7 @@ function ManagerForm() {
     manager_license_etc: null,
     field_experience: '',
     main_job: null,
+    main_job_etc: null,
     manager_drive: null,
   });
   const router = useRouter();
