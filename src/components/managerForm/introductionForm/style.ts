@@ -22,7 +22,7 @@ export const FormInput = styled.div`
   }
 `;
 
-export const InputWrapper = styled.div<{ isError: string }>`
+export const InputWrapper = styled.div<{ isError?: string }>`
   position: relative;
 
   input {

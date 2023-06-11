@@ -20,6 +20,7 @@ function ManagerForm() {
     activity_day: [],
     activity_region: { seoul: [], gyeonggi: [] },
     manager_license: '',
+    manager_license_etc: null,
     field_experience: '',
     main_job: null,
     manager_drive: null,

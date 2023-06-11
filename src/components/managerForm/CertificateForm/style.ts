@@ -7,7 +7,7 @@ export const CertificateForm = styled.div`
     margin-top: 24px;
   }
 
-  span {
+  > span {
     display: block;
     margin-top: 4px;
     margin-bottom: 16px;
@@ -33,11 +33,12 @@ export const CertificateForm = styled.div`
   }
 `;
 
-export const SelectButton = styled.button`
+export const SelectButton = styled.button<{ isEtcClicked: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 10px;
+  margin-bottom: ${({ isEtcClicked }) => isEtcClicked && '16px'};
   cursor: pointer;
 `;
 
