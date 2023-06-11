@@ -9,20 +9,16 @@ function RadioButtonForm({ state, dispatch, setIsRadioValid }: any) {
   const [isMainJobExist, setIsMainJobExist] = useState(false);
   if (main_job === null || manager_drive === null) {
     setIsRadioValid(false);
-  } else if (main_job && main_job_etc && manager_drive) {
+  } else if (main_job === 'no' && !main_job_etc && manager_drive) {
     setIsRadioValid(true);
-  } else if (main_job && main_job_etc && !manager_drive) {
-    setIsRadioValid(true);
-  } else if (!main_job && manager_drive) {
-    setIsRadioValid(true);
-  } else if (!main_job && !manager_drive) {
+  } else if (main_job === 'yes' && main_job_etc && manager_drive) {
     setIsRadioValid(true);
   } else {
     setIsRadioValid(false);
   }
 
   const mainJobChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value === 'true';
+    const value = e.target.value;
     dispatch({ type: 'MAIN_JOB', payload: { main_job: value } });
   };
 
@@ -49,7 +45,7 @@ function RadioButtonForm({ state, dispatch, setIsRadioValid }: any) {
             type="radio"
             name="main_job"
             id="main_job_yes"
-            value="true"
+            value="yes"
             onChange={(e) => {
               mainJobChangeHandler(e);
               setIsMainJobExist(true);
@@ -61,7 +57,7 @@ function RadioButtonForm({ state, dispatch, setIsRadioValid }: any) {
             type="radio"
             name="main_job"
             id="main_job_no"
-            value="false"
+            value="no"
             onChange={(e) => {
               mainJobChangeHandler(e);
               setIsMainJobExist(false);
@@ -91,10 +87,10 @@ function RadioButtonForm({ state, dispatch, setIsRadioValid }: any) {
         <h3>자차로 운전 가능하신가요?</h3>
 
         <S.InputRadioGroup>
-          <input type="radio" name="drive" id="drive_yes" value="true" onChange={driveChangeHandler} />
+          <input type="radio" name="drive" id="drive_yes" value="yes" onChange={driveChangeHandler} />
           <label htmlFor="drive_yes">가능해요</label>
 
-          <input type="radio" name="drive" id="drive_no" value="false" onChange={driveChangeHandler} />
+          <input type="radio" name="drive" id="drive_no" value="no" onChange={driveChangeHandler} />
           <label htmlFor="drive_no">불가능해요</label>
         </S.InputRadioGroup>
       </S.RadioButtonFormContainer>
