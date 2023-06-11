@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
-import * as S from './style';
 import Image from 'next/image';
+import * as S from './style';
 
 interface IntroductionFormProps {
   state: any;
@@ -13,7 +13,7 @@ function IntroductionForm({ state, dispatch }: IntroductionFormProps) {
   const [phoneErrorMessage, setPhoneErrorMessage] = useState('');
 
   const nameChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    const newName = e.target.value;
+    const newName = e.target.value.replace(/[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z\s]+/g, '');
 
     if (newName.length > 50) {
       setErrorMessage('최대 50자 까지 입력 가능합니다.');
@@ -24,14 +24,8 @@ function IntroductionForm({ state, dispatch }: IntroductionFormProps) {
   };
 
   const phoneNumberChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    const newPhoneNumber = e.target.value;
-
-    if (newPhoneNumber.length > 10) {
-      setPhoneErrorMessage('유효한 번호 양식이 아닙니다.');
-    } else {
-      dispatch({ type: 'PHONE_NUMBER', payload: { phoneNumber: newPhoneNumber } });
-      setPhoneErrorMessage('');
-    }
+    const newPhoneNumber = e.target.value.replace(/[^0-9]/g, '');
+    dispatch({ type: 'PHONE_NUMBER', payload: { phoneNumber: newPhoneNumber } });
   };
 
   const nameClearHandler = () => {
