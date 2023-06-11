@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useState } from 'react';
 import Image from 'next/image';
 
-import { BsChevronDown } from 'react-icons/bs';
+import { BsChevronUp, BsChevronDown } from 'react-icons/bs';
 import * as I from '../introductionForm/style';
 import * as G from '../style';
 import * as S from './style';
@@ -34,87 +34,89 @@ function CertificateForm({ state, dispatch }: { state: any; dispatch: any }) {
 
       <span>(1개만 선택가능)</span>
 
-      <S.SelectButton type="button" onClick={() => setIsOptionsOpen(!isOptionsOpen)} isEtcClicked={isEtcClicked}>
-        {selectedOption}
-        <BsChevronDown />
-      </S.SelectButton>
+      <div style={{ position: 'relative' }}>
+        <S.SelectButton type="button" onClick={() => setIsOptionsOpen(!isOptionsOpen)} isEtcClicked={isEtcClicked}>
+          {selectedOption}
+          {isOptionsOpen ? <BsChevronUp /> : <BsChevronDown />}
+        </S.SelectButton>
 
-      {isOptionsOpen && (
-        <ul>
-          <li>
-            <S.OptionButton
-              type="button"
-              onClick={(e) => {
-                setIsOptionsOpen(false);
-                selectOptionHandler('1급 (오프라인 취득)');
-              }}
-            >
-              1급 (오프라인 취득)
-            </S.OptionButton>
-          </li>
+        {isOptionsOpen && (
+          <ul>
+            <li>
+              <S.OptionButton
+                type="button"
+                onClick={(e) => {
+                  setIsOptionsOpen(false);
+                  selectOptionHandler('1급 (오프라인 취득)');
+                }}
+              >
+                1급 (오프라인 취득)
+              </S.OptionButton>
+            </li>
 
-          <li>
-            <S.OptionButton
-              type="button"
-              onClick={() => {
-                setIsOptionsOpen(false);
-                selectOptionHandler('2급 (오프라인 취득)');
-              }}
-            >
-              2급 (오프라인 취득)
-            </S.OptionButton>
-          </li>
+            <li>
+              <S.OptionButton
+                type="button"
+                onClick={() => {
+                  setIsOptionsOpen(false);
+                  selectOptionHandler('2급 (오프라인 취득)');
+                }}
+              >
+                2급 (오프라인 취득)
+              </S.OptionButton>
+            </li>
 
-          <li>
-            <S.OptionButton
-              type="button"
-              onClick={() => {
-                setIsOptionsOpen(false);
-                selectOptionHandler('1급 (온라인 취득)');
-              }}
-            >
-              1급 (온라인 취득)
-            </S.OptionButton>
-          </li>
+            <li>
+              <S.OptionButton
+                type="button"
+                onClick={() => {
+                  setIsOptionsOpen(false);
+                  selectOptionHandler('1급 (온라인 취득)');
+                }}
+              >
+                1급 (온라인 취득)
+              </S.OptionButton>
+            </li>
 
-          <li>
-            <S.OptionButton
-              type="button"
-              onClick={() => {
-                setIsOptionsOpen(false);
-                selectOptionHandler('2급 (온라인 취득)');
-              }}
-            >
-              2급 (온라인 취득)
-            </S.OptionButton>
-          </li>
+            <li>
+              <S.OptionButton
+                type="button"
+                onClick={() => {
+                  setIsOptionsOpen(false);
+                  selectOptionHandler('2급 (온라인 취득)');
+                }}
+              >
+                2급 (온라인 취득)
+              </S.OptionButton>
+            </li>
 
-          <li>
-            <S.OptionButton
-              type="button"
-              onClick={() => {
-                setIsOptionsOpen(false);
-                selectOptionHandler('없음');
-              }}
-            >
-              없음
-            </S.OptionButton>
-          </li>
+            <li>
+              <S.OptionButton
+                type="button"
+                onClick={() => {
+                  setIsOptionsOpen(false);
+                  selectOptionHandler('없음');
+                }}
+              >
+                없음
+              </S.OptionButton>
+            </li>
 
-          <li>
-            <S.OptionButton
-              type="button"
-              onClick={(e) => {
-                setIsOptionsOpen(false);
-                selectOptionHandler('기타');
-                setIsEtcClicked(true);
-              }}
-            >
-              기타
-            </S.OptionButton>
-          </li>
-        </ul>
-      )}
+            <li>
+              <S.OptionButton
+                type="button"
+                onClick={(e) => {
+                  setIsOptionsOpen(false);
+                  selectOptionHandler('기타');
+                  setIsEtcClicked(true);
+                }}
+              >
+                기타
+              </S.OptionButton>
+            </li>
+          </ul>
+        )}
+      </div>
 
       {isEtcClicked && (
         <I.FormInput>
