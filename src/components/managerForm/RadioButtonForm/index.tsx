@@ -7,9 +7,9 @@ import * as S from './style';
 function RadioButtonForm({ state, dispatch, setIsRadioValid }: any) {
   const { main_job, main_job_etc, manager_drive } = state;
   const [isMainJobExist, setIsMainJobExist] = useState(false);
-  if (main_job === null || manager_drive === null) {
+  if (main_job === null || main_job_etc === null || manager_drive === null) {
     setIsRadioValid(false);
-  } else if (main_job === 'no' && !main_job_etc && manager_drive) {
+  } else if (main_job === 'no' && manager_drive) {
     setIsRadioValid(true);
   } else if (main_job === 'yes' && main_job_etc && manager_drive) {
     setIsRadioValid(true);
@@ -27,7 +27,7 @@ function RadioButtonForm({ state, dispatch, setIsRadioValid }: any) {
   };
 
   const driveChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value === 'true';
+    const value = e.target.value;
     dispatch({ type: 'DRIVE', payload: { drive: value } });
   };
 

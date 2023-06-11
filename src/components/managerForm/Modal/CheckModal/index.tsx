@@ -116,7 +116,7 @@ function CheckModal({ state, setIsSubmitClicked }: any) {
 
               <div>
                 <dt>본업여부</dt>
-                {!main_job_etc && <dd>{main_job}</dd>}
+                {!main_job_etc && main_job === 'no' && <dd>아님</dd>}
                 {main_job_etc && <dd>{main_job_etc}</dd>}
               </div>
 
