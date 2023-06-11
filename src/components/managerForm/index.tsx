@@ -64,7 +64,7 @@ function ManagerForm({ state, dispatch, setIsSubmitClicked }: any) {
           <IntroductionForm state={state} dispatch={dispatch} setIsIntroductionValid={setIsIntroductionValid} />
         </S.StyleWrapper>
 
-        <DaySelectionForm dispatch={dispatch} />
+        <DaySelectionForm state={state} dispatch={dispatch} />
         <LocationSelectionForm state={state} dispatch={dispatch} setIsLocationValid={setIsLocationValid} />
       </S.StyleWrapper>
 

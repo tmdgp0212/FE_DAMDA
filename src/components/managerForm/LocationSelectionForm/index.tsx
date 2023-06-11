@@ -144,6 +144,7 @@ function LocationSelectionForm({ state, dispatch, setIsLocationValid }: any) {
                       name="manager_available_district"
                       id={district}
                       value={district}
+                      checked={state.activity_region[selectedRegion].includes(district)}
                       onChange={cityChangeHandler}
                     />
                     <label htmlFor={district}>{district}</label>
