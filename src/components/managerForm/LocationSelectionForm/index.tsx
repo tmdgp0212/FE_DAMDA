@@ -6,7 +6,7 @@ import { BsChevronUp, BsChevronDown } from 'react-icons/bs';
 import * as G from '../style';
 import * as S from './style';
 
-function LocationSelectionForm({ register }: { register: any }) {
+function LocationSelectionForm({ state, dispatch }: any) {
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState('');
   const [selectedCities, setSelectedCities] = useState([]);
@@ -17,6 +17,13 @@ function LocationSelectionForm({ register }: { register: any }) {
 
   const cityChangeHandler = (e) => {
     const city = e.target.value;
+    const isChecked = e.target.checked;
+
+    if (isChecked) {
+      dispatch({ type: 'ACTIVITY_REGION', payload: { region: selectedRegion, district: e.target.value } });
+    } else {
+      dispatch({ type: 'FILTER_LOCATION', payload: { city } });
+    }
 
     setSelectedCities((prevSelectedCities) => {
       if (prevSelectedCities.includes(city)) {
@@ -28,9 +35,18 @@ function LocationSelectionForm({ register }: { register: any }) {
   };
 
   const filterLocationHandler = (city) => {
+    dispatch({ type: 'FILTER_LOCATION', payload: { city } });
+
     const newSelectedCities = selectedCities.filter((selectedCity) => selectedCity !== city);
     setSelectedCities(newSelectedCities);
+
+    const checkbox = document.getElementById(city);
+    if (checkbox) {
+      checkbox.checked = false;
+    }
   };
+
+  console.log(state.activity_region);
 
   return (
     <S.LocationSelectionForm>
@@ -38,24 +54,29 @@ function LocationSelectionForm({ register }: { register: any }) {
       <p>활동이 가능하신 모든 지역을 등록해주세요.</p>
 
       {/* 지역 태그 */}
-      {selectedRegion && selectedCities.length > 0 && (
-        <S.SelectedLocation>
-          {selectedCities.map((city) => {
-            let regionName = selectedRegion;
-            if (regionName === 'seoul') regionName = '서울';
-            else if (regionName === 'gyeonggi') regionName = '경기';
+      <S.SelectedLocation>
+        {state.activity_region.seoul.map((district: string) => {
+          return (
+            <div key={district}>
+              서울 {district}
+              <button type="button" onClick={() => filterLocationHandler(district)}>
+                <Image src="/icons/tag-close-icon.svg" alt="tag-close-icon" width={10.5} height={10.5} />
+              </button>
+            </div>
+          );
+        })}
 
-            return (
-              <div key={city}>
-                {regionName} {city}
-                <button type="button" onClick={() => filterLocationHandler(city)}>
-                  <Image src="/icons/tag-close-icon.svg" alt="tag-close-icon" width={10.5} height={10.5} />
-                </button>
-              </div>
-            );
-          })}
-        </S.SelectedLocation>
-      )}
+        {state.activity_region.gyeonggi.map((district: string) => {
+          return (
+            <div key={district}>
+              경기 {district}
+              <button type="button" onClick={() => filterLocationHandler(district)}>
+                <Image src="/icons/tag-close-icon.svg" alt="tag-close-icon" width={10.5} height={10.5} />
+              </button>
+            </div>
+          );
+        })}
+      </S.SelectedLocation>
 
       <div style={{ position: 'relative' }}>
         {/* Select Button */}
@@ -90,7 +111,6 @@ function LocationSelectionForm({ register }: { register: any }) {
                   name="manager_available_region"
                   id="seoul"
                   value="seoul"
-                  {...register('manager_available_region')}
                   onChange={regionChangeHandler}
                 />
                 <label htmlFor="seoul">서울특별시</label>
@@ -102,7 +122,6 @@ function LocationSelectionForm({ register }: { register: any }) {
                   name="manager_available_region"
                   id="gyeonggi"
                   value="gyeonggi"
-                  {...register('manager_available_region')}
                   onChange={regionChangeHandler}
                 />
                 <label htmlFor="gyeonggi">경기도</label>
@@ -118,7 +137,6 @@ function LocationSelectionForm({ register }: { register: any }) {
                       name="manager_available_district"
                       id={district}
                       value={district}
-                      {...register('manager_available_district')}
                       onChange={cityChangeHandler}
                     />
                     <label htmlFor={district}>{district}</label>

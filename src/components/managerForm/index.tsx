@@ -18,7 +18,7 @@ function ManagerForm() {
     manager_name: '',
     manager_phone: '',
     activity_day: [],
-    activity_region: {},
+    activity_region: { seoul: [], gyeonggi: [] },
     manager_license: '',
     field_experience: '',
     main_job: null,
@@ -52,6 +52,7 @@ function ManagerForm() {
         </S.StyleWrapper>
 
         <DaySelectionForm dispatch={dispatch} />
+        <LocationSelectionForm state={state} dispatch={dispatch} />
       </S.StyleWrapper>
 
       <S.StyleWrapper large>
