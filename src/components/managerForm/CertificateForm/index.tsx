@@ -6,11 +6,27 @@ import * as I from '../introductionForm/style';
 import * as G from '../style';
 import * as S from './style';
 
-function CertificateForm({ state, dispatch }: { state: any; dispatch: any }) {
-  const { manager_license_etc } = state;
+function CertificateForm({
+  state,
+  dispatch,
+  setIsCertificateValid,
+}: {
+  state: any;
+  dispatch: any;
+  setIsCertificateValid: (isCertificateFormValid: boolean) => void;
+}) {
+  const { manager_license, manager_license_etc } = state;
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState('자격증 선택하기');
   const [isEtcClicked, setIsEtcClicked] = useState(false);
+
+  if (manager_license && manager_license !== '기타') {
+    setIsCertificateValid(true);
+  } else if (manager_license === '기타' && manager_license_etc) {
+    setIsCertificateValid(true);
+  } else {
+    setIsCertificateValid(false);
+  }
 
   const selectOptionHandler = (option: string) => {
     dispatch({ type: 'CERTIFICATE', payload: { certificate: option } });

@@ -6,10 +6,17 @@ import { BsChevronUp, BsChevronDown } from 'react-icons/bs';
 import * as G from '../style';
 import * as S from './style';
 
-function LocationSelectionForm({ state, dispatch }: any) {
+function LocationSelectionForm({ state, dispatch, setIsLocationValid }: any) {
+  const { activity_region } = state;
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState('');
   const [selectedCities, setSelectedCities] = useState([]);
+
+  if (activity_region.seoul || activity_region.gyeonggi) {
+    setIsLocationValid(true);
+  } else {
+    setIsLocationValid(false);
+  }
 
   const regionChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setSelectedRegion(e.target.value);

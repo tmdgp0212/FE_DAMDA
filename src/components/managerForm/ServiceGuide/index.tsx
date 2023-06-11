@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 
 import * as G from '../style';
 import * as S from './style';
 
-function ServiceGuide() {
+function ServiceGuide({ setIsGuideAgree }: any) {
+  const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked) setIsGuideAgree(true);
+    else setIsGuideAgree(false);
+  };
+
   return (
     <S.ServiceGuide>
       <G.Headline>
@@ -28,7 +33,7 @@ function ServiceGuide() {
         </S.GuideDetail>
 
         <S.InputCheckbox>
-          <input type="checkbox" id="agreement" />
+          <input type="checkbox" id="agreement" onChange={changeHandler} />
           <label htmlFor="agreement">네, 가능합니다!</label>
         </S.InputCheckbox>
       </div>

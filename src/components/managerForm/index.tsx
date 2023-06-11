@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import { useRouter } from 'next/router';
 import { managerFormReducer } from '@/reducers/managerFormReducer';
 
@@ -26,11 +26,36 @@ function ManagerForm() {
     main_job_etc: null,
     manager_drive: null,
   });
+
+  // 유효성 검사 통과 여부
+  const [isIntroductionValid, setIsIntroductionValid] = useState(false);
+  const [isLocationValid, setIsLocationValid] = useState(false);
+  const [isCertificateValid, setIsCertificateValid] = useState(false);
+  const [isRadioValid, setIsRadioValid] = useState(false);
+  const [isGuideAgree, setIsGuideAgree] = useState(false);
+
+  const [isManagerFormValid, setIsManagerFormValid] = useState(false);
+  console.log(isManagerFormValid);
+
+  useEffect(() => {
+    const managerFormValid =
+      isIntroductionValid &&
+      state.activity_day.length > 0 &&
+      isLocationValid &&
+      isCertificateValid &&
+      isRadioValid &&
+      isGuideAgree;
+    setIsManagerFormValid(managerFormValid);
+  }, [isIntroductionValid, state.activity_day, isLocationValid, isCertificateValid, isRadioValid, isGuideAgree]);
+
   const router = useRouter();
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(state);
+
+    if (isManagerFormValid) {
+      console.log(state);
+    }
   };
 
   return (
@@ -50,11 +75,11 @@ function ManagerForm() {
         </S.Headline>
 
         <S.StyleWrapper>
-          <IntroductionForm state={state} dispatch={dispatch} />
+          <IntroductionForm state={state} dispatch={dispatch} setIsIntroductionValid={setIsIntroductionValid} />
         </S.StyleWrapper>
 
         <DaySelectionForm dispatch={dispatch} />
-        <LocationSelectionForm state={state} dispatch={dispatch} />
+        <LocationSelectionForm state={state} dispatch={dispatch} setIsLocationValid={setIsLocationValid} />
       </S.StyleWrapper>
 
       <S.StyleWrapper large>
@@ -64,13 +89,15 @@ function ManagerForm() {
           알려주세요.
         </S.Headline>
 
-        <CertificateForm state={state} dispatch={dispatch} />
+        <CertificateForm state={state} dispatch={dispatch} setIsCertificateValid={setIsCertificateValid} />
         <FieldExperienceForm dispatch={dispatch} />
-        <RadioButtonForm state={state} dispatch={dispatch} />
+        <RadioButtonForm state={state} dispatch={dispatch} setIsRadioValid={setIsRadioValid} />
       </S.StyleWrapper>
 
-      <ServiceGuide />
-      <S.ManagerSupportButton type="submit">지원하기</S.ManagerSupportButton>
+      <ServiceGuide setIsGuideAgree={setIsGuideAgree} />
+      <S.ManagerSupportButton type="submit" disabled={!isManagerFormValid}>
+        지원하기
+      </S.ManagerSupportButton>
     </S.ManagerFormContainer>
   );
 }

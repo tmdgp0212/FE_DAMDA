@@ -1,16 +1,25 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import Image from 'next/image';
 import * as S from './style';
 
 interface IntroductionFormProps {
   state: any;
   dispatch: any;
+  setIsIntroductionValid: (isIntroductionValid: boolean) => void;
 }
 
-function IntroductionForm({ state, dispatch }: IntroductionFormProps) {
+function IntroductionForm({ state, dispatch, setIsIntroductionValid }: IntroductionFormProps) {
   const { manager_name, manager_phone } = state;
   const [nameErrorMessage, setErrorMessage] = useState('');
   const [phoneErrorMessage, setPhoneErrorMessage] = useState('');
+
+  if (manager_name && !nameErrorMessage) {
+    setIsIntroductionValid(true);
+  } else if ((manager_phone && manager_phone.length !== 10) || manager_phone.length !== 11) {
+    setIsIntroductionValid(true);
+  } else {
+    setIsIntroductionValid(false);
+  }
 
   const nameChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const newName = e.target.value.replace(/[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z\s]+/g, '');
@@ -26,6 +35,15 @@ function IntroductionForm({ state, dispatch }: IntroductionFormProps) {
   const phoneNumberChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const newPhoneNumber = e.target.value.replace(/[^0-9]/g, '');
     dispatch({ type: 'PHONE_NUMBER', payload: { phoneNumber: newPhoneNumber } });
+
+    // if (newPhoneNumber.length > 10 && newPhoneNumber.length !== 10) {
+    //   // setPhoneErrorMessage('유효한 번호 양식이 아닙니다.');
+    // } else if (newPhoneNumber.length > 10 && newPhoneNumber.length !== 11) {
+    //   // setPhoneErrorMessage('유효한 번호 양식이 아닙니다.');
+    // } else {
+    //   dispatch({ type: 'PHONE_NUMBER', payload: { phoneNumber: newPhoneNumber } });
+    //   setErrorMessage('');
+    // }
   };
 
   const nameClearHandler = () => {

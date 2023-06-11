@@ -4,9 +4,22 @@ import Image from 'next/image';
 import * as I from '../introductionForm/style';
 import * as S from './style';
 
-function RadioButtonForm({ state, dispatch }: any) {
-  const { main_job_etc } = state;
+function RadioButtonForm({ state, dispatch, setIsRadioValid }: any) {
+  const { main_job, main_job_etc, manager_drive } = state;
   const [isMainJobExist, setIsMainJobExist] = useState(false);
+  if (main_job === null || manager_drive === null) {
+    setIsRadioValid(false);
+  } else if (main_job && main_job_etc && manager_drive) {
+    setIsRadioValid(true);
+  } else if (main_job && main_job_etc && !manager_drive) {
+    setIsRadioValid(true);
+  } else if (!main_job && manager_drive) {
+    setIsRadioValid(true);
+  } else if (!main_job && !manager_drive) {
+    setIsRadioValid(true);
+  } else {
+    setIsRadioValid(false);
+  }
 
   const mainJobChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value === 'true';
