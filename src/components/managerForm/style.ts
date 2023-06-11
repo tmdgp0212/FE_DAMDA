@@ -54,14 +54,16 @@ export const ManagerFormHeader = styled.header`
   }
 `;
 
-export const ManagerSupportButton = styled.button`
+export const ManagerSupportButton = styled.button<{ isValid: boolean }>`
   display: flex;
   align-items: center;
   width: 154px;
   height: 50px;
   padding: 10px;
-  border: 1px solid ${({ theme }) => theme.colors.yolda_gray_4};
+  border: 1px solid ${({ theme, isValid }) => (isValid ? theme.colors.yolda_black_1 : theme.colors.yolda_gray_4)};
   border-radius: 5px;
-  color: ${({ theme }) => theme.colors.yolda_gray_4};
-  background-color: #ffffff;
+  color: ${({ theme, isValid }) => (isValid ? '#ffffff' : theme.colors.yolda_gray_4)};
+  background-color: ${({ theme, isValid }) => (isValid ? theme.colors.main_blue : '#ffffff')};
+  font-weight: ${({ isValid }) => (isValid ? '800' : '500')};
+  cursor: ${({ isValid }) => (isValid ? 'pointer' : 'not-allowed')};
 `;

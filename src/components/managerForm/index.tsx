@@ -35,7 +35,6 @@ function ManagerForm() {
   const [isGuideAgree, setIsGuideAgree] = useState(false);
 
   const [isManagerFormValid, setIsManagerFormValid] = useState(false);
-  console.log(isManagerFormValid);
 
   useEffect(() => {
     const managerFormValid =
@@ -95,7 +94,7 @@ function ManagerForm() {
       </S.StyleWrapper>
 
       <ServiceGuide setIsGuideAgree={setIsGuideAgree} />
-      <S.ManagerSupportButton type="submit" disabled={!isManagerFormValid}>
+      <S.ManagerSupportButton isValid={isManagerFormValid} type="submit" disabled={!isManagerFormValid}>
         지원하기
       </S.ManagerSupportButton>
     </S.ManagerFormContainer>
