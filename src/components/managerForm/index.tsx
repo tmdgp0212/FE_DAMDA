@@ -1,6 +1,5 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { managerFormReducer } from '@/reducers/managerFormReducer';
 
 import IntroductionForm from './introductionForm';
 import DaySelectionForm from './DaySelectionForm';
@@ -13,20 +12,7 @@ import ServiceGuide from './ServiceGuide';
 import { FiChevronLeft } from 'react-icons/fi';
 import * as S from './style';
 
-function ManagerForm() {
-  const [state, dispatch] = useReducer(managerFormReducer, {
-    manager_name: '',
-    manager_phone: '',
-    activity_day: [],
-    activity_region: { seoul: [], gyeonggi: [] },
-    manager_license: '',
-    manager_license_etc: null,
-    field_experience: '',
-    main_job: null,
-    main_job_etc: null,
-    manager_drive: null,
-  });
-
+function ManagerForm({ state, dispatch, setIsSubmitClicked }: any) {
   // 유효성 검사 통과 여부
   const [isIntroductionValid, setIsIntroductionValid] = useState(false);
   const [isLocationValid, setIsLocationValid] = useState(false);
@@ -54,6 +40,7 @@ function ManagerForm() {
 
     if (isManagerFormValid) {
       console.log(state);
+      setIsSubmitClicked(true);
     }
   };
 
