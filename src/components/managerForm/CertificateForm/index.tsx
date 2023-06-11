@@ -18,7 +18,6 @@ function CertificateForm({
   const { manager_license, manager_license_etc } = state;
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState('자격증 선택하기');
-  const [isEtcClicked, setIsEtcClicked] = useState(false);
 
   if (manager_license && manager_license !== '기타') {
     setIsCertificateValid(true);
@@ -51,8 +50,12 @@ function CertificateForm({
       <span>(1개만 선택가능)</span>
 
       <div style={{ position: 'relative' }}>
-        <S.SelectButton type="button" onClick={() => setIsOptionsOpen(!isOptionsOpen)} isEtcClicked={isEtcClicked}>
-          {selectedOption}
+        <S.SelectButton
+          type="button"
+          onClick={() => setIsOptionsOpen(!isOptionsOpen)}
+          isEtcClicked={state.manager_license}
+        >
+          {state.manager_license ? state.manager_license : selectedOption}
           {isOptionsOpen ? <BsChevronUp /> : <BsChevronDown />}
         </S.SelectButton>
 
@@ -64,7 +67,6 @@ function CertificateForm({
                 onClick={(e) => {
                   setIsOptionsOpen(false);
                   selectOptionHandler('1급 (오프라인 취득)');
-                  setIsEtcClicked(false);
                 }}
               >
                 1급 (오프라인 취득)
@@ -77,7 +79,6 @@ function CertificateForm({
                 onClick={() => {
                   setIsOptionsOpen(false);
                   selectOptionHandler('2급 (오프라인 취득)');
-                  setIsEtcClicked(false);
                 }}
               >
                 2급 (오프라인 취득)
@@ -90,7 +91,6 @@ function CertificateForm({
                 onClick={() => {
                   setIsOptionsOpen(false);
                   selectOptionHandler('1급 (온라인 취득)');
-                  setIsEtcClicked(false);
                 }}
               >
                 1급 (온라인 취득)
@@ -103,7 +103,6 @@ function CertificateForm({
                 onClick={() => {
                   setIsOptionsOpen(false);
                   selectOptionHandler('2급 (온라인 취득)');
-                  setIsEtcClicked(false);
                 }}
               >
                 2급 (온라인 취득)
@@ -116,7 +115,6 @@ function CertificateForm({
                 onClick={() => {
                   setIsOptionsOpen(false);
                   selectOptionHandler('없음');
-                  setIsEtcClicked(false);
                 }}
               >
                 없음
@@ -129,7 +127,6 @@ function CertificateForm({
                 onClick={(e) => {
                   setIsOptionsOpen(false);
                   selectOptionHandler('기타');
-                  setIsEtcClicked(true);
                 }}
               >
                 기타
@@ -139,7 +136,7 @@ function CertificateForm({
         )}
       </div>
 
-      {isEtcClicked && (
+      {state.manager_license && state.manager_license === '기타' && (
         <I.FormInput>
           <span>위 리스트에 없는 자격증을 입력해주세요.</span>
 
