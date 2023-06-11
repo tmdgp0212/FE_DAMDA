@@ -15,7 +15,7 @@ export const Overlay = styled.div`
   background-color: rgba(66, 66, 66, 0.88);
 `;
 
-export const CheckModal = styled.div`
+export const UnCompleteModal = styled.div`
   width: 346px;
   height: 348px;
   z-index: 20;

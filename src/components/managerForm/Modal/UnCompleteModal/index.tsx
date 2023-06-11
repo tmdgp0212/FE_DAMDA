@@ -1,10 +1,10 @@
 import React from 'react';
 import * as S from './style';
 
-function CheckModal() {
+function UnCompleteModal() {
   return (
     <S.Overlay>
-      <S.CheckModal className="check-modal">
+      <S.UnCompleteModal className="check-modal">
         <header>
           <h2>아직 작성이 완료 되지 않았어요.🥹</h2>
           <p>
@@ -18,9 +18,9 @@ function CheckModal() {
           <button type="button">돌아가기</button>
           <button type="button">마저 작성하기</button>
         </S.ButtonGrop>
-      </S.CheckModal>
+      </S.UnCompleteModal>
     </S.Overlay>
   );
 }
 
-export default CheckModal;
+export default UnCompleteModal;
