@@ -64,9 +64,9 @@ function ManagerForm() {
           알려주세요.
         </S.Headline>
 
-        <CertificateForm dispatch={dispatch} />
+        <CertificateForm state={state} dispatch={dispatch} />
         <FieldExperienceForm dispatch={dispatch} />
-        <RadioButtonForm dispatch={dispatch} />
+        <RadioButtonForm state={state} dispatch={dispatch} />
       </S.StyleWrapper>
 
       <ServiceGuide />

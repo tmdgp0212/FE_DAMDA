@@ -1,8 +1,11 @@
 import React, { ChangeEvent, useState } from 'react';
+import Image from 'next/image';
+
 import * as I from '../introductionForm/style';
 import * as S from './style';
 
-function RadioButtonForm({ dispatch }: any) {
+function RadioButtonForm({ state, dispatch }: any) {
+  const { main_job_etc } = state;
   const [isMainJobExist, setIsMainJobExist] = useState(false);
 
   const mainJobChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -17,6 +20,10 @@ function RadioButtonForm({ dispatch }: any) {
   const driveChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value === 'true';
     dispatch({ type: 'DRIVE', payload: { drive: value } });
+  };
+
+  const etcClearHandler = () => {
+    dispatch({ type: 'MAIN_JOB_ETC_CLEAR' });
   };
 
   return (
@@ -55,7 +62,13 @@ function RadioButtonForm({ dispatch }: any) {
             <span>본업을 알려주세요.</span>
 
             <I.InputWrapper>
-              <input type="text" placeholder="본업" onChange={setMainJobHandler} />
+              <input type="text" value={main_job_etc} placeholder="본업" onChange={setMainJobHandler} />
+
+              {main_job_etc && (
+                <I.Icon type="button" style={{ cursor: 'pointer' }} onClick={etcClearHandler}>
+                  <Image src="/icons/input-clear-icon.svg" alt="input-clear-icon" fill />
+                </I.Icon>
+              )}
             </I.InputWrapper>
           </I.FormInput>
         )}

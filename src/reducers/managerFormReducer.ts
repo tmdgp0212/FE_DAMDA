@@ -3,8 +3,14 @@ export function managerFormReducer(state, action) {
     case 'NAME':
       return { ...state, manager_name: action.payload.name };
 
+    case 'NAME_CLEAR':
+      return { ...state, manager_name: '' };
+
     case 'PHONE_NUMBER':
       return { ...state, manager_phone: action.payload.phoneNumber };
+
+    case 'PHONE_NUMBER_CLEAR':
+      return { ...state, manager_phone: '' };
 
     case 'DAY':
       return { ...state, activity_day: [...state.activity_day, action.payload.day] };
@@ -58,6 +64,9 @@ export function managerFormReducer(state, action) {
     case 'CERTIFICATE_ETC':
       return { ...state, manager_license_etc: action.payload.certificate_etc };
 
+    case 'CERTIFICATE_ETC_CLEAR':
+      return { ...state, manager_license_etc: '' };
+
     case 'FIELD_EXPERIENCE':
       return { ...state, field_experience: action.payload.field_experience };
 
@@ -66,6 +75,9 @@ export function managerFormReducer(state, action) {
 
     case 'MAIN_JOB_ETC':
       return { ...state, main_job_etc: action.payload.main_job2 };
+
+    case 'MAIN_JOB_ETC_CLEAR':
+      return { ...state, main_job_etc: '' };
 
     case 'DRIVE':
       return { ...state, manager_drive: action.payload.drive };

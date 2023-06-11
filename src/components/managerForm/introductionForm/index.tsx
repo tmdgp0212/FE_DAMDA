@@ -34,16 +34,24 @@ function IntroductionForm({ state, dispatch }: IntroductionFormProps) {
     }
   };
 
+  const nameClearHandler = () => {
+    dispatch({ type: 'NAME_CLEAR' });
+  };
+
+  const phoneNumberClearHandler = () => {
+    dispatch({ type: 'PHONE_NUMBER_CLEAR' });
+  };
+
   return (
     <>
       <S.FormInput>
         <span>이름</span>
 
         <S.InputWrapper isError={nameErrorMessage}>
-          <input type="text" placeholder="김열다" onChange={nameChangeHandler} />
+          <input type="text" value={manager_name} placeholder="김열다" onChange={nameChangeHandler} />
 
           {manager_name && (
-            <S.Icon type="button">
+            <S.Icon type="button" style={{ cursor: 'pointer' }} onClick={nameClearHandler}>
               <Image src="/icons/input-clear-icon.svg" alt="input-clear-icon" fill />
             </S.Icon>
           )}
@@ -62,10 +70,10 @@ function IntroductionForm({ state, dispatch }: IntroductionFormProps) {
         <span>연락처</span>
 
         <S.InputWrapper isError={phoneErrorMessage}>
-          <input type="text" placeholder="010-0000-0000" onChange={phoneNumberChangeHandler} />
+          <input type="text" value={manager_phone} placeholder="010-0000-0000" onChange={phoneNumberChangeHandler} />
 
           {manager_phone && (
-            <S.Icon type="button">
+            <S.Icon type="button" style={{ cursor: 'pointer' }} onClick={phoneNumberClearHandler}>
               <Image src="/icons/input-clear-icon.svg" alt="input-clear-icon" fill />
             </S.Icon>
           )}

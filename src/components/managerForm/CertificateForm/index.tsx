@@ -1,11 +1,13 @@
 import React, { ChangeEvent, useState } from 'react';
+import Image from 'next/image';
 
 import { BsChevronDown } from 'react-icons/bs';
 import * as I from '../introductionForm/style';
 import * as G from '../style';
 import * as S from './style';
 
-function CertificateForm({ dispatch }: any) {
+function CertificateForm({ state, dispatch }: { state: any; dispatch: any }) {
+  const { manager_license_etc } = state;
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState('자격증 선택하기');
   const [isEtcClicked, setIsEtcClicked] = useState(false);
@@ -17,6 +19,10 @@ function CertificateForm({ dispatch }: any) {
 
   const inputChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch({ type: 'CERTIFICATE_ETC', payload: { certificate_etc: e.target.value } });
+  };
+
+  const etcClearHandler = () => {
+    dispatch({ type: 'CERTIFICATE_ETC_CLEAR' });
   };
 
   return (
@@ -115,7 +121,13 @@ function CertificateForm({ dispatch }: any) {
           <span>위 리스트에 없는 자격증을 입력해주세요.</span>
 
           <I.InputWrapper>
-            <input type="text" placeholder="자격증 이름" onChange={inputChangeHandler} />
+            <input type="text" value={manager_license_etc} placeholder="자격증 이름" onChange={inputChangeHandler} />
+
+            {manager_license_etc && (
+              <I.Icon type="button" style={{ cursor: 'pointer' }} onClick={etcClearHandler}>
+                <Image src="/icons/input-clear-icon.svg" alt="input-clear-icon" fill />
+              </I.Icon>
+            )}
           </I.InputWrapper>
         </I.FormInput>
       )}
