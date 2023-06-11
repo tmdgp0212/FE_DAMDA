@@ -7,11 +7,13 @@ import * as S from './style';
 function RadioButtonForm({ state, dispatch, setIsRadioValid }: any) {
   const { main_job, main_job_etc, manager_drive } = state;
   const [isMainJobExist, setIsMainJobExist] = useState(false);
-  if (main_job === null || main_job_etc === null || manager_drive === null) {
-    setIsRadioValid(false);
-  } else if (main_job === 'no' && manager_drive) {
+  if (main_job === 'no' && manager_drive === 'yes') {
     setIsRadioValid(true);
-  } else if (main_job === 'yes' && main_job_etc && manager_drive) {
+  } else if (main_job === 'no' && manager_drive === 'no') {
+    setIsRadioValid(true);
+  } else if (main_job === 'yes' && main_job_etc && manager_drive === 'yes') {
+    setIsRadioValid(true);
+  } else if (main_job === 'yes' && main_job_etc && manager_drive === 'no') {
     setIsRadioValid(true);
   } else {
     setIsRadioValid(false);
