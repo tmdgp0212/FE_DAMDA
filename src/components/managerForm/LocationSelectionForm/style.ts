@@ -68,6 +68,8 @@ export const ListWrapper = styled.div`
     flex-grow: 1;
     flex-basis: 0;
     height: 260px;
+    z-index: 20;
+    background-color: #ffffff;
     overflow-y: auto;
   }
 

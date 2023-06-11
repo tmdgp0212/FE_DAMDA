@@ -21,10 +21,12 @@ export const CertificateForm = styled.div`
     left: 0;
     width: 100%;
     padding-top: 17px;
+    z-index: 20;
     border: 1px solid #000000;
     border-top: none;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    background-color: #ffffff;
     overflow: hidden;
   }
 `;
