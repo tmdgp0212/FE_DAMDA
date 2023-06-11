@@ -60,6 +60,8 @@ function CheckModal({ state, setIsSubmitClicked }: any) {
     return dayIndexA - dayIndexB;
   });
 
+  const submitHandler = () => {};
+
   return (
     <S.CheckModal className="check-modal">
       <S.Header className="header">
@@ -152,7 +154,9 @@ function CheckModal({ state, setIsSubmitClicked }: any) {
           <button type="button" onClick={() => setIsSubmitClicked(false)}>
             수정할래요.
           </button>
-          <button type="button">네, 맞아요!</button>
+          <button type="button" onClick={submitHandler}>
+            네, 맞아요!
+          </button>
         </U.ButtonGrop>
       </div>
     </S.CheckModal>

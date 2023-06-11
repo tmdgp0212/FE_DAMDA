@@ -15,7 +15,7 @@ export const Overlay = styled.div`
   background-color: rgba(66, 66, 66, 0.88);
 `;
 
-export const UnCompleteModal = styled.div`
+export const Modal = styled.div<{ textCenter: boolean }>`
   width: 346px;
   height: 348px;
   z-index: 20;
@@ -23,6 +23,12 @@ export const UnCompleteModal = styled.div`
   border: 1px solid ${theme.colors.yolda_black_1};
   border-radius: 5px;
   background-color: #ffffff;
+  text-align: ${({ textCenter }) => textCenter && 'center'};
+
+  img {
+    display: inline-block;
+    margin-bottom: 16px;
+  }
 
   header {
     display: flex;
