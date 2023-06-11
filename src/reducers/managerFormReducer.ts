@@ -15,6 +15,9 @@ export function managerFormReducer(state, action) {
     case 'DAY':
       return { ...state, activity_day: [...state.activity_day, action.payload.day] };
 
+    case 'DAY_UNCHECK':
+      return { ...state, activity_day: state.activity_day.filter((day: string) => day !== action.payload.day) };
+
     case 'ACTIVITY_REGION':
       let updatedRegionData;
       const { region, district } = action.payload;

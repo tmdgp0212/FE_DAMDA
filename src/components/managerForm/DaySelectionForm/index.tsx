@@ -5,7 +5,11 @@ import * as S from './style';
 
 function DaySelectionForm({ dispatch }: any) {
   const dayCheckHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch({ type: 'DAY', payload: { day: e.target.value } });
+    if (e.target.checked) {
+      dispatch({ type: 'DAY', payload: { day: e.target.value } });
+    } else {
+      dispatch({ type: 'DAY_UNCHECK', payload: { day: e.target.value } });
+    }
   };
 
   return (

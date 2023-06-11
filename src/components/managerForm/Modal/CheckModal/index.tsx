@@ -17,6 +17,7 @@ function CheckModal({ state, setIsSubmitClicked }: any) {
     manager_drive,
   } = state;
 
+  const daysOfWeek = ['월', '화', '수', '목', '금', '토', '일'];
   const dayArr = activity_day.map((day: string) => {
     switch (day) {
       case 'mon':
@@ -43,6 +44,20 @@ function CheckModal({ state, setIsSubmitClicked }: any) {
       default:
         break;
     }
+  });
+  dayArr.sort((a: string, b: string) => {
+    const dayIndexA = daysOfWeek.indexOf(a);
+    const dayIndexB = daysOfWeek.indexOf(b);
+
+    if (dayIndexA === -1 && dayIndexB === -1) {
+      return 0;
+    } else if (dayIndexA === -1) {
+      return 1;
+    } else if (dayIndexB === -1) {
+      return -1;
+    }
+
+    return dayIndexA - dayIndexB;
   });
 
   return (
