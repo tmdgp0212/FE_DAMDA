@@ -23,7 +23,6 @@
     "framer-motion": "^10.12.16",
     "next": "13.4.3",
     "react": "18.2.0",
-    "react-cookie": "^4.1.1",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.9",
     "react-icons": "^4.9.0",
@@ -36,7 +35,6 @@
   "devDependencies": {
     "@svgr/webpack": "^8.0.1",
     "@types/react-js-pagination": "^3.0.4",
-    "msw": "^1.2.1",
     "prettier": "^2.8.8"
   }
 }
