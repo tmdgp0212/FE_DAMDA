@@ -10,7 +10,7 @@ function ManagerFormPage() {
   const [state, dispatch] = useReducer(managerFormReducer, {
     manager_name: '',
     manager_phone: '',
-    activity_day: [],
+    activity_day: [false, false, false, false, false, false, false],
     activity_region: { seoul: [], gyeonggi: [] },
     manager_license: '',
     manager_license_etc: null,

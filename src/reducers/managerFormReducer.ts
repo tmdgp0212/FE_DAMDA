@@ -13,10 +13,19 @@ export function managerFormReducer(state: any, action: any) {
       return { ...state, manager_phone: '' };
 
     case 'DAY':
-      return { ...state, activity_day: [...state.activity_day, action.payload.day] };
+      if (action.payload.isCheck) {
+        const checkIndex = Number(action.payload.day);
+        const updateCheckState = [...state.activity_day];
+        updateCheckState[checkIndex] = true;
 
-    case 'DAY_UNCHECK':
-      return { ...state, activity_day: state.activity_day.filter((day: string) => day !== action.payload.day) };
+        return { ...state, activity_day: updateCheckState };
+      } else {
+        const unCheckIndex = action.payload.day;
+        const updateUnCheckState = [...state.activity_day];
+        updateUnCheckState[unCheckIndex] = false;
+
+        return { ...state, activity_day: updateUnCheckState };
+      }
 
     case 'ACTIVITY_REGION':
       let updatedRegionData;

@@ -17,47 +17,14 @@ function CheckModal({ state, setIsSubmitClicked }: any) {
     manager_drive,
   } = state;
 
-  const daysOfWeek = ['월', '화', '수', '목', '금', '토', '일'];
-  const dayArr = activity_day.map((day: string) => {
-    switch (day) {
-      case 'mon':
-        return '월';
-
-      case 'tue':
-        return '화';
-
-      case 'wed':
-        return '수';
-
-      case 'thu':
-        return '목';
-
-      case 'fri':
-        return '금';
-
-      case 'sat':
-        return '토';
-
-      case 'sun':
-        return '일';
-
-      default:
-        break;
-    }
-  });
-  dayArr.sort((a: string, b: string) => {
-    const dayIndexA = daysOfWeek.indexOf(a);
-    const dayIndexB = daysOfWeek.indexOf(b);
-
-    if (dayIndexA === -1 && dayIndexB === -1) {
-      return 0;
-    } else if (dayIndexA === -1) {
-      return 1;
-    } else if (dayIndexB === -1) {
-      return -1;
-    }
-
-    return dayIndexA - dayIndexB;
+  const resultDays = activity_day.map((value: boolean, index: number) => {
+    if (index === 0 && value) return '월';
+    else if (index === 1 && value) return '화';
+    else if (index === 2 && value) return '수';
+    else if (index === 3 && value) return '목';
+    else if (index === 4 && value) return '금';
+    else if (index === 5 && value) return '토';
+    else if (index === 6 && value) return '일';
   });
 
   const submitHandler = () => {};
@@ -92,9 +59,9 @@ function CheckModal({ state, setIsSubmitClicked }: any) {
               <div>
                 <dt>활동 가능 요일</dt>
                 <dd>
-                  {dayArr.map((day: string, index: number) => {
-                    if (index === dayArr.length - 1) return <span key={day}>{day}</span>;
-                    else return <span key={day}>{day},</span>;
+                  {resultDays.map((day: string, index: number) => {
+                    if (index === resultDays.length - 1) return <span key={day}>{day}</span>;
+                    else if (day) return <span key={day}>{day}, </span>;
                   })}
                 </dd>
               </div>
