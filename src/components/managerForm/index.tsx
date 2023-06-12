@@ -98,6 +98,8 @@ function ManagerForm({ state, dispatch, setIsSubmitClicked }: any) {
       <S.ManagerSupportButton isValid={isManagerFormValid} type="submit" disabled={!isManagerFormValid}>
         지원하기
       </S.ManagerSupportButton>
+
+      <S.NextButton type="button">다음</S.NextButton>
     </S.ManagerFormContainer>
   );
 }
