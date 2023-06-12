@@ -79,6 +79,9 @@ export function managerFormReducer(state, action) {
     case 'MAIN_JOB_ETC':
       return { ...state, main_job_etc: action.payload.main_job2 };
 
+    case 'MAIN_JOB_ETC_NULL':
+      return { ...state, main_job_etc: null };
+
     case 'MAIN_JOB_ETC_CLEAR':
       return { ...state, main_job_etc: '' };
 
