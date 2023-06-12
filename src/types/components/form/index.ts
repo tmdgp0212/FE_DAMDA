@@ -41,3 +41,10 @@ export interface FormElementsProps {
   data: UserSurveyFormDataType;
   handleUpdateFormValue: Dispatch<SetStateAction<UserSurveyForm[]>>;
 }
+
+export interface UserSurveyDateProps {
+  title: string;
+  placeholder: QuestionIdentifier;
+  // questionNumber: number;
+  // handleUpdateFormValue: Dispatch<SetStateAction<UserSurveyForm[]>>;
+}
