@@ -5,45 +5,53 @@ import * as S from './style';
 interface IntroductionFormProps {
   state: any;
   dispatch: any;
-  setIsIntroductionValid: (isIntroductionValid: boolean) => void;
+  setIsNameValid: (isNameValid: boolean) => void;
+  setIsPhoneNumberValid: (isPhoneNumberValid: boolean) => void;
 }
 
-function IntroductionForm({ state, dispatch, setIsIntroductionValid }: IntroductionFormProps) {
+function IntroductionForm({ state, dispatch, setIsNameValid, setIsPhoneNumberValid }: IntroductionFormProps) {
   const { manager_name, manager_phone } = state;
   const [nameErrorMessage, setErrorMessage] = useState('');
   const [phoneErrorMessage, setPhoneErrorMessage] = useState('');
-
-  if (manager_name && !nameErrorMessage) {
-    setIsIntroductionValid(true);
-  } else if ((manager_phone && manager_phone.length !== 10) || manager_phone.length !== 11) {
-    setIsIntroductionValid(true);
-  } else {
-    setIsIntroductionValid(false);
-  }
 
   const nameChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const newName = e.target.value.replace(/[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z\s]+/g, '');
 
     if (newName.length > 50) {
       setErrorMessage('최대 50자 까지 입력 가능합니다.');
+      setIsNameValid(false);
+    } else if (!newName.length) {
+      setIsNameValid(false);
     } else {
       dispatch({ type: 'NAME', payload: { name: newName } });
       setErrorMessage('');
+      setIsNameValid(true);
     }
   };
+  function formatPhoneNumber(phoneNumber: string) {
+    let formattedNumber = phoneNumber;
+
+    if (phoneNumber.length === 10) {
+      formattedNumber = phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+    } else if (phoneNumber.length === 11) {
+      formattedNumber = phoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+    }
+
+    return formattedNumber;
+  }
 
   const phoneNumberChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const newPhoneNumber = e.target.value.replace(/[^0-9]/g, '');
     dispatch({ type: 'PHONE_NUMBER', payload: { phoneNumber: newPhoneNumber } });
 
-    // if (newPhoneNumber.length > 10 && newPhoneNumber.length !== 10) {
-    //   // setPhoneErrorMessage('유효한 번호 양식이 아닙니다.');
-    // } else if (newPhoneNumber.length > 10 && newPhoneNumber.length !== 11) {
-    //   // setPhoneErrorMessage('유효한 번호 양식이 아닙니다.');
-    // } else {
-    //   dispatch({ type: 'PHONE_NUMBER', payload: { phoneNumber: newPhoneNumber } });
-    //   setErrorMessage('');
-    // }
+    if (newPhoneNumber.length === 10 || newPhoneNumber.length === 11) {
+      const formattedPhoneNumber = formatPhoneNumber(newPhoneNumber);
+      dispatch({ type: 'PHONE_NUMBER', payload: { phoneNumber: formattedPhoneNumber } });
+      setIsPhoneNumberValid(true);
+    } else {
+      dispatch({ type: 'PHONE_NUMBER', payload: { phoneNumber: newPhoneNumber } });
+      setIsPhoneNumberValid(false);
+    }
   };
 
   const nameClearHandler = () => {

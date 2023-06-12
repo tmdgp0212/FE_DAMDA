@@ -14,7 +14,10 @@ import * as S from './style';
 
 function ManagerForm({ state, dispatch, setIsSubmitClicked }: any) {
   // 유효성 검사 통과 여부
-  const [isIntroductionValid, setIsIntroductionValid] = useState(false);
+  const [isNameValid, setIsNameValid] = useState(false);
+  const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(false);
+  console.log(isPhoneNumberValid);
+
   const [isLocationValid, setIsLocationValid] = useState(false);
   const [isCertificateValid, setIsCertificateValid] = useState(false);
   const [isRadioValid, setIsRadioValid] = useState(false);
@@ -24,14 +27,23 @@ function ManagerForm({ state, dispatch, setIsSubmitClicked }: any) {
 
   useEffect(() => {
     const managerFormValid =
-      isIntroductionValid &&
+      isNameValid &&
+      isPhoneNumberValid &&
       state.activity_day.length > 0 &&
       isLocationValid &&
       isCertificateValid &&
       isRadioValid &&
       isGuideAgree;
     setIsManagerFormValid(managerFormValid);
-  }, [isIntroductionValid, state.activity_day, isLocationValid, isCertificateValid, isRadioValid, isGuideAgree]);
+  }, [
+    isNameValid,
+    isPhoneNumberValid,
+    state.activity_day,
+    isLocationValid,
+    isCertificateValid,
+    isRadioValid,
+    isGuideAgree,
+  ]);
 
   const router = useRouter();
 
@@ -61,7 +73,12 @@ function ManagerForm({ state, dispatch, setIsSubmitClicked }: any) {
         </S.Headline>
 
         <S.StyleWrapper>
-          <IntroductionForm state={state} dispatch={dispatch} setIsIntroductionValid={setIsIntroductionValid} />
+          <IntroductionForm
+            state={state}
+            dispatch={dispatch}
+            setIsNameValid={setIsNameValid}
+            setIsPhoneNumberValid={setIsPhoneNumberValid}
+          />
         </S.StyleWrapper>
 
         <DaySelectionForm state={state} dispatch={dispatch} />
@@ -76,7 +93,7 @@ function ManagerForm({ state, dispatch, setIsSubmitClicked }: any) {
         </S.Headline>
 
         <CertificateForm state={state} dispatch={dispatch} setIsCertificateValid={setIsCertificateValid} />
-        <FieldExperienceForm dispatch={dispatch} />
+        <FieldExperienceForm state={state} dispatch={dispatch} />
         <RadioButtonForm state={state} dispatch={dispatch} setIsRadioValid={setIsRadioValid} />
       </S.StyleWrapper>
 

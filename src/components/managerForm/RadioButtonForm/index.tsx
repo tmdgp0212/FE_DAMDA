@@ -21,7 +21,12 @@ function RadioButtonForm({ state, dispatch, setIsRadioValid }: any) {
 
   const mainJobChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    dispatch({ type: 'MAIN_JOB', payload: { main_job: value } });
+    if (value === 'no') {
+      dispatch({ type: 'MAIN_JOB_ETC_NULL' });
+      dispatch({ type: 'MAIN_JOB', payload: { main_job: value } });
+    } else {
+      dispatch({ type: 'MAIN_JOB', payload: { main_job: value } });
+    }
   };
 
   const setMainJobHandler = (e: ChangeEvent<HTMLInputElement>) => {
