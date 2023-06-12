@@ -14,6 +14,14 @@ function IntroductionForm({ state, dispatch, setIsNameValid, setIsPhoneNumberVal
   const [nameErrorMessage, setErrorMessage] = useState('');
   const [phoneErrorMessage, setPhoneErrorMessage] = useState('');
 
+  if (manager_name && manager_name.length <= 50) {
+    setIsNameValid(true);
+  }
+
+  if (manager_phone && !phoneErrorMessage) {
+    setIsPhoneNumberValid(true);
+  }
+
   const nameChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const newName = e.target.value.replace(/[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z\s]+/g, '');
 
