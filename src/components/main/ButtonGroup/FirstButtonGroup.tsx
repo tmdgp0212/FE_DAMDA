@@ -2,6 +2,7 @@ import * as S from '@/styles/Main.styled';
 import { buttonElementGroup, buttonRequestGroup } from '@/constants/mainButtonText';
 import { BsArrowUpRight } from 'react-icons/bs';
 import React from 'react';
+import Link from 'next/link';
 
 function FirstButtonGroup() {
   return (
@@ -17,7 +18,9 @@ function FirstButtonGroup() {
                 </div>
                 <div className="btn">
                   {buttonRequestGroup.map((item, itemIndex) => (
-                    <S.MainRequestButton key={itemIndex}>{item}</S.MainRequestButton>
+                    <Link href={item.to} key={itemIndex}>
+                      <S.MainRequestButton key={itemIndex}>{item.title}</S.MainRequestButton>
+                    </Link>
                   ))}
                 </div>
               </S.MainRequestGroupContainer>

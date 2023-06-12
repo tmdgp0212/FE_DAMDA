@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import * as S from '@/styles/Main.styled';
 import { mainContentSection } from '@/constants/mainContentSection';
-import { makeBrTagsBybr } from '@/utils';
+import { replaceStringsWithTags } from '@/utils';
+import FABButton from '@/components/main/FABButton';
 
 function MainLayOut() {
+  const mainCotainerRef = useRef<HTMLDivElement | null>(null);
+
+  const goToTop = () => {
+    if (mainCotainerRef.current) {
+      mainCotainerRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <S.MainContainer>
-      {<S.MainFABContainer>asdf</S.MainFABContainer>}
+    <S.MainContainer ref={mainCotainerRef}>
+      <FABButton goTop={goToTop} />
       <S.MainTitleContainer>
         <h1>
           내 옷장 속 <br /> 숨겨진 가능성을 <br /> 열다
@@ -23,13 +32,13 @@ function MainLayOut() {
                 <span>{item.emoji}</span>
                 {item.reverse ? (
                   <>
-                    {item.h1 && <h1 dangerouslySetInnerHTML={makeBrTagsBybr(item.h1)}></h1>}
-                    {item.p && <p dangerouslySetInnerHTML={makeBrTagsBybr(item.p)}></p>}
+                    {item.h1 && <h1 dangerouslySetInnerHTML={replaceStringsWithTags(item.h1)}></h1>}
+                    {item.p && <p dangerouslySetInnerHTML={replaceStringsWithTags(item.p)}></p>}
                   </>
                 ) : (
                   <>
-                    {item.p && <p dangerouslySetInnerHTML={makeBrTagsBybr(item.p)}></p>}
-                    {item.h1 && <h1 dangerouslySetInnerHTML={makeBrTagsBybr(item.h1)}></h1>}
+                    {item.p && <p dangerouslySetInnerHTML={replaceStringsWithTags(item.p)}></p>}
+                    {item.h1 && <h1 dangerouslySetInnerHTML={replaceStringsWithTags(item.h1)}></h1>}
                   </>
                 )}
                 {item.type === 'image' && <S.MainYoldaService src="/img/yoldaService.png" />}

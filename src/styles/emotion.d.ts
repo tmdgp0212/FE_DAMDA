@@ -23,6 +23,12 @@ declare module '@emotion/react' {
       max_width: string;
       header_height: string;
     };
+    border: {
+      inputBorder: {
+        border: string;
+        'border-radius': string;
+      };
+    };
     font: {
       bold_30: {
         'font-size': string;
@@ -45,6 +51,11 @@ declare module '@emotion/react' {
         'line-height': string;
       };
       bold_19: {
+        'font-size': string;
+        'font-weight': string;
+        'line-height': string;
+      };
+      bold_18_135: {
         'font-size': string;
         'font-weight': string;
         'line-height': string;
