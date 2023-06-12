@@ -297,3 +297,111 @@ export const UserSurveyFormNextBox = styled(motion.div)`
   line-height: 19px;
   color: ${({ theme }) => theme.colors.yolda_gray_4};
 `;
+
+export const UserSurveyFormDateWrapper = styled.div`
+  .title {
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 160%;
+  }
+
+  .select-body {
+    margin-top: 1.2rem;
+    width: 100%;
+    height: 5.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+
+    ${({ theme }) => theme.border.inputBorder};
+
+    span {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 19px;
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  .rdp {
+    margin: 0;
+    margin-top: -1rem;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    ${({ theme }) => theme.border.inputBorder};
+    border-radius: 0px 0px 5px 5px;
+    border-top: none;
+  }
+  .rdp-month {
+    padding: 1.4rem 1rem;
+  }
+  .dayOfWeekMatcher {
+    font-weight: 700;
+  }
+  .rdp-day_today {
+    font-weight: normal;
+  }
+  .rdp-day {
+    font-size: 1.8rem;
+    border-radius: 5px;
+
+    &:hover {
+      border: 3px solid ${({ theme }) => theme.colors.sub_blue_1};
+      background: inherit !important;
+    }
+  }
+  .rdp-day_selected {
+    border: 3px solid ${({ theme }) => theme.colors.sub_blue_1};
+    color: ${({ theme }) => theme.colors.yolda_black_1};
+    background-color: inherit;
+  }
+  .caption {
+    display: flex;
+    justify-content: space-between;
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+    span {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 19px;
+    }
+  }
+
+  .select-wrapper {
+    margin-top: 1.2rem;
+  }
+
+  .select-list {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(3, 1fr);
+
+    .select-item {
+      margin-top: 1.2rem;
+      flex-basis: 100%;
+      height: 5rem;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      border: 1px solid #a6a6a6;
+      border-radius: 5px;
+      cursor: pointer;
+      color: ${({ theme }) => theme.colors.yolda_gray_4};
+      span {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+      }
+      &:nth-child(3) {
+        border: none;
+      }
+    }
+  }
+`;
