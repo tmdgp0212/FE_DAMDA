@@ -27,6 +27,24 @@ function CheckModal({ state, setIsSubmitClicked }: any) {
     else if (index === 6 && value) return '일';
   });
 
+  const combinedArray = activity_region.activity_city.map((cityItem: string, index: number) => {
+    const districtItem = activity_region.activity_district[index];
+    return `${cityItem.slice(0, 2)} ${districtItem}`;
+  });
+  const sortedArray = combinedArray.sort((a: string, b: string) => {
+    if (a.includes('서울') && !b.includes('서울')) {
+      return -1;
+    } else if (!a.includes('서울') && b.includes('서울')) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+  const seperatedArray = sortedArray.map((item: string, index: number) => {
+    const separator = index !== activity_region.activity_city.length - 1 ? ' / ' : '';
+    return `${item} ${separator}`;
+  });
+
   const submitHandler = () => {};
 
   return (
@@ -68,23 +86,7 @@ function CheckModal({ state, setIsSubmitClicked }: any) {
 
               <div>
                 <dt>활동 가능 지역</dt>
-                <dd>
-                  {activity_region.seoul.map((district: string, index: number) => {
-                    if (index === activity_region.seoul.length - 1 && activity_region.gyeonggi.length === 0) {
-                      return <span key={district}>서울 {district}</span>;
-                    } else {
-                      return <span key={district}>서울 {district} / </span>;
-                    }
-                  })}
-
-                  {activity_region.gyeonggi.map((district: string, index: number) => {
-                    if (index === activity_region.gyeonggi.length - 1) {
-                      return <span key={district}>경기 {district}</span>;
-                    } else {
-                      return <span key={district}>경기 {district} / </span>;
-                    }
-                  })}
-                </dd>
+                <dd>{seperatedArray}</dd>
               </div>
             </dl>
           </S.Content>
