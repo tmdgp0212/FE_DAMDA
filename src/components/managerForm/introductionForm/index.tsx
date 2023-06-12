@@ -48,9 +48,11 @@ function IntroductionForm({ state, dispatch, setIsNameValid, setIsPhoneNumberVal
       const formattedPhoneNumber = formatPhoneNumber(newPhoneNumber);
       dispatch({ type: 'PHONE_NUMBER', payload: { phoneNumber: formattedPhoneNumber } });
       setIsPhoneNumberValid(true);
+      setPhoneErrorMessage('');
     } else {
       dispatch({ type: 'PHONE_NUMBER', payload: { phoneNumber: newPhoneNumber } });
       setIsPhoneNumberValid(false);
+      setPhoneErrorMessage('유효한 번호 양식이 아닙니다.');
     }
   };
 
@@ -90,7 +92,13 @@ function IntroductionForm({ state, dispatch, setIsNameValid, setIsPhoneNumberVal
         <span>연락처</span>
 
         <S.InputWrapper isError={phoneErrorMessage}>
-          <input type="text" value={manager_phone} placeholder="010-0000-0000" onChange={phoneNumberChangeHandler} />
+          <input
+            type="text"
+            value={manager_phone}
+            maxLength={13}
+            placeholder="010-0000-0000"
+            onChange={phoneNumberChangeHandler}
+          />
 
           {manager_phone && (
             <S.Icon type="button" style={{ cursor: 'pointer' }} onClick={phoneNumberClearHandler}>
