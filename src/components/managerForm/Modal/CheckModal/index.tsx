@@ -17,15 +17,17 @@ function CheckModal({ state, setIsSubmitClicked }: any) {
     manager_drive,
   } = state;
 
-  const resultDays = activity_day.map((value: boolean, index: number) => {
-    if (index === 0 && value) return '월';
-    else if (index === 1 && value) return '화';
-    else if (index === 2 && value) return '수';
-    else if (index === 3 && value) return '목';
-    else if (index === 4 && value) return '금';
-    else if (index === 5 && value) return '토';
-    else if (index === 6 && value) return '일';
-  });
+  const resultDays = activity_day
+    .map((value: boolean, index: number) => {
+      if (index === 0 && value) return '월';
+      else if (index === 1 && value) return '화';
+      else if (index === 2 && value) return '수';
+      else if (index === 3 && value) return '목';
+      else if (index === 4 && value) return '금';
+      else if (index === 5 && value) return '토';
+      else if (index === 6 && value) return '일';
+    })
+    .filter((day: string) => day !== undefined);
 
   const combinedArray = activity_region.activity_city.map((cityItem: string, index: number) => {
     const districtItem = activity_region.activity_district[index];
