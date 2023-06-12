@@ -4,6 +4,10 @@ export const CustomerCenterHeader = styled.header`
   position: relative;
   display: block;
   height: 412px;
+
+  img {
+    object-fit: cover;
+  }
 `;
 
 export const CustomerCenterContent = styled.div`
