@@ -36,7 +36,7 @@ export const convertQuestionIdentifierToKorean = (questionIdentifier: QuestionId
     case 'APPLICANTCONACTINFO':
       return '연락처';
     case 'LEARNEDROUTE':
-      return '알게된 경로';
+      return '저는 열다를...';
     case 'REQUIREDGUIDELINES':
       return '필수 안내사항';
     case 'OPTIONAL':
@@ -65,7 +65,7 @@ export const convertQuestionIdentifierToPlaceholder = (questionIdentifier: Quest
     case 'APPLICANTCONACTINFO':
       return '010-0000-0000';
     case 'LEARNEDROUTE':
-      return '알게된 경로';
+      return '저는 열다를...';
     case 'REQUIREDGUIDELINES':
       return '필수 안내사항';
     case 'OPTIONAL':
