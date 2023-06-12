@@ -16,6 +16,9 @@ export interface UserSurveyFormTitleProps {
 
 export interface UserSurveyFormAddressProps {
   title: string;
+  handleUpdateFormValue: Dispatch<SetStateAction<UserSurveyForm[]>>;
+  questionNumber: number;
+  placeholder: QuestionIdentifier;
 }
 
 export interface UserSurveyFormSelectProps {
@@ -36,5 +39,5 @@ export interface UserSurveyFormRadioProps {
 
 export interface FormElementsProps {
   data: UserSurveyFormDataType;
-  handleUpdateFormValue?: Dispatch<SetStateAction<UserSurveyForm[]>>;
+  handleUpdateFormValue: Dispatch<SetStateAction<UserSurveyForm[]>>;
 }

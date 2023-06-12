@@ -80,15 +80,22 @@ export const UserSurveyFormInputWrapper = styled.div<{
 export const UserSurveyAddressSelectWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.8rem;
 
   .title {
     font-weight: 800;
     font-size: 16px;
     line-height: 160%;
+    margin-bottom: 0.8rem;
+  }
+
+  h1 {
+    font-weight: 900;
+    font-size: 20px;
+    margin-bottom: 1.8rem;
   }
 
   .address {
+    margin-top: 1.8rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -106,6 +113,67 @@ export const UserSurveyAddressSelectWrapper = styled.div`
     }
 
     ${({ theme }) => theme.border.inputBorder};
+  }
+`;
+
+export const UserSurveyFormAddressWrapper = styled.div<{ isSubAddressOpen: boolean }>`
+  margin-top: -0.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  border: 1px solid #212121;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  padding: 1.2rem 0.8rem;
+
+  .address-list {
+    display: flex;
+    flex-direction: ${({ isSubAddressOpen }) => (isSubAddressOpen ? 'row' : 'column')};
+    min-height: 20rem;
+    max-height: 20rem;
+  }
+
+  .address-item {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+
+    padding: 1.2rem;
+    border-radius: 5px;
+    border: 2px solid white;
+  }
+`;
+
+export const UserSurveyFormSubAddressWrapper = styled.div`
+  display: flex;
+  width: 100%;
+
+  .main {
+    flex-basis: 50%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+  }
+  .sub {
+    flex-shrink: 0;
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 0.8rem;
+      background: #c7c7c7;
+    }
+  }
+
+  .add {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 135%;
+    padding: 1rem;
+    color: ${({ theme }) => theme.colors.yolda_gray_4};
   }
 `;
 
