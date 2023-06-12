@@ -10,7 +10,7 @@ function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    // validateToken(logout);
+    validateToken(logout);
   }, []);
 
   return (

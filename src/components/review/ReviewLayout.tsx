@@ -1,18 +1,15 @@
-import * as S from '../../styles/Review.styled';
+import React, { useRef } from 'react';
+import Pagination from 'react-js-pagination';
 import BestBadge from '../../../public/icons/badge_best.svg';
 import CleanerBadge from '../../../public/icons/badge_cleaner.svg';
 import ReviewItem from './ReviewItem';
 import DownArrow from '../../../public/icons/angle-down.svg';
-import UpArrow from '../../../public/icons/angle-up.svg';
-import Pagination from 'react-js-pagination';
 import BannerSlide from './BannerSlide';
-import ImageSlide from './ImageSlide';
+import BestReview from './BestReview';
 import { slide1, slide2 } from '@/constants/reviewPageSlideItems';
-import { dateFormatter } from '@/utils/date';
-import React, { useEffect, useRef, useState } from 'react';
 import { ReviewRes } from '@/types/review';
-import { nameMarker } from '@/utils/nameMarker';
 import { useInView } from 'framer-motion';
+import * as S from '../../styles/Review.styled';
 
 interface ReviewProps {
   posts: ReviewRes[];
@@ -25,7 +22,6 @@ interface ReviewProps {
 function ReviewLayout({ posts, bestReview, page, pageLength, pagingHandler }: ReviewProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref);
-  const [isCardOpen, setIsCardOpen] = useState(false);
 
   return (
     <>
@@ -62,24 +58,7 @@ function ReviewLayout({ posts, bestReview, page, pageLength, pagingHandler }: Re
           <BestBadge />
           베스트 이용후기
         </S.TitleMedium>
-        <S.BestReview className="best_review" ref={ref}>
-          <div className="prograss_container">
-            <ImageSlide beforeImage={bestReview.before[0]} afterImage={bestReview.after[0]} isBest={true} />
-          </div>
-          <S.ReviewCard isCardOpen={isCardOpen} onClick={() => setIsCardOpen(!isCardOpen)}>
-            <div className="card_header">
-              <div className="arrow_icon">{isCardOpen ? <UpArrow /> : <DownArrow />}</div>
-              <div className="flex_box">
-                <span className="auth">
-                  {bestReview.address} {nameMarker(bestReview.name)}님
-                </span>
-                <span className="date">{dateFormatter(bestReview.date)}</span>
-              </div>
-              <div className="title">{bestReview.title}</div>
-            </div>
-            {isCardOpen && <div className="card_content">{bestReview.content}</div>}
-          </S.ReviewCard>
-        </S.BestReview>
+        <BestReview bestReview={bestReview} />
         <S.TitleMedium>
           <CleanerBadge />
           열다의 모든 후기

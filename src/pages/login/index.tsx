@@ -1,7 +1,6 @@
 import { handleLogin } from '@/utils/auth';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import { instance } from '@/apis/instance';
 import { getToken } from '@/apis/auth';
 import useAuthStore from '@/store/auth';
 import * as S from './../../styles/Login.styled';
@@ -16,12 +15,9 @@ function Login() {
 
     if (code) {
       try {
-        // const response = await instance.get('/api/v1/test/login');
-        // console.log(response);
-
         const user = await getToken(code);
         console.log(user);
-        setUser('http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_110x110.jpg');
+        setUser(user.data);
         router.push('/');
       } catch (error) {
         console.error('Failed to fetch access token:', error);

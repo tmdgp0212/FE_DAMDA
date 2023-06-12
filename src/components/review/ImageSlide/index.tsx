@@ -7,10 +7,16 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 interface ImageSlideProps {
-  beforeImage: string;
-  afterImage: string;
+  beforeImage: string; //before 사진 src
+  afterImage: string; //after 사진 src
   isBest: boolean;
 }
+
+/**
+ * @description isBest 값에 따라 슬라이드의 모양이 바뀝니다.
+ * {true} : 이미지가 슬라이드형식으로 1초간 전환되며, 5초간 유지됩니다
+ * {false} : 이미지가 전환효과 없이 바로 전환되며, 3초간 유지됩니다
+ */
 
 function ImageSlide({ beforeImage, afterImage, isBest }: ImageSlideProps) {
   return (
