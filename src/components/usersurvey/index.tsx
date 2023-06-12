@@ -96,7 +96,7 @@ const userSurveyFormData: UserSurveyFormDataType[] = [
   {
     questionNumber: 6,
     questionOrder: 5,
-    questionIdentify: 'CODE',
+    questionIdentify: 'RECOMMENDEDCODE',
     questionTitle: '할인 되는 코드가 있으신가요?',
     questionType: 'STRING',
     required: false,
