@@ -22,7 +22,7 @@ function LocationSelectionForm({ state, dispatch, setIsLocationValid }: any) {
     setSelectedRegion(e.target.value);
   };
 
-  const cityChangeHandler = (e) => {
+  const cityChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const city = e.target.value;
     const isChecked = e.target.checked;
 
@@ -32,16 +32,16 @@ function LocationSelectionForm({ state, dispatch, setIsLocationValid }: any) {
       dispatch({ type: 'FILTER_LOCATION', payload: { city } });
     }
 
-    setSelectedCities((prevSelectedCities) => {
+    setSelectedCities((prevSelectedCities: any) => {
       if (prevSelectedCities.includes(city)) {
-        return prevSelectedCities.filter((selectedCity) => selectedCity !== city);
+        return prevSelectedCities.filter((selectedCity: any) => selectedCity !== city);
       } else {
         return [...prevSelectedCities, city];
       }
     });
   };
 
-  const filterLocationHandler = (city) => {
+  const filterLocationHandler = (city: string) => {
     dispatch({ type: 'FILTER_LOCATION', payload: { city } });
 
     const newSelectedCities = selectedCities.filter((selectedCity) => selectedCity !== city);
@@ -49,11 +49,9 @@ function LocationSelectionForm({ state, dispatch, setIsLocationValid }: any) {
 
     const checkbox = document.getElementById(city);
     if (checkbox) {
-      checkbox.checked = false;
+      (checkbox as HTMLInputElement).checked = false;
     }
   };
-
-  console.log(state.activity_region);
 
   return (
     <S.LocationSelectionForm>

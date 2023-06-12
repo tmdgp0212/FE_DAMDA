@@ -1,6 +1,5 @@
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 
 import * as U from '../UnCompleteModal/style';
 import * as S from './style';

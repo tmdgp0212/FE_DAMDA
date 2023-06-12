@@ -4,7 +4,7 @@ import * as S from './style';
 function UnCompleteModal() {
   return (
     <S.Overlay>
-      <S.UnCompleteModal className="check-modal">
+      <S.Modal textCenter={true}>
         <header>
           <h2>아직 작성이 완료 되지 않았어요.🥹</h2>
           <p>
@@ -18,7 +18,7 @@ function UnCompleteModal() {
           <button type="button">돌아가기</button>
           <button type="button">마저 작성하기</button>
         </S.ButtonGrop>
-      </S.UnCompleteModal>
+      </S.Modal>
     </S.Overlay>
   );
 }

@@ -139,7 +139,7 @@ function CheckModal({ state, setIsSubmitClicked }: any) {
 
               <div>
                 <dt>자차 운전여부</dt>
-                <dd>{manager_drive ? '있음' : '없음'}</dd>
+                <dd>{manager_drive === 'yes' ? '있음' : '없음'}</dd>
               </div>
 
               <div>

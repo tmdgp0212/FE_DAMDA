@@ -6,7 +6,7 @@ import * as S from './style';
 
 function RadioButtonForm({ state, dispatch, setIsRadioValid }: any) {
   const { main_job, main_job_etc, manager_drive } = state;
-  const [isMainJobExist, setIsMainJobExist] = useState(false);
+
   if (main_job === 'no' && manager_drive === 'yes') {
     setIsRadioValid(true);
   } else if (main_job === 'no' && manager_drive === 'no') {
@@ -55,7 +55,6 @@ function RadioButtonForm({ state, dispatch, setIsRadioValid }: any) {
             value="yes"
             onChange={(e) => {
               mainJobChangeHandler(e);
-              setIsMainJobExist(true);
             }}
             checked={state.main_job === 'yes'}
           />
@@ -68,7 +67,6 @@ function RadioButtonForm({ state, dispatch, setIsRadioValid }: any) {
             value="no"
             onChange={(e) => {
               mainJobChangeHandler(e);
-              setIsMainJobExist(false);
             }}
             checked={state.main_job === 'no'}
           />

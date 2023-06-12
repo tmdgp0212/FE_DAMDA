@@ -1,4 +1,4 @@
-export function managerFormReducer(state, action) {
+export function managerFormReducer(state: any, action: any) {
   switch (action.type) {
     case 'NAME':
       return { ...state, manager_name: action.payload.name };

@@ -16,13 +16,10 @@ function ManagerForm({ state, dispatch, setIsSubmitClicked }: any) {
   // 유효성 검사 통과 여부
   const [isNameValid, setIsNameValid] = useState(false);
   const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(false);
-  console.log(isPhoneNumberValid);
-
   const [isLocationValid, setIsLocationValid] = useState(false);
   const [isCertificateValid, setIsCertificateValid] = useState(false);
   const [isRadioValid, setIsRadioValid] = useState(false);
   const [isGuideAgree, setIsGuideAgree] = useState(false);
-
   const [isManagerFormValid, setIsManagerFormValid] = useState(false);
 
   useEffect(() => {
@@ -47,7 +44,7 @@ function ManagerForm({ state, dispatch, setIsSubmitClicked }: any) {
 
   const router = useRouter();
 
-  const submitHandler = (e) => {
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (isManagerFormValid) {
