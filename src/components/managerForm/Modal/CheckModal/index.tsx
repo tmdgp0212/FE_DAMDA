@@ -133,13 +133,13 @@ function CheckModal({ state, setIsSubmitClicked }: any) {
 
               <div>
                 <dt>본업여부</dt>
-                {!main_job_etc && main_job === 'no' && <dd>아님</dd>}
+                {!main_job_etc && !main_job && <dd>아님</dd>}
                 {main_job_etc && <dd>{main_job_etc}</dd>}
               </div>
 
               <div>
                 <dt>자차 운전여부</dt>
-                <dd>{manager_drive === 'yes' ? '있음' : '없음'}</dd>
+                <dd>{manager_drive ? '있음' : '없음'}</dd>
               </div>
 
               <div>

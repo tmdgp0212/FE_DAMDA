@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent } from 'react';
 import Image from 'next/image';
 
 import * as I from '../introductionForm/style';
@@ -7,13 +7,13 @@ import * as S from './style';
 function RadioButtonForm({ state, dispatch, setIsRadioValid }: any) {
   const { main_job, main_job_etc, manager_drive } = state;
 
-  if (main_job === 'no' && manager_drive === 'yes') {
+  if (!main_job && manager_drive) {
     setIsRadioValid(true);
-  } else if (main_job === 'no' && manager_drive === 'no') {
+  } else if (!main_job && !manager_drive) {
     setIsRadioValid(true);
-  } else if (main_job === 'yes' && main_job_etc && manager_drive === 'yes') {
+  } else if (main_job && main_job_etc && manager_drive) {
     setIsRadioValid(true);
-  } else if (main_job === 'yes' && main_job_etc && manager_drive === 'no') {
+  } else if (main_job && main_job_etc && !manager_drive) {
     setIsRadioValid(true);
   } else {
     setIsRadioValid(false);
@@ -23,9 +23,9 @@ function RadioButtonForm({ state, dispatch, setIsRadioValid }: any) {
     const value = e.target.value;
     if (value === 'no') {
       dispatch({ type: 'MAIN_JOB_ETC_NULL' });
-      dispatch({ type: 'MAIN_JOB', payload: { main_job: value } });
+      dispatch({ type: 'MAIN_JOB', payload: { main_job: false } });
     } else {
-      dispatch({ type: 'MAIN_JOB', payload: { main_job: value } });
+      dispatch({ type: 'MAIN_JOB', payload: { main_job: true } });
     }
   };
 
@@ -35,7 +35,8 @@ function RadioButtonForm({ state, dispatch, setIsRadioValid }: any) {
 
   const driveChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    dispatch({ type: 'DRIVE', payload: { drive: value } });
+    const result = value === 'no' ? false : true;
+    dispatch({ type: 'DRIVE', payload: { drive: result } });
   };
 
   const etcClearHandler = () => {
@@ -47,7 +48,7 @@ function RadioButtonForm({ state, dispatch, setIsRadioValid }: any) {
       <S.RadioButtonFormContainer>
         <h3>정리수납 업무 외 본업이 있으신가요?</h3>
 
-        <S.InputRadioGroup isMainJobExist={state.main_job === 'yes'}>
+        <S.InputRadioGroup isMainJobExist={state.main_job}>
           <input
             type="radio"
             name="main_job"
@@ -56,7 +57,7 @@ function RadioButtonForm({ state, dispatch, setIsRadioValid }: any) {
             onChange={(e) => {
               mainJobChangeHandler(e);
             }}
-            checked={state.main_job === 'yes'}
+            checked={state.main_job === true}
           />
           <label htmlFor="main_job_yes">네, 있어요</label>
 
@@ -68,12 +69,12 @@ function RadioButtonForm({ state, dispatch, setIsRadioValid }: any) {
             onChange={(e) => {
               mainJobChangeHandler(e);
             }}
-            checked={state.main_job === 'no'}
+            checked={state.main_job === false}
           />
           <label htmlFor="main_job_no">아뇨, 없어요</label>
         </S.InputRadioGroup>
 
-        {state.main_job === 'yes' && (
+        {state.main_job && (
           <I.FormInput>
             <span>본업을 알려주세요.</span>
 
@@ -100,7 +101,7 @@ function RadioButtonForm({ state, dispatch, setIsRadioValid }: any) {
             id="drive_yes"
             value="yes"
             onChange={driveChangeHandler}
-            checked={state.manager_drive === 'yes'}
+            checked={state.manager_drive === true}
           />
           <label htmlFor="drive_yes">가능해요</label>
 
@@ -110,7 +111,7 @@ function RadioButtonForm({ state, dispatch, setIsRadioValid }: any) {
             id="drive_no"
             value="no"
             onChange={driveChangeHandler}
-            checked={state.manager_drive === 'no'}
+            checked={state.manager_drive === false}
           />
           <label htmlFor="drive_no">불가능해요</label>
         </S.InputRadioGroup>
