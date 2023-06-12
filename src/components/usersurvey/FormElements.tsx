@@ -22,7 +22,12 @@ function FormElements({ data, handleUpdateFormValue }: FormElementsProps) {
       );
     case 'SELECT':
       return data.questionIdentify === 'ADDRESS' ? (
-        <AddressSelect title={data.questionTitle} />
+        <AddressSelect
+          title={data.questionTitle}
+          handleUpdateFormValue={handleUpdateFormValue}
+          questionNumber={data.questionNumber}
+          placeholder={data.questionIdentify}
+        />
       ) : (
         <Select
           category={data.categoryList!}
@@ -42,6 +47,8 @@ function FormElements({ data, handleUpdateFormValue }: FormElementsProps) {
           handleUpdateFormValue={handleUpdateFormValue}
         />
       );
+    case 'DATE':
+      return <div></div>;
     default:
       return <div></div>;
   }
