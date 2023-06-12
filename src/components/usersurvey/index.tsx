@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as S from '@/styles/survey.styled';
 import { IoIosArrowBack } from 'react-icons/io';
 import FirstStep from '@/components/usersurvey/step/FirstStep';
 import SecStep from '@/components/usersurvey/step/SecStep';
-import { useFieldArray, useForm } from 'react-hook-form';
 import { UserSurveyFormDataType } from '@/types/constants/userSurvey';
 
 const userSurveyFormData: UserSurveyFormDataType[] = [
@@ -37,7 +36,7 @@ const userSurveyFormData: UserSurveyFormDataType[] = [
     questionIdentify: 'ADDRESS',
     questionTitle: '서비스를 받을 지역과 주소를 입력해 주세요',
     questionType: 'SELECT',
-    required: true,
+    required: false,
   },
   {
     questionNumber: 5,
@@ -191,13 +190,22 @@ const userSurveyFormDataSec: UserSurveyFormDataType[] = [
 ];
 
 function Index() {
-  const [steps, setSteps] = useState<0 | 1>(1);
+  const UsersurveyRef = useRef<HTMLDivElement | null>(null);
+
+  const [steps, setSteps] = useState<0 | 1>(0);
 
   const handleNextStep = () => {
     setSteps(1);
   };
+
+  useEffect(() => {
+    if (UsersurveyRef.current) {
+      UsersurveyRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, []);
+
   return (
-    <S.UserSurveyWrapper>
+    <S.UserSurveyWrapper ref={UsersurveyRef}>
       <S.ProgressBar />
       <IoIosArrowBack />
       {steps === 0 && <S.UserSurveyTitle>열다 옷장 정리 서비스 예약</S.UserSurveyTitle>}
