@@ -2,7 +2,7 @@ import '@/styles/globals.css';
 import { AppProps } from 'next/app';
 import { ThemeProvider } from '@emotion/react';
 import { Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query';
-// import { server } from '@/mocks/server';
+import { server } from '@/mocks/server';
 import theme from '@/styles/theme';
 import GlobalHead from '@/components/common/GlobalHead';
 import Layout from '@/components/common/Layout';
@@ -15,11 +15,6 @@ const queryClient = new QueryClient({
     },
   },
 });
-
-if (process.env.NODE_ENV === 'development') {
-  // mock API server 실행함수
-  // server.listen();
-}
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

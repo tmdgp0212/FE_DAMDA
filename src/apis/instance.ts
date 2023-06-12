@@ -5,7 +5,8 @@ const getAxiosInstance = () => {
     baseURL: 'https://api.damda.store/api/v1/',
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': 'https://api.damda.store',
+      'Access-Control-Allow-Credentials': true,
     },
     withCredentials: true,
   };

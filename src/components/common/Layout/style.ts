@@ -15,9 +15,10 @@ export const Layout = styled.div`
     display: none;
   }
 
-  @media (max-width: 810px) {
+  @media (max-width: 420px) {
     //모바일 대응
     width: 100vw;
+    max-width: 100vw;
 
     &::-webkit-scrollbar {
       display: none;

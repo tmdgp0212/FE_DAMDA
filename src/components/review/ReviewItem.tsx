@@ -4,40 +4,37 @@ import * as S from './style';
 import ImageSlide from './ImageSlide';
 import { dateFormatter, isNewReview } from '@/utils/date';
 import { useState } from 'react';
+import ReviewModal from './ReviewModal';
+import { ReviewRes } from '@/types/review';
+import { nameMarker } from '@/utils/nameMarker';
 
 interface ReviewProps {
-  review: {
-    id: number;
-    title: string;
-    body: string;
-    userName: string;
-    isBest: boolean;
-    location: string;
-    time: string;
-    imageBefore: string;
-    imageAfter: string;
-  };
+  review: ReviewRes;
 }
 
 function ReviewItem({ review }: ReviewProps) {
-  const isNew = isNewReview(review.time);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const isNew = isNewReview(review.date);
 
   return (
-    <S.ReviewItem>
-      <S.ImageContainer className="image-before">
-        <ImageSlide afterImage={review.imageAfter} beforeImage={review.imageBefore} isBest={false} />
-        <S.Badges>
-          {review.isBest && <BestBadge />}
-          {isNew && <NewBadge />}
-        </S.Badges>
-      </S.ImageContainer>
-      <S.ReviewAuth>
-        <span className="location">{review.location}</span>
-        <span className="name">{review.userName.replace(/(?<=.{1})./gi, '*')}님</span>
-        <span className="time">{dateFormatter(review.time)}</span>
-      </S.ReviewAuth>
-      <S.ReviewTitle>{review.title}</S.ReviewTitle>
-    </S.ReviewItem>
+    <>
+      <S.ReviewItem onClick={() => setIsModalOpen(true)}>
+        <S.ImageContainer className="image-before">
+          <ImageSlide afterImage={review.after[0]} beforeImage={review.before[0]} isBest={false} />
+          <S.Badges>
+            {review.bestReview && <BestBadge />}
+            {isNew && <NewBadge />}
+          </S.Badges>
+        </S.ImageContainer>
+        <S.ReviewAuth>
+          <span className="location">{review.address} </span>
+          <span className="name">{nameMarker(review.name)}님</span>
+          <span className="time">{dateFormatter(review.date)}</span>
+        </S.ReviewAuth>
+        <S.ReviewTitle>{review.title}</S.ReviewTitle>
+      </S.ReviewItem>
+      {isModalOpen && <ReviewModal review={review} setIsModalOpen={setIsModalOpen} />}
+    </>
   );
 }
 
