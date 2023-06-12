@@ -3,7 +3,7 @@ interface citiesDataType {
 }
 
 export const citiesData: citiesDataType = {
-  seoul: [
+  서울특별시: [
     '강남구',
     '강동구',
     '강북구',
@@ -30,7 +30,7 @@ export const citiesData: citiesDataType = {
     '중구',
     '중랑구',
   ],
-  gyeonggi: [
+  경기도: [
     '고양시',
     '과천시',
     '광명시',

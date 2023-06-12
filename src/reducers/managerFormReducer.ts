@@ -27,46 +27,37 @@ export function managerFormReducer(state: any, action: any) {
         return { ...state, activity_day: updateUnCheckState };
       }
 
-    case 'ACTIVITY_REGION':
-      let updatedRegionData;
-      const { region, district } = action.payload;
-
-      if (region === 'seoul') {
-        updatedRegionData = {
-          ...state.activity_region,
-          seoul: [...state.activity_region.seoul, district],
-        };
-      } else if (region === 'gyeonggi') {
-        updatedRegionData = {
-          ...state.activity_region,
-          gyeonggi: [...state.activity_region.gyeonggi, district],
-        };
-      }
-
+    case 'PUSH_CITY':
       return {
         ...state,
-        activity_region: updatedRegionData,
+        activity_region: {
+          activity_city: [...state.activity_region.activity_city, action.payload.city],
+          activity_district: [...state.activity_region.activity_district],
+        },
       };
 
-    case 'FILTER_LOCATION':
-      const { city } = action.payload;
-      let updatedSeoul = [...state.activity_region.seoul];
-      let updatedGyeonggi = [...state.activity_region.gyeonggi];
+    case 'PUSH_DISTRICT':
+      return {
+        ...state,
+        activity_region: {
+          activity_city: [...state.activity_region.activity_city],
+          activity_district: [...state.activity_region.activity_district, action.payload.district],
+        },
+      };
 
-      if (state.activity_region.seoul.includes(city)) {
-        updatedSeoul = updatedSeoul.filter((selectedCity) => selectedCity !== city);
-      }
-
-      if (state.activity_region.gyeonggi.includes(city)) {
-        updatedGyeonggi = updatedGyeonggi.filter((selectedCity) => selectedCity !== city);
-      }
+    case 'REMOVE':
+      const enteredDistrict = action.payload.district;
+      const cityArr = state.activity_region.activity_city;
+      const districtArr = state.activity_region.activity_district;
+      const index = districtArr.indexOf(enteredDistrict);
+      cityArr.splice(index, 1);
+      const filteredDistrictArr = districtArr.filter((district: string) => district !== enteredDistrict);
 
       return {
         ...state,
         activity_region: {
-          ...state.activity_region,
-          seoul: updatedSeoul,
-          gyeonggi: updatedGyeonggi,
+          activity_city: cityArr,
+          activity_district: filteredDistrictArr,
         },
       };
 

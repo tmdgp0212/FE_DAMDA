@@ -11,7 +11,7 @@ function ManagerFormPage() {
     manager_name: '',
     manager_phone: '',
     activity_day: [false, false, false, false, false, false, false],
-    activity_region: { seoul: [], gyeonggi: [] },
+    activity_region: { activity_city: [], activity_district: [] },
     manager_license: '',
     manager_license_etc: null,
     field_experience: '',

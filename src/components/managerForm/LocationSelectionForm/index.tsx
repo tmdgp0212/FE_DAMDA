@@ -10,9 +10,8 @@ function LocationSelectionForm({ state, dispatch, setIsLocationValid }: any) {
   const { activity_region } = state;
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState('');
-  const [selectedCities, setSelectedCities] = useState([]);
 
-  if (activity_region.seoul || activity_region.gyeonggi) {
+  if (activity_region.activity_district.length !== 0) {
     setIsLocationValid(true);
   } else {
     setIsLocationValid(false);
@@ -23,34 +22,33 @@ function LocationSelectionForm({ state, dispatch, setIsLocationValid }: any) {
   };
 
   const cityChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    const city = e.target.value;
+    const district = e.target.value;
     const isChecked = e.target.checked;
 
     if (isChecked) {
-      dispatch({ type: 'ACTIVITY_REGION', payload: { region: selectedRegion, district: e.target.value } });
+      dispatch({ type: 'PUSH_CITY', payload: { city: selectedRegion } });
+      dispatch({ type: 'PUSH_DISTRICT', payload: { district } });
     } else {
-      dispatch({ type: 'FILTER_LOCATION', payload: { city } });
+      dispatch({ type: 'REMOVE', payload: { district } });
     }
-
-    setSelectedCities((prevSelectedCities: any) => {
-      if (prevSelectedCities.includes(city)) {
-        return prevSelectedCities.filter((selectedCity: any) => selectedCity !== city);
-      } else {
-        return [...prevSelectedCities, city];
-      }
-    });
   };
 
-  const filterLocationHandler = (city: string) => {
-    dispatch({ type: 'FILTER_LOCATION', payload: { city } });
+  const tags = activity_region.activity_city.map((cityItem: string, index: number) => {
+    const districtItem = activity_region.activity_district[index];
 
-    const newSelectedCities = selectedCities.filter((selectedCity) => selectedCity !== city);
-    setSelectedCities(newSelectedCities);
+    return (
+      <div key={index}>
+        {`${cityItem.slice(0, 2)} ${districtItem}`}
 
-    const checkbox = document.getElementById(city);
-    if (checkbox) {
-      (checkbox as HTMLInputElement).checked = false;
-    }
+        <button type="button" onClick={() => filterTagHandler(districtItem)}>
+          <Image src="/icons/tag-close-icon.svg" alt="tag-close-icon" width={10.5} height={10.5} />
+        </button>
+      </div>
+    );
+  });
+
+  const filterTagHandler = (districtItem: string) => {
+    dispatch({ type: 'REMOVE', payload: { district: districtItem } });
   };
 
   return (
@@ -59,29 +57,7 @@ function LocationSelectionForm({ state, dispatch, setIsLocationValid }: any) {
       <p>활동이 가능하신 모든 지역을 등록해주세요.</p>
 
       {/* 지역 태그 */}
-      <S.SelectedLocation>
-        {state.activity_region.seoul.map((district: string) => {
-          return (
-            <div key={district}>
-              서울 {district}
-              <button type="button" onClick={() => filterLocationHandler(district)}>
-                <Image src="/icons/tag-close-icon.svg" alt="tag-close-icon" width={10.5} height={10.5} />
-              </button>
-            </div>
-          );
-        })}
-
-        {state.activity_region.gyeonggi.map((district: string) => {
-          return (
-            <div key={district}>
-              경기 {district}
-              <button type="button" onClick={() => filterLocationHandler(district)}>
-                <Image src="/icons/tag-close-icon.svg" alt="tag-close-icon" width={10.5} height={10.5} />
-              </button>
-            </div>
-          );
-        })}
-      </S.SelectedLocation>
+      <S.SelectedLocation>{tags}</S.SelectedLocation>
 
       <div style={{ position: 'relative' }}>
         {/* Select Button */}
@@ -115,7 +91,7 @@ function LocationSelectionForm({ state, dispatch, setIsLocationValid }: any) {
                   type="radio"
                   name="manager_available_region"
                   id="seoul"
-                  value="seoul"
+                  value="서울특별시"
                   onChange={regionChangeHandler}
                 />
                 <label htmlFor="seoul">서울특별시</label>
@@ -126,7 +102,7 @@ function LocationSelectionForm({ state, dispatch, setIsLocationValid }: any) {
                   type="radio"
                   name="manager_available_region"
                   id="gyeonggi"
-                  value="gyeonggi"
+                  value="경기도"
                   onChange={regionChangeHandler}
                 />
                 <label htmlFor="gyeonggi">경기도</label>
@@ -142,7 +118,7 @@ function LocationSelectionForm({ state, dispatch, setIsLocationValid }: any) {
                       name="manager_available_district"
                       id={district}
                       value={district}
-                      checked={state.activity_region[selectedRegion].includes(district)}
+                      checked={state.activity_region.activity_district.includes(district)}
                       onChange={cityChangeHandler}
                     />
                     <label htmlFor={district}>{district}</label>
