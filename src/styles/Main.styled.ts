@@ -41,8 +41,7 @@ export const MainTitleContainer = styled.div`
   background-image: url('/img/MainClothBg.png');
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: 2rem;
-  height: 100vh;
+  height: 80vh;
 
   display: flex;
   flex-direction: column;
@@ -55,7 +54,6 @@ export const MainTitleContainer = styled.div`
     width: 60%;
     ${({ theme }) => theme.font.bold_30_135};
     color: ${({ theme }) => theme.colors.yolda_black_1};
-    background: linear-gradient(90deg, #ffffff 23.04%, rgba(255, 255, 255, 0) 100%);
   }
 
   p {
@@ -64,7 +62,6 @@ export const MainTitleContainer = styled.div`
     font-weight: 500;
     line-height: 28px;
     color: ${({ theme }) => theme.colors.yolda_black_1};
-    background: linear-gradient(90deg, #ffffff 23.04%, rgba(255, 255, 255, 0) 100%);
   }
 `;
 
@@ -120,7 +117,7 @@ export const MainRequestButton = styled(motion.button)<{ width?: number }>`
   padding: 1.6rem;
   border-radius: 0.5rem;
   color: #fff;
-  font-size: 2rem;
+  font-size: 1.9rem;
   font-weight: 700;
   line-height: 19px;
   height: 5.5rem;
@@ -136,11 +133,11 @@ export const MainContentButton = styled.button<{ index?: number }>`
   padding: 1rem;
   border-radius: 0.5rem;
   color: ${({ theme }) => theme.colors.yolda_black_1};
-  font-size: 1.8rem;
   font-weight: 500;
   line-height: 19px;
   height: 6rem;
-
+  text-align: left;
+  font-size: 1.6rem;
   width: ${({ index }) => (index === 3 ? '80%' : '100%')};
   justify-self: ${({ index }) => (index === 3 ? 'end' : 'start')};
 `;
@@ -156,11 +153,11 @@ export const MainPersonButton = styled(MainContentButton)<{ itemIndex: number }>
   width: ${({ itemIndex }) => {
     switch (itemIndex) {
       case 0:
-        return '50%';
+        return '45%';
       case 1:
-        return '70%';
+        return '60%';
       case 2:
-        return '100%';
+        return '90%';
     }
   }};
 
@@ -320,6 +317,7 @@ export const MainDescContainer = styled.div`
 
   h1 {
     ${({ theme }) => theme.font.bold_24};
+    line-height: 3.2rem;
   }
 `;
 
