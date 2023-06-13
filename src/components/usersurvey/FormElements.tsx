@@ -21,7 +21,12 @@ function FormElements({ data, handleUpdateFormValue }: FormElementsProps) {
       return <Title title={data.questionTitle} />;
     case 'STRING':
       return isOptional ? (
-        <AdditionalInput title={data.questionTitle} placeholder={data.questionIdentify} />
+        <AdditionalInput
+          title={data.questionTitle}
+          placeholder={data.questionIdentify}
+          questionNumber={data.questionNumber}
+          handleUpdateFormValue={handleUpdateFormValue}
+        />
       ) : (
         <Input
           title={data.questionTitle}
@@ -58,7 +63,14 @@ function FormElements({ data, handleUpdateFormValue }: FormElementsProps) {
         />
       );
     case 'DATE':
-      return <DateSelect title={data.questionTitle} placeholder={data.questionIdentify} />;
+      return (
+        <DateSelect
+          title={data.questionTitle}
+          placeholder={data.questionIdentify}
+          questionNumber={data.questionNumber}
+          handleUpdateFormValue={handleUpdateFormValue}
+        />
+      );
     default:
       return <div></div>;
   }

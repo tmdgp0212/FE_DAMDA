@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { UserSurveyFormAdditionalInputWrapper, UserSurveyFormTextBox } from '@/styles/survey.styled';
 import { UserSurveyFormAdditionalInputProps } from '@/types/components/form';
 import {
@@ -7,6 +7,7 @@ import {
   replaceStringsWithTags,
 } from '@/utils';
 import { QuestionIdentifier } from '@/types/api/formTypes';
+import { UserSurveyForm } from '@/store/userSurvey';
 
 const makeLabel = (placeholder: QuestionIdentifier) => {
   switch (placeholder) {
@@ -19,16 +20,75 @@ const makeLabel = (placeholder: QuestionIdentifier) => {
   }
 };
 
-function AdditionalInput({ title, placeholder }: UserSurveyFormAdditionalInputProps) {
+function AdditionalInput({
+  title,
+  placeholder,
+  questionNumber,
+  handleUpdateFormValue,
+}: UserSurveyFormAdditionalInputProps) {
+  const [length, setLength] = React.useState(0);
+  const [inputValue, setInputValue] = useState('');
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handlerValue = (currentData: UserSurveyForm) => {
+    handleUpdateFormValue((prev) => {
+      const isExist = prev.find((data) => data.questionNumber === questionNumber);
+      if (isExist) {
+        return prev.map((data) => (data.questionNumber === questionNumber ? currentData : data));
+      } else {
+        return [...prev, currentData];
+      }
+    });
+  };
+
+  const maxLength = 150;
+
+  const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setLength(e.target.value.length);
+    setInputValue(e.target.value);
+
+    const currentData: UserSurveyForm = {
+      questionNumber,
+      answer: e.target.value,
+      questionIdentifier: placeholder,
+    };
+
+    handlerValue(currentData);
+  };
+
+  const handleUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+
+    const currentData: UserSurveyForm = {
+      questionNumber,
+      answer: e.target.value,
+      questionIdentifier: placeholder,
+    };
+
+    handlerValue(currentData);
+  };
+
+  const handleCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsChecked(e.target.checked);
+
+    const currentData: UserSurveyForm = {
+      questionNumber,
+      answer: e.target.checked ? 'none' : inputValue,
+      questionIdentifier: placeholder,
+    };
+
+    handlerValue(currentData);
+  };
+
   switch (placeholder) {
     case 'RESERVATIONREQUEST':
       return (
         <UserSurveyFormTextBox>
           <span dangerouslySetInnerHTML={replaceStringsWithTags(title)}></span>
           <div className="input-container">
-            <textarea placeholder={convertQuestionIdentifierToPlaceholder(placeholder)} />
+            <textarea placeholder={convertQuestionIdentifierToPlaceholder(placeholder)} onChange={handleInput} />
           </div>
-          <div>10/150</div>
+          <div>{length + '/' + maxLength}</div>
         </UserSurveyFormTextBox>
       );
     default:
@@ -37,10 +97,16 @@ function AdditionalInput({ title, placeholder }: UserSurveyFormAdditionalInputPr
           {title && <span dangerouslySetInnerHTML={replaceStringsWithTags(title)}></span>}
           <div className="input">
             {placeholder && <p>{convertQuestionIdentifierToKorean(placeholder)}</p>}
-            <input type="text" placeholder={convertQuestionIdentifierToPlaceholder(placeholder)} />
+            <input
+              type="text"
+              placeholder={convertQuestionIdentifierToPlaceholder(placeholder)}
+              onChange={handleUpdate}
+              disabled={isChecked}
+              value={isChecked ? ' ' : inputValue}
+            />
           </div>
           <div className="checkbox">
-            <input type="checkbox" id={placeholder} />
+            <input type="checkbox" id={placeholder} onChange={handleCheckbox} />
             <label htmlFor={placeholder}>{placeholder && <span>{makeLabel(placeholder)}</span>}</label>
           </div>
         </UserSurveyFormAdditionalInputWrapper>

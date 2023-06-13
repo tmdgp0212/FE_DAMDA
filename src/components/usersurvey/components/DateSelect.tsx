@@ -7,6 +7,7 @@ import 'react-day-picker/dist/style.css';
 import { AiOutlineLeft, AiOutlineRight, AiOutlineUp } from 'react-icons/ai';
 import { format } from 'date-fns';
 import { motion, Variants } from 'framer-motion';
+import { UserSurveyForm } from '@/store/userSurvey';
 
 const dayOfWeekMatcher: DayOfWeek = {
   dayOfWeek: [6, 0],
@@ -23,32 +24,32 @@ const timeCategory = [
   {
     id: 1,
     time: '오전 9시',
-    timeValue: '09:00',
+    timeValue: '09:00:00',
   },
   {
     id: 2,
     time: '오전 10시',
-    timeValue: '10:00',
+    timeValue: '10:00:00',
   },
   {
     id: 3,
     time: '오전 11시',
-    timeValue: '11:00',
+    timeValue: '11:00:00',
   },
   {
     id: 4,
     time: '오후 1시',
-    timeValue: '13:00',
+    timeValue: '13:00:00',
   },
   {
     id: 5,
     time: '오후 2시',
-    timeValue: '14:00',
+    timeValue: '14:00:00',
   },
   {
     id: 6,
     time: '오후 3시',
-    timeValue: '15:00',
+    timeValue: '15:00:00',
   },
 ];
 function CustomCaption(props: CaptionProps) {
@@ -66,7 +67,7 @@ function CustomCaption(props: CaptionProps) {
   );
 }
 
-function DateSelect({ title, placeholder }: UserSurveyDateProps) {
+function DateSelect({ title, placeholder, questionNumber, handleUpdateFormValue }: UserSurveyDateProps) {
   const [isDayOpen, setIsDayOpen] = useState(false);
   const [selectedDay, setSelectedDay] = useState<Date | undefined>(undefined);
   const [selectedTime, setSelectedTime] = useState('');
@@ -77,7 +78,23 @@ function DateSelect({ title, placeholder }: UserSurveyDateProps) {
   };
 
   const handleTimeClick = (time: string) => {
+    if (!selectedDay) return;
+
     setSelectedTime(time);
+    const currentData: UserSurveyForm = {
+      questionNumber,
+      answer: `${format(selectedDay as Date, 'yyyy-MM-dd')} ${time}`,
+      questionIdentifier: placeholder,
+    };
+
+    handleUpdateFormValue((prev) => {
+      const isExist = prev.find((data) => data.questionNumber === questionNumber);
+      if (isExist) {
+        return prev.map((data) => (data.questionNumber === questionNumber ? currentData : data));
+      } else {
+        return [...prev, currentData];
+      }
+    });
   };
 
   return (
