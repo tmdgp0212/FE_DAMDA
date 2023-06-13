@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import useManagerFormStore from '@/store/managerForm';
 
 import IntroductionForm from './introductionForm';
 import DaySelectionForm from './DaySelectionForm';
@@ -12,7 +13,10 @@ import ServiceGuide from './ServiceGuide';
 import { FiChevronLeft } from 'react-icons/fi';
 import * as S from './style';
 
-function ManagerForm({ state, dispatch, setIsSubmitClicked }: any) {
+function ManagerForm({ setIsSubmitClicked }: any) {
+  const formData = useManagerFormStore((state) => state);
+  const activity_day = useManagerFormStore((state) => state.activity_day);
+
   // 유효성 검사 통과 여부
   const [isNameValid, setIsNameValid] = useState(false);
   const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(false);
@@ -26,21 +30,13 @@ function ManagerForm({ state, dispatch, setIsSubmitClicked }: any) {
     const managerFormValid =
       isNameValid &&
       isPhoneNumberValid &&
-      state.activity_day.length > 0 &&
+      activity_day.some((day: boolean) => day === true) &&
       isLocationValid &&
       isCertificateValid &&
       isRadioValid &&
       isGuideAgree;
     setIsManagerFormValid(managerFormValid);
-  }, [
-    isNameValid,
-    isPhoneNumberValid,
-    state.activity_day,
-    isLocationValid,
-    isCertificateValid,
-    isRadioValid,
-    isGuideAgree,
-  ]);
+  }, [isNameValid, isPhoneNumberValid, activity_day, isLocationValid, isCertificateValid, isRadioValid, isGuideAgree]);
 
   const router = useRouter();
 
@@ -48,7 +44,7 @@ function ManagerForm({ state, dispatch, setIsSubmitClicked }: any) {
     e.preventDefault();
 
     if (isManagerFormValid) {
-      console.log(state);
+      console.log(formData);
       setIsSubmitClicked(true);
     }
   };
@@ -70,16 +66,11 @@ function ManagerForm({ state, dispatch, setIsSubmitClicked }: any) {
         </S.Headline>
 
         <S.StyleWrapper>
-          <IntroductionForm
-            state={state}
-            dispatch={dispatch}
-            setIsNameValid={setIsNameValid}
-            setIsPhoneNumberValid={setIsPhoneNumberValid}
-          />
+          <IntroductionForm setIsNameValid={setIsNameValid} setIsPhoneNumberValid={setIsPhoneNumberValid} />
         </S.StyleWrapper>
 
-        <DaySelectionForm state={state} dispatch={dispatch} />
-        <LocationSelectionForm state={state} dispatch={dispatch} setIsLocationValid={setIsLocationValid} />
+        <DaySelectionForm />
+        <LocationSelectionForm setIsLocationValid={setIsLocationValid} />
       </S.StyleWrapper>
 
       <S.StyleWrapper large>
@@ -89,9 +80,9 @@ function ManagerForm({ state, dispatch, setIsSubmitClicked }: any) {
           알려주세요.
         </S.Headline>
 
-        <CertificateForm state={state} dispatch={dispatch} setIsCertificateValid={setIsCertificateValid} />
-        <FieldExperienceForm state={state} dispatch={dispatch} />
-        <RadioButtonForm state={state} dispatch={dispatch} setIsRadioValid={setIsRadioValid} />
+        <CertificateForm setIsCertificateValid={setIsCertificateValid} />
+        <FieldExperienceForm />
+        <RadioButtonForm setIsRadioValid={setIsRadioValid} />
       </S.StyleWrapper>
 
       <ServiceGuide setIsGuideAgree={setIsGuideAgree} />

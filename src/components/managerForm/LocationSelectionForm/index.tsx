@@ -1,13 +1,16 @@
 import React, { ChangeEvent, useState } from 'react';
 import Image from 'next/image';
 import { citiesData } from '@/constants/locationData';
+import useManagerFormStore from '@/store/managerForm';
 
 import { BsChevronUp, BsChevronDown } from 'react-icons/bs';
 import * as G from '../style';
 import * as S from './style';
 
-function LocationSelectionForm({ state, dispatch, setIsLocationValid }: any) {
-  const { activity_region } = state;
+function LocationSelectionForm({ setIsLocationValid }: any) {
+  const { activity_region, setActivityCity, setActivityDistrict, removeActivityDistrict } = useManagerFormStore(
+    (state) => state,
+  );
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState('');
 
@@ -26,10 +29,10 @@ function LocationSelectionForm({ state, dispatch, setIsLocationValid }: any) {
     const isChecked = e.target.checked;
 
     if (isChecked) {
-      dispatch({ type: 'PUSH_CITY', payload: { city: selectedRegion } });
-      dispatch({ type: 'PUSH_DISTRICT', payload: { district } });
+      setActivityCity(selectedRegion);
+      setActivityDistrict(district);
     } else {
-      dispatch({ type: 'REMOVE', payload: { district } });
+      removeActivityDistrict(district);
     }
   };
 
@@ -48,7 +51,7 @@ function LocationSelectionForm({ state, dispatch, setIsLocationValid }: any) {
   });
 
   const filterTagHandler = (districtItem: string) => {
-    dispatch({ type: 'REMOVE', payload: { district: districtItem } });
+    removeActivityDistrict(districtItem);
   };
 
   return (
@@ -118,7 +121,7 @@ function LocationSelectionForm({ state, dispatch, setIsLocationValid }: any) {
                       name="manager_available_district"
                       id={district}
                       value={district}
-                      checked={state.activity_region.activity_district.includes(district)}
+                      checked={activity_region.activity_district.includes(district)}
                       onChange={cityChangeHandler}
                     />
                     <label htmlFor={district}>{district}</label>

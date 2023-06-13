@@ -1,16 +1,18 @@
 import React, { ChangeEvent, useState } from 'react';
 import Image from 'next/image';
+import useManagerFormStore from '@/store/managerForm';
+
 import * as S from './style';
 
 interface IntroductionFormProps {
-  state: any;
-  dispatch: any;
   setIsNameValid: (isNameValid: boolean) => void;
   setIsPhoneNumberValid: (isPhoneNumberValid: boolean) => void;
 }
 
-function IntroductionForm({ state, dispatch, setIsNameValid, setIsPhoneNumberValid }: IntroductionFormProps) {
-  const { manager_name, manager_phone } = state;
+function IntroductionForm({ setIsNameValid, setIsPhoneNumberValid }: IntroductionFormProps) {
+  const { manager_name, manager_phone, setManagerName, setPhoneNumber, clearManagerName, clearPhoneNumber } =
+    useManagerFormStore((state) => state);
+
   const [nameErrorMessage, setErrorMessage] = useState('');
   const [phoneErrorMessage, setPhoneErrorMessage] = useState('');
 
@@ -31,7 +33,7 @@ function IntroductionForm({ state, dispatch, setIsNameValid, setIsPhoneNumberVal
     } else if (!newName.length) {
       setIsNameValid(false);
     } else {
-      dispatch({ type: 'NAME', payload: { name: newName } });
+      setManagerName(newName);
       setErrorMessage('');
       setIsNameValid(true);
     }
@@ -50,26 +52,26 @@ function IntroductionForm({ state, dispatch, setIsNameValid, setIsPhoneNumberVal
 
   const phoneNumberChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const newPhoneNumber = e.target.value.replace(/[^0-9]/g, '');
-    dispatch({ type: 'PHONE_NUMBER', payload: { phoneNumber: newPhoneNumber } });
+    setPhoneNumber(newPhoneNumber);
 
     if (newPhoneNumber.length === 10 || newPhoneNumber.length === 11) {
       const formattedPhoneNumber = formatPhoneNumber(newPhoneNumber);
-      dispatch({ type: 'PHONE_NUMBER', payload: { phoneNumber: formattedPhoneNumber } });
+      setPhoneNumber(formattedPhoneNumber);
       setIsPhoneNumberValid(true);
       setPhoneErrorMessage('');
     } else {
-      dispatch({ type: 'PHONE_NUMBER', payload: { phoneNumber: newPhoneNumber } });
+      setPhoneNumber(newPhoneNumber);
       setIsPhoneNumberValid(false);
       setPhoneErrorMessage('유효한 번호 양식이 아닙니다.');
     }
   };
 
   const nameClearHandler = () => {
-    dispatch({ type: 'NAME_CLEAR' });
+    clearManagerName();
   };
 
   const phoneNumberClearHandler = () => {
-    dispatch({ type: 'PHONE_NUMBER_CLEAR' });
+    clearPhoneNumber();
   };
 
   return (

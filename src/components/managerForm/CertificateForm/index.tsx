@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 import Image from 'next/image';
+import useManagerFormStore from '@/store/managerForm';
 
 import { BsChevronUp, BsChevronDown } from 'react-icons/bs';
 import * as I from '../introductionForm/style';
@@ -7,15 +8,18 @@ import * as G from '../style';
 import * as S from './style';
 
 function CertificateForm({
-  state,
-  dispatch,
   setIsCertificateValid,
 }: {
-  state: any;
-  dispatch: any;
   setIsCertificateValid: (isCertificateFormValid: boolean) => void;
 }) {
-  const { manager_license, manager_license_etc } = state;
+  const {
+    manager_license,
+    manager_license_etc,
+    setManagerLicense,
+    setManagerLicenseEtc,
+    clearManagerLicenseEtc,
+    nullManagerLicenseEtc,
+  } = useManagerFormStore((state) => state);
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState('자격증 선택하기');
 
@@ -28,16 +32,16 @@ function CertificateForm({
   }
 
   const selectOptionHandler = (option: string) => {
-    dispatch({ type: 'CERTIFICATE', payload: { certificate: option } });
+    setManagerLicense(option);
     setSelectedOption(option);
   };
 
   const inputChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch({ type: 'CERTIFICATE_ETC', payload: { certificate_etc: e.target.value } });
+    setManagerLicenseEtc(e.target.value);
   };
 
   const etcClearHandler = () => {
-    dispatch({ type: 'CERTIFICATE_ETC_CLEAR' });
+    clearManagerLicenseEtc();
   };
 
   return (
@@ -50,12 +54,8 @@ function CertificateForm({
       <span>(1개만 선택가능)</span>
 
       <div style={{ position: 'relative' }}>
-        <S.SelectButton
-          type="button"
-          onClick={() => setIsOptionsOpen(!isOptionsOpen)}
-          isEtcClicked={state.manager_license}
-        >
-          {state.manager_license ? state.manager_license : selectedOption}
+        <S.SelectButton type="button" onClick={() => setIsOptionsOpen(!isOptionsOpen)} isEtcClicked={!!manager_license}>
+          {manager_license ? manager_license : selectedOption}
           {isOptionsOpen ? <BsChevronUp /> : <BsChevronDown />}
         </S.SelectButton>
 
@@ -67,6 +67,7 @@ function CertificateForm({
                 onClick={(e) => {
                   setIsOptionsOpen(false);
                   selectOptionHandler('1급 (오프라인 취득)');
+                  nullManagerLicenseEtc();
                 }}
               >
                 1급 (오프라인 취득)
@@ -79,6 +80,7 @@ function CertificateForm({
                 onClick={() => {
                   setIsOptionsOpen(false);
                   selectOptionHandler('2급 (오프라인 취득)');
+                  nullManagerLicenseEtc();
                 }}
               >
                 2급 (오프라인 취득)
@@ -91,6 +93,7 @@ function CertificateForm({
                 onClick={() => {
                   setIsOptionsOpen(false);
                   selectOptionHandler('1급 (온라인 취득)');
+                  nullManagerLicenseEtc();
                 }}
               >
                 1급 (온라인 취득)
@@ -103,6 +106,7 @@ function CertificateForm({
                 onClick={() => {
                   setIsOptionsOpen(false);
                   selectOptionHandler('2급 (온라인 취득)');
+                  nullManagerLicenseEtc();
                 }}
               >
                 2급 (온라인 취득)
@@ -115,6 +119,7 @@ function CertificateForm({
                 onClick={() => {
                   setIsOptionsOpen(false);
                   selectOptionHandler('없음');
+                  nullManagerLicenseEtc();
                 }}
               >
                 없음
@@ -136,7 +141,7 @@ function CertificateForm({
         )}
       </div>
 
-      {state.manager_license && state.manager_license === '기타' && (
+      {manager_license && manager_license === '기타' && (
         <I.FormInput>
           <span>위 리스트에 없는 자격증을 입력해주세요.</span>
 

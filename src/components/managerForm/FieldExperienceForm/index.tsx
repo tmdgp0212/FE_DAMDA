@@ -2,14 +2,16 @@ import React, { ChangeEvent, useState } from 'react';
 
 import * as G from '../style';
 import * as S from './style';
+import useManagerFormStore from '@/store/managerForm';
 
-function FieldExperienceForm({ state, dispatch }: any) {
+function FieldExperienceForm() {
   const [count, setCount] = useState(0);
+  const { field_experience, setFieldExperience } = useManagerFormStore((state) => state);
 
   const textChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const characterCountWithoutSpaces = e.target.value.replace(/\s/g, '').length;
     setCount(characterCountWithoutSpaces);
-    dispatch({ type: 'FIELD_EXPERIENCE', payload: { field_experience: e.target.value } });
+    setFieldExperience(e.target.value);
   };
 
   return (
@@ -25,7 +27,7 @@ function FieldExperienceForm({ state, dispatch }: any) {
       <textarea
         name="field_experience"
         id=""
-        value={state.field_experience}
+        value={field_experience}
         placeholder="현장 파견 20회 이상, 옷장 정리 경험 10회 이상"
         style={{ resize: 'none' }}
         onChange={textChangeHandler}
