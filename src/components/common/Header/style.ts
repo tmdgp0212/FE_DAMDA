@@ -35,9 +35,12 @@ export const ProfileImage = styled.div`
 export const Logo = styled.h1`
   a {
     display: block;
-    width: 53px;
-    height: 25px;
+    width: 60px;
+    height: 40px;
     background-image: url('/icons/Yolda_logo.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
     cursor: pointer;
   }
 `;
