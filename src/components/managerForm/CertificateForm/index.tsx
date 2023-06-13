@@ -7,7 +7,12 @@ import * as I from '../introductionForm/style';
 import * as G from '../style';
 import * as S from './style';
 
-function CertificateForm() {
+interface CertificateFormProps {
+  isCertificateOptionsOpen: boolean;
+  setIsCertificateOptionsOpen: (isOpen: boolean) => void;
+}
+
+function CertificateForm({ isCertificateOptionsOpen, setIsCertificateOptionsOpen }: CertificateFormProps) {
   const {
     manager_license,
     manager_license_etc,
@@ -16,7 +21,6 @@ function CertificateForm() {
     clearManagerLicenseEtc,
     nullManagerLicenseEtc,
   } = useManagerFormStore((state) => state);
-  const [isOptionsOpen, setIsOptionsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState('자격증 선택하기');
 
   const selectOptionHandler = (option: string) => {
@@ -42,18 +46,25 @@ function CertificateForm() {
       <span>(1개만 선택가능)</span>
 
       <div style={{ position: 'relative' }}>
-        <S.SelectButton type="button" onClick={() => setIsOptionsOpen(!isOptionsOpen)} isEtcClicked={!!manager_license}>
+        <S.SelectButton
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsCertificateOptionsOpen(!isCertificateOptionsOpen);
+          }}
+          isEtcClicked={!!manager_license}
+        >
           {manager_license ? manager_license : selectedOption}
-          {isOptionsOpen ? <BsChevronUp /> : <BsChevronDown />}
+          {isCertificateOptionsOpen ? <BsChevronUp /> : <BsChevronDown />}
         </S.SelectButton>
 
-        {isOptionsOpen && (
+        {isCertificateOptionsOpen && (
           <ul>
             <li>
               <S.OptionButton
                 type="button"
                 onClick={(e) => {
-                  setIsOptionsOpen(false);
+                  setIsCertificateOptionsOpen(false);
                   selectOptionHandler('1급 (오프라인 취득)');
                   nullManagerLicenseEtc();
                 }}
@@ -66,7 +77,7 @@ function CertificateForm() {
               <S.OptionButton
                 type="button"
                 onClick={() => {
-                  setIsOptionsOpen(false);
+                  setIsCertificateOptionsOpen(false);
                   selectOptionHandler('2급 (오프라인 취득)');
                   nullManagerLicenseEtc();
                 }}
@@ -79,7 +90,7 @@ function CertificateForm() {
               <S.OptionButton
                 type="button"
                 onClick={() => {
-                  setIsOptionsOpen(false);
+                  setIsCertificateOptionsOpen(false);
                   selectOptionHandler('1급 (온라인 취득)');
                   nullManagerLicenseEtc();
                 }}
@@ -92,7 +103,7 @@ function CertificateForm() {
               <S.OptionButton
                 type="button"
                 onClick={() => {
-                  setIsOptionsOpen(false);
+                  setIsCertificateOptionsOpen(false);
                   selectOptionHandler('2급 (온라인 취득)');
                   nullManagerLicenseEtc();
                 }}
@@ -105,7 +116,7 @@ function CertificateForm() {
               <S.OptionButton
                 type="button"
                 onClick={() => {
-                  setIsOptionsOpen(false);
+                  setIsCertificateOptionsOpen(false);
                   selectOptionHandler('없음');
                   nullManagerLicenseEtc();
                 }}
@@ -118,7 +129,7 @@ function CertificateForm() {
               <S.OptionButton
                 type="button"
                 onClick={(e) => {
-                  setIsOptionsOpen(false);
+                  setIsCertificateOptionsOpen(false);
                   selectOptionHandler('기타');
                 }}
               >

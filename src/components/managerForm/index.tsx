@@ -21,9 +21,10 @@ function ManagerForm({ setIsSubmitClicked }: ManagerFormProps) {
   const formData = useManagerFormStore((state) => state);
   const activity_day = useManagerFormStore((state) => state.activity_day);
   const [isVisible, setIsVisible] = useState(false);
+  const [isCertificateOptionsOpen, setIsCertificateOptionsOpen] = useState(false);
+  const [isLocationOptionsOpen, setIsLocationOptionsOpen] = useState(false);
 
   const [mounted, setMounted] = useState(false);
-
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -36,7 +37,6 @@ function ManagerForm({ setIsSubmitClicked }: ManagerFormProps) {
   const [isRadioValid, setIsRadioValid] = useState(false);
   const [isGuideAgree, setIsGuideAgree] = useState(false);
   const [isManagerFormValid, setIsManagerFormValid] = useState(false);
-
   useEffect(() => {
     const managerFormValid =
       isNameValid &&
@@ -48,7 +48,6 @@ function ManagerForm({ setIsSubmitClicked }: ManagerFormProps) {
       isGuideAgree;
     setIsManagerFormValid(managerFormValid);
   }, [isNameValid, isPhoneNumberValid, activity_day, isLocationValid, isCertificateValid, isRadioValid, isGuideAgree]);
-
   useEffect(() => {
     if (formData.manager_license && formData.manager_license !== '기타') {
       setIsCertificateValid(true);
@@ -58,7 +57,6 @@ function ManagerForm({ setIsSubmitClicked }: ManagerFormProps) {
       setIsCertificateValid(false);
     }
   }, [formData.manager_license, formData.manager_license_etc]);
-
   useEffect(() => {
     if (formData.activity_region.activity_district.length !== 0) {
       setIsLocationValid(true);
@@ -66,7 +64,6 @@ function ManagerForm({ setIsSubmitClicked }: ManagerFormProps) {
       setIsLocationValid(false);
     }
   }, [formData.manager_license, formData.manager_license_etc, formData.activity_region.activity_district.length]);
-
   useEffect(() => {
     if (!formData.main_job && formData.manager_drive) {
       setIsRadioValid(true);
@@ -90,10 +87,15 @@ function ManagerForm({ setIsSubmitClicked }: ManagerFormProps) {
     }
   };
 
+  const outsideClickHandler = () => {
+    setIsCertificateOptionsOpen(false);
+    setIsLocationOptionsOpen(false);
+  };
+
   return (
     <>
       {mounted && (
-        <S.ManagerFormContainer onSubmit={submitHandler}>
+        <S.ManagerFormContainer onSubmit={submitHandler} onClick={outsideClickHandler}>
           <S.ManagerFormHeader>
             <button type="button" onClick={() => setIsVisible(true)}>
               <FiChevronLeft />
@@ -114,7 +116,10 @@ function ManagerForm({ setIsSubmitClicked }: ManagerFormProps) {
             </S.StyleWrapper>
 
             <DaySelectionForm />
-            <LocationSelectionForm />
+            <LocationSelectionForm
+              isLocationOptionsOpen={isLocationOptionsOpen}
+              setIsLocationOptionsOpen={setIsLocationOptionsOpen}
+            />
           </S.StyleWrapper>
 
           <S.StyleWrapper large>
@@ -124,7 +129,10 @@ function ManagerForm({ setIsSubmitClicked }: ManagerFormProps) {
               알려주세요.
             </S.Headline>
 
-            <CertificateForm />
+            <CertificateForm
+              isCertificateOptionsOpen={isCertificateOptionsOpen}
+              setIsCertificateOptionsOpen={setIsCertificateOptionsOpen}
+            />
             <FieldExperienceForm />
             <RadioButtonForm />
           </S.StyleWrapper>
