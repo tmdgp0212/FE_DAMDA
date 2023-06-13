@@ -4,8 +4,8 @@ import Input from '@/components/usersurvey/components/Input';
 import AddressSelect from '@/components/usersurvey/components/AddressSelect';
 import Select from '@/components/usersurvey/components/Select';
 import Radio from '@/components/usersurvey/components/Radio';
-import { UserSurveyFormDataType } from '@/types/constants/userSurvey';
 import { FormElementsProps } from '@/types/components/form';
+import DateSelect from '@/components/usersurvey/components/DateSelect';
 
 function FormElements({ data, handleUpdateFormValue }: FormElementsProps) {
   switch (data.questionType) {
@@ -22,7 +22,12 @@ function FormElements({ data, handleUpdateFormValue }: FormElementsProps) {
       );
     case 'SELECT':
       return data.questionIdentify === 'ADDRESS' ? (
-        <AddressSelect title={data.questionTitle} />
+        <AddressSelect
+          title={data.questionTitle}
+          handleUpdateFormValue={handleUpdateFormValue}
+          questionNumber={data.questionNumber}
+          placeholder={data.questionIdentify}
+        />
       ) : (
         <Select
           category={data.categoryList!}
@@ -42,6 +47,8 @@ function FormElements({ data, handleUpdateFormValue }: FormElementsProps) {
           handleUpdateFormValue={handleUpdateFormValue}
         />
       );
+    case 'DATE':
+      return <DateSelect title={data.questionTitle} placeholder={data.questionIdentify} />;
     default:
       return <div></div>;
   }

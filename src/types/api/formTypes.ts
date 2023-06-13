@@ -5,6 +5,7 @@
  * 각 식별자는 해당하는 질문 항목을 나타냅니다.
  *
  * @remarks
+ * - TITLE: 대제목
  * - AFEWSERVINGS: 몇인분
  * - SERVICEDURATION: 서비스 사용시간
  * - ADDRESS: 서비스 주소
@@ -13,12 +14,17 @@
  * - APPLICANTNAME: 신청인 이름
  * - APPLICANTCONACTINFO: 신청인 전화번호
  * - LEARNEDROUTE: 알게된 경로
- * - REQUIREDGUIDELINES: 필수 안내사항
+ * - RESERVATIONENTER: 들어가기 위해 필요한 자료
+ * - RESERVATIONNOTE: 알아야 할 사항
+ * - RESERVATIONREQUEST: 요청사항
+ * - SALEAGENT: 판매대행
+ * - RECOMMENDEDCODE: 추천인 코드
  * - OPTIONAL: 추가적인 자료
- * - TITLE: 제목
- * - CODE: 프로모션 코드
+ *
+ * @public
  */
 export type QuestionIdentifier =
+  | 'TITLE'
   | 'AFEWSERVINGS'
   | 'SERVICEDURATION'
   | 'ADDRESS'
@@ -27,10 +33,13 @@ export type QuestionIdentifier =
   | 'APPLICANTNAME'
   | 'APPLICANTCONACTINFO'
   | 'LEARNEDROUTE'
+  | 'RESERVATIONENTER'
+  | 'RESERVATIONNOTE'
+  | 'RESERVATIONREQUEST'
+  | 'SALEAGENT'
+  | 'RECOMMENDEDCODE'
   | 'REQUIREDGUIDELINES'
-  | 'OPTIONAL'
-  | 'TITLE'
-  | 'CODE';
+  | 'OPTIONAL';
 
 /**
  * 질문의 형식 식별자

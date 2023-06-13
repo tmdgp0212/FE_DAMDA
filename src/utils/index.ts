@@ -43,7 +43,7 @@ export const convertQuestionIdentifierToKorean = (questionIdentifier: QuestionId
       return '추가적인 자료';
     case 'TITLE':
       return '제목';
-    case 'CODE':
+    case 'RECOMMENDEDCODE':
       return '코드';
   }
 };
@@ -72,7 +72,7 @@ export const convertQuestionIdentifierToPlaceholder = (questionIdentifier: Quest
       return '추가적인 자료';
     case 'TITLE':
       return '제목';
-    case 'CODE':
+    case 'RECOMMENDEDCODE':
       return '5자리 알파벳 코드 입력';
   }
 };

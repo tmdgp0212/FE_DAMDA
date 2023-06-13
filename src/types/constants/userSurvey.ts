@@ -17,3 +17,9 @@ export type Category = {
   category: string;
   price: number;
 };
+
+export interface AddressList {
+  [key: string]: AdditionalInfo[];
+}
+
+export type AdditionalInfo = string;
