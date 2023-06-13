@@ -1,9 +1,11 @@
 import React from 'react';
+import useManagerFormStore from '@/store/managerForm';
 
 import * as U from '../UnCompleteModal/style';
 import * as S from './style';
 
-function CheckModal({ state, setIsSubmitClicked }: any) {
+function CheckModal({ setIsSubmitClicked }: any) {
+  // state
   const {
     manager_name,
     manager_phone,
@@ -15,8 +17,9 @@ function CheckModal({ state, setIsSubmitClicked }: any) {
     main_job,
     main_job_etc,
     manager_drive,
-  } = state;
+  } = useManagerFormStore((state) => state);
 
+  // 활동 가능 요일
   const resultDays = activity_day
     .map((value: boolean, index: number) => {
       if (index === 0 && value) return '월';
@@ -27,8 +30,9 @@ function CheckModal({ state, setIsSubmitClicked }: any) {
       else if (index === 5 && value) return '토';
       else if (index === 6 && value) return '일';
     })
-    .filter((day: string) => day !== undefined);
+    .filter((day: string | undefined) => day !== undefined);
 
+  // 활동 가능 지역
   const combinedArray = activity_region.activity_city.map((cityItem: string, index: number) => {
     const districtItem = activity_region.activity_district[index];
     return `${cityItem.slice(0, 2)} ${districtItem}`;
@@ -50,8 +54,8 @@ function CheckModal({ state, setIsSubmitClicked }: any) {
   const submitHandler = () => {};
 
   return (
-    <S.CheckModal className="check-modal">
-      <S.Header className="header">
+    <S.CheckModal>
+      <S.Header>
         <h1>열다 옷장정리 매니저 신청</h1>
 
         <p>
@@ -61,8 +65,8 @@ function CheckModal({ state, setIsSubmitClicked }: any) {
         </p>
       </S.Header>
 
-      <div className="content">
-        <S.InputContents className="">
+      <div>
+        <S.InputContents>
           <S.Content>
             <h3>매니저 정보</h3>
             <dl>
@@ -79,7 +83,7 @@ function CheckModal({ state, setIsSubmitClicked }: any) {
               <div>
                 <dt>활동 가능 요일</dt>
                 <dd>
-                  {resultDays.map((day: string, index: number) => {
+                  {resultDays.map((day: string | undefined, index: number) => {
                     if (index === resultDays.length - 1) return <span key={day}>{day}</span>;
                     else if (day) return <span key={day}>{day}, </span>;
                   })}
@@ -121,7 +125,7 @@ function CheckModal({ state, setIsSubmitClicked }: any) {
           </S.Content>
         </S.InputContents>
 
-        <U.ButtonGrop className="button-group">
+        <U.ButtonGrop>
           <button type="button" onClick={() => setIsSubmitClicked(false)}>
             수정할래요.
           </button>
