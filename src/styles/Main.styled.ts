@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
+import theme from '@/styles/theme';
 
 export const MainContainer = styled.div`
   display: flex;
@@ -12,7 +13,27 @@ export const MainContainer = styled.div`
 export const MainFABContainer = styled.div`
   position: fixed;
   bottom: 258px;
-  right: 0;
+  right: calc(50% - ${theme.size.max_width} / 2);
+  display: flex;
+  flex-direction: column;
+  z-index: 3;
+`;
+
+export const MainFABButton = styled.button<{ color: string }>`
+  cursor: pointer;
+  width: 5.8rem;
+  height: 4.5rem;
+  border-width: 1px 0 1px 1px;
+  border-style: solid;
+  border-color: #212121;
+  border-radius: 5px 0 0 5px;
+  padding: 0 0.8rem;
+  background-color: ${({ color }) => color};
+
+  svg {
+    width: 3rem;
+    height: 3rem;
+  }
 `;
 
 export const MainTitleContainer = styled.div`
@@ -20,8 +41,7 @@ export const MainTitleContainer = styled.div`
   background-image: url('/img/MainClothBg.png');
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: 2rem;
-  height: 100vh;
+  height: 80vh;
 
   display: flex;
   flex-direction: column;
@@ -34,7 +54,6 @@ export const MainTitleContainer = styled.div`
     width: 60%;
     ${({ theme }) => theme.font.bold_30_135};
     color: ${({ theme }) => theme.colors.yolda_black_1};
-    background: linear-gradient(90deg, #ffffff 23.04%, rgba(255, 255, 255, 0) 100%);
   }
 
   p {
@@ -43,7 +62,6 @@ export const MainTitleContainer = styled.div`
     font-weight: 500;
     line-height: 28px;
     color: ${({ theme }) => theme.colors.yolda_black_1};
-    background: linear-gradient(90deg, #ffffff 23.04%, rgba(255, 255, 255, 0) 100%);
   }
 `;
 
@@ -58,7 +76,6 @@ export const MainContentContainer = styled.div`
 
 export const MainButtonGroupContainer = styled.div<{ groupIndex: number }>`
   display: ${({ groupIndex }) => (groupIndex === 2 ? 'flex' : 'grid')};
-  grid-template-rows: ${({ groupIndex }) => (groupIndex === 0 ? '1fr 2fr 1fr 1fr' : 'repeat(3, 1fr)')};
   flex-direction: column;
 `;
 
@@ -100,11 +117,12 @@ export const MainRequestButton = styled(motion.button)<{ width?: number }>`
   padding: 1.6rem;
   border-radius: 0.5rem;
   color: #fff;
-  font-size: 2rem;
+  font-size: 1.9rem;
   font-weight: 700;
   line-height: 19px;
   height: 5.5rem;
   text-align: start;
+  cursor: pointer;
 
   width: ${({ width }) => (width ? `${width}%` : '100%')};
 `;
@@ -115,11 +133,11 @@ export const MainContentButton = styled.button<{ index?: number }>`
   padding: 1rem;
   border-radius: 0.5rem;
   color: ${({ theme }) => theme.colors.yolda_black_1};
-  font-size: 1.8rem;
   font-weight: 500;
   line-height: 19px;
   height: 6rem;
-
+  text-align: left;
+  font-size: 1.6rem;
   width: ${({ index }) => (index === 3 ? '80%' : '100%')};
   justify-self: ${({ index }) => (index === 3 ? 'end' : 'start')};
 `;
@@ -135,11 +153,11 @@ export const MainPersonButton = styled(MainContentButton)<{ itemIndex: number }>
   width: ${({ itemIndex }) => {
     switch (itemIndex) {
       case 0:
-        return '50%';
+        return '45%';
       case 1:
-        return '70%';
+        return '60%';
       case 2:
-        return '100%';
+        return '90%';
     }
   }};
 
@@ -198,7 +216,7 @@ export const MainPriceButton = styled(MainContentButton)<{ index: number }>`
 
   .how {
     position: absolute;
-    right: -50%;
+    right: -100%;
   }
 `;
 
@@ -299,6 +317,7 @@ export const MainDescContainer = styled.div`
 
   h1 {
     ${({ theme }) => theme.font.bold_24};
+    line-height: 3.2rem;
   }
 `;
 

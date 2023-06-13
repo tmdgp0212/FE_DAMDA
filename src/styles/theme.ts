@@ -5,6 +5,7 @@ const colors = {
   main_blue: '#0061FF',
   sub_blue_1: '#00BDFF',
   sub_blue_2: '#80CFFF',
+  sub_blue_3: '#37B3F9',
   red_1: '#DF001F',
   green_1: '#04D741',
   yellow_1: '#F9E500',
@@ -67,12 +68,12 @@ const font = {
   },
   regular_14: {
     'font-size': '1.4rem',
-    'font-weight': '400',
+    'font-weight': '500',
     'line-height': '1.6',
   },
   regular_12: {
     'font-size': '1.4rem',
-    'font-weight': '400',
+    'font-weight': '500',
     'line-height': '1.6',
   },
   light_14: {
@@ -82,11 +83,19 @@ const font = {
   },
 };
 
+const border = {
+  inputBorder: {
+    border: '1px solid #212121',
+    'border-radius': '5px',
+  },
+};
+
 const theme = {
   colors,
   padding,
   size,
   font,
+  border,
 };
 
 export default theme;

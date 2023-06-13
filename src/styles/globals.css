@@ -14,11 +14,11 @@ body {
   overflow: hidden;
   font-family: 'pretendard';
   font-size: 1.4rem;
-  background-color: #aaa;
+  background-color: #f2f2f2;
 }
 
 .ir-text {
-  text-indent: 100%;
+  text-indent: 105%;
   white-space: nowrap;
   overflow: hidden;
 }
