@@ -37,8 +37,6 @@ export const convertQuestionIdentifierToKorean = (questionIdentifier: QuestionId
       return '연락처';
     case 'LEARNEDROUTE':
       return '저는 열다를...';
-    case 'REQUIREDGUIDELINES':
-      return '필수 안내사항';
     case 'RESERVATIONENTER':
       return '들어갈 수 있는 곳';
     case 'RESERVATIONNOTE':
@@ -68,8 +66,6 @@ export const convertQuestionIdentifierToPlaceholder = (questionIdentifier: Quest
       return '010-0000-0000';
     case 'LEARNEDROUTE':
       return '저는 열다를...';
-    case 'REQUIREDGUIDELINES':
-      return '필수 안내사항';
     case 'RESERVATIONENTER':
       return '예) 1층에서 호수 눌러서 연락주세요.';
     case 'RESERVATIONNOTE':

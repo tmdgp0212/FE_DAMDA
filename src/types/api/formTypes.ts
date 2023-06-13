@@ -38,7 +38,6 @@ export type QuestionIdentifier =
   | 'RESERVATIONREQUEST'
   | 'SALEAGENT'
   | 'RECOMMENDEDCODE'
-  | 'REQUIREDGUIDELINES'
   | 'OPTIONAL';
 
 /**
