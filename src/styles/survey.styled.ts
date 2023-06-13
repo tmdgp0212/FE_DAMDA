@@ -344,9 +344,9 @@ export const UserSurveyFormDateWrapper = styled.div`
       height: 20px;
     }
   }
+
   .rdp {
-    margin: 0;
-    margin-top: -1rem;
+    margin: -1rem 0 0;
     width: 100%;
     height: 100%;
     padding: 1rem;
@@ -354,15 +354,19 @@ export const UserSurveyFormDateWrapper = styled.div`
     border-radius: 0px 0px 5px 5px;
     border-top: none;
   }
+
   .rdp-month {
     padding: 1.4rem 1rem;
   }
+
   .dayOfWeekMatcher {
     font-weight: 700;
   }
+
   .rdp-day_today {
     font-weight: normal;
   }
+
   .rdp-day {
     font-size: 1.8rem;
     border-radius: 5px;
@@ -372,18 +376,22 @@ export const UserSurveyFormDateWrapper = styled.div`
       background: inherit !important;
     }
   }
+
   .rdp-day_selected {
     border: 3px solid ${({ theme }) => theme.colors.sub_blue_1};
     color: ${({ theme }) => theme.colors.yolda_black_1};
     background-color: inherit;
   }
+
   .caption {
     display: flex;
     justify-content: space-between;
+
     svg {
       width: 20px;
       height: 20px;
     }
+
     span {
       font-weight: 400;
       font-size: 16px;
@@ -411,6 +419,7 @@ export const UserSurveyFormDateWrapper = styled.div`
       border-radius: 5px;
       cursor: pointer;
       color: ${({ theme }) => theme.colors.yolda_gray_4};
+
       span {
         font-weight: 500;
         font-size: 16px;
