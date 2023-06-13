@@ -3,14 +3,15 @@ import HeaderLayout from './HeaderLayout';
 import { useEffect, useState, useContext } from 'react';
 import Menu from './Menu';
 import useAuthStore from '@/store/auth';
-import { validateToken } from '@/apis/auth';
 import { useRouter } from 'next/router';
 import { HeaderContext } from '../Layout';
+import { useAuth } from '@/hook/useAuth';
 
 function Header() {
   const router = useRouter();
-  const { user, logout } = useAuthStore((state) => state);
+  const { user } = useAuthStore((state) => state);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const getUserData = useAuth();
   const context = useContext(HeaderContext);
 
   const toSurvey = () => {
@@ -19,7 +20,7 @@ function Header() {
   };
 
   useEffect(() => {
-    validateToken(logout);
+    getUserData();
   }, []);
 
   return (

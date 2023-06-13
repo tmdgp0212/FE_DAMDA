@@ -14,8 +14,6 @@ export const HeaderContext = createContext<Context | null>(null);
 function Layout({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref);
-  console.log(ref);
-  console.log(isInView);
 
   return (
     <S.Main>

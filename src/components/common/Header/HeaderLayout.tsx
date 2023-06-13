@@ -1,8 +1,8 @@
 import * as S from './style';
 import Link from 'next/link';
 import React from 'react';
-import { UserState } from '@/store/auth';
 import Image from 'next/image';
+import { UserState } from '@/store/auth';
 
 interface HeaderProps {
   user: UserState;
@@ -29,9 +29,9 @@ function HeaderLayout({ user, isMenuOpen, menuHandler, toSurvey, isInView }: Hea
           무료견적
         </S.EstimateButton>
         <S.LoginButton className="ir-text">
-          {user.isLogin ? (
+          {user.data ? (
             <S.ProfileImage>
-              <Image src={user.profileImage} alt="profileImage" fill />
+              <Image src={user.data.profileImage} alt="profileImage" fill />
             </S.ProfileImage>
           ) : (
             <Link href={'/login'}>login</Link>
