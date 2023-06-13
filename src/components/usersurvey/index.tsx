@@ -131,7 +131,7 @@ const userSurveyFormDataSec: UserSurveyFormDataType[] = [
   {
     questionNumber: 10,
     questionOrder: 3,
-    questionIdentify: 'OPTIONAL',
+    questionIdentify: 'RESERVATIONENTER',
     questionTitle: '열다 매니저가 출입할 수 있는 br 정보가 있다면 알려주세요!',
     questionType: 'STRING',
     required: false,
@@ -139,7 +139,7 @@ const userSurveyFormDataSec: UserSurveyFormDataType[] = [
   {
     questionNumber: 11,
     questionOrder: 4,
-    questionIdentify: 'OPTIONAL',
+    questionIdentify: 'RESERVATIONNOTE',
     questionTitle: '서비스를 받으시기 전에 br 매니저가 미리 알아야할 것이 있을까요?',
     questionType: 'STRING',
     required: false,
@@ -147,7 +147,7 @@ const userSurveyFormDataSec: UserSurveyFormDataType[] = [
   {
     questionNumber: 12,
     questionOrder: 5,
-    questionIdentify: 'OPTIONAL',
+    questionIdentify: 'RESERVATIONREQUEST',
     questionTitle: '열다에게 요청하실 것이나 br 더 궁금하신 내용이 있을까요?',
     questionType: 'STRING',
     required: false,
@@ -192,7 +192,7 @@ const userSurveyFormDataSec: UserSurveyFormDataType[] = [
 function Index() {
   const UsersurveyRef = useRef<HTMLDivElement | null>(null);
 
-  const [steps, setSteps] = useState<0 | 1>(0);
+  const [steps, setSteps] = useState<0 | 1>(1);
 
   const handleNextStep = () => {
     setSteps(1);

@@ -91,7 +91,6 @@ export const UserSurveyAddressSelectWrapper = styled.div`
   h1 {
     font-weight: 900;
     font-size: 20px;
-    margin-bottom: 1.8rem;
   }
 
   .address {
@@ -113,6 +112,24 @@ export const UserSurveyAddressSelectWrapper = styled.div`
     }
 
     ${({ theme }) => theme.border.inputBorder};
+  }
+
+  .address-show {
+    height: 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 1rem 1.6rem;
+    ${({ theme }) => theme.border.inputBorder};
+
+    span {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 17px;
+    }
+  }
+  .address-span {
+    margin: 1.2rem 0 0 0;
   }
 `;
 
@@ -327,9 +344,9 @@ export const UserSurveyFormDateWrapper = styled.div`
       height: 20px;
     }
   }
+
   .rdp {
-    margin: 0;
-    margin-top: -1rem;
+    margin: -1rem 0 0;
     width: 100%;
     height: 100%;
     padding: 1rem;
@@ -337,15 +354,19 @@ export const UserSurveyFormDateWrapper = styled.div`
     border-radius: 0px 0px 5px 5px;
     border-top: none;
   }
+
   .rdp-month {
     padding: 1.4rem 1rem;
   }
+
   .dayOfWeekMatcher {
     font-weight: 700;
   }
+
   .rdp-day_today {
     font-weight: normal;
   }
+
   .rdp-day {
     font-size: 1.8rem;
     border-radius: 5px;
@@ -355,18 +376,22 @@ export const UserSurveyFormDateWrapper = styled.div`
       background: inherit !important;
     }
   }
+
   .rdp-day_selected {
     border: 3px solid ${({ theme }) => theme.colors.sub_blue_1};
     color: ${({ theme }) => theme.colors.yolda_black_1};
     background-color: inherit;
   }
+
   .caption {
     display: flex;
     justify-content: space-between;
+
     svg {
       width: 20px;
       height: 20px;
     }
+
     span {
       font-weight: 400;
       font-size: 16px;
@@ -394,14 +419,93 @@ export const UserSurveyFormDateWrapper = styled.div`
       border-radius: 5px;
       cursor: pointer;
       color: ${({ theme }) => theme.colors.yolda_gray_4};
+
       span {
         font-weight: 500;
         font-size: 16px;
         line-height: 19px;
       }
-      &:nth-child(3) {
-        border: none;
+    }
+  }
+`;
+
+export const UserSurveyFormAdditionalInputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1.6rem;
+  span {
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 160%;
+  }
+  .input {
+    height: 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 1rem 1.6rem;
+    ${({ theme }) => theme.border.inputBorder};
+    p {
+      color: ${({ theme }) => theme.colors.yolda_gray_2};
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 17px;
+    }
+    input {
+      width: 100%;
+      border: none;
+      font-weight: 800;
+      font-size: 16px;
+      line-height: 135%;
+      color: ${({ theme }) => theme.colors.yolda_black_1};
+
+      &:focus {
+        outline: none;
       }
+      &::placeholder {
+        color: ${({ theme }) => theme.colors.yolda_gray_5};
+      }
+    }
+  }
+
+  .checkbox {
+    display: flex;
+    padding: 5px 1.6rem;
+    gap: 1.6rem;
+  }
+`;
+
+export const UserSurveyFormTextBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1.6rem;
+  span {
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 160%;
+  }
+
+  textarea {
+    resize: none;
+    height: 14rem;
+    width: 100%;
+    padding: 1.4rem 1.6rem;
+    ${({ theme }) => theme.border.inputBorder};
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    &::placeholder {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 17px;
+    }
+    &:active {
+      outline: none;
+    }
+    &:focus {
+      outline: none;
     }
   }
 `;

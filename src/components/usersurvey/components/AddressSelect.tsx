@@ -65,16 +65,7 @@ function AddressSelect({ title, handleUpdateFormValue, questionNumber, placehold
   return (
     <UserSurveyAddressSelectWrapper>
       <span className="title">{title}</span>
-      {mainAddress && <h1>{makeFullAddress(mainAddress, subAddress)}</h1>}
-      {mainAddress && subAddress && (
-        <UserSurveyFormInputWrapper>
-          {detailAddress === '' ? <span>상세 주소를 입력해주세요</span> : <h1>{detailAddress}</h1>}
-          <div className="input">
-            <p>상세 주소</p>
-            <input type="text" placeholder="동, 호수까지 입력해주세요" onChange={handleDetailAddress} />
-          </div>
-        </UserSurveyFormInputWrapper>
-      )}
+
       <div className="address" onClick={handleAddressOpen}>
         <span>{mainAddress === '' ? '지역 선택' : subAddress === '' ? mainAddress : '지역 다시 선택'}</span>
         <AiOutlineDown />
@@ -134,6 +125,22 @@ function AddressSelect({ title, handleUpdateFormValue, questionNumber, placehold
             )}
           </div>
         </UserSurveyFormAddressWrapper>
+      )}
+      {mainAddress && (
+        <div className="address-show">
+          <span>지역</span>
+          <h1>{makeFullAddress(mainAddress, subAddress)}</h1>
+        </div>
+      )}
+
+      {mainAddress && subAddress && (
+        <UserSurveyFormInputWrapper>
+          {detailAddress === '' ? <span className="address-span">상세 주소를 입력해주세요</span> : undefined}
+          <div className="input">
+            <p>상세 주소</p>
+            <input type="text" placeholder="동, 호수까지 입력해주세요" onChange={handleDetailAddress} />
+          </div>
+        </UserSurveyFormInputWrapper>
       )}
     </UserSurveyAddressSelectWrapper>
   );
