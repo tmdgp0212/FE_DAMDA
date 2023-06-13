@@ -48,3 +48,8 @@ export interface UserSurveyDateProps {
   // questionNumber: number;
   // handleUpdateFormValue: Dispatch<SetStateAction<UserSurveyForm[]>>;
 }
+
+export interface UserSurveyFormAdditionalInputProps {
+  title: string;
+  placeholder: QuestionIdentifier;
+}

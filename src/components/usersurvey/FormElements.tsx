@@ -6,13 +6,23 @@ import Select from '@/components/usersurvey/components/Select';
 import Radio from '@/components/usersurvey/components/Radio';
 import { FormElementsProps } from '@/types/components/form';
 import DateSelect from '@/components/usersurvey/components/DateSelect';
+import AdditionalInput from '@/components/usersurvey/components/AdditionalInput';
 
 function FormElements({ data, handleUpdateFormValue }: FormElementsProps) {
+  const { questionIdentify } = data;
+  const isOptional =
+    questionIdentify === 'PARKINGAVAILABLE' ||
+    questionIdentify === 'RESERVATIONENTER' ||
+    questionIdentify === 'RESERVATIONNOTE' ||
+    questionIdentify === 'RESERVATIONREQUEST';
+
   switch (data.questionType) {
     case 'TITLE':
       return <Title title={data.questionTitle} />;
     case 'STRING':
-      return (
+      return isOptional ? (
+        <AdditionalInput title={data.questionTitle} placeholder={data.questionIdentify} />
+      ) : (
         <Input
           title={data.questionTitle}
           placeholder={data.questionIdentify}
