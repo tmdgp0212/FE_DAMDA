@@ -1,7 +1,14 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import * as S from './style';
 
-function UnCompleteModal() {
+interface UnCompleteModalProps {
+  setIsVisible: (isVisible: boolean) => void;
+}
+
+function UnCompleteModal({ setIsVisible }: UnCompleteModalProps) {
+  const router = useRouter();
+
   return (
     <S.Overlay>
       <S.Modal textCenter={true}>
@@ -15,8 +22,12 @@ function UnCompleteModal() {
         </header>
 
         <S.ButtonGrop>
-          <button type="button">돌아가기</button>
-          <button type="button">마저 작성하기</button>
+          <button type="button" onClick={() => router.back()}>
+            돌아가기
+          </button>
+          <button type="button" onClick={() => setIsVisible(false)}>
+            마저 작성하기
+          </button>
         </S.ButtonGrop>
       </S.Modal>
     </S.Overlay>

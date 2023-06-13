@@ -3,7 +3,11 @@ import React, { ChangeEvent } from 'react';
 import * as G from '../style';
 import * as S from './style';
 
-function ServiceGuide({ setIsGuideAgree }: any) {
+interface ServiceGuideProps {
+  setIsGuideAgree: (isAgree: boolean) => void;
+}
+
+function ServiceGuide({ setIsGuideAgree }: ServiceGuideProps) {
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) setIsGuideAgree(true);
     else setIsGuideAgree(false);

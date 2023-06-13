@@ -4,7 +4,11 @@ import useManagerFormStore from '@/store/managerForm';
 import * as U from '../UnCompleteModal/style';
 import * as S from './style';
 
-function CheckModal({ setIsSubmitClicked }: any) {
+interface CheckModalProps {
+  setIsSubmitClicked: (isClicked: boolean) => void;
+}
+
+function CheckModal({ setIsSubmitClicked }: CheckModalProps) {
   // state
   const {
     manager_name,

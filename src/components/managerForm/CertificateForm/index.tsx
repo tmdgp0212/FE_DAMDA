@@ -19,14 +19,6 @@ function CertificateForm() {
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState('자격증 선택하기');
 
-  // if (manager_license && manager_license !== '기타') {
-  //   setIsCertificateValid(true);
-  // } else if (manager_license === '기타' && manager_license_etc) {
-  //   setIsCertificateValid(true);
-  // } else {
-  //   setIsCertificateValid(false);
-  // }
-
   const selectOptionHandler = (option: string) => {
     setManagerLicense(option);
     setSelectedOption(option);

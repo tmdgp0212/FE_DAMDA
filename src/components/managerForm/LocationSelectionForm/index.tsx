@@ -36,6 +36,10 @@ function LocationSelectionForm() {
     }
   };
 
+  const filterTagHandler = (districtItem: string) => {
+    removeActivityDistrict(districtItem);
+  };
+
   const tags = activity_region.activity_city.map((cityItem: string, index: number) => {
     const districtItem = activity_region.activity_district[index];
 
@@ -49,10 +53,6 @@ function LocationSelectionForm() {
       </div>
     );
   });
-
-  const filterTagHandler = (districtItem: string) => {
-    removeActivityDistrict(districtItem);
-  };
 
   return (
     <S.LocationSelectionForm>

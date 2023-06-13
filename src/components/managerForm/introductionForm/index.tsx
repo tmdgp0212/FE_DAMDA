@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import Image from 'next/image';
 import useManagerFormStore from '@/store/managerForm';
 
@@ -15,8 +15,6 @@ function IntroductionForm({ setIsNameValid, setIsPhoneNumberValid }: Introductio
 
   const [nameErrorMessage, setErrorMessage] = useState('');
   const [phoneErrorMessage, setPhoneErrorMessage] = useState('');
-
-  console.log(manager_name);
 
   if (manager_name !== '' && !nameErrorMessage) {
     setIsNameValid(true);
