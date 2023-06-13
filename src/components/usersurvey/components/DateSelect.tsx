@@ -19,7 +19,38 @@ const variants: Variants = {
   },
 };
 
-const timeCategory = ['오전 8시', '오전 9시', '', '오후 1시', '오후 2시', '오후 3시'];
+const timeCategory = [
+  {
+    id: 1,
+    time: '오전 9시',
+    timeValue: '09:00',
+  },
+  {
+    id: 2,
+    time: '오전 10시',
+    timeValue: '10:00',
+  },
+  {
+    id: 3,
+    time: '오전 11시',
+    timeValue: '11:00',
+  },
+  {
+    id: 4,
+    time: '오후 1시',
+    timeValue: '13:00',
+  },
+  {
+    id: 5,
+    time: '오후 2시',
+    timeValue: '14:00',
+  },
+  {
+    id: 6,
+    time: '오후 3시',
+    timeValue: '15:00',
+  },
+];
 function CustomCaption(props: CaptionProps) {
   const { goToMonth, nextMonth, previousMonth } = useNavigation();
   return (
@@ -38,10 +69,15 @@ function CustomCaption(props: CaptionProps) {
 function DateSelect({ title, placeholder }: UserSurveyDateProps) {
   const [isDayOpen, setIsDayOpen] = useState(false);
   const [selectedDay, setSelectedDay] = useState<Date | undefined>(undefined);
+  const [selectedTime, setSelectedTime] = useState('');
 
   const handleDayClick = (day: Date) => {
     setIsDayOpen(false);
     setSelectedDay(day);
+  };
+
+  const handleTimeClick = (time: string) => {
+    setSelectedTime(time);
   };
 
   return (
@@ -72,9 +108,16 @@ function DateSelect({ title, placeholder }: UserSurveyDateProps) {
       <div className="select-wrapper">
         <span>시작하고 싶은 시간을 선택해주세요.</span>
         <div className="select-list">
-          {timeCategory.map((time) => (
-            <motion.span className="select-item" key={time} whileHover="hover" variants={variants}>
-              {time}
+          {timeCategory.map((time, index) => (
+            <motion.span
+              className="select-item"
+              key={index}
+              whileHover="hover"
+              animate={selectedTime === time.timeValue ? 'hover' : 'none'}
+              variants={variants}
+              onClick={() => handleTimeClick(time.timeValue)}
+            >
+              {time.time}
             </motion.span>
           ))}
         </div>
