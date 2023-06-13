@@ -75,7 +75,7 @@ export const convertQuestionIdentifierToPlaceholder = (questionIdentifier: Quest
     case 'RESERVATIONNOTE':
       return '예) 2살 아이가 있어요.';
     case 'RESERVATIONREQUEST':
-      return '질문사항은 1:1로 답변 드립니다 :)';
+      return '안내사항에 있는 거 말고 더 쓸만한 무언가가 있을까요?';
     case 'TITLE':
       return '제목';
     case 'RECOMMENDEDCODE':

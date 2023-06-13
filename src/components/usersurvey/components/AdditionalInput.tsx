@@ -1,5 +1,5 @@
 import React from 'react';
-import { UserSurveyFormAdditionalInputWrapper } from '@/styles/survey.styled';
+import { UserSurveyFormAdditionalInputWrapper, UserSurveyFormTextBox } from '@/styles/survey.styled';
 import { UserSurveyFormAdditionalInputProps } from '@/types/components/form';
 import {
   convertQuestionIdentifierToKorean,
@@ -22,7 +22,15 @@ const makeLabel = (placeholder: QuestionIdentifier) => {
 function AdditionalInput({ title, placeholder }: UserSurveyFormAdditionalInputProps) {
   switch (placeholder) {
     case 'RESERVATIONREQUEST':
-      return <div></div>;
+      return (
+        <UserSurveyFormTextBox>
+          <span dangerouslySetInnerHTML={replaceStringsWithTags(title)}></span>
+          <div className="input-container">
+            <textarea placeholder={convertQuestionIdentifierToPlaceholder(placeholder)} />
+          </div>
+          <div>10/150</div>
+        </UserSurveyFormTextBox>
+      );
     default:
       return (
         <UserSurveyFormAdditionalInputWrapper>

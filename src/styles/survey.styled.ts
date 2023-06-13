@@ -467,4 +467,36 @@ export const UserSurveyFormAdditionalInputWrapper = styled.div`
   }
 `;
 
-export const UserSurveyFormTextBox = styled.div``;
+export const UserSurveyFormTextBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1.6rem;
+  span {
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 160%;
+  }
+
+  textarea {
+    resize: none;
+    height: 14rem;
+    width: 100%;
+    padding: 1.4rem 1.6rem;
+    ${({ theme }) => theme.border.inputBorder};
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    &::placeholder {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 17px;
+    }
+    &:active {
+      outline: none;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+`;
