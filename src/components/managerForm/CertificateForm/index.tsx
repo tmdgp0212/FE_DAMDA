@@ -7,11 +7,7 @@ import * as I from '../introductionForm/style';
 import * as G from '../style';
 import * as S from './style';
 
-function CertificateForm({
-  setIsCertificateValid,
-}: {
-  setIsCertificateValid: (isCertificateFormValid: boolean) => void;
-}) {
+function CertificateForm() {
   const {
     manager_license,
     manager_license_etc,
@@ -23,13 +19,13 @@ function CertificateForm({
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState('자격증 선택하기');
 
-  if (manager_license && manager_license !== '기타') {
-    setIsCertificateValid(true);
-  } else if (manager_license === '기타' && manager_license_etc) {
-    setIsCertificateValid(true);
-  } else {
-    setIsCertificateValid(false);
-  }
+  // if (manager_license && manager_license !== '기타') {
+  //   setIsCertificateValid(true);
+  // } else if (manager_license === '기타' && manager_license_etc) {
+  //   setIsCertificateValid(true);
+  // } else {
+  //   setIsCertificateValid(false);
+  // }
 
   const selectOptionHandler = (option: string) => {
     setManagerLicense(option);

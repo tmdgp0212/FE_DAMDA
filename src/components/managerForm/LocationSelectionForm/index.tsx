@@ -7,18 +7,18 @@ import { BsChevronUp, BsChevronDown } from 'react-icons/bs';
 import * as G from '../style';
 import * as S from './style';
 
-function LocationSelectionForm({ setIsLocationValid }: any) {
+function LocationSelectionForm() {
   const { activity_region, setActivityCity, setActivityDistrict, removeActivityDistrict } = useManagerFormStore(
     (state) => state,
   );
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState('');
 
-  if (activity_region.activity_district.length !== 0) {
-    setIsLocationValid(true);
-  } else {
-    setIsLocationValid(false);
-  }
+  // if (activity_region.activity_district.length !== 0) {
+  //   setIsLocationValid(true);
+  // } else {
+  //   setIsLocationValid(false);
+  // }
 
   const regionChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setSelectedRegion(e.target.value);

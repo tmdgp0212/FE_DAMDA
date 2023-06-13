@@ -38,6 +38,38 @@ function ManagerForm({ setIsSubmitClicked }: any) {
     setIsManagerFormValid(managerFormValid);
   }, [isNameValid, isPhoneNumberValid, activity_day, isLocationValid, isCertificateValid, isRadioValid, isGuideAgree]);
 
+  useEffect(() => {
+    if (formData.manager_license && formData.manager_license !== '기타') {
+      setIsCertificateValid(true);
+    } else if (formData.manager_license === '기타' && formData.manager_license_etc) {
+      setIsCertificateValid(true);
+    } else {
+      setIsCertificateValid(false);
+    }
+  }, [formData.manager_license, formData.manager_license_etc]);
+
+  useEffect(() => {
+    if (formData.activity_region.activity_district.length !== 0) {
+      setIsLocationValid(true);
+    } else {
+      setIsLocationValid(false);
+    }
+  }, [formData.manager_license, formData.manager_license_etc, formData.activity_region.activity_district.length]);
+
+  useEffect(() => {
+    if (!formData.main_job && formData.manager_drive) {
+      setIsRadioValid(true);
+    } else if (!formData.main_job && !formData.manager_drive) {
+      setIsRadioValid(true);
+    } else if (formData.main_job && formData.main_job_etc && formData.manager_drive) {
+      setIsRadioValid(true);
+    } else if (formData.main_job && formData.main_job_etc && !formData.manager_drive) {
+      setIsRadioValid(true);
+    } else {
+      setIsRadioValid(false);
+    }
+  }, [formData.main_job, formData.main_job_etc, formData.manager_drive]);
+
   const router = useRouter();
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
@@ -70,7 +102,7 @@ function ManagerForm({ setIsSubmitClicked }: any) {
         </S.StyleWrapper>
 
         <DaySelectionForm />
-        <LocationSelectionForm setIsLocationValid={setIsLocationValid} />
+        <LocationSelectionForm />
       </S.StyleWrapper>
 
       <S.StyleWrapper large>
@@ -80,9 +112,9 @@ function ManagerForm({ setIsSubmitClicked }: any) {
           알려주세요.
         </S.Headline>
 
-        <CertificateForm setIsCertificateValid={setIsCertificateValid} />
+        <CertificateForm />
         <FieldExperienceForm />
-        <RadioButtonForm setIsRadioValid={setIsRadioValid} />
+        <RadioButtonForm />
       </S.StyleWrapper>
 
       <ServiceGuide setIsGuideAgree={setIsGuideAgree} />

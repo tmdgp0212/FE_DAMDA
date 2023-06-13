@@ -5,7 +5,7 @@ import useManagerFormStore from '@/store/managerForm';
 import * as I from '../introductionForm/style';
 import * as S from './style';
 
-function RadioButtonForm({ setIsRadioValid }: any) {
+function RadioButtonForm() {
   const {
     main_job,
     main_job_etc,
@@ -16,18 +16,6 @@ function RadioButtonForm({ setIsRadioValid }: any) {
     clearMainJobEtc,
     setManagerDrive,
   } = useManagerFormStore((state) => state);
-
-  if (!main_job && manager_drive) {
-    setIsRadioValid(true);
-  } else if (!main_job && !manager_drive) {
-    setIsRadioValid(true);
-  } else if (main_job && main_job_etc && manager_drive) {
-    setIsRadioValid(true);
-  } else if (main_job && main_job_etc && !manager_drive) {
-    setIsRadioValid(true);
-  } else {
-    setIsRadioValid(false);
-  }
 
   const mainJobChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
