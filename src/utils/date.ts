@@ -21,6 +21,8 @@ export const dateFormatter = (date: string): string => {
     { name: '달', milliSeconds: 60 * 60 * 24 * 30 },
     { name: '주', milliSeconds: 60 * 60 * 24 * 7 },
     { name: '일', milliSeconds: 60 * 60 * 24 },
+    { name: '시간', milliSeconds: 60 * 60 },
+    { name: '분', milliSeconds: 60 },
   ];
 
   if (diff > 60 * 60 * 24 * 30 * 3) return createdDateToString;
