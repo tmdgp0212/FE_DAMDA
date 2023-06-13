@@ -54,7 +54,7 @@ function ReviewLayout({ posts, bestReview, page, pageLength, pagingHandler }: Re
       </S.Description>
 
       <S.Reviews className="reviews">
-        <S.TitleMedium>
+        <S.TitleMedium ref={ref}>
           <BestBadge />
           베스트 이용후기
         </S.TitleMedium>

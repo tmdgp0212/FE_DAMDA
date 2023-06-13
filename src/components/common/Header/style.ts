@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 import theme from '@/styles/theme';
+import { css } from '@emotion/react';
+import { motion } from 'framer-motion';
 
 export const Header = styled.header<{ isMenuOpen: boolean }>`
   display: flex;
@@ -35,9 +37,12 @@ export const ProfileImage = styled.div`
 export const Logo = styled.h1`
   a {
     display: block;
-    width: 53px;
-    height: 25px;
+    width: 60px;
+    height: 40px;
     background-image: url('/icons/Yolda_logo.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
     cursor: pointer;
   }
 `;
@@ -49,7 +54,7 @@ export const HeaderButtons = styled.div`
   gap: 12px;
 `;
 
-export const EstimateButton = styled.button`
+export const EstimateButton = styled(motion.button)`
   border: none;
   outline: none;
   width: 88px;
@@ -59,7 +64,6 @@ export const EstimateButton = styled.button`
   font-size: 1.6rem;
   background-color: ${theme.colors.main_blue};
   border-radius: 6px;
-  cursor: pointer;
 `;
 
 const Icon = styled.div`

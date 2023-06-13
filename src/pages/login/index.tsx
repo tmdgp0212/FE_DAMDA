@@ -2,26 +2,21 @@ import { handleLogin } from '@/utils/auth';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { getToken } from '@/apis/auth';
-import useAuthStore from '@/store/auth';
 import * as S from './../../styles/Login.styled';
+import { useAuth } from '@/hook/useAuth';
 
 function Login() {
   const router = useRouter();
-  const { setUser } = useAuthStore((state) => state);
+  const getUserData = useAuth();
 
   const handleRedirect = async () => {
     const params = new URLSearchParams(window.location.search);
     const code = params.get('code');
 
     if (code) {
-      try {
-        const user = await getToken(code);
-        console.log(user);
-        setUser(user.data);
-        router.push('/');
-      } catch (error) {
-        console.error('Failed to fetch access token:', error);
-      }
+      await getToken(code);
+      getUserData();
+      router.push('/');
     } else {
       handleLogin();
     }
