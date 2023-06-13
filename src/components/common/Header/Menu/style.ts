@@ -12,6 +12,11 @@ export const MenuBackground = styled(motion.div)`
   backdrop-filter: blur(4px);
   transition: all 0.2;
   z-index: 9;
+
+  @media (max-width: 420px) {
+    width: 100vw;
+    left: 0;
+  }
 `;
 
 export const MenuBarContainer = styled(motion.div)`
@@ -23,6 +28,10 @@ export const MenuBarContainer = styled(motion.div)`
   height: 100%;
   padding: 42px 25px;
   background-color: #fff;
+
+  @media (max-width: 420px) {
+    right: 0;
+  }
 `;
 
 export const Section = styled.div`

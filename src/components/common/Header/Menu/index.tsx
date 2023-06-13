@@ -5,15 +5,19 @@ import Link from 'next/link';
 
 interface MenuProps {
   isMenuOpen: boolean;
-
-  menuHandler: () => void;
+  menuHandler: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function Menu({ isMenuOpen, menuHandler }: MenuProps) {
   return (
     <AnimatePresence>
       {isMenuOpen && (
-        <S.MenuBackground key="sub" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onClick={menuHandler}>
+        <S.MenuBackground
+          key="sub"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          onClick={() => menuHandler(false)}
+        >
           <S.MenuBarContainer
             key="sub"
             initial={{ x: 300 }}

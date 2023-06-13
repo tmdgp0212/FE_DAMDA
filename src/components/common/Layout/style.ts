@@ -1,7 +1,9 @@
 import theme from '@/styles/theme';
 import styled from '@emotion/styled';
 
-export const Layout = styled.div`
+export const Layout = styled.div``;
+
+export const Main = styled.div`
   display: grid;
   grid-template-rows: auto 1fr auto;
   position: relative;
@@ -15,9 +17,10 @@ export const Layout = styled.div`
     display: none;
   }
 
-  @media (max-width: 810px) {
+  @media (max-width: 420px) {
     //모바일 대응
     width: 100vw;
+    max-width: 100vw;
 
     &::-webkit-scrollbar {
       display: none;

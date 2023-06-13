@@ -80,15 +80,22 @@ export const UserSurveyFormInputWrapper = styled.div<{
 export const UserSurveyAddressSelectWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.8rem;
 
   .title {
     font-weight: 800;
     font-size: 16px;
     line-height: 160%;
+    margin-bottom: 0.8rem;
+  }
+
+  h1 {
+    font-weight: 900;
+    font-size: 20px;
+    margin-bottom: 1.8rem;
   }
 
   .address {
+    margin-top: 1.8rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -106,6 +113,67 @@ export const UserSurveyAddressSelectWrapper = styled.div`
     }
 
     ${({ theme }) => theme.border.inputBorder};
+  }
+`;
+
+export const UserSurveyFormAddressWrapper = styled.div<{ isSubAddressOpen: boolean }>`
+  margin-top: -0.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  border: 1px solid #212121;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  padding: 1.2rem 0.8rem;
+
+  .address-list {
+    display: flex;
+    flex-direction: ${({ isSubAddressOpen }) => (isSubAddressOpen ? 'row' : 'column')};
+    min-height: 20rem;
+    max-height: 20rem;
+  }
+
+  .address-item {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+
+    padding: 1.2rem;
+    border-radius: 5px;
+    border: 2px solid white;
+  }
+`;
+
+export const UserSurveyFormSubAddressWrapper = styled.div`
+  display: flex;
+  width: 100%;
+
+  .main {
+    flex-basis: 50%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+  }
+  .sub {
+    flex-shrink: 0;
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 0.8rem;
+      background: #c7c7c7;
+    }
+  }
+
+  .add {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 135%;
+    padding: 1rem;
+    color: ${({ theme }) => theme.colors.yolda_gray_4};
   }
 `;
 
@@ -228,4 +296,112 @@ export const UserSurveyFormNextBox = styled(motion.div)`
   font-size: 16px;
   line-height: 19px;
   color: ${({ theme }) => theme.colors.yolda_gray_4};
+`;
+
+export const UserSurveyFormDateWrapper = styled.div`
+  .title {
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 160%;
+  }
+
+  .select-body {
+    margin-top: 1.2rem;
+    width: 100%;
+    height: 5.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+
+    ${({ theme }) => theme.border.inputBorder};
+
+    span {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 19px;
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  .rdp {
+    margin: 0;
+    margin-top: -1rem;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    ${({ theme }) => theme.border.inputBorder};
+    border-radius: 0px 0px 5px 5px;
+    border-top: none;
+  }
+  .rdp-month {
+    padding: 1.4rem 1rem;
+  }
+  .dayOfWeekMatcher {
+    font-weight: 700;
+  }
+  .rdp-day_today {
+    font-weight: normal;
+  }
+  .rdp-day {
+    font-size: 1.8rem;
+    border-radius: 5px;
+
+    &:hover {
+      border: 3px solid ${({ theme }) => theme.colors.sub_blue_1};
+      background: inherit !important;
+    }
+  }
+  .rdp-day_selected {
+    border: 3px solid ${({ theme }) => theme.colors.sub_blue_1};
+    color: ${({ theme }) => theme.colors.yolda_black_1};
+    background-color: inherit;
+  }
+  .caption {
+    display: flex;
+    justify-content: space-between;
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+    span {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 19px;
+    }
+  }
+
+  .select-wrapper {
+    margin-top: 1.2rem;
+  }
+
+  .select-list {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(3, 1fr);
+
+    .select-item {
+      margin-top: 1.2rem;
+      flex-basis: 100%;
+      height: 5rem;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      border: 1px solid #a6a6a6;
+      border-radius: 5px;
+      cursor: pointer;
+      color: ${({ theme }) => theme.colors.yolda_gray_4};
+      span {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+      }
+      &:nth-child(3) {
+        border: none;
+      }
+    }
+  }
 `;
