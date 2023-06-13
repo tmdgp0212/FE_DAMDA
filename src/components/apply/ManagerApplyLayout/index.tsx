@@ -29,7 +29,7 @@ function ManagerApplyLayout() {
             당신의 재능을 수익화 하세요!
           </p>
 
-          <Link href="/">
+          <Link href="/manager-form">
             매니저 지원하기
             <FiArrowUpRight />
           </Link>
@@ -69,7 +69,7 @@ function ManagerApplyLayout() {
 
         <S.StyleWrapper>
           <FrequentlyAskedQuestions enteredFAQs={managerApplyFAQs} />
-          <Link href="/">매니저 지원</Link>
+          <Link href="/manager-form">매니저 지원</Link>
         </S.StyleWrapper>
       </S.BenefitContainer>
 
