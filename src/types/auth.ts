@@ -1,5 +1,5 @@
 interface LoginRes {
-  profileImage: string;
+  data: string;
 }
 
 interface ValidateRes {

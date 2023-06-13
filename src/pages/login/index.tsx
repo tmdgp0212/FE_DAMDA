@@ -16,7 +16,6 @@ function Login() {
     if (code) {
       try {
         const user = await getToken(code);
-        console.log(user);
         setUser(user.data);
         router.push('/');
       } catch (error) {

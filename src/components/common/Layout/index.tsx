@@ -18,13 +18,13 @@ function Layout({ children }: { children: React.ReactNode }) {
   console.log(isInView);
 
   return (
-    <S.Layout>
+    <S.Main>
       <HeaderContext.Provider value={{ ref, isInView }}>
         <Header />
         <div>{children}</div>
       </HeaderContext.Provider>
       <Footer />
-    </S.Layout>
+    </S.Main>
   );
 }
 

@@ -1,7 +1,9 @@
 import theme from '@/styles/theme';
 import styled from '@emotion/styled';
 
-export const Layout = styled.div`
+export const Layout = styled.div``;
+
+export const Main = styled.div`
   display: grid;
   grid-template-rows: auto 1fr auto;
   position: relative;
