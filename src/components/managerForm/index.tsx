@@ -122,7 +122,7 @@ function ManagerForm({ setIsSubmitClicked }: any) {
         지원하기
       </S.ManagerSupportButton>
 
-      <S.NextButton type="button">다음</S.NextButton>
+      {/* <S.NextButton type="button">다음</S.NextButton> */}
     </S.ManagerFormContainer>
   );
 }

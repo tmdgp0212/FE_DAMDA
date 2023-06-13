@@ -16,12 +16,18 @@ function IntroductionForm({ setIsNameValid, setIsPhoneNumberValid }: Introductio
   const [nameErrorMessage, setErrorMessage] = useState('');
   const [phoneErrorMessage, setPhoneErrorMessage] = useState('');
 
-  if (manager_name && manager_name.length <= 50) {
+  console.log(manager_name);
+
+  if (manager_name !== '' && !nameErrorMessage) {
     setIsNameValid(true);
+  } else {
+    setIsNameValid(false);
   }
 
   if (manager_phone && !phoneErrorMessage) {
     setIsPhoneNumberValid(true);
+  } else {
+    setIsPhoneNumberValid(false);
   }
 
   const nameChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -30,7 +36,7 @@ function IntroductionForm({ setIsNameValid, setIsPhoneNumberValid }: Introductio
     if (newName.length > 50) {
       setErrorMessage('최대 50자 까지 입력 가능합니다.');
       setIsNameValid(false);
-    } else if (!newName.length) {
+    } else if (newName.length === 0) {
       setIsNameValid(false);
     } else {
       setManagerName(newName);
