@@ -12,7 +12,7 @@ function FirstStep({ handleNextStep, userSurveyFormData }: FirstStepProps) {
   const [formValue, setFormValue] = useState<UserSurveyForm[]>([]);
   const [isValid, setIsValid] = useState<boolean>(false);
 
-  const { setUserSurveyForm } = useUserSurveyForm();
+  const { setUserSurveyForm, userSurveyForm } = useUserSurveyForm();
   const checkRequiredQuestions = (formValue: UserSurveyForm[]) => {
     const requiredQuestionsIndex = userSurveyFormData
       .filter((data) => data.required)
@@ -29,6 +29,13 @@ function FirstStep({ handleNextStep, userSurveyFormData }: FirstStepProps) {
     checkRequiredQuestions(formValue);
   }, [formValue]);
 
+  useEffect(() => {
+    if (!!userSurveyForm) {
+      setFormValue(userSurveyForm);
+    }
+  }, []);
+
+  console.log(formValue);
   const handleGoNextStep = () => {
     setUserSurveyForm(formValue);
     handleNextStep();
