@@ -23,8 +23,8 @@ function CustomerCenterLayout() {
   };
 
   return (
-    <div>
-      <S.CustomerCenterHeader>
+    <>
+      <S.CustomerCenterHeader style={{ marginTop: '-52px' }}>
         <Image src={customerCenterImg} alt="고객센터 페이지 이미지" fill />
 
         <S.Description>
@@ -55,7 +55,7 @@ function CustomerCenterLayout() {
           </Link>
         </S.PersonalConsultation>
       </S.CustomerCenterContent>
-    </div>
+    </>
   );
 }
 
