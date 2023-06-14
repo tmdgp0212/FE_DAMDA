@@ -1,14 +1,14 @@
 import React from 'react';
 import * as S from '@/styles/Main.styled';
 import { mainGraphData } from '@/constants/mainGraph';
-import { BsArrowUpRight } from 'react-icons/bs';
+import { FiArrowUpLeft } from 'react-icons/fi';
 
 function MainResellerGraph() {
   return (
     <S.MainReSellerContent>
       <h1>
         판매액이 높을수록 <br /> 수수료가 낮아집니다.
-        <BsArrowUpRight />
+        <FiArrowUpLeft style={{ fontSize: '3rem' }} />
       </h1>
       <p>판매 금액대별 대행 수수료</p>
       <S.MainReSellerTable>
