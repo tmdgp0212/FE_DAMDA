@@ -29,14 +29,18 @@ function FirstStep({ handleNextStep, userSurveyFormData }: FirstStepProps) {
     checkRequiredQuestions(formValue);
   }, [formValue]);
 
-  // console.log(isValid, requiredQuestionsIndex);
+  const handleGoNextStep = () => {
+    setUserSurveyForm(formValue);
+    handleNextStep();
+  };
+
   return (
     <div className="form-container">
       {userSurveyFormData.map((data, index) => (
         <FormElements data={data} key={index} handleUpdateFormValue={setFormValue} />
       ))}
       <UserSurveyFormNextBox
-        onClick={isValid ? handleNextStep : undefined}
+        onClick={isValid ? handleGoNextStep : undefined}
         animate={isValid ? { backgroundColor: '#0061FF', color: '#fff' } : ''}
       >
         {isValid ? '날짜 예약하기' : '예약하기'}
