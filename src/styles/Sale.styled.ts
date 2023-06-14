@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 export const SaleContainer = styled.div`
+  max-width: 360px;
   display: flex;
   flex-direction: column;
   gap: 8rem;
@@ -26,7 +27,7 @@ export const SaleTitleContainer = styled.div`
   position: relative;
 `;
 
-export const SaleTitleImg = styled.div`
+export const SaleTitleImg = styled.div<{ backgorundImg: string }>`
   background-image: url('/img/sale_main1.png');
   background-repeat: no-repeat;
   background-size: cover;
@@ -48,49 +49,7 @@ export const ImgCover = styled.div`
 
 // 판매 대행 절차
 export const SaleProcedureContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  height: 51rem;
-  padding: ${({ theme }) => theme.padding.mobile};
-`;
-
-export const SaleProcedureWrap = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  margin-top: 3rem;
-`;
-
-export const SaleProcedure = styled.div`
-  width: 100%;
-  height: 85%;
-  border: 1px solid black;
-  border-radius: 0.6rem;
-  padding: 0 2rem;
-`;
-
-export const SaleProcedureTitle = styled.div`
-  width: 77.7%;
-  height: 4rem;
-  background-color: #fff;
-  position: absolute;
-  border: 1px solid black;
-  border-radius: 0.6rem;
-  line-height: 4rem;
-  padding: 0 1.5rem;
-  margin-top: -2rem;
-`;
-
-export const SaleProcedureImg = styled.div<{ img?: string }>`
-  width: 100%;
-  height: 18.7rem;
-  background-image: ${({ img }) => `url(${img})`};
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  margin: 0 auto;
-  margin-top: 3.5rem;
-  border-radius: 0.6rem;
+  padding-left: 2rem;
 `;
 
 // 옷장 정리 페이지 이동
@@ -99,39 +58,11 @@ export const SaleClosetContainer = styled.div`
   width: 100%;
   height: 100%;
   padding: ${({ theme }) => theme.padding.mobile};
-`;
-
-export const PopupContainer = styled.div<{ onPopup?: boolean }>`
-  transition: max-height 0.3s ease-in-out;
-  width: 100%;
-  max-height: ${({ onPopup }) => (onPopup ? '70px' : '150px')};
-  height: auto;
-  border: ${({ onPopup }) => (onPopup ? '1px solid black' : '2px solid #0061FF')};
-  border-radius: 0.6rem;
-  padding: 1rem;
-  overflow: hidden;
-  margin-top: 1.4rem;
-  h2 {
-    ${({ theme }) => theme.font.bold_19};
+  h1 {
+    margin-bottom: 1rem;
   }
 `;
 
-export const PopupWrap = styled.div`
-  display: flex;
-  justify-content: space-between;
-  span {
-    font-weight: 700;
-  }
-`;
-export const PopupTitle = styled.div`
-  border-bottom: 1px solid black;
-  padding: 0 10px 10px;
-  margin-bottom: 10px;
-`;
-
-export const PopupDesc = styled.p`
-  padding: 0 10px;
-`;
 
 // 그래프 섹션
 export const SaleGraphContainer = styled.div`
@@ -177,4 +108,19 @@ export const EstimateCover = styled.div`
   top: 10rem;
   left: 0;
   display: flex;
+`;
+
+export const SaleButton = styled.div`
+  width: 60%;
+  background-color: #fff;
+  border: 2px solid ${({ theme }) => theme.colors.main_blue};
+  border-radius: 0.6rem;
+  padding: 0.6rem 1rem 0.6rem 2rem;
+  position: absolute;
+  bottom: 6rem;
+  display: flex;
+  justify-content: space-between;
+  span {
+    ${({ theme }) => theme.font.bold_19};
+  }
 `;
