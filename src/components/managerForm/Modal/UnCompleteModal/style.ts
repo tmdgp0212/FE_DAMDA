@@ -56,7 +56,7 @@ export const Modal = styled.div<{ textCenter: boolean }>`
   }
 `;
 
-export const ButtonGrop = styled.div`
+export const ButtonGrop = styled.div<{ isLoading: boolean }>`
   display: flex;
   width: 100%;
 
@@ -72,16 +72,16 @@ export const ButtonGrop = styled.div`
     line-height: 160%;
     background-color: transparent;
     outline: none;
-    cursor: pointer;
+    cursor: ${({ isLoading }) => (isLoading ? 'not-allowed' : 'pointer')};
 
     &:first-of-type {
       margin-right: 6px;
     }
 
     &:last-of-type {
-      border: 1px solid ${theme.colors.yolda_black_1};
-      color: #ffffff;
-      background-color: ${theme.colors.main_blue};
+      border: 1px solid ${({ isLoading }) => (isLoading ? theme.colors.yolda_gray_4 : theme.colors.yolda_black_1)};
+      color: ${({ isLoading }) => (isLoading ? theme.colors.yolda_gray_4 : '#ffffff')};
+      background-color: ${({ isLoading }) => (isLoading ? '#ffffff' : theme.colors.main_blue)};
     }
   }
 `;

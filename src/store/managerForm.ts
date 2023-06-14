@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-type Store = {
+export type Store = {
   manager_name: string;
   manager_phone: string;
   activity_day: boolean[];
