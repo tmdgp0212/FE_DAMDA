@@ -96,8 +96,8 @@ const userSurveyFormData: UserSurveyFormDataType[] = [
     required: true,
   },
   {
-    questionNumber: 6,
-    questionOrder: 5,
+    questionNumber: 7,
+    questionOrder: 6,
     questionIdentify: 'RECOMMENDEDCODE',
     questionTitle: '할인 되는 코드가 있으신가요?',
     questionType: 'STRING',
@@ -107,7 +107,7 @@ const userSurveyFormData: UserSurveyFormDataType[] = [
 
 const userSurveyFormDataSec: UserSurveyFormDataType[] = [
   {
-    questionNumber: 7,
+    questionNumber: 8,
     questionOrder: 0,
     questionIdentify: 'TITLE',
     questionTitle: '거의 다 됐어요!',
@@ -115,7 +115,7 @@ const userSurveyFormDataSec: UserSurveyFormDataType[] = [
     required: false,
   },
   {
-    questionNumber: 8,
+    questionNumber: 9,
     questionOrder: 1,
     questionIdentify: 'SERVICEDATE',
     questionTitle: '서비스 받으실 날짜와 시간을 정해주세요',
@@ -123,7 +123,7 @@ const userSurveyFormDataSec: UserSurveyFormDataType[] = [
     required: true,
   },
   {
-    questionNumber: 9,
+    questionNumber: 10,
     questionOrder: 2,
     questionIdentify: 'PARKINGAVAILABLE',
     questionTitle: '서비스 받으실 곳에는 주차를 어디에 br 할 수 있나요?',
@@ -131,7 +131,7 @@ const userSurveyFormDataSec: UserSurveyFormDataType[] = [
     required: true,
   },
   {
-    questionNumber: 10,
+    questionNumber: 11,
     questionOrder: 3,
     questionIdentify: 'RESERVATIONENTER',
     questionTitle: '열다 매니저가 출입할 수 있는 br 정보가 있다면 알려주세요!',
@@ -139,7 +139,7 @@ const userSurveyFormDataSec: UserSurveyFormDataType[] = [
     required: true,
   },
   {
-    questionNumber: 11,
+    questionNumber: 12,
     questionOrder: 4,
     questionIdentify: 'RESERVATIONNOTE',
     questionTitle: '서비스를 받으시기 전에 br 매니저가 미리 알아야할 것이 있을까요?',
@@ -147,7 +147,7 @@ const userSurveyFormDataSec: UserSurveyFormDataType[] = [
     required: true,
   },
   {
-    questionNumber: 12,
+    questionNumber: 13,
     questionOrder: 5,
     questionIdentify: 'RESERVATIONREQUEST',
     questionTitle: '열다에게 요청하실 것이나 br 더 궁금하신 내용이 있을까요?',
@@ -155,7 +155,7 @@ const userSurveyFormDataSec: UserSurveyFormDataType[] = [
     required: true,
   },
   {
-    questionNumber: 13,
+    questionNumber: 14,
     questionOrder: 6,
     questionIdentify: 'LEARNEDROUTE',
     questionTitle: '열다 서비스를 어떻게 알게 되셨나요?',
