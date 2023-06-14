@@ -3,13 +3,15 @@ import * as S from '../../styles/Sale.styled';
 import MainResellerGraph from '@/components/main/MainResellerGraph';
 import { FiArrowDownRight, FiArrowUpLeft } from 'react-icons/fi';
 import BlueButton from '@/components/common/BlueButton';
-import { salePopupData } from '../../constants/saleData';
+import { salePopupData, saleProcedureData } from '../../constants/saleData';
 import { replaceStringsWithTags } from '@/utils';
+import ProcedureCarousel from '@/components/sale/Swiper';
+import Popup from '@/components/sale/Popup';
 
 function SalePage() {
   const [popupStates, setPopupStates] = React.useState(salePopupData.map(() => false));
 
-  const onPopupControll = (index: number) => {
+  const togglePopup = (index: number) => {
     setPopupStates((prevState) => {
       const newState = [...prevState];
       newState[index] = !prevState[index];
@@ -36,44 +38,29 @@ function SalePage() {
           </p>
         </S.ImgCover>
       </S.SaleTitleContainer>
+
       <S.SaleProcedureContainer>
         <h1>
           판매 대행 절차를
           <br />
           알아볼까요?
         </h1>
-        <S.SaleProcedureWrap>
-          <S.SaleProcedure>
-            <S.SaleProcedureTitle>1단계. 판매할 의류 잡화 정보 수집 </S.SaleProcedureTitle>
-            <S.SaleProcedureImg img="/img/sale_card1.png" />
-          </S.SaleProcedure>
-        </S.SaleProcedureWrap>
+        <ProcedureCarousel procedureData={saleProcedureData} />
       </S.SaleProcedureContainer>
+
       <S.SaleClosetContainer>
         <h1>
           안 입는 옷으로
           <br /> 판매수익도 챙기세요.
         </h1>
         {salePopupData.map((popup, index) => (
-          <S.PopupContainer key={index} popup={popupStates[index]} height={popup.height}>
-            <S.PopupWrap>
-              <div>
-                <S.PopupTitle>
-                  <p>{popup.title}</p>
-                  <h2>{popup.subtitle}</h2>
-                </S.PopupTitle>
-                <S.PopupDesc dangerouslySetInnerHTML={replaceStringsWithTags(popup.description)} />
-              </div>
-              {popupStates[index] ? (
-                <FiArrowUpLeft style={{ fontSize: '30px', cursor: 'pointer' }} onClick={() => onPopupControll(index)} />
-              ) : (
-                <FiArrowDownRight
-                  style={{ fontSize: '30px', cursor: 'pointer' }}
-                  onClick={() => onPopupControll(index)}
-                />
-              )}
-            </S.PopupWrap>
-          </S.PopupContainer>
+          <Popup
+            key={index}
+            popupData={popup}
+            isOpen={popupStates[index]}
+            togglePopup={() => togglePopup(index)}
+            closeHeight={'70px'}
+          />
         ))}
         <BlueButton title="옷장 정리 서비스 바로가기" width="100%" />
       </S.SaleClosetContainer>
