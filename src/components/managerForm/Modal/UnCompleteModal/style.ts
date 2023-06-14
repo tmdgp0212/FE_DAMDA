@@ -56,7 +56,7 @@ export const Modal = styled.div<{ textCenter: boolean }>`
   }
 `;
 
-export const ButtonGrop = styled.div<{ isLoading: boolean }>`
+export const ButtonGrop = styled.div<{ isLoading?: boolean }>`
   display: flex;
   width: 100%;
 
