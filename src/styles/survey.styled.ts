@@ -154,7 +154,6 @@ export const UserSurveyFormAddressWrapper = styled.div<{ isSubAddressOpen: boole
     font-weight: 700;
     font-size: 16px;
     line-height: 19px;
-
     padding: 1.2rem;
     border-radius: 5px;
     border: 2px solid white;
@@ -508,4 +507,77 @@ export const UserSurveyFormTextBox = styled.div`
       outline: none;
     }
   }
+`;
+
+export const UserSurveyRequirementWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1.2rem;
+
+  h2 {
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 160%;
+  }
+
+  .require-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+
+    .additional {
+      color: ${({ theme }) => theme.colors.yolda_gray_4};
+    }
+
+    span {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 160%;
+
+      strong {
+        font-weight: 800;
+      }
+    }
+
+    ul {
+      margin-left: 1.6rem;
+      li {
+        list-style: inside;
+      }
+    }
+  }
+
+  .checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    input {
+      width: 1.6em;
+      height: 1.6rem;
+      border: 1px solid ${({ theme }) => theme.colors.yolda_gray_4};
+      border-radius: 5px;
+    }
+
+    label {
+      font-weight: 800;
+      font-size: 16px;
+      line-height: 160%;
+    }
+  }
+`;
+
+export const UserSurveyFormSubmitButton = styled(motion.div)`
+  width: 45%;
+  height: 5rem;
+  padding: 1rem;
+  background-color: #fff;
+  border: 1px solid ${({ theme }) => theme.colors.yolda_gray_4};
+  border-radius: 5px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: ${({ theme }) => theme.colors.yolda_gray_4};
 `;
