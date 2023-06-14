@@ -30,17 +30,17 @@ export const convertQuestionIdentifierToKorean = (questionIdentifier: QuestionId
     case 'SERVICEDATE':
       return '서비스 날짜와 시간';
     case 'PARKINGAVAILABLE':
-      return '주차 가능 여부';
+      return '주차 가능 위치';
     case 'APPLICANTNAME':
       return '이름';
     case 'APPLICANTCONACTINFO':
       return '연락처';
     case 'LEARNEDROUTE':
       return '저는 열다를...';
-    case 'REQUIREDGUIDELINES':
-      return '필수 안내사항';
-    case 'OPTIONAL':
-      return '추가적인 자료';
+    case 'RESERVATIONENTER':
+      return '들어갈 수 있는 곳';
+    case 'RESERVATIONNOTE':
+      return '요청, 주의사항';
     case 'TITLE':
       return '제목';
     case 'RECOMMENDEDCODE':
@@ -59,17 +59,19 @@ export const convertQuestionIdentifierToPlaceholder = (questionIdentifier: Quest
     case 'SERVICEDATE':
       return '서비스 날짜와 시간';
     case 'PARKINGAVAILABLE':
-      return '주차 가능 여부';
+      return '예) 지하주차장으로 오세요.';
     case 'APPLICANTNAME':
       return '김열다';
     case 'APPLICANTCONACTINFO':
       return '010-0000-0000';
     case 'LEARNEDROUTE':
       return '저는 열다를...';
-    case 'REQUIREDGUIDELINES':
-      return '필수 안내사항';
-    case 'OPTIONAL':
-      return '추가적인 자료';
+    case 'RESERVATIONENTER':
+      return '예) 1층에서 호수 눌러서 연락주세요.';
+    case 'RESERVATIONNOTE':
+      return '예) 2살 아이가 있어요.';
+    case 'RESERVATIONREQUEST':
+      return '안내사항에 있는 거 말고 더 쓸만한 무언가가 있을까요?';
     case 'TITLE':
       return '제목';
     case 'RECOMMENDEDCODE':

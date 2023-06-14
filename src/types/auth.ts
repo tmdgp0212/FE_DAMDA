@@ -1,13 +1,17 @@
-interface LoginRes {
+export interface LoginRes {
   data: string;
 }
 
-interface ValidateRes {
+export interface UserRes {
+  data: UserData;
+}
+
+export interface UserData {
   id: number;
-  username: string;
-  address: string;
-  gender: string;
+  adress: string | null;
+  gender: 'femele' | 'mele';
   phoneNumber: string;
   profileImage: string;
   role: 'USER' | 'ADMIN';
+  username: string;
 }
