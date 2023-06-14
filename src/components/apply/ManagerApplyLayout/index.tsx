@@ -13,7 +13,7 @@ import { FiArrowUpRight } from 'react-icons/fi';
 function ManagerApplyLayout() {
   return (
     <>
-      <S.FamilyContainer>
+      <S.FamilyContainer style={{ marginTop: '-52px' }}>
         <Image src={ManagerApplyFamilyImg} alt="매니저 지원 장려 영역 이미지" fill />
 
         <S.Description>
