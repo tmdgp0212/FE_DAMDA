@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { UserSurveyFormInputWrapper } from '@/styles/survey.styled';
 import { UserSurveyFormTitleProps } from '@/types/components/form';
 import {
@@ -6,9 +6,12 @@ import {
   convertQuestionIdentifierToPlaceholder,
   replaceStringsWithTags,
 } from '@/utils';
-import { UserSurveyForm } from '@/store/userSurvey';
+import { UserSurveyForm, useUserSurveyForm } from '@/store/userSurvey';
 
 function Input({ title, placeholder, questionNumber, handleUpdateFormValue }: UserSurveyFormTitleProps) {
+  const { userSurveyForm } = useUserSurveyForm();
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     const currentData: UserSurveyForm = {
@@ -27,6 +30,16 @@ function Input({ title, placeholder, questionNumber, handleUpdateFormValue }: Us
     });
   };
 
+  useEffect(() => {
+    if (!!userSurveyForm) {
+      const currentData = userSurveyForm.find((data) => data.questionNumber === questionNumber);
+      console.log(currentData);
+      if (currentData) {
+        inputRef.current!.value = currentData.answer;
+      }
+    }
+  }, []);
+
   return (
     <UserSurveyFormInputWrapper hasspan={!!title}>
       {title && <span dangerouslySetInnerHTML={replaceStringsWithTags(title)}></span>}
@@ -36,6 +49,7 @@ function Input({ title, placeholder, questionNumber, handleUpdateFormValue }: Us
           type="text"
           placeholder={convertQuestionIdentifierToPlaceholder(placeholder)}
           onChange={onChangeHandler}
+          ref={inputRef}
         />
       </div>
     </UserSurveyFormInputWrapper>
