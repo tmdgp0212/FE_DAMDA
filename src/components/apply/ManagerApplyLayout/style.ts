@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const FamilyContainer = styled.section`
   position: relative;
   display: block;
-  height: 512px;
+  height: 566px;
 `;
 
 export const Description = styled.div`

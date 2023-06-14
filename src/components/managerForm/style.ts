@@ -23,6 +23,7 @@ export const SubTitle = styled.h3`
 
 // Styled-Components
 export const ManagerFormContainer = styled.form`
+  position: relative;
   padding: 8px 20px 172px;
 `;
 
@@ -66,4 +67,23 @@ export const ManagerSupportButton = styled.button<{ isValid: boolean }>`
   background-color: ${({ theme, isValid }) => (isValid ? theme.colors.main_blue : '#ffffff')};
   font-weight: ${({ isValid }) => (isValid ? '800' : '500')};
   cursor: ${({ isValid }) => (isValid ? 'pointer' : 'not-allowed')};
+`;
+
+export const NextButton = styled.button`
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 52px;
+  border: none;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 160%;
+  background-color: ${({ theme }) => theme.colors.main_blue};
+  outline: none;
+
+  @media screen and (min-width: 360px) {
+    width: 360px;
+    margin-left: -20px;
+  }
 `;

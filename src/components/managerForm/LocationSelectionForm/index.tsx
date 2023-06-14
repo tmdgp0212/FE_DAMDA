@@ -1,57 +1,55 @@
 import React, { ChangeEvent, useState } from 'react';
 import Image from 'next/image';
 import { citiesData } from '@/constants/locationData';
+import useManagerFormStore from '@/store/managerForm';
 
 import { BsChevronUp, BsChevronDown } from 'react-icons/bs';
 import * as G from '../style';
 import * as S from './style';
 
-function LocationSelectionForm({ state, dispatch, setIsLocationValid }: any) {
-  const { activity_region } = state;
-  const [isOptionsOpen, setIsOptionsOpen] = useState(false);
+interface LocationSelectionFormProps {
+  isLocationOptionsOpen: boolean;
+  setIsLocationOptionsOpen: (isOpen: boolean) => void;
+}
+
+function LocationSelectionForm({ isLocationOptionsOpen, setIsLocationOptionsOpen }: LocationSelectionFormProps) {
+  const { activity_region, setActivityCity, setActivityDistrict, removeActivityDistrict } = useManagerFormStore(
+    (state) => state,
+  );
   const [selectedRegion, setSelectedRegion] = useState('');
-  const [selectedCities, setSelectedCities] = useState([]);
-
-  if (activity_region.seoul || activity_region.gyeonggi) {
-    setIsLocationValid(true);
-  } else {
-    setIsLocationValid(false);
-  }
-
   const regionChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setSelectedRegion(e.target.value);
   };
 
   const cityChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    const city = e.target.value;
+    const district = e.target.value;
     const isChecked = e.target.checked;
 
     if (isChecked) {
-      dispatch({ type: 'ACTIVITY_REGION', payload: { region: selectedRegion, district: e.target.value } });
+      setActivityCity(selectedRegion);
+      setActivityDistrict(district);
     } else {
-      dispatch({ type: 'FILTER_LOCATION', payload: { city } });
-    }
-
-    setSelectedCities((prevSelectedCities: any) => {
-      if (prevSelectedCities.includes(city)) {
-        return prevSelectedCities.filter((selectedCity: any) => selectedCity !== city);
-      } else {
-        return [...prevSelectedCities, city];
-      }
-    });
-  };
-
-  const filterLocationHandler = (city: string) => {
-    dispatch({ type: 'FILTER_LOCATION', payload: { city } });
-
-    const newSelectedCities = selectedCities.filter((selectedCity) => selectedCity !== city);
-    setSelectedCities(newSelectedCities);
-
-    const checkbox = document.getElementById(city);
-    if (checkbox) {
-      (checkbox as HTMLInputElement).checked = false;
+      removeActivityDistrict(district);
     }
   };
+
+  const filterTagHandler = (districtItem: string) => {
+    removeActivityDistrict(districtItem);
+  };
+
+  const tags = activity_region.activity_city.map((cityItem: string, index: number) => {
+    const districtItem = activity_region.activity_district[index];
+
+    return (
+      <div key={index}>
+        {`${cityItem.slice(0, 2)} ${districtItem}`}
+
+        <button type="button" onClick={() => filterTagHandler(districtItem)}>
+          <Image src="/icons/tag-close-icon.svg" alt="tag-close-icon" width={10.5} height={10.5} />
+        </button>
+      </div>
+    );
+  });
 
   return (
     <S.LocationSelectionForm>
@@ -59,41 +57,22 @@ function LocationSelectionForm({ state, dispatch, setIsLocationValid }: any) {
       <p>활동이 가능하신 모든 지역을 등록해주세요.</p>
 
       {/* 지역 태그 */}
-      <S.SelectedLocation>
-        {state.activity_region.seoul.map((district: string) => {
-          return (
-            <div key={district}>
-              서울 {district}
-              <button type="button" onClick={() => filterLocationHandler(district)}>
-                <Image src="/icons/tag-close-icon.svg" alt="tag-close-icon" width={10.5} height={10.5} />
-              </button>
-            </div>
-          );
-        })}
-
-        {state.activity_region.gyeonggi.map((district: string) => {
-          return (
-            <div key={district}>
-              경기 {district}
-              <button type="button" onClick={() => filterLocationHandler(district)}>
-                <Image src="/icons/tag-close-icon.svg" alt="tag-close-icon" width={10.5} height={10.5} />
-              </button>
-            </div>
-          );
-        })}
-      </S.SelectedLocation>
+      <S.SelectedLocation>{tags}</S.SelectedLocation>
 
       <div style={{ position: 'relative' }}>
         {/* Select Button */}
         <S.SelectButton
           type="button"
           region={selectedRegion}
-          isOptionsOpen={isOptionsOpen}
-          onClick={() => setIsOptionsOpen(!isOptionsOpen)}
+          isOptionsOpen={isLocationOptionsOpen}
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsLocationOptionsOpen(!isLocationOptionsOpen);
+          }}
         >
           <div className="select-region">
             지역 선택
-            {isOptionsOpen ? <BsChevronUp /> : <BsChevronDown />}
+            {isLocationOptionsOpen ? <BsChevronUp /> : <BsChevronDown />}
           </div>
 
           <div className="select-detail">
@@ -107,7 +86,7 @@ function LocationSelectionForm({ state, dispatch, setIsLocationValid }: any) {
         </S.SelectButton>
 
         {/* Options */}
-        {isOptionsOpen && (
+        {isLocationOptionsOpen && (
           <S.ListWrapper>
             <ul>
               <li>
@@ -115,7 +94,7 @@ function LocationSelectionForm({ state, dispatch, setIsLocationValid }: any) {
                   type="radio"
                   name="manager_available_region"
                   id="seoul"
-                  value="seoul"
+                  value="서울특별시"
                   onChange={regionChangeHandler}
                 />
                 <label htmlFor="seoul">서울특별시</label>
@@ -126,7 +105,7 @@ function LocationSelectionForm({ state, dispatch, setIsLocationValid }: any) {
                   type="radio"
                   name="manager_available_region"
                   id="gyeonggi"
-                  value="gyeonggi"
+                  value="경기도"
                   onChange={regionChangeHandler}
                 />
                 <label htmlFor="gyeonggi">경기도</label>
@@ -142,7 +121,7 @@ function LocationSelectionForm({ state, dispatch, setIsLocationValid }: any) {
                       name="manager_available_district"
                       id={district}
                       value={district}
-                      checked={state.activity_region[selectedRegion].includes(district)}
+                      checked={activity_region.activity_district.includes(district)}
                       onChange={cityChangeHandler}
                     />
                     <label htmlFor={district}>{district}</label>
