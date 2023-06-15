@@ -1,13 +1,16 @@
 import styled from '@emotion/styled';
+import theme from '@/styles/theme';
+import { css } from '@emotion/react';
 
 export const FAQItem = styled.li<{ isFAQOpen: boolean }>`
   width: 320px;
+  margin-top: ${({ isFAQOpen }) => (isFAQOpen ? '-2px' : '-1px')};
   background-color: #ffffff;
   list-style: none;
-  border: ${({ theme, isFAQOpen }) =>
-    isFAQOpen ? `2px solid ${theme.colors.main_blue}` : `1px solid ${theme.colors.yolda_black_1}`};
   border-radius: 5px;
   cursor: pointer;
+  border: ${({ isFAQOpen }) => (isFAQOpen ? '2px' : '1px')} solid
+    ${({ isFAQOpen }) => (isFAQOpen ? theme.colors.main_blue : theme.colors.yolda_black_1)};
 `;
 
 export const FAQCard = styled.article`
