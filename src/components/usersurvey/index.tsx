@@ -4,6 +4,8 @@ import { IoIosArrowBack } from 'react-icons/io';
 import FirstStep from '@/components/usersurvey/step/FirstStep';
 import SecStep from '@/components/usersurvey/step/SecStep';
 import { UserSurveyFormDataType } from '@/types/constants/userSurvey';
+import { useRouter } from 'next/router';
+import { useUserSurveyForm } from '@/store/userSurvey';
 
 const userSurveyFormData: UserSurveyFormDataType[] = [
   {
@@ -94,8 +96,8 @@ const userSurveyFormData: UserSurveyFormDataType[] = [
     required: true,
   },
   {
-    questionNumber: 6,
-    questionOrder: 5,
+    questionNumber: 7,
+    questionOrder: 6,
     questionIdentify: 'RECOMMENDEDCODE',
     questionTitle: '할인 되는 코드가 있으신가요?',
     questionType: 'STRING',
@@ -105,7 +107,7 @@ const userSurveyFormData: UserSurveyFormDataType[] = [
 
 const userSurveyFormDataSec: UserSurveyFormDataType[] = [
   {
-    questionNumber: 7,
+    questionNumber: 8,
     questionOrder: 0,
     questionIdentify: 'TITLE',
     questionTitle: '거의 다 됐어요!',
@@ -113,7 +115,7 @@ const userSurveyFormDataSec: UserSurveyFormDataType[] = [
     required: false,
   },
   {
-    questionNumber: 8,
+    questionNumber: 9,
     questionOrder: 1,
     questionIdentify: 'SERVICEDATE',
     questionTitle: '서비스 받으실 날짜와 시간을 정해주세요',
@@ -121,7 +123,7 @@ const userSurveyFormDataSec: UserSurveyFormDataType[] = [
     required: true,
   },
   {
-    questionNumber: 9,
+    questionNumber: 10,
     questionOrder: 2,
     questionIdentify: 'PARKINGAVAILABLE',
     questionTitle: '서비스 받으실 곳에는 주차를 어디에 br 할 수 있나요?',
@@ -129,31 +131,31 @@ const userSurveyFormDataSec: UserSurveyFormDataType[] = [
     required: true,
   },
   {
-    questionNumber: 10,
+    questionNumber: 11,
     questionOrder: 3,
     questionIdentify: 'RESERVATIONENTER',
     questionTitle: '열다 매니저가 출입할 수 있는 br 정보가 있다면 알려주세요!',
     questionType: 'STRING',
-    required: false,
+    required: true,
   },
   {
-    questionNumber: 11,
+    questionNumber: 12,
     questionOrder: 4,
     questionIdentify: 'RESERVATIONNOTE',
     questionTitle: '서비스를 받으시기 전에 br 매니저가 미리 알아야할 것이 있을까요?',
     questionType: 'STRING',
-    required: false,
+    required: true,
   },
   {
-    questionNumber: 12,
+    questionNumber: 13,
     questionOrder: 5,
     questionIdentify: 'RESERVATIONREQUEST',
     questionTitle: '열다에게 요청하실 것이나 br 더 궁금하신 내용이 있을까요?',
     questionType: 'STRING',
-    required: false,
+    required: true,
   },
   {
-    questionNumber: 13,
+    questionNumber: 14,
     questionOrder: 6,
     questionIdentify: 'LEARNEDROUTE',
     questionTitle: '열다 서비스를 어떻게 알게 되셨나요?',
@@ -190,12 +192,22 @@ const userSurveyFormDataSec: UserSurveyFormDataType[] = [
 ];
 
 function Index() {
+  const router = useRouter();
   const UsersurveyRef = useRef<HTMLDivElement | null>(null);
+  const [steps, setSteps] = useState<0 | 1>(0);
 
-  const [steps, setSteps] = useState<0 | 1>(1);
-
+  const { userSurveyForm } = useUserSurveyForm();
+  console.log(userSurveyForm);
   const handleNextStep = () => {
     setSteps(1);
+  };
+
+  const handlePrevStep = () => {
+    setSteps(0);
+  };
+
+  const goBack = () => {
+    router.back();
   };
 
   useEffect(() => {
@@ -203,11 +215,11 @@ function Index() {
       UsersurveyRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, []);
-
+  console.log(steps);
   return (
     <S.UserSurveyWrapper ref={UsersurveyRef}>
       <S.ProgressBar />
-      <IoIosArrowBack />
+      <IoIosArrowBack onClick={steps === 0 ? goBack : handlePrevStep} />
       {steps === 0 && <S.UserSurveyTitle>열다 옷장 정리 서비스 예약</S.UserSurveyTitle>}
       <S.UserSurveyFormWrapper>
         {steps === 0 && <FirstStep handleNextStep={handleNextStep} userSurveyFormData={userSurveyFormData} />}

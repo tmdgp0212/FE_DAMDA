@@ -12,7 +12,7 @@ function FirstStep({ handleNextStep, userSurveyFormData }: FirstStepProps) {
   const [formValue, setFormValue] = useState<UserSurveyForm[]>([]);
   const [isValid, setIsValid] = useState<boolean>(false);
 
-  const { setUserSurveyForm } = useUserSurveyForm();
+  const { setUserSurveyForm, userSurveyForm } = useUserSurveyForm();
   const checkRequiredQuestions = (formValue: UserSurveyForm[]) => {
     const requiredQuestionsIndex = userSurveyFormData
       .filter((data) => data.required)
@@ -29,14 +29,25 @@ function FirstStep({ handleNextStep, userSurveyFormData }: FirstStepProps) {
     checkRequiredQuestions(formValue);
   }, [formValue]);
 
-  // console.log(isValid, requiredQuestionsIndex);
+  useEffect(() => {
+    if (!!userSurveyForm) {
+      setFormValue(userSurveyForm);
+    }
+  }, []);
+
+  console.log(formValue);
+  const handleGoNextStep = () => {
+    setUserSurveyForm(formValue);
+    handleNextStep();
+  };
+
   return (
     <div className="form-container">
       {userSurveyFormData.map((data, index) => (
         <FormElements data={data} key={index} handleUpdateFormValue={setFormValue} />
       ))}
       <UserSurveyFormNextBox
-        onClick={isValid ? handleNextStep : undefined}
+        onClick={isValid ? handleGoNextStep : undefined}
         animate={isValid ? { backgroundColor: '#0061FF', color: '#fff' } : ''}
       >
         {isValid ? '날짜 예약하기' : '예약하기'}

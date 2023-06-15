@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { UserSurveyFormSelectProps } from '@/types/components/form';
 import { UserSurveyFormSelectBox, UserSurveyFormSelectWrapper } from '@/styles/survey.styled';
 import { convertQuestionIdentifierToPlaceholder } from '@/utils';
 import { AnimatePresence, Variants } from 'framer-motion';
 import { AiOutlineDown } from 'react-icons/ai';
-import { UserSurveyForm } from '@/store/userSurvey';
+import { UserSurveyForm, useUserSurveyForm } from '@/store/userSurvey';
 
 function Select({ category, placeholder, title, handleUpdateFormValue, questionNumber }: UserSurveyFormSelectProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<string>('');
+
+  const { userSurveyForm } = useUserSurveyForm();
 
   const handleOnOpen = () => {
     setIsOpen((prev) => !prev);
@@ -33,6 +35,15 @@ function Select({ category, placeholder, title, handleUpdateFormValue, questionN
       }
     });
   };
+
+  useEffect(() => {
+    if (!!userSurveyForm) {
+      const currentData = userSurveyForm.find((data) => data.questionNumber === questionNumber);
+      if (currentData) {
+        setSelected(currentData.answer);
+      }
+    }
+  }, []);
 
   return (
     <UserSurveyFormSelectWrapper>
