@@ -1,5 +1,6 @@
 import { QuestionIdentifier, QuestionType } from '@/types/api/formTypes';
 import React from 'react';
+import { requirement } from '@/constants/requirement';
 
 export type UserSurveyFormDataType = {
   questionNumber: number;
@@ -23,3 +24,10 @@ export interface AddressList {
 }
 
 export type AdditionalInfo = string;
+
+export interface requirementType {
+  id: number;
+  title: string;
+  additional?: string;
+  list?: string[];
+}

@@ -55,3 +55,7 @@ export interface UserSurveyFormAdditionalInputProps {
   questionNumber: number;
   handleUpdateFormValue: Dispatch<SetStateAction<UserSurveyForm[]>>;
 }
+
+export interface UserSurveyFormRequirementProps {
+  handleAgree: (bool: boolean) => void;
+}

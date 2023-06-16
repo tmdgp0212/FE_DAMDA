@@ -9,6 +9,7 @@ import {
 import { AiOutlineDown } from 'react-icons/ai';
 import { addressList } from '@/constants/location';
 import { Variants, motion } from 'framer-motion';
+import { useUserSurveyForm } from '@/store/userSurvey';
 
 const variants: Variants = {
   whileHover: {
@@ -26,6 +27,8 @@ function AddressSelect({ title, handleUpdateFormValue, questionNumber, placehold
   const [detailAddress, setDetailAddress] = useState<string>('');
   const [isMainAddressOpen, setIsMainAddressOpen] = useState(false);
   const [isSubAddressOpen, setIsSubAddressOpen] = useState(false);
+
+  const { userSurveyForm } = useUserSurveyForm();
 
   const handleAddressOpen = () => {
     setIsMainAddressOpen((prev) => !prev);
@@ -61,6 +64,18 @@ function AddressSelect({ title, handleUpdateFormValue, questionNumber, placehold
       }
     });
   }, [mainAddress, subAddress, detailAddress]);
+
+  useEffect(() => {
+    if (!!userSurveyForm) {
+      const currentData = userSurveyForm.find((data) => data.questionNumber === questionNumber);
+      if (currentData) {
+        const [main, sub, detail] = currentData.answer.split(' ');
+        setMainAddress(main);
+        setSubAddress(sub);
+        setDetailAddress(detail);
+      }
+    }
+  }, []);
 
   return (
     <UserSurveyAddressSelectWrapper>
@@ -138,7 +153,12 @@ function AddressSelect({ title, handleUpdateFormValue, questionNumber, placehold
           {detailAddress === '' ? <span className="address-span">상세 주소를 입력해주세요</span> : undefined}
           <div className="input">
             <p>상세 주소</p>
-            <input type="text" placeholder="동, 호수까지 입력해주세요" onChange={handleDetailAddress} />
+            <input
+              type="text"
+              placeholder="동, 호수까지 입력해주세요"
+              onChange={handleDetailAddress}
+              value={detailAddress}
+            />
           </div>
         </UserSurveyFormInputWrapper>
       )}

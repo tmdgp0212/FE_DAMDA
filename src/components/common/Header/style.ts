@@ -35,7 +35,8 @@ export const ProfileImage = styled.div`
 `;
 
 export const Logo = styled.h1`
-  a {
+  a,
+  p {
     display: block;
     width: 60px;
     height: 40px;
@@ -43,7 +44,12 @@ export const Logo = styled.h1`
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
+  }
+  a {
     cursor: pointer;
+  }
+  p {
+    cursor: default;
   }
 `;
 

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { UserSurveyFormRadioProps } from '@/types/components/form';
 import { UserSurveyFormRadioWrapper } from '@/styles/survey.styled';
 import { Variants, motion } from 'framer-motion';
 import Link from 'next/link';
-import { UserSurveyForm } from '@/store/userSurvey';
+import { UserSurveyForm, useUserSurveyForm } from '@/store/userSurvey';
 
 const variants: Variants = {
   hover: {
@@ -17,6 +17,8 @@ const variants: Variants = {
 };
 function Radio({ category, title, placeholder, questionNumber, handleUpdateFormValue }: UserSurveyFormRadioProps) {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
+
+  const { userSurveyForm } = useUserSurveyForm();
 
   const handleOnClick = (index: number) => {
     setSelectedIndex(index);
@@ -36,6 +38,16 @@ function Radio({ category, title, placeholder, questionNumber, handleUpdateFormV
       }
     });
   };
+
+  useEffect(() => {
+    if (!!userSurveyForm) {
+      const isExist = userSurveyForm.find((data) => data.questionNumber === questionNumber);
+      if (isExist) {
+        setSelectedIndex(category.findIndex((data) => data.category === isExist.answer));
+      }
+    }
+  }, []);
+
   return (
     <UserSurveyFormRadioWrapper>
       <span className="title">{title}</span>
