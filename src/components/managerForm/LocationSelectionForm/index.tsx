@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, RefObject, createRef, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { citiesData } from '@/constants/locationData';
 import useManagerFormStore from '@/store/managerForm';
@@ -20,6 +20,21 @@ function LocationSelectionForm({ isLocationOptionsOpen, setIsLocationOptionsOpen
   const regionChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setSelectedRegion(e.target.value);
   };
+  const listRef: RefObject<HTMLDivElement> = createRef();
+
+  const closeHandler = (e: MouseEvent) => {
+    if (isLocationOptionsOpen && listRef.current && !listRef.current.contains(e.target as Node)) {
+      setIsLocationOptionsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('click', closeHandler);
+
+    return () => {
+      window.removeEventListener('click', closeHandler);
+    };
+  });
 
   const cityChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const district = e.target.value;
@@ -36,6 +51,8 @@ function LocationSelectionForm({ isLocationOptionsOpen, setIsLocationOptionsOpen
   const filterTagHandler = (districtItem: string) => {
     removeActivityDistrict(districtItem);
   };
+
+  console.log(selectedRegion);
 
   const tags = activity_region.activity_city.map((cityItem: string, index: number) => {
     const districtItem = activity_region.activity_district[index];
@@ -76,7 +93,7 @@ function LocationSelectionForm({ isLocationOptionsOpen, setIsLocationOptionsOpen
           </div>
 
           <div className="select-detail">
-            <span>{selectedRegion === 'seoul' ? '서울특별시' : '경기도'}</span>
+            <span>{selectedRegion === '서울특별시' ? '서울특별시' : '경기도'}</span>
 
             <span>
               세부 선택
@@ -87,7 +104,7 @@ function LocationSelectionForm({ isLocationOptionsOpen, setIsLocationOptionsOpen
 
         {/* Options */}
         {isLocationOptionsOpen && (
-          <S.ListWrapper>
+          <S.ListWrapper ref={listRef}>
             <ul>
               <li>
                 <input

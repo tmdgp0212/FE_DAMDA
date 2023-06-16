@@ -89,7 +89,6 @@ function ManagerForm({ setIsSubmitClicked }: ManagerFormProps) {
 
   const outsideClickHandler = () => {
     setIsCertificateOptionsOpen(false);
-    setIsLocationOptionsOpen(false);
   };
 
   return (
