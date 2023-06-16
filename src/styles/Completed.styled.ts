@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { BsPlus } from 'react-icons/bs';
 
 export const Container = styled.div`
   display: flex;
@@ -84,6 +85,22 @@ export const SeviceImg = styled.div<{ img: string }>`
   background-repeat: no-repeat;
   border-radius: 8px;
   margin-bottom: 16px;
+`;
+
+export const InputLabel = styled.label`
+  width: 100%;
+  height: 4.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #181818;
+  border-radius: 8px;
+  padding: 0 1.2rem;
+`;
+
+export const PlusButton = styled(BsPlus)`
+  font-size: 3.2rem;
+  color: ${({ theme }) => theme.colors.main_blue};
 `;
 
 export const ButtonWrap = styled.div`

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import * as S from '../../../styles/Completed.styled';
-import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
+import { BsChevronDown, BsChevronUp, BsPlus } from 'react-icons/bs';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css/bundle';
+import { LanguageVariant } from 'typescript';
 interface Location {
   mainAddress: string;
   address: string;
@@ -165,7 +166,18 @@ const Completed: React.FC = () => {
             ))}
           </Swiper>
         )}
-        <input type="file" multiple accept="image/*" onChange={handleBeforeImageUpload} />
+        <S.InputLabel htmlFor="upload-before">
+          <span>사진 추가하기</span>
+          <S.PlusButton />
+        </S.InputLabel>
+        <input
+          id="upload-before"
+          type="file"
+          multiple
+          accept="image/*"
+          onChange={handleBeforeImageUpload}
+          style={{ display: 'none' }}
+        />
       </section>
       <section style={{ maxWidth: '320px' }}>
         <S.ServiceImgText>서비스 후 사진</S.ServiceImgText>
@@ -178,7 +190,18 @@ const Completed: React.FC = () => {
             ))}
           </Swiper>
         )}
-        <input type="file" multiple accept="image/*" onChange={handleAfterImageUpload} />
+        <S.InputLabel htmlFor="upload-after">
+          <span>사진 추가하기</span>
+          <S.PlusButton />
+        </S.InputLabel>
+        <input
+          id="upload-after"
+          type="file"
+          multiple
+          accept="image/*"
+          onChange={handleAfterImageUpload}
+          style={{ display: 'none' }}
+        />
       </section>
       <S.ButtonWrap>
         <S.Button color={'white'}>거절</S.Button>
