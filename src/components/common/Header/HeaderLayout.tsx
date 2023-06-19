@@ -16,18 +16,19 @@ interface HeaderProps {
 function HeaderLayout({ user, isMenuOpen, menuHandler, toSurvey, isInView }: HeaderProps) {
   const router = useRouter(); // useRouter hook을 사용하여 현재 페이지의 경로를 가져옵니다.
   const { pathname } = router; // 현재 페이지의 경로를 pathname 변수에 할당합니다.
+  console.log(pathname);
 
   return (
     <>
       <S.Logo className="ir-text">
-        {pathname !== '/manager/accept' && pathname !== '/manager/completed' && pathname !== '/completed-user/[id]' ? (
+        {pathname !== '/manager/accept' && pathname !== '/manager/completed' && pathname !== '/completed-user' ? (
           <Link href={'/'}>열다</Link>
         ) : (
           <p>열다</p>
         )}
       </S.Logo>
       {/* pathname 값을 비교하여 조건에 맞는 경우에만 HeaderButtons 컴포넌트를 렌더링 */}
-      {pathname !== '/manager/accept' && pathname !== '/manager/completed' && pathname !== '/completed-user/[id]' && (
+      {pathname !== '/manager/accept' && pathname !== '/manager/completed' && pathname !== '/completed-user' && (
         <S.HeaderButtons>
           <S.EstimateButton
             onClick={toSurvey}
