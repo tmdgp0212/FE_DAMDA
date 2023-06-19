@@ -35,6 +35,7 @@ function CheckModal({ setIsSubmitClicked }: CheckModalProps) {
 
   const [visible, setVisible] = useState(false);
 
+  // 자격증
   let certificate;
   switch (manager_license) {
     case 'FIRST_RATE_OFF':
@@ -79,23 +80,12 @@ function CheckModal({ setIsSubmitClicked }: CheckModalProps) {
     .filter((day: string | undefined) => day !== undefined);
 
   // 활동 가능 지역
-  const combinedArray = activity_region.activity_city.map((cityItem: string, index: number) => {
-    const districtItem = activity_region.activity_district[index];
-    return `${cityItem.slice(0, 2)} ${districtItem}`;
-  });
-  const sortedArray = combinedArray.sort((a: string, b: string) => {
-    if (a.includes('서울') && !b.includes('서울')) {
-      return -1;
-    } else if (!a.includes('서울') && b.includes('서울')) {
-      return 1;
-    } else {
-      return 0;
-    }
-  });
-  const seperatedArray = sortedArray.map((item: string, index: number) => {
-    const separator = index !== activity_region.activity_city.length - 1 ? ' / ' : '';
-    return `${item} ${separator}`;
-  });
+  const seoul = [...activity_region.서울특별시];
+  const gyeonggi = [...activity_region.경기도];
+  const renderedRegions = seoul
+    .map((district) => `서울 ${district}`)
+    .concat(gyeonggi.map((district) => `경기 ${district}`))
+    .join(' / ');
 
   const submitHandler = () => {
     const phoneNumberWithoutDash = manager_phone.replace(/-/g, '');
@@ -154,7 +144,7 @@ function CheckModal({ setIsSubmitClicked }: CheckModalProps) {
 
                 <div>
                   <dt>활동 가능 지역</dt>
-                  <dd>{seperatedArray}</dd>
+                  <dd>{renderedRegions}</dd>
                 </div>
               </dl>
             </S.Content>

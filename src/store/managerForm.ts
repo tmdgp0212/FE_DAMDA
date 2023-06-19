@@ -5,7 +5,7 @@ export type Store = {
   manager_name: string;
   manager_phone: string;
   activity_day: boolean[];
-  activity_region: { activity_city: string[]; activity_district: string[] };
+  activity_region: { [key: string]: string[] };
   manager_license: string;
   manager_license_etc: any;
   field_experience: string;
@@ -20,9 +20,9 @@ type Actions = {
   setPhoneNumber: (phoneNumber: string) => void;
   clearPhoneNumber: () => void;
   setDay: (index: number, isChecked: boolean) => void;
-  setActivityCity: (city: string) => void;
-  setActivityDistrict: (district: string) => void;
-  removeActivityDistrict: (district: string) => void;
+  setActivityRegion: (selectedRegion: string, district: string) => void;
+  setFilterLocation: (district: string) => void;
+  setRemoveTag: (district: string) => void;
   setManagerLicense: (certificate: string) => void;
   setManagerLicenseEtc: (certificateEtc: string) => void;
   clearManagerLicenseEtc: () => void;
@@ -41,7 +41,7 @@ const useManagerFormStore = create<Store & Actions>()(
       manager_name: '',
       manager_phone: '',
       activity_day: [false, false, false, false, false, false, false],
-      activity_region: { activity_city: [], activity_district: [] },
+      activity_region: { 서울특별시: [], 경기도: [] },
       manager_license: '',
       manager_license_etc: null,
       field_experience: '',
@@ -57,36 +57,67 @@ const useManagerFormStore = create<Store & Actions>()(
         set((state) => ({
           activity_day: state.activity_day.map((value, i) => (i === index ? isChecked : value)),
         })),
-      setActivityCity: (city) =>
-        set((state) => ({
-          activity_region: {
-            activity_city: [...state.activity_region.activity_city, city],
-            activity_district: [...state.activity_region.activity_district],
-          },
-        })),
-      setActivityDistrict: (district) =>
-        set((state) => ({
-          activity_region: {
-            activity_city: [...state.activity_region.activity_city],
-            activity_district: [...state.activity_region.activity_district, district],
-          },
-        })),
-      removeActivityDistrict: (enteredDistrict) =>
+      setActivityRegion: (selectedRegion, district) =>
         set((state) => {
-          const i = state.activity_region.activity_district.indexOf(enteredDistrict);
-          state.activity_region.activity_city.splice(i, 1);
+          let updatedRegionData;
 
-          const filteredArr = state.activity_region.activity_district.filter(
-            (district) => district !== enteredDistrict,
-          );
+          if (selectedRegion === '서울특별시') {
+            updatedRegionData = {
+              ...state.activity_region,
+              서울특별시: [...state.activity_region.서울특별시, district],
+            };
+          } else if (selectedRegion === '경기도') {
+            updatedRegionData = {
+              ...state.activity_region,
+              경기도: [...state.activity_region.경기도, district],
+            };
+          }
+
+          return {
+            activity_region: updatedRegionData,
+          };
+        }),
+      setFilterLocation: (district) =>
+        set((state) => {
+          let updatedSeoul = [...state.activity_region.서울특별시];
+          let updatedGyeonggi = [...state.activity_region.경기도];
+
+          if (state.activity_region.서울특별시.includes(district)) {
+            updatedSeoul = updatedSeoul.filter((selectedDistrict) => selectedDistrict !== district);
+          }
+
+          if (state.activity_region.경기도.includes(district)) {
+            updatedGyeonggi = updatedGyeonggi.filter((selectedDistrict) => selectedDistrict !== district);
+          }
 
           return {
             activity_region: {
-              activity_city: state.activity_region.activity_city,
-              activity_district: filteredArr,
+              서울특별시: updatedSeoul,
+              경기도: updatedGyeonggi,
             },
           };
         }),
+      setRemoveTag: (district: string) => {
+        set((state) => {
+          let updatedSeoul = state.activity_region.서울특별시;
+          let updatedGyeonggi = state.activity_region.경기도;
+
+          if (state.activity_region.서울특별시.includes(district)) {
+            updatedSeoul = updatedSeoul.filter((selectedDistrict) => !selectedDistrict.includes(district));
+          }
+
+          if (state.activity_region.경기도.includes(district)) {
+            updatedGyeonggi = updatedGyeonggi.filter((selectedDistrict) => !selectedDistrict.includes(district));
+          }
+
+          return {
+            activity_region: {
+              서울특별시: updatedSeoul,
+              경기도: updatedGyeonggi,
+            },
+          };
+        });
+      },
       setManagerLicense: (certificate) => {
         let manager_license;
 

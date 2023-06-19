@@ -13,14 +13,13 @@ interface LocationSelectionFormProps {
 }
 
 function LocationSelectionForm({ isLocationOptionsOpen, setIsLocationOptionsOpen }: LocationSelectionFormProps) {
-  const { activity_region, setActivityCity, setActivityDistrict, removeActivityDistrict } = useManagerFormStore(
-    (state) => state,
-  );
+  const { activity_region, setActivityRegion, setFilterLocation, setRemoveTag } = useManagerFormStore((state) => state);
   const [selectedRegion, setSelectedRegion] = useState('');
+  const listRef: RefObject<HTMLDivElement> = createRef();
+
   const regionChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setSelectedRegion(e.target.value);
   };
-  const listRef: RefObject<HTMLDivElement> = createRef();
 
   const closeHandler = (e: MouseEvent) => {
     if (isLocationOptionsOpen && listRef.current && !listRef.current.contains(e.target as Node)) {
@@ -41,32 +40,35 @@ function LocationSelectionForm({ isLocationOptionsOpen, setIsLocationOptionsOpen
     const isChecked = e.target.checked;
 
     if (isChecked) {
-      setActivityCity(selectedRegion);
-      setActivityDistrict(district);
+      setActivityRegion(selectedRegion, district);
     } else {
-      removeActivityDistrict(district);
+      setFilterLocation(district);
     }
   };
 
   const filterTagHandler = (districtItem: string) => {
-    removeActivityDistrict(districtItem);
+    console.log('clicked');
+    setRemoveTag(districtItem);
   };
 
-  console.log(selectedRegion);
+  // 지역 태그
+  const seoul = activity_region.서울특별시.map((item, index) => (
+    <div key={index}>
+      서울 {item}
+      <button type="button" onClick={() => filterTagHandler(item)}>
+        <Image src="/icons/tag-close-icon.svg" alt="tag-close-icon" width={10.5} height={10.5} />
+      </button>
+    </div>
+  ));
 
-  const tags = activity_region.activity_city.map((cityItem: string, index: number) => {
-    const districtItem = activity_region.activity_district[index];
-
-    return (
-      <div key={index}>
-        {`${cityItem.slice(0, 2)} ${districtItem}`}
-
-        <button type="button" onClick={() => filterTagHandler(districtItem)}>
-          <Image src="/icons/tag-close-icon.svg" alt="tag-close-icon" width={10.5} height={10.5} />
-        </button>
-      </div>
-    );
-  });
+  const gyeonggi = activity_region.경기도.map((item, index) => (
+    <div key={index}>
+      경기 {item}
+      <button type="button" onClick={() => filterTagHandler(item)}>
+        <Image src="/icons/tag-close-icon.svg" alt="tag-close-icon" width={10.5} height={10.5} />
+      </button>
+    </div>
+  ));
 
   return (
     <S.LocationSelectionForm>
@@ -74,7 +76,10 @@ function LocationSelectionForm({ isLocationOptionsOpen, setIsLocationOptionsOpen
       <p>활동이 가능하신 모든 지역을 등록해주세요.</p>
 
       {/* 지역 태그 */}
-      <S.SelectedLocation>{tags}</S.SelectedLocation>
+      <S.SelectedLocation>
+        {seoul}
+        {gyeonggi}
+      </S.SelectedLocation>
 
       <div style={{ position: 'relative' }}>
         {/* Select Button */}
@@ -129,7 +134,7 @@ function LocationSelectionForm({ isLocationOptionsOpen, setIsLocationOptionsOpen
               </li>
             </ul>
 
-            {selectedRegion && (
+            {isLocationOptionsOpen && selectedRegion && citiesData[selectedRegion] && (
               <ul>
                 {citiesData[selectedRegion].map((district: string) => (
                   <li key={district}>
@@ -138,7 +143,7 @@ function LocationSelectionForm({ isLocationOptionsOpen, setIsLocationOptionsOpen
                       name="manager_available_district"
                       id={district}
                       value={district}
-                      checked={activity_region.activity_district.includes(district)}
+                      checked={activity_region[selectedRegion].includes(district)}
                       onChange={cityChangeHandler}
                     />
                     <label htmlFor={district}>{district}</label>

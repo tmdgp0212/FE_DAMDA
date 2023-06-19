@@ -58,12 +58,12 @@ function ManagerForm({ setIsSubmitClicked }: ManagerFormProps) {
     }
   }, [formData.manager_license, formData.manager_license_etc]);
   useEffect(() => {
-    if (formData.activity_region.activity_district.length !== 0) {
+    if (formData.activity_region.서울특별시.length !== 0 || formData.activity_region.경기도.length !== 0) {
       setIsLocationValid(true);
     } else {
       setIsLocationValid(false);
     }
-  }, [formData.manager_license, formData.manager_license_etc, formData.activity_region.activity_district.length]);
+  }, [formData.manager_license, formData.manager_license_etc, formData.activity_region]);
   useEffect(() => {
     if (!formData.main_job && formData.manager_drive) {
       setIsRadioValid(true);
