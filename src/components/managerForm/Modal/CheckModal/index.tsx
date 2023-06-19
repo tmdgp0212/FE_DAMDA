@@ -98,9 +98,11 @@ function CheckModal({ setIsSubmitClicked }: CheckModalProps) {
   });
 
   const submitHandler = () => {
+    const phoneNumberWithoutDash = manager_phone.replace(/-/g, '');
+
     mutate({
       manager_name,
-      manager_phone,
+      manager_phone: phoneNumberWithoutDash,
       activity_day,
       activity_region,
       manager_license,
