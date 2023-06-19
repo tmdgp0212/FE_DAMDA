@@ -49,9 +49,9 @@ function ManagerForm({ setIsSubmitClicked }: ManagerFormProps) {
     setIsManagerFormValid(managerFormValid);
   }, [isNameValid, isPhoneNumberValid, activity_day, isLocationValid, isCertificateValid, isRadioValid, isGuideAgree]);
   useEffect(() => {
-    if (formData.manager_license && formData.manager_license !== '기타') {
+    if (formData.manager_license && formData.manager_license !== 'ETC') {
       setIsCertificateValid(true);
-    } else if (formData.manager_license === '기타' && formData.manager_license_etc) {
+    } else if (formData.manager_license === 'ETC' && formData.manager_license_etc) {
       setIsCertificateValid(true);
     } else {
       setIsCertificateValid(false);

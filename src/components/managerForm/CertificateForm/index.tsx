@@ -23,6 +23,36 @@ function CertificateForm({ isCertificateOptionsOpen, setIsCertificateOptionsOpen
   } = useManagerFormStore((state) => state);
   const [selectedOption, setSelectedOption] = useState('자격증 선택하기');
 
+  let certificate;
+  switch (manager_license) {
+    case 'FIRST_RATE_OFF':
+      certificate = '1급 (오프라인 취득)';
+      break;
+
+    case 'SECOND_RATE_OFF':
+      certificate = '2급 (오프라인 취득)';
+      break;
+
+    case 'FIRST_RATE_ON':
+      certificate = '1급 (온라인 취득)';
+      break;
+
+    case 'SECOND_RATE_ON':
+      certificate = '2급 (온라인 취득)';
+      break;
+
+    case 'NONE':
+      certificate = '없음';
+      break;
+
+    case 'ETC':
+      certificate = '기타';
+      break;
+
+    default:
+      break;
+  }
+
   const selectOptionHandler = (option: string) => {
     setManagerLicense(option);
     setSelectedOption(option);
@@ -54,7 +84,7 @@ function CertificateForm({ isCertificateOptionsOpen, setIsCertificateOptionsOpen
           }}
           isEtcClicked={!!manager_license}
         >
-          {manager_license ? manager_license : selectedOption}
+          {certificate ? certificate : selectedOption}
           {isCertificateOptionsOpen ? <BsChevronUp /> : <BsChevronDown />}
         </S.SelectButton>
 
@@ -140,7 +170,7 @@ function CertificateForm({ isCertificateOptionsOpen, setIsCertificateOptionsOpen
         )}
       </div>
 
-      {manager_license && manager_license === '기타' && (
+      {manager_license && manager_license === 'ETC' && (
         <I.FormInput>
           <span>위 리스트에 없는 자격증을 입력해주세요.</span>
 

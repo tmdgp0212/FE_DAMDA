@@ -4,7 +4,7 @@ import { persist } from 'zustand/middleware';
 export type Store = {
   manager_name: string;
   manager_phone: string;
-  activity_day: Array<boolean>;
+  activity_day: boolean[];
   activity_region: { activity_city: string[]; activity_district: string[] };
   manager_license: string;
   manager_license_etc: any;
@@ -87,7 +87,25 @@ const useManagerFormStore = create<Store & Actions>()(
             },
           };
         }),
-      setManagerLicense: (certificate) => set(() => ({ manager_license: certificate })),
+      setManagerLicense: (certificate) => {
+        let manager_license;
+
+        if (certificate === '1급 (오프라인 취득)') {
+          manager_license = 'FIRST_RATE_OFF';
+        } else if (certificate === '2급 (오프라인 취득)') {
+          manager_license = 'SECOND_RATE_OFF';
+        } else if (certificate === '1급 (온라인 취득)') {
+          manager_license = 'FIRST_RATE_ON';
+        } else if (certificate === '2급 (온라인 취득)') {
+          manager_license = 'SECOND_RATE_ON';
+        } else if (certificate === '없음') {
+          manager_license = 'NONE';
+        } else if (certificate === '기타') {
+          manager_license = 'ETC';
+        }
+
+        set({ manager_license });
+      },
       setManagerLicenseEtc: (certificateEtc) => set(() => ({ manager_license_etc: certificateEtc })),
       clearManagerLicenseEtc: () => set(() => ({ manager_license_etc: '' })),
       nullManagerLicenseEtc: () => set(() => ({ manager_license_etc: null })),

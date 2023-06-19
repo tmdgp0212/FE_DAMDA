@@ -35,6 +35,36 @@ function CheckModal({ setIsSubmitClicked }: CheckModalProps) {
 
   const [visible, setVisible] = useState(false);
 
+  let certificate;
+  switch (manager_license) {
+    case 'FIRST_RATE_OFF':
+      certificate = '1급 (오프라인 취득)';
+      break;
+
+    case 'SECOND_RATE_OFF':
+      certificate = '2급 (오프라인 취득)';
+      break;
+
+    case 'FIRST_RATE_ON':
+      certificate = '1급 (온라인 취득)';
+      break;
+
+    case 'SECOND_RATE_ON':
+      certificate = '2급 (온라인 취득)';
+      break;
+
+    case 'NONE':
+      certificate = '없음';
+      break;
+
+    case 'ETC':
+      certificate = '기타';
+      break;
+
+    default:
+      break;
+  }
+
   // 활동 가능 요일
   const resultDays = activity_day
     .map((value: boolean, index: number) => {
@@ -132,8 +162,8 @@ function CheckModal({ setIsSubmitClicked }: CheckModalProps) {
               <dl>
                 <div>
                   <dt>자격증</dt>
-                  {manager_license !== '기타' && <dd>{manager_license}</dd>}
-                  {manager_license === '기타' && <dd>{manager_license_etc}</dd>}
+                  {manager_license !== 'ETC' && <dd>{certificate}</dd>}
+                  {manager_license === 'ETC' && <dd>{manager_license_etc}</dd>}
                 </div>
 
                 <div>
