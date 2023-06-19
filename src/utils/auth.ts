@@ -1,7 +1,6 @@
 import querystring from 'querystring';
 
 const REST_API_KEY = '60f77739714285a54306be265e701791';
-// const REDIRECT_URI = 'http://localhost:3000/login';
 const REDIRECT_URI = 'https://fe-damda.vercel.app/login';
 
 /**

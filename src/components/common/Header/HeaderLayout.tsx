@@ -20,14 +20,14 @@ function HeaderLayout({ user, isMenuOpen, menuHandler, toSurvey, isInView }: Hea
   return (
     <>
       <S.Logo className="ir-text">
-        {pathname !== '/manager/accept' && pathname !== '/manager/completed' ? (
+        {pathname !== '/manager/accept' && pathname !== '/manager/completed' && pathname !== '/completed-user/[id]' ? (
           <Link href={'/'}>열다</Link>
         ) : (
           <p>열다</p>
         )}
       </S.Logo>
       {/* pathname 값을 비교하여 조건에 맞는 경우에만 HeaderButtons 컴포넌트를 렌더링 */}
-      {pathname !== '/manager/accept' && pathname !== '/manager/completed' && (
+      {pathname !== '/manager/accept' && pathname !== '/manager/completed' && pathname !== '/completed-user/[id]' && (
         <S.HeaderButtons>
           <S.EstimateButton
             onClick={toSurvey}
