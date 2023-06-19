@@ -6,7 +6,7 @@ function CompletedUser() {
   const router = useRouter();
   const [code, setCode] = useState('');
 
-  console.log('PK = ' + router.query.id);
+  console.log(router.query.id);
 
   return (
     <S.TextBoxContainer>

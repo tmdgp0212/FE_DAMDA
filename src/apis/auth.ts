@@ -20,6 +20,5 @@ export const getToken = async (code: string) => {
  */
 export const validateToken = async () => {
   const response = await instance.get<UserRes>('/auth/me');
-  console.log(response);
   return response.data;
 };
