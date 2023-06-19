@@ -7,7 +7,7 @@ export const ReviewContainer = styled.div`
 
 export const TitleLarge = styled.h2`
   margin-bottom: 20px;
-  padding: 0 25px;
+  padding: 0 20px;
   ${theme.font.bold_24}
   cursor: default;
 
@@ -29,7 +29,7 @@ export const TitleMedium = styled.h3`
 
 export const Description = styled.p`
   position: relative;
-  padding: 0 25px;
+  padding: 0 20px;
   line-height: 1.6;
   cursor: default;
   z-index: 1;
@@ -79,7 +79,7 @@ export const ScrollDown = styled.div<{ isInView: boolean }>`
 `;
 
 export const Reviews = styled.div`
-  padding: 0 25px;
+  padding: 0 20px;
 `;
 
 export const AllReview = styled.div`
@@ -89,7 +89,7 @@ export const AllReview = styled.div`
 
 export const Pagenation = styled.div`
   ${theme.font.regular_14}
-  padding: 25px;
+  padding: 20px;
 
   ul {
     display: flex;
