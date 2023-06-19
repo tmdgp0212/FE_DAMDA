@@ -4,7 +4,7 @@ import { persist } from 'zustand/middleware';
 export type Store = {
   manager_name: string;
   manager_phone: string;
-  activity_day: boolean[];
+  activity_day: Array<boolean>;
   activity_region: { activity_city: string[]; activity_district: string[] };
   manager_license: string;
   manager_license_etc: any;
