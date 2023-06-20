@@ -53,3 +53,40 @@ export type QuestionIdentifier =
  * - TITLE: 제목을 나타나기 위한 타입
  */
 export type QuestionType = 'DATE' | 'STRING' | 'RADIO' | 'SELECT' | 'TITLE';
+
+export type UserSurveyRequest = {
+  status: number;
+  message: string;
+  data: UserSurveyFormDataType[];
+};
+
+export type UserSurveyFormDataType = {
+  questionNumber: number;
+  questionOrder: number;
+  page: number;
+  questionTitle: string;
+  questionType: QuestionType;
+  questionIdentify: QuestionIdentifier;
+  required: boolean;
+  categoryList?: Category[];
+  Component?: React.ReactNode;
+};
+
+export type Category = {
+  id: number;
+  category: string;
+  price: number;
+};
+
+export interface AddressList {
+  [key: string]: AdditionalInfo[];
+}
+
+export type AdditionalInfo = string;
+
+export interface requirementType {
+  id: number;
+  title: string;
+  additional?: string;
+  list?: string[];
+}

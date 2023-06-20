@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { UserSurveyRequirementWrapper } from '@/styles/survey.styled';
 import { requirement } from '@/constants/requirement';
 import { replaceStringsWithTags } from '@/utils';
-import { requirementType } from '@/types/constants/userSurvey';
+import { requirementType } from '@/types/api/formTypes';
 import { UserSurveyFormRequirementProps } from '@/types/components/form';
 
 function Requirement({ handleAgree }: UserSurveyFormRequirementProps) {
