@@ -1,3 +1,5 @@
+import React from 'react';
+
 /**
  * 질문 식별자
  *
@@ -77,6 +79,12 @@ export type Category = {
   category: string;
   price: number;
 };
+
+export interface getAddressListType {
+  status: number;
+  message: string;
+  data: AddressList;
+}
 
 export interface AddressList {
   [key: string]: AdditionalInfo[];
