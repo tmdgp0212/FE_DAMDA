@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { UserSurveyFormDataType } from '@/types/constants/userSurvey';
+import { UserSurveyFormDataType } from '@/types/api/formTypes';
 import FormElements from '@/components/usersurvey/FormElements';
 import { UserSurveyForm, useUserSurveyForm } from '@/store/userSurvey';
 import Requirement from '@/components/usersurvey/components/Requirement';

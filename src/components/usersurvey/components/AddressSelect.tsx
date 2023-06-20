@@ -7,9 +7,10 @@ import {
   UserSurveyFormSubAddressWrapper,
 } from '@/styles/survey.styled';
 import { AiOutlineDown } from 'react-icons/ai';
-import { addressList } from '@/constants/location';
 import { Variants, motion } from 'framer-motion';
 import { useUserSurveyForm } from '@/store/userSurvey';
+import { useQuery } from '@tanstack/react-query';
+import { getAddressList } from '@/apis/form';
 
 const variants: Variants = {
   whileHover: {
@@ -27,6 +28,8 @@ function AddressSelect({ title, handleUpdateFormValue, questionNumber, placehold
   const [detailAddress, setDetailAddress] = useState<string>('');
   const [isMainAddressOpen, setIsMainAddressOpen] = useState(false);
   const [isSubAddressOpen, setIsSubAddressOpen] = useState(false);
+
+  const { data: addressList } = useQuery(['address'], getAddressList);
 
   const { userSurveyForm } = useUserSurveyForm();
 
@@ -91,41 +94,44 @@ function AddressSelect({ title, handleUpdateFormValue, questionNumber, placehold
             {isSubAddressOpen ? (
               <UserSurveyFormSubAddressWrapper>
                 <div className="main">
-                  {Object.keys(addressList).map((data, index) => (
-                    <motion.span
-                      className="address-item"
-                      key={index}
-                      variants={variants}
-                      whileHover="whileHover"
-                      animate={mainAddress === data ? 'whileHover' : ''}
-                      onClick={() => handleMainAddressSelect(data)}
-                    >
-                      {data}
-                    </motion.span>
-                  ))}
-                </div>
-                <div className="sub">
-                  {addressList[mainAddress].map((data, index) =>
-                    index === addressList[mainAddress].length - 1 ? (
-                      <span className="add" key={index}>
-                        {data}
-                      </span>
-                    ) : (
+                  {addressList &&
+                    Object.keys(addressList).map((data, index) => (
                       <motion.span
                         className="address-item"
                         key={index}
                         variants={variants}
                         whileHover="whileHover"
-                        animate={subAddress === data ? 'whileHover' : ''}
-                        onClick={() => handleSubAddressSelect(data)}
+                        animate={mainAddress === data ? 'whileHover' : ''}
+                        onClick={() => handleMainAddressSelect(data)}
                       >
                         {data}
                       </motion.span>
-                    ),
-                  )}
+                    ))}
+                </div>
+                <div className="sub">
+                  {addressList &&
+                    addressList[mainAddress].map((data, index) =>
+                      index === addressList[mainAddress].length - 1 ? (
+                        <span className="add" key={index}>
+                          {data}
+                        </span>
+                      ) : (
+                        <motion.span
+                          className="address-item"
+                          key={index}
+                          variants={variants}
+                          whileHover="whileHover"
+                          animate={subAddress === data ? 'whileHover' : ''}
+                          onClick={() => handleSubAddressSelect(data)}
+                        >
+                          {data}
+                        </motion.span>
+                      ),
+                    )}
                 </div>
               </UserSurveyFormSubAddressWrapper>
             ) : (
+              addressList &&
               Object.keys(addressList).map((data, index) => (
                 <motion.span
                   className="address-item"

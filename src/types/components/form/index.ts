@@ -1,5 +1,5 @@
 import { QuestionIdentifier } from '@/types/api/formTypes';
-import { Category, UserSurveyFormDataType } from '@/types/constants/userSurvey';
+import { Category, UserSurveyFormDataType } from '@/types/api/formTypes';
 import { Dispatch, SetStateAction } from 'react';
 import { UserSurveyForm } from '@/store/userSurvey';
 

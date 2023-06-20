@@ -1,4 +1,4 @@
-import { requirementType } from '@/types/constants/userSurvey';
+import { requirementType } from '@/types/api/formTypes';
 
 export const requirement: requirementType[] = [
   {
