@@ -39,13 +39,13 @@ function HeaderLayout({ user, isMenuOpen, menuHandler, toSurvey, isInView }: Hea
             무료견적
           </S.EstimateButton>
           <S.LoginButton className="ir-text">
-            {user.data ? (
-              <S.ProfileImage>
-                <Image src={user.data.profileImage} alt="profileImage" fill />
-              </S.ProfileImage>
-            ) : (
-              <Link href={'/login'}>login</Link>
-            )}
+            {/*{user.data ? (*/}
+            {/*  <S.ProfileImage>*/}
+            {/*    <Image src={user.data.profileImage} alt="profileImage" fill />*/}
+            {/*  </S.ProfileImage>*/}
+            {/*) : (*/}
+            {/*  <Link href={'/login'}>login</Link>*/}
+            {/*)}*/}
           </S.LoginButton>
           <S.SideMenuButton className="ir-text" isMenuOpen={isMenuOpen} onClick={() => menuHandler((prev) => !prev)}>
             menu
