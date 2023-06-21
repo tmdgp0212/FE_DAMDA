@@ -16,6 +16,16 @@ function FormElements({ data, handleUpdateFormValue }: FormElementsProps) {
     questionIdentify === 'RESERVATIONNOTE' ||
     questionIdentify === 'RESERVATIONREQUEST';
 
+  if (questionIdentify === 'ADDRESS')
+    return (
+      <AddressSelect
+        title={data.questionTitle}
+        handleUpdateFormValue={handleUpdateFormValue}
+        questionNumber={data.questionNumber}
+        placeholder={data.questionIdentify}
+      />
+    );
+
   switch (data.questionType) {
     case 'TITLE':
       return <Title title={data.questionTitle} />;
@@ -36,14 +46,7 @@ function FormElements({ data, handleUpdateFormValue }: FormElementsProps) {
         />
       );
     case 'SELECT':
-      return data.questionIdentify === 'ADDRESS' ? (
-        <AddressSelect
-          title={data.questionTitle}
-          handleUpdateFormValue={handleUpdateFormValue}
-          questionNumber={data.questionNumber}
-          placeholder={data.questionIdentify}
-        />
-      ) : (
+      return (
         <Select
           category={data.categoryList!}
           placeholder={data.questionIdentify}

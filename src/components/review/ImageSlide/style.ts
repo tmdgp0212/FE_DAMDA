@@ -9,7 +9,7 @@ const ProgressBar = keyframes`
 
 export const SwiperContainer = styled.div<{ isBest: boolean | undefined }>`
   position: relative;
-  width: calc(${theme.size.max_width} - 52px);
+  width: calc(${theme.size.max_width} - 42px);
   height: 214px;
 
   @media (max-width: 420px) {
