@@ -19,7 +19,7 @@ interface ManagerFormProps {
 
 function ManagerForm({ setIsSubmitClicked }: ManagerFormProps) {
   const formData = useManagerFormStore((state) => state);
-  const activity_day = useManagerFormStore((state) => state.activity_day);
+  const activity_day = useManagerFormStore((state) => state.activityDay);
   const [isVisible, setIsVisible] = useState(false);
   const [isCertificateOptionsOpen, setIsCertificateOptionsOpen] = useState(false);
   const [isLocationOptionsOpen, setIsLocationOptionsOpen] = useState(false);
@@ -49,34 +49,34 @@ function ManagerForm({ setIsSubmitClicked }: ManagerFormProps) {
     setIsManagerFormValid(managerFormValid);
   }, [isNameValid, isPhoneNumberValid, activity_day, isLocationValid, isCertificateValid, isRadioValid, isGuideAgree]);
   useEffect(() => {
-    if (formData.manager_license && formData.manager_license !== 'ETC') {
+    if (formData.certificateStatus && formData.certificateStatus !== 'ETC') {
       setIsCertificateValid(true);
-    } else if (formData.manager_license === 'ETC' && formData.manager_license_etc) {
+    } else if (formData.certificateStatus === 'ETC' && formData.certificateStatusEtc) {
       setIsCertificateValid(true);
     } else {
       setIsCertificateValid(false);
     }
-  }, [formData.manager_license, formData.manager_license_etc]);
+  }, [formData.certificateStatus, formData.certificateStatusEtc]);
   useEffect(() => {
-    if (formData.activity_region.서울특별시.length !== 0 || formData.activity_region.경기도.length !== 0) {
+    if (formData.region.서울특별시.length !== 0 || formData.region.경기도.length !== 0) {
       setIsLocationValid(true);
     } else {
       setIsLocationValid(false);
     }
-  }, [formData.manager_license, formData.manager_license_etc, formData.activity_region]);
+  }, [formData.certificateStatus, formData.certificateStatusEtc, formData.region]);
   useEffect(() => {
-    if (!formData.main_job && formData.manager_drive) {
+    if (!formData.mainJobStatus && formData.vehicle) {
       setIsRadioValid(true);
-    } else if (!formData.main_job && !formData.manager_drive) {
+    } else if (!formData.mainJobStatus && !formData.vehicle) {
       setIsRadioValid(true);
-    } else if (formData.main_job && formData.main_job_etc && formData.manager_drive) {
+    } else if (formData.mainJobStatus && formData.mainJobStatusEtc && formData.vehicle) {
       setIsRadioValid(true);
-    } else if (formData.main_job && formData.main_job_etc && !formData.manager_drive) {
+    } else if (formData.mainJobStatus && formData.mainJobStatusEtc && !formData.vehicle) {
       setIsRadioValid(true);
     } else {
       setIsRadioValid(false);
     }
-  }, [formData.main_job, formData.main_job_etc, formData.manager_drive]);
+  }, [formData.mainJobStatus, formData.mainJobStatusEtc, formData.vehicle]);
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import Image from 'next/image';
 import useManagerFormStore from '@/store/managerForm';
 
@@ -10,19 +10,20 @@ interface IntroductionFormProps {
 }
 
 function IntroductionForm({ setIsNameValid, setIsPhoneNumberValid }: IntroductionFormProps) {
-  const { manager_name, manager_phone, setManagerName, setPhoneNumber, clearManagerName, clearPhoneNumber } =
-    useManagerFormStore((state) => state);
+  const { name, phone, setManagerName, setPhoneNumber, clearManagerName, clearPhoneNumber } = useManagerFormStore(
+    (state) => state,
+  );
 
   const [nameErrorMessage, setErrorMessage] = useState('');
   const [phoneErrorMessage, setPhoneErrorMessage] = useState('');
 
-  if (manager_name !== '' && !nameErrorMessage) {
+  if (name !== '' && !nameErrorMessage) {
     setIsNameValid(true);
   } else {
     setIsNameValid(false);
   }
 
-  if (manager_phone && !phoneErrorMessage) {
+  if (phone && !phoneErrorMessage) {
     setIsPhoneNumberValid(true);
   } else {
     setIsPhoneNumberValid(false);
@@ -84,9 +85,9 @@ function IntroductionForm({ setIsNameValid, setIsPhoneNumberValid }: Introductio
         <span>이름</span>
 
         <S.InputWrapper isError={nameErrorMessage}>
-          <input type="text" value={manager_name} placeholder="김열다" onChange={nameChangeHandler} />
+          <input type="text" value={name} placeholder="김열다" onChange={nameChangeHandler} />
 
-          {manager_name && (
+          {name && (
             <S.Icon type="button" style={{ cursor: 'pointer' }} onClick={nameClearHandler}>
               <Image src="/icons/input-clear-icon.svg" alt="input-clear-icon" fill />
             </S.Icon>
@@ -108,13 +109,13 @@ function IntroductionForm({ setIsNameValid, setIsPhoneNumberValid }: Introductio
         <S.InputWrapper isError={phoneErrorMessage}>
           <input
             type="text"
-            value={manager_phone}
+            value={phone}
             maxLength={13}
             placeholder="010-0000-0000"
             onChange={phoneNumberChangeHandler}
           />
 
-          {manager_phone && (
+          {phone && (
             <S.Icon type="button" style={{ cursor: 'pointer' }} onClick={phoneNumberClearHandler}>
               <Image src="/icons/input-clear-icon.svg" alt="input-clear-icon" fill />
             </S.Icon>

@@ -6,7 +6,7 @@ import useManagerFormStore from '@/store/managerForm';
 
 function FieldExperienceForm() {
   const [count, setCount] = useState(0);
-  const { field_experience, setFieldExperience } = useManagerFormStore((state) => state);
+  const { fieldExperience, setFieldExperience } = useManagerFormStore((state) => state);
 
   const textChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const characterCountWithoutSpaces = e.target.value.replace(/\s/g, '').length;
@@ -27,7 +27,7 @@ function FieldExperienceForm() {
       <textarea
         name="field_experience"
         id=""
-        value={field_experience}
+        value={fieldExperience}
         placeholder="현장 파견 20회 이상, 옷장 정리 경험 10회 이상"
         style={{ resize: 'none' }}
         onChange={textChangeHandler}

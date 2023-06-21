@@ -13,7 +13,7 @@ interface LocationSelectionFormProps {
 }
 
 function LocationSelectionForm({ isLocationOptionsOpen, setIsLocationOptionsOpen }: LocationSelectionFormProps) {
-  const { activity_region, setActivityRegion, setFilterLocation, setRemoveTag } = useManagerFormStore((state) => state);
+  const { region, setActivityRegion, setFilterLocation, setRemoveTag } = useManagerFormStore((state) => state);
   const [selectedRegion, setSelectedRegion] = useState('');
   const listRef: RefObject<HTMLDivElement> = createRef();
 
@@ -52,7 +52,7 @@ function LocationSelectionForm({ isLocationOptionsOpen, setIsLocationOptionsOpen
   };
 
   // 지역 태그
-  const seoul = activity_region.서울특별시.map((item, index) => (
+  const seoul = region.서울특별시.map((item, index) => (
     <div key={index}>
       서울 {item}
       <button type="button" onClick={() => filterTagHandler(item)}>
@@ -61,7 +61,7 @@ function LocationSelectionForm({ isLocationOptionsOpen, setIsLocationOptionsOpen
     </div>
   ));
 
-  const gyeonggi = activity_region.경기도.map((item, index) => (
+  const gyeonggi = region.경기도.map((item, index) => (
     <div key={index}>
       경기 {item}
       <button type="button" onClick={() => filterTagHandler(item)}>
@@ -143,7 +143,7 @@ function LocationSelectionForm({ isLocationOptionsOpen, setIsLocationOptionsOpen
                       name="manager_available_district"
                       id={district}
                       value={district}
-                      checked={activity_region[selectedRegion].includes(district)}
+                      checked={region[selectedRegion].includes(district)}
                       onChange={cityChangeHandler}
                     />
                     <label htmlFor={district}>{district}</label>

@@ -14,8 +14,8 @@ interface CertificateFormProps {
 
 function CertificateForm({ isCertificateOptionsOpen, setIsCertificateOptionsOpen }: CertificateFormProps) {
   const {
-    manager_license,
-    manager_license_etc,
+    certificateStatus,
+    certificateStatusEtc,
     setManagerLicense,
     setManagerLicenseEtc,
     clearManagerLicenseEtc,
@@ -24,7 +24,7 @@ function CertificateForm({ isCertificateOptionsOpen, setIsCertificateOptionsOpen
   const [selectedOption, setSelectedOption] = useState('자격증 선택하기');
 
   let certificate;
-  switch (manager_license) {
+  switch (certificateStatus) {
     case 'FIRST_RATE_OFF':
       certificate = '1급 (오프라인 취득)';
       break;
@@ -82,7 +82,7 @@ function CertificateForm({ isCertificateOptionsOpen, setIsCertificateOptionsOpen
             e.stopPropagation();
             setIsCertificateOptionsOpen(!isCertificateOptionsOpen);
           }}
-          isEtcClicked={!!manager_license}
+          isEtcClicked={!!certificateStatus}
         >
           {certificate ? certificate : selectedOption}
           {isCertificateOptionsOpen ? <BsChevronUp /> : <BsChevronDown />}
@@ -170,14 +170,14 @@ function CertificateForm({ isCertificateOptionsOpen, setIsCertificateOptionsOpen
         )}
       </div>
 
-      {manager_license && manager_license === 'ETC' && (
+      {certificateStatus && certificateStatus === 'ETC' && (
         <I.FormInput>
           <span>위 리스트에 없는 자격증을 입력해주세요.</span>
 
           <I.InputWrapper>
-            <input type="text" value={manager_license_etc} placeholder="자격증 이름" onChange={inputChangeHandler} />
+            <input type="text" value={certificateStatusEtc} placeholder="자격증 이름" onChange={inputChangeHandler} />
 
-            {manager_license_etc && (
+            {certificateStatusEtc && (
               <I.Icon type="button" style={{ cursor: 'pointer' }} onClick={etcClearHandler}>
                 <Image src="/icons/input-clear-icon.svg" alt="input-clear-icon" fill />
               </I.Icon>

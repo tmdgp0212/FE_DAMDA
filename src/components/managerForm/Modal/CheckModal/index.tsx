@@ -21,23 +21,23 @@ function CheckModal({ setIsSubmitClicked }: CheckModalProps) {
 
   // state
   const {
-    manager_name,
-    manager_phone,
-    activity_day,
-    activity_region,
-    manager_license,
-    manager_license_etc,
-    field_experience,
-    main_job,
-    main_job_etc,
-    manager_drive,
+    name,
+    phone,
+    activityDay,
+    region,
+    certificateStatus,
+    certificateStatusEtc,
+    fieldExperience,
+    mainJobStatus,
+    mainJobStatusEtc,
+    vehicle,
   } = useManagerFormStore((state) => state);
 
   const [visible, setVisible] = useState(false);
 
   // 자격증
   let certificate;
-  switch (manager_license) {
+  switch (certificateStatus) {
     case 'FIRST_RATE_OFF':
       certificate = '1급 (오프라인 취득)';
       break;
@@ -67,7 +67,7 @@ function CheckModal({ setIsSubmitClicked }: CheckModalProps) {
   }
 
   // 활동 가능 요일
-  const resultDays = activity_day
+  const resultDays = activityDay
     .map((value: boolean, index: number) => {
       if (index === 0 && value) return '월';
       else if (index === 1 && value) return '화';
@@ -80,27 +80,27 @@ function CheckModal({ setIsSubmitClicked }: CheckModalProps) {
     .filter((day: string | undefined) => day !== undefined);
 
   // 활동 가능 지역
-  const seoul = [...activity_region.서울특별시];
-  const gyeonggi = [...activity_region.경기도];
+  const seoul = [...region.서울특별시];
+  const gyeonggi = [...region.경기도];
   const renderedRegions = seoul
     .map((district) => `서울 ${district}`)
     .concat(gyeonggi.map((district) => `경기 ${district}`))
     .join(' / ');
 
   const submitHandler = () => {
-    const phoneNumberWithoutDash = manager_phone.replace(/-/g, '');
+    const phoneNumberWithoutDash = phone.replace(/-/g, '');
 
     mutate({
-      manager_name,
-      manager_phone: phoneNumberWithoutDash,
-      activity_day,
-      activity_region,
-      manager_license,
-      manager_license_etc,
-      field_experience,
-      main_job,
-      main_job_etc,
-      manager_drive,
+      name,
+      phone: phoneNumberWithoutDash,
+      activityDay,
+      region,
+      certificateStatus,
+      certificateStatusEtc,
+      fieldExperience,
+      mainJobStatus,
+      mainJobStatusEtc,
+      vehicle,
     });
   };
 
@@ -124,12 +124,12 @@ function CheckModal({ setIsSubmitClicked }: CheckModalProps) {
               <dl>
                 <div>
                   <dt>이름</dt>
-                  <dd>{manager_name}</dd>
+                  <dd>{name}</dd>
                 </div>
 
                 <div>
                   <dt>연락처</dt>
-                  <dd>{manager_phone}</dd>
+                  <dd>{phone}</dd>
                 </div>
 
                 <div>
@@ -154,24 +154,24 @@ function CheckModal({ setIsSubmitClicked }: CheckModalProps) {
               <dl>
                 <div>
                   <dt>자격증</dt>
-                  {manager_license !== 'ETC' && <dd>{certificate}</dd>}
-                  {manager_license === 'ETC' && <dd>{manager_license_etc}</dd>}
+                  {certificateStatus !== 'ETC' && <dd>{certificate}</dd>}
+                  {certificateStatus === 'ETC' && <dd>{certificateStatusEtc}</dd>}
                 </div>
 
                 <div>
                   <dt>본업여부</dt>
-                  {!main_job_etc && !main_job && <dd>아님</dd>}
-                  {main_job_etc && <dd>{main_job_etc}</dd>}
+                  {!mainJobStatusEtc && !mainJobStatus && <dd>아님</dd>}
+                  {mainJobStatusEtc && <dd>{mainJobStatusEtc}</dd>}
                 </div>
 
                 <div>
                   <dt>자차 운전여부</dt>
-                  <dd>{manager_drive ? '있음' : '없음'}</dd>
+                  <dd>{vehicle ? '있음' : '없음'}</dd>
                 </div>
 
                 <div>
                   <dt>현장경험</dt>
-                  <dd>{field_experience.slice(0, 150)}</dd>
+                  <dd>{fieldExperience.slice(0, 150)}</dd>
                 </div>
               </dl>
             </S.Content>
