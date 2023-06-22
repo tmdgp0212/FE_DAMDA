@@ -6,7 +6,10 @@ export const useAuth = () => {
   const { setUser, logout } = useAuthStore();
   const { mutate } = useMutation(validateToken, {
     onSuccess: (data) => {
-      console.log(data);
+      if (data.data.profileImage === '404.jpg') {
+        //404.jpg => 카카오톡 기본프로필 이미지
+        data.data.profileImage = 'http://k.kakaocdn.net/dn/dpk9l1/btqmGhA2lKL/Oz0wDuJn1YV2DIn92f6DVK/img_110x110.jpg';
+      }
       setUser(data.data);
     },
     onError: () => {

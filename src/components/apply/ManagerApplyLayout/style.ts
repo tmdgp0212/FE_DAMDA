@@ -70,6 +70,7 @@ export const PreferenceContainer = styled.section`
 export const BenefitContainer = styled.section`
   position: relative;
   display: block;
+  margin: 0 -5px;
 
   img {
     display: block;
@@ -99,6 +100,7 @@ export const StyleWrapper = styled.div`
   margin-top: -65px;
 
   a {
+    margin-right: 5px;
     align-self: flex-end;
   }
 `;

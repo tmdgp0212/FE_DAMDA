@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, RefObject, createRef, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { citiesData } from '@/constants/locationData';
 import useManagerFormStore from '@/store/managerForm';
@@ -13,43 +13,62 @@ interface LocationSelectionFormProps {
 }
 
 function LocationSelectionForm({ isLocationOptionsOpen, setIsLocationOptionsOpen }: LocationSelectionFormProps) {
-  const { activity_region, setActivityCity, setActivityDistrict, removeActivityDistrict } = useManagerFormStore(
-    (state) => state,
-  );
+  const { region, setActivityRegion, setFilterLocation, setRemoveTag } = useManagerFormStore((state) => state);
   const [selectedRegion, setSelectedRegion] = useState('');
+  const listRef: RefObject<HTMLDivElement> = createRef();
+
   const regionChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setSelectedRegion(e.target.value);
   };
+
+  const closeHandler = (e: MouseEvent) => {
+    if (isLocationOptionsOpen && listRef.current && !listRef.current.contains(e.target as Node)) {
+      setIsLocationOptionsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('click', closeHandler);
+
+    return () => {
+      window.removeEventListener('click', closeHandler);
+    };
+  });
 
   const cityChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const district = e.target.value;
     const isChecked = e.target.checked;
 
     if (isChecked) {
-      setActivityCity(selectedRegion);
-      setActivityDistrict(district);
+      setActivityRegion(selectedRegion, district);
     } else {
-      removeActivityDistrict(district);
+      setFilterLocation(district);
     }
   };
 
   const filterTagHandler = (districtItem: string) => {
-    removeActivityDistrict(districtItem);
+    console.log('clicked');
+    setRemoveTag(districtItem);
   };
 
-  const tags = activity_region.activity_city.map((cityItem: string, index: number) => {
-    const districtItem = activity_region.activity_district[index];
+  // 지역 태그
+  const seoul = region.서울특별시.map((item, index) => (
+    <div key={index}>
+      서울 {item}
+      <button type="button" onClick={() => filterTagHandler(item)}>
+        <Image src="/icons/tag-close-icon.svg" alt="tag-close-icon" width={10.5} height={10.5} />
+      </button>
+    </div>
+  ));
 
-    return (
-      <div key={index}>
-        {`${cityItem.slice(0, 2)} ${districtItem}`}
-
-        <button type="button" onClick={() => filterTagHandler(districtItem)}>
-          <Image src="/icons/tag-close-icon.svg" alt="tag-close-icon" width={10.5} height={10.5} />
-        </button>
-      </div>
-    );
-  });
+  const gyeonggi = region.경기도.map((item, index) => (
+    <div key={index}>
+      경기 {item}
+      <button type="button" onClick={() => filterTagHandler(item)}>
+        <Image src="/icons/tag-close-icon.svg" alt="tag-close-icon" width={10.5} height={10.5} />
+      </button>
+    </div>
+  ));
 
   return (
     <S.LocationSelectionForm>
@@ -57,7 +76,10 @@ function LocationSelectionForm({ isLocationOptionsOpen, setIsLocationOptionsOpen
       <p>활동이 가능하신 모든 지역을 등록해주세요.</p>
 
       {/* 지역 태그 */}
-      <S.SelectedLocation>{tags}</S.SelectedLocation>
+      <S.SelectedLocation>
+        {seoul}
+        {gyeonggi}
+      </S.SelectedLocation>
 
       <div style={{ position: 'relative' }}>
         {/* Select Button */}
@@ -76,7 +98,7 @@ function LocationSelectionForm({ isLocationOptionsOpen, setIsLocationOptionsOpen
           </div>
 
           <div className="select-detail">
-            <span>{selectedRegion === 'seoul' ? '서울특별시' : '경기도'}</span>
+            <span>{selectedRegion === '서울특별시' ? '서울특별시' : '경기도'}</span>
 
             <span>
               세부 선택
@@ -87,7 +109,7 @@ function LocationSelectionForm({ isLocationOptionsOpen, setIsLocationOptionsOpen
 
         {/* Options */}
         {isLocationOptionsOpen && (
-          <S.ListWrapper>
+          <S.ListWrapper ref={listRef}>
             <ul>
               <li>
                 <input
@@ -112,7 +134,7 @@ function LocationSelectionForm({ isLocationOptionsOpen, setIsLocationOptionsOpen
               </li>
             </ul>
 
-            {selectedRegion && (
+            {isLocationOptionsOpen && selectedRegion && citiesData[selectedRegion] && (
               <ul>
                 {citiesData[selectedRegion].map((district: string) => (
                   <li key={district}>
@@ -121,7 +143,7 @@ function LocationSelectionForm({ isLocationOptionsOpen, setIsLocationOptionsOpen
                       name="manager_available_district"
                       id={district}
                       value={district}
-                      checked={activity_region.activity_district.includes(district)}
+                      checked={region[selectedRegion].includes(district)}
                       onChange={cityChangeHandler}
                     />
                     <label htmlFor={district}>{district}</label>
