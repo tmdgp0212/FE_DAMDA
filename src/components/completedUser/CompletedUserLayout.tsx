@@ -4,10 +4,17 @@ import * as S from '@/styles/CompletedUser.styled';
 interface CompletedUserProps {
   code: string;
   copyMessageRef: React.MutableRefObject<HTMLDivElement | null>;
+  isError: boolean;
   copy: () => void;
 }
 
-function CompletedUserLayout({ code, copyMessageRef, copy }: CompletedUserProps) {
+function CompletedUserLayout({ code, copyMessageRef, isError, copy }: CompletedUserProps) {
+  if (isError)
+    return (
+      <S.CompletedUserContainer>
+        <div className="error">유효하지 않은 접근입니다</div>
+      </S.CompletedUserContainer>
+    );
   return (
     <S.CompletedUserContainer>
       <S.ThanksTitle>
