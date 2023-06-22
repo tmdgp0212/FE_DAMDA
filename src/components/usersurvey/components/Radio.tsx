@@ -16,7 +16,7 @@ const variants: Variants = {
   },
 };
 function Radio({ handleUpdateFormValue, formData }: UserSurveyFormRadioProps) {
-  const [selectedIndex, setSelectedIndex] = useState<number>(0);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const { questionTitle: title, categoryList, questionNumber, placeHolder, questionIdentify } = formData;
 
   const { userSurveyForm } = useUserSurveyForm();

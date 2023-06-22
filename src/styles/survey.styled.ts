@@ -11,6 +11,40 @@ export const UserSurveyWrapper = styled.div`
     width: 2.4rem;
     height: 2.4rem;
   }
+
+  .footer {
+    width: 100%;
+    height: 5rem;
+    max-width: 360px;
+    margin: 0 auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    gap: 1.2rem;
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+
+    backdrop-filter: blur(5px);
+
+    .price {
+      font-size: 16px;
+
+      span {
+        font-size: 24px;
+        font-weight: 700;
+      }
+    }
+    .des {
+      font-size: 16px;
+      span {
+        font-weight: 700;
+      }
+    }
+  }
 `;
 
 export const ProgressBar = styled.div``;

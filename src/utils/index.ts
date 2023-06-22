@@ -78,3 +78,55 @@ export const convertQuestionIdentifierToPlaceholder = (questionIdentifier: Quest
       return '5자리 알파벳 코드 입력';
   }
 };
+
+export const getTotalPrice = (time: number, person: number) => {
+  let price = 0;
+  let perPerson = 0;
+
+  switch (person) {
+    case 1:
+      if (time === 3) {
+        price = 59900;
+        perPerson = 1;
+      }
+      if (time === 4) {
+        price = 79900;
+        perPerson = 1;
+      }
+      if (time === 5) {
+        price = 99900;
+        perPerson = 1;
+      }
+      break;
+    case 2:
+    case 3:
+      if (time === 3) {
+        price = 119900;
+        perPerson = 2;
+      }
+      if (time === 4) {
+        price = 159900;
+        perPerson = 2;
+      }
+      if (time === 5) {
+        price = 199900;
+        perPerson = 2;
+      }
+      break;
+    case 4:
+      if (time === 4) {
+        price = 159900;
+        perPerson = 4;
+      }
+      if (time === 5) {
+        price = 199900;
+        perPerson = 4;
+      }
+      if (time === 6) {
+        price = 239900;
+        perPerson = 4;
+      }
+      break;
+  }
+  return { price, perPerson };
+};

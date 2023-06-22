@@ -87,6 +87,19 @@ export interface getAddressListType {
   data: AddressList;
 }
 
+export interface PostFormType {
+  questionNumber: number;
+  questionIdentify: QuestionIdentifier;
+  answer: string;
+}
+
+export interface PostFormRequest {
+  submit: PostFormType[];
+  addressFront: string;
+  price: number;
+  servicePerson: number;
+}
+
 export interface AddressList {
   [key: string]: AdditionalInfo[];
 }
