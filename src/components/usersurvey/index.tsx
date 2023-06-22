@@ -18,7 +18,7 @@ function Index() {
   const [userSurveyFormData, setUserSurveyFormData] = useState<UserSurveyFormDataType[]>([]);
   const [userSurveyFormDataSec, setUserSurveyFormDataSec] = useState<UserSurveyFormDataType[]>([]);
 
-  const { userSurveyForm } = useUserSurveyForm();
+  const { userSurveyForm, price, perPerson } = useUserSurveyForm();
   const handleNextStep = () => {
     setSteps(1);
   };
@@ -48,6 +48,8 @@ function Index() {
     setUserSurveyFormDataSec(secStep);
   }, [data]);
 
+  console.log(price);
+
   return (
     <S.UserSurveyWrapper ref={UsersurveyRef}>
       <S.ProgressBar />
@@ -57,6 +59,17 @@ function Index() {
         {steps === 0 && <FirstStep handleNextStep={handleNextStep} userSurveyFormData={userSurveyFormData} />}
         {steps === 1 && <SecStep userSurveyFormData={userSurveyFormDataSec} />}
       </S.UserSurveyFormWrapper>
+      {price === 0 ? null : (
+        <div className="footer">
+          <div className="price">
+            견적(현금가) <span>{price}원</span>
+          </div>
+          <div className="des">
+            작업 매니저 <span>{perPerson}명</span> / 작업 시간{' '}
+            <span>{userSurveyForm.find((data) => data.questionIdentify === 'SERVICEDURATION')?.answer}</span>
+          </div>
+        </div>
+      )}
     </S.UserSurveyWrapper>
   );
 }
