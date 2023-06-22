@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
 import { UserSurveyFormAdditionalInputWrapper, UserSurveyFormTextBox } from '@/styles/survey.styled';
 import { UserSurveyFormAdditionalInputProps } from '@/types/components/form';
-import {
-  convertQuestionIdentifierToKorean,
-  convertQuestionIdentifierToPlaceholder,
-  replaceStringsWithTags,
-} from '@/utils';
+import { convertQuestionIdentifierToKorean } from '@/utils';
 import { QuestionIdentifier } from '@/types/api/formTypes';
 import { UserSurveyForm } from '@/store/userSurvey';
 
-const makeLabel = (placeholder: QuestionIdentifier) => {
-  switch (placeholder) {
+const makeLabel = (placeHolder: QuestionIdentifier) => {
+  switch (placeHolder) {
     case 'PARKINGAVAILABLE':
       return '주차장 없음';
     case 'RESERVATIONENTER':
@@ -20,12 +16,9 @@ const makeLabel = (placeholder: QuestionIdentifier) => {
   }
 };
 
-function AdditionalInput({
-  title,
-  placeholder,
-  questionNumber,
-  handleUpdateFormValue,
-}: UserSurveyFormAdditionalInputProps) {
+function AdditionalInput({ formData, handleUpdateFormValue }: UserSurveyFormAdditionalInputProps) {
+  const { questionNumber, questionTitle, placeHolder, questionIdentify } = formData;
+
   const [length, setLength] = React.useState(0);
   const [inputValue, setInputValue] = useState('');
   const [isChecked, setIsChecked] = useState(false);
@@ -50,7 +43,7 @@ function AdditionalInput({
     const currentData: UserSurveyForm = {
       questionNumber,
       answer: e.target.value,
-      questionIdentifier: placeholder,
+      questionIdentify,
     };
 
     handlerValue(currentData);
@@ -62,7 +55,7 @@ function AdditionalInput({
     const currentData: UserSurveyForm = {
       questionNumber,
       answer: e.target.value,
-      questionIdentifier: placeholder,
+      questionIdentify,
     };
 
     handlerValue(currentData);
@@ -73,20 +66,20 @@ function AdditionalInput({
 
     const currentData: UserSurveyForm = {
       questionNumber,
-      answer: e.target.checked ? 'none' : inputValue,
-      questionIdentifier: placeholder,
+      answer: e.target.checked ? '없음' : inputValue,
+      questionIdentify,
     };
 
     handlerValue(currentData);
   };
 
-  switch (placeholder) {
+  switch (questionIdentify) {
     case 'RESERVATIONREQUEST':
       return (
         <UserSurveyFormTextBox>
-          <span dangerouslySetInnerHTML={replaceStringsWithTags(title)}></span>
+          <span>{questionTitle}</span>
           <div className="input-container">
-            <textarea placeholder={convertQuestionIdentifierToPlaceholder(placeholder)} onChange={handleInput} />
+            <textarea placeholder={placeHolder} onChange={handleInput} />
           </div>
           <div>{length + '/' + maxLength}</div>
         </UserSurveyFormTextBox>
@@ -94,20 +87,20 @@ function AdditionalInput({
     default:
       return (
         <UserSurveyFormAdditionalInputWrapper>
-          {title && <span dangerouslySetInnerHTML={replaceStringsWithTags(title)}></span>}
+          {questionTitle && <span>{questionTitle}</span>}
           <div className="input">
-            {placeholder && <p>{convertQuestionIdentifierToKorean(placeholder)}</p>}
+            {formData.questionIdentify && <p>{convertQuestionIdentifierToKorean(questionIdentify)}</p>}
             <input
               type="text"
-              placeholder={convertQuestionIdentifierToPlaceholder(placeholder)}
+              placeholder={placeHolder}
               onChange={handleUpdate}
               disabled={isChecked}
               value={isChecked ? ' ' : inputValue}
             />
           </div>
           <div className="checkbox">
-            <input type="checkbox" id={placeholder} onChange={handleCheckbox} />
-            <label htmlFor={placeholder}>{placeholder && <span>{makeLabel(placeholder)}</span>}</label>
+            <input type="checkbox" id={placeHolder} onChange={handleCheckbox} />
+            <label htmlFor={placeHolder}>{placeHolder && <span>{makeLabel(questionIdentify)}</span>}</label>
           </div>
         </UserSurveyFormAdditionalInputWrapper>
       );

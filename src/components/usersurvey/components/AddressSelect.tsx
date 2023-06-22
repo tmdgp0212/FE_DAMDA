@@ -22,7 +22,8 @@ const makeFullAddress = (mainAddress?: string, subAddress?: string, detailAddres
   return `${mainAddress} ${subAddress ? subAddress : ''} ${detailAddress ? detailAddress : ''}`;
 };
 
-function AddressSelect({ title, handleUpdateFormValue, questionNumber, placeholder }: UserSurveyFormAddressProps) {
+function AddressSelect({ handleUpdateFormValue, formData }: UserSurveyFormAddressProps) {
+  const { questionNumber, questionTitle, placeHolder, questionIdentify } = formData;
   const [mainAddress, setMainAddress] = useState<string>('');
   const [subAddress, setSubAddress] = useState<string>('');
   const [detailAddress, setDetailAddress] = useState<string>('');
@@ -55,7 +56,7 @@ function AddressSelect({ title, handleUpdateFormValue, questionNumber, placehold
     const currentData = {
       questionNumber,
       answer: makeFullAddress(mainAddress, subAddress, detailAddress),
-      questionIdentifier: placeholder,
+      questionIdentify,
     };
 
     handleUpdateFormValue((prev) => {
@@ -82,7 +83,7 @@ function AddressSelect({ title, handleUpdateFormValue, questionNumber, placehold
 
   return (
     <UserSurveyAddressSelectWrapper>
-      <span className="title">{title}</span>
+      <span className="title">{questionTitle}</span>
 
       <div className="address" onClick={handleAddressOpen}>
         <span>{mainAddress === '' ? '지역 선택' : subAddress === '' ? mainAddress : '지역 다시 선택'}</span>

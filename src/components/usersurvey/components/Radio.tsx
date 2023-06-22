@@ -15,8 +15,9 @@ const variants: Variants = {
     color: '#fff',
   },
 };
-function Radio({ category, title, placeholder, questionNumber, handleUpdateFormValue }: UserSurveyFormRadioProps) {
+function Radio({ handleUpdateFormValue, formData }: UserSurveyFormRadioProps) {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
+  const { questionTitle: title, categoryList, questionNumber, placeHolder, questionIdentify } = formData;
 
   const { userSurveyForm } = useUserSurveyForm();
 
@@ -25,8 +26,8 @@ function Radio({ category, title, placeholder, questionNumber, handleUpdateFormV
 
     const currentData: UserSurveyForm = {
       questionNumber,
-      answer: category[index].category,
-      questionIdentifier: placeholder,
+      answer: categoryList[index].category,
+      questionIdentify,
     };
 
     handleUpdateFormValue((prev) => {
@@ -43,7 +44,7 @@ function Radio({ category, title, placeholder, questionNumber, handleUpdateFormV
     if (!!userSurveyForm) {
       const isExist = userSurveyForm.find((data) => data.questionNumber === questionNumber);
       if (isExist) {
-        setSelectedIndex(category.findIndex((data) => data.category === isExist.answer));
+        setSelectedIndex(categoryList.findIndex((data) => data.category === isExist.answer));
       }
     }
   }, []);
@@ -52,7 +53,7 @@ function Radio({ category, title, placeholder, questionNumber, handleUpdateFormV
     <UserSurveyFormRadioWrapper>
       <span className="title">{title}</span>
       <div className="radio-wrapper">
-        {category.map((data, index) => (
+        {categoryList?.map((data, index) => (
           <motion.div
             className="radio-item"
             key={data.id}
@@ -65,9 +66,9 @@ function Radio({ category, title, placeholder, questionNumber, handleUpdateFormV
           </motion.div>
         ))}
       </div>
-      {placeholder === 'SERVICEDURATION' && (
+      {questionIdentify === 'SERVICEDURATION' && (
         <Link href="/kakao">
-          <span>몇 시간 정도 걸릴 지 상담받고 싶어요!</span>
+          <span>{placeHolder}</span>
         </Link>
       )}
     </UserSurveyFormRadioWrapper>
