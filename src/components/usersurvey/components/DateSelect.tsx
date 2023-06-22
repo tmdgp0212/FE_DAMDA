@@ -67,7 +67,8 @@ function CustomCaption(props: CaptionProps) {
   );
 }
 
-function DateSelect({ title, placeholder, questionNumber, handleUpdateFormValue }: UserSurveyDateProps) {
+function DateSelect({ handleUpdateFormValue, formData }: UserSurveyDateProps) {
+  const { questionNumber, questionTitle, placeHolder, questionIdentify } = formData;
   const [isDayOpen, setIsDayOpen] = useState(false);
   const [selectedDay, setSelectedDay] = useState<Date | undefined>(undefined);
   const [selectedTime, setSelectedTime] = useState('');
@@ -84,7 +85,7 @@ function DateSelect({ title, placeholder, questionNumber, handleUpdateFormValue 
     const currentData: UserSurveyForm = {
       questionNumber,
       answer: `${format(selectedDay as Date, 'yyyy-MM-dd')} ${time}`,
-      questionIdentifier: placeholder,
+      questionIdentify,
     };
 
     handleUpdateFormValue((prev) => {
@@ -99,7 +100,7 @@ function DateSelect({ title, placeholder, questionNumber, handleUpdateFormValue 
 
   return (
     <UserSurveyFormDateWrapper>
-      <div className="title">{title}</div>
+      <div className="title">{questionTitle}</div>
       <div className="select-body" onClick={() => setIsDayOpen(!isDayOpen)}>
         <span>
           {selectedDay

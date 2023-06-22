@@ -8,8 +8,9 @@ import {
 } from '@/utils';
 import { UserSurveyForm, useUserSurveyForm } from '@/store/userSurvey';
 
-function Input({ title, placeholder, questionNumber, handleUpdateFormValue }: UserSurveyFormTitleProps) {
+function Input({ handleUpdateFormValue, formData }: UserSurveyFormTitleProps) {
   const { userSurveyForm } = useUserSurveyForm();
+  const { questionNumber, questionTitle, questionIdentify, placeHolder } = formData;
   const inputRef = useRef<HTMLInputElement>(null);
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,7 +18,7 @@ function Input({ title, placeholder, questionNumber, handleUpdateFormValue }: Us
     const currentData: UserSurveyForm = {
       questionNumber,
       answer: value,
-      questionIdentifier: placeholder,
+      questionIdentify,
     };
 
     handleUpdateFormValue((prev) => {
@@ -41,16 +42,11 @@ function Input({ title, placeholder, questionNumber, handleUpdateFormValue }: Us
   }, []);
 
   return (
-    <UserSurveyFormInputWrapper hasspan={!!title}>
-      {title && <span dangerouslySetInnerHTML={replaceStringsWithTags(title)}></span>}
+    <UserSurveyFormInputWrapper>
+      {questionTitle && <span>{questionTitle}</span>}
       <div className="input">
-        {placeholder && <p>{convertQuestionIdentifierToKorean(placeholder)}</p>}
-        <input
-          type="text"
-          placeholder={convertQuestionIdentifierToPlaceholder(placeholder)}
-          onChange={onChangeHandler}
-          ref={inputRef}
-        />
+        {questionIdentify && <p>{convertQuestionIdentifierToKorean(questionIdentify)}</p>}
+        <input type="text" placeholder={placeHolder} onChange={onChangeHandler} ref={inputRef} />
       </div>
     </UserSurveyFormInputWrapper>
   );

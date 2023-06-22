@@ -34,9 +34,7 @@ export const UserSurveyFormTitle = styled.h1`
   margin-bottom: 2rem;
 `;
 
-export const UserSurveyFormInputWrapper = styled.div<{
-  hasspan?: boolean;
-}>`
+export const UserSurveyFormInputWrapper = styled.div`
   display: flex;
   flex-direction: column;
 

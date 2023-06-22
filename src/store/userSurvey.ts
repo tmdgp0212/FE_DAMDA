@@ -2,7 +2,7 @@ import { create } from 'zustand';
 
 export type UserSurveyForm = {
   questionNumber: number;
-  questionIdentifier: string;
+  questionIdentify: string;
   answer: string;
 };
 

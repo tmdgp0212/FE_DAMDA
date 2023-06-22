@@ -17,63 +17,23 @@ function FormElements({ data, handleUpdateFormValue }: FormElementsProps) {
     questionIdentify === 'RESERVATIONREQUEST';
 
   if (questionIdentify === 'ADDRESS')
-    return (
-      <AddressSelect
-        title={data.questionTitle}
-        handleUpdateFormValue={handleUpdateFormValue}
-        questionNumber={data.questionNumber}
-        placeholder={data.questionIdentify}
-      />
-    );
+    return <AddressSelect handleUpdateFormValue={handleUpdateFormValue} formData={data} />;
 
   switch (data.questionType) {
     case 'TITLE':
       return <Title title={data.questionTitle} />;
     case 'STRING':
       return isOptional ? (
-        <AdditionalInput
-          title={data.questionTitle}
-          placeholder={data.questionIdentify}
-          questionNumber={data.questionNumber}
-          handleUpdateFormValue={handleUpdateFormValue}
-        />
+        <AdditionalInput formData={data} handleUpdateFormValue={handleUpdateFormValue} />
       ) : (
-        <Input
-          title={data.questionTitle}
-          placeholder={data.questionIdentify}
-          questionNumber={data.questionNumber}
-          handleUpdateFormValue={handleUpdateFormValue}
-        />
+        <Input formData={data} handleUpdateFormValue={handleUpdateFormValue} />
       );
     case 'SELECT':
-      return (
-        <Select
-          category={data.categoryList!}
-          placeholder={data.questionIdentify}
-          title={data.questionTitle}
-          questionNumber={data.questionNumber}
-          handleUpdateFormValue={handleUpdateFormValue}
-        />
-      );
+      return <Select formData={data} handleUpdateFormValue={handleUpdateFormValue} />;
     case 'RADIO':
-      return (
-        <Radio
-          title={data.questionTitle}
-          category={data.categoryList!}
-          placeholder={data.questionIdentify}
-          questionNumber={data.questionNumber}
-          handleUpdateFormValue={handleUpdateFormValue}
-        />
-      );
+      return <Radio formData={data} handleUpdateFormValue={handleUpdateFormValue} />;
     case 'DATE':
-      return (
-        <DateSelect
-          title={data.questionTitle}
-          placeholder={data.questionIdentify}
-          questionNumber={data.questionNumber}
-          handleUpdateFormValue={handleUpdateFormValue}
-        />
-      );
+      return <DateSelect formData={data} handleUpdateFormValue={handleUpdateFormValue} />;
     default:
       return <div></div>;
   }

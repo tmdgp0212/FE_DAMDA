@@ -14,7 +14,7 @@ function Index() {
 
   const router = useRouter();
   const UsersurveyRef = useRef<HTMLDivElement | null>(null);
-  const [steps, setSteps] = useState<0 | 1>(1);
+  const [steps, setSteps] = useState<0 | 1>(0);
   const [userSurveyFormData, setUserSurveyFormData] = useState<UserSurveyFormDataType[]>([]);
   const [userSurveyFormDataSec, setUserSurveyFormDataSec] = useState<UserSurveyFormDataType[]>([]);
 
@@ -47,6 +47,9 @@ function Index() {
     setUserSurveyFormData(firstStep);
     setUserSurveyFormDataSec(secStep);
   }, [data]);
+
+  console.log(userSurveyFormData);
+
   return (
     <S.UserSurveyWrapper ref={UsersurveyRef}>
       <S.ProgressBar />

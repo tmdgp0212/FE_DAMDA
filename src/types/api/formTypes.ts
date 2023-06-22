@@ -70,8 +70,9 @@ export type UserSurveyFormDataType = {
   questionType: QuestionType;
   questionIdentify: QuestionIdentifier;
   required: boolean;
-  categoryList?: Category[];
+  categoryList: Category[] | [];
   Component?: React.ReactNode;
+  placeHolder: string;
 };
 
 export type Category = {
