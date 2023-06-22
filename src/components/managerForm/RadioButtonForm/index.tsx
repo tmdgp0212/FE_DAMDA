@@ -7,9 +7,9 @@ import * as S from './style';
 
 function RadioButtonForm() {
   const {
-    main_job,
-    main_job_etc,
-    manager_drive,
+    mainJobStatus,
+    mainJobStatusEtc,
+    vehicle,
     setMainJob,
     setMainJobEtc,
     setMainJobEtcNull,
@@ -46,7 +46,7 @@ function RadioButtonForm() {
       <S.RadioButtonFormContainer>
         <h3>정리수납 업무 외 본업이 있으신가요?</h3>
 
-        <S.InputRadioGroup isMainJobExist={main_job}>
+        <S.InputRadioGroup isMainJobExist={mainJobStatus}>
           <input
             type="radio"
             name="main_job"
@@ -55,7 +55,7 @@ function RadioButtonForm() {
             onChange={(e) => {
               mainJobChangeHandler(e);
             }}
-            checked={main_job === true}
+            checked={mainJobStatus === true}
           />
           <label htmlFor="main_job_yes">네, 있어요</label>
 
@@ -67,19 +67,19 @@ function RadioButtonForm() {
             onChange={(e) => {
               mainJobChangeHandler(e);
             }}
-            checked={main_job === false}
+            checked={mainJobStatus === false}
           />
           <label htmlFor="main_job_no">아뇨, 없어요</label>
         </S.InputRadioGroup>
 
-        {main_job && (
+        {mainJobStatus && (
           <I.FormInput>
             <span>본업을 알려주세요.</span>
 
             <I.InputWrapper>
-              <input type="text" value={main_job_etc} placeholder="본업" onChange={setMainJobHandler} />
+              <input type="text" value={mainJobStatusEtc} placeholder="본업" onChange={setMainJobHandler} />
 
-              {main_job_etc && (
+              {mainJobStatusEtc && (
                 <I.Icon type="button" style={{ cursor: 'pointer' }} onClick={etcClearHandler}>
                   <Image src="/icons/input-clear-icon.svg" alt="input-clear-icon" fill />
                 </I.Icon>
@@ -99,7 +99,7 @@ function RadioButtonForm() {
             id="drive_yes"
             value="yes"
             onChange={driveChangeHandler}
-            checked={manager_drive === true}
+            checked={vehicle === true}
           />
           <label htmlFor="drive_yes">가능해요</label>
 
@@ -109,7 +109,7 @@ function RadioButtonForm() {
             id="drive_no"
             value="no"
             onChange={driveChangeHandler}
-            checked={manager_drive === false}
+            checked={vehicle === false}
           />
           <label htmlFor="drive_no">불가능해요</label>
         </S.InputRadioGroup>
