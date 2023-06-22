@@ -35,7 +35,7 @@ function FirstStep({ handleNextStep, userSurveyFormData }: FirstStepProps) {
     }
   }, []);
 
-  console.log(formValue);
+  console.log(isValid);
   const handleGoNextStep = () => {
     setUserSurveyForm(formValue);
     handleNextStep();
