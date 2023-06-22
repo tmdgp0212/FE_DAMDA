@@ -4,9 +4,11 @@ import { useEffect } from 'react';
 import { getToken } from '@/apis/auth';
 import * as S from './../../styles/Login.styled';
 import { useAuth } from '@/hook/useAuth';
+import useRouteStore from '@/store/routeHistory';
 
 function Login() {
   const router = useRouter();
+  const { history } = useRouteStore();
   const getUserData = useAuth();
 
   const handleRedirect = async () => {
@@ -16,7 +18,7 @@ function Login() {
     if (code) {
       await getToken(code);
       getUserData();
-      router.push('/');
+      router.push(history[0]);
     } else {
       handleLogin();
     }

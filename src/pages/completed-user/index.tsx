@@ -1,13 +1,15 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import CompletedUserLayout from '@/components/completedUser/CompletedUserLayout';
+import { useQuery } from '@tanstack/react-query';
+import { getDiscountCode } from '@/apis/code';
 
 function CompletedUser() {
   const router = useRouter();
-  const copyMessageRef = useRef<HTMLDivElement | null>(null);
-  const [code, setCode] = useState('N380DB');
+  const { data, isError } = useQuery(['code'], () => getDiscountCode(String(router.query.id)));
 
-  console.log(router.query.id);
+  const copyMessageRef = useRef<HTMLDivElement | null>(null);
+  const [code, setCode] = useState('');
 
   const copy = () => {
     window.navigator.clipboard.writeText(code);
@@ -21,7 +23,12 @@ function CompletedUser() {
     }, 5000);
   };
 
-  return <CompletedUserLayout code={code} copyMessageRef={copyMessageRef} copy={copy} />;
+  useEffect(() => {
+    if (!data) return;
+    setCode(data.data);
+  }, [data]);
+
+  return <CompletedUserLayout code={code} isError={isError} copyMessageRef={copyMessageRef} copy={copy} />;
 }
 
 export default CompletedUser;
