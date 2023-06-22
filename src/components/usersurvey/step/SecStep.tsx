@@ -11,7 +11,11 @@ interface SecStepProps {
   userSurveyFormData: UserSurveyFormDataType[];
 }
 function SecStep({ userSurveyFormData }: SecStepProps) {
-  const { mutate } = useMutation(submitForm);
+  const { mutate } = useMutation(submitForm, {
+    onSuccess: () => {
+      setUserSurveyForm([]);
+    },
+  });
   const [formValue, setFormValue] = useState<UserSurveyForm[]>([]);
   const [isAgreed, setIsAgreed] = useState(false);
   const [isValid, setIsValid] = useState<boolean>(false);
@@ -31,12 +35,20 @@ function SecStep({ userSurveyFormData }: SecStepProps) {
 
   const handleSubmit = () => {
     const copiedForm = [...formValue, ...userSurveyForm];
+
+    const addressFront = copiedForm.find((data) => data.questionIdentify === 'ADDRESS');
+
+    console.log(addressFront);
+    if (!addressFront) return alert('주소를 입력해주세요');
+
     const postForm: PostFormRequest = {
       submit: copiedForm as PostFormType[],
       price,
-      addressFront: '강남구',
+      addressFront: addressFront?.answer.split(' ')[1],
       servicePerson: 1,
     };
+
+    console.log(postForm);
 
     setUserSurveyForm(copiedForm);
     mutate(postForm);
