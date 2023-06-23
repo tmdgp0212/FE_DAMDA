@@ -613,3 +613,68 @@ export const UserSurveyFormSubmitButton = styled(motion.div)`
   line-height: 19px;
   color: ${({ theme }) => theme.colors.yolda_gray_4};
 `;
+
+export const UserSurveyCompleteModal = styled(motion.div)`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 35rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.8rem;
+  padding: 4.8rem 6rem;
+  background-color: #fff;
+  border-radius: 5px;
+  z-index: 1000;
+
+  svg {
+    width: 9.6em;
+    height: 9.6rem;
+  }
+
+  .body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.8rem;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    text-align: center;
+
+    h1 {
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 135%;
+    }
+
+    span {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 160%;
+    }
+
+    p {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 135%;
+    }
+  }
+`;
+
+export const UserSurveyCompleteModalOverlay = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+`;

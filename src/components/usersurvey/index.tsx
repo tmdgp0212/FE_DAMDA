@@ -18,7 +18,7 @@ function Index() {
   const [userSurveyFormData, setUserSurveyFormData] = useState<UserSurveyFormDataType[]>([]);
   const [userSurveyFormDataSec, setUserSurveyFormDataSec] = useState<UserSurveyFormDataType[]>([]);
 
-  const { userSurveyForm, price, perPerson } = useUserSurveyForm();
+  const { price, perPerson, serviceDuration } = useUserSurveyForm();
   const handleNextStep = () => {
     setSteps(1);
   };
@@ -65,8 +65,7 @@ function Index() {
             견적(현금가) <span>{price}원</span>
           </div>
           <div className="des">
-            작업 매니저 <span>{perPerson}명</span> / 작업 시간{' '}
-            <span>{userSurveyForm.find((data) => data.questionIdentify === 'SERVICEDURATION')?.answer}</span>
+            작업 매니저 <span>{perPerson}명</span> / 작업 시간 <span>{serviceDuration} 시간</span>
           </div>
         </div>
       )}
