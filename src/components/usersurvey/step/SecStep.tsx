@@ -1,20 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { UserSurveyFormDataType } from '@/types/api/formTypes';
+import { PostFormRequest, PostFormType, UserSurveyFormDataType } from '@/types/api/formTypes';
 import FormElements from '@/components/usersurvey/FormElements';
 import { UserSurveyForm, useUserSurveyForm } from '@/store/userSurvey';
 import Requirement from '@/components/usersurvey/components/Requirement';
-import { motion } from 'framer-motion';
 import { UserSurveyFormSubmitButton } from '@/styles/survey.styled';
+import { useMutation } from '@tanstack/react-query';
+import { submitForm } from '@/apis/form';
 
 interface SecStepProps {
   userSurveyFormData: UserSurveyFormDataType[];
 }
 function SecStep({ userSurveyFormData }: SecStepProps) {
+  const { mutate } = useMutation(submitForm, {
+    onSuccess: () => {
+      setUserSurveyForm([]);
+    },
+  });
   const [formValue, setFormValue] = useState<UserSurveyForm[]>([]);
   const [isAgreed, setIsAgreed] = useState(false);
   const [isValid, setIsValid] = useState<boolean>(false);
 
-  const { setUserSurveyForm } = useUserSurveyForm();
+  const { setUserSurveyForm, userSurveyForm, price } = useUserSurveyForm();
   const checkRequiredQuestions = (formValue: UserSurveyForm[]) => {
     const requiredQuestionsIndex = userSurveyFormData
       .filter((data) => data.required)
@@ -28,7 +34,24 @@ function SecStep({ userSurveyFormData }: SecStepProps) {
   };
 
   const handleSubmit = () => {
-    setUserSurveyForm(formValue);
+    const copiedForm = [...formValue, ...userSurveyForm];
+
+    const addressFront = copiedForm.find((data) => data.questionIdentify === 'ADDRESS');
+
+    console.log(addressFront);
+    if (!addressFront) return alert('주소를 입력해주세요');
+
+    const postForm: PostFormRequest = {
+      submit: copiedForm as PostFormType[],
+      price,
+      addressFront: addressFront?.answer.split(' ')[1],
+      servicePerson: 1,
+    };
+
+    console.log(postForm);
+
+    setUserSurveyForm(copiedForm);
+    mutate(postForm);
   };
 
   useEffect(() => {
