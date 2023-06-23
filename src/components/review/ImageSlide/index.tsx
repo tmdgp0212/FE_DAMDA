@@ -34,10 +34,10 @@ function ImageSlide({ beforeImage, afterImage, isBest }: ImageSlideProps) {
         pagination={true}
       >
         <SwiperSlide className="before">
-          <Image src={beforeImage} alt="베스트 리뷰 후기 사진" fill />
+          <Image src={beforeImage} alt="리뷰 후기 사진" fill />
         </SwiperSlide>
         <SwiperSlide className="after">
-          <Image src={afterImage} alt="베스트 리뷰 후기 사진" fill />
+          <Image src={afterImage} alt="리뷰 후기 사진" fill />
         </SwiperSlide>
       </Swiper>
     </S.SwiperContainer>

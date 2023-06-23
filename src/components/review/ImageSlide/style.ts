@@ -50,6 +50,10 @@ export const SwiperContainer = styled.div<{ isBest: boolean | undefined }>`
     position: relative;
     height: 214px;
 
+    img {
+      object-fit: cover;
+    }
+
     &::after {
       ${theme.font.regular_12}
 
