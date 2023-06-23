@@ -11,6 +11,14 @@ const PopUp = keyframes`
 
 export const CompletedUserContainer = styled.div`
   padding: 20px;
+
+  .loading,
+  .error {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const ThanksTitle = styled.div`

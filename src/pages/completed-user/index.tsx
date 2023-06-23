@@ -6,7 +6,7 @@ import { getDiscountCode } from '@/apis/code';
 
 function CompletedUser() {
   const router = useRouter();
-  const { data, isError } = useQuery(['code'], () => getDiscountCode(String(router.query.id)));
+  const { data, isLoading, isError } = useQuery(['code'], () => getDiscountCode(String(router.query.id)));
 
   const copyMessageRef = useRef<HTMLDivElement | null>(null);
   const [code, setCode] = useState('');
@@ -28,7 +28,15 @@ function CompletedUser() {
     setCode(data.data);
   }, [data]);
 
-  return <CompletedUserLayout code={code} isError={isError} copyMessageRef={copyMessageRef} copy={copy} />;
+  return (
+    <CompletedUserLayout
+      code={code}
+      isLoading={isLoading}
+      isError={isError}
+      copyMessageRef={copyMessageRef}
+      copy={copy}
+    />
+  );
 }
 
 export default CompletedUser;

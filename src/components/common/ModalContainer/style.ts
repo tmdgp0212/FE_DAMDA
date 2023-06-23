@@ -1,5 +1,4 @@
 import theme from '@/styles/theme';
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 export const ModalBackground = styled.div`
@@ -25,6 +24,7 @@ export const Modal = styled.div`
   overflow-y: scroll;
   width: 80%;
   max-height: 80%;
+  color: ${theme.colors.yolda_black_1};
   background-color: #fff;
   border-radius: 5px;
 

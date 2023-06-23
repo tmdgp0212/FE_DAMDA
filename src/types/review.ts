@@ -1,4 +1,12 @@
 export interface ReviewRes {
+  data: ReviewData[];
+}
+
+export interface BestReviewRes {
+  data: ReviewData;
+}
+
+export interface ReviewData {
   name: string;
   address: string;
   date: string;
