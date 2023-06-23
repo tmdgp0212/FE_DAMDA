@@ -6,6 +6,7 @@ import Requirement from '@/components/usersurvey/components/Requirement';
 import { UserSurveyFormSubmitButton } from '@/styles/survey.styled';
 import { useMutation } from '@tanstack/react-query';
 import { submitForm } from '@/apis/form';
+import CompleteModal from '@/components/usersurvey/components/CompleteModal';
 
 interface SecStepProps {
   userSurveyFormData: UserSurveyFormDataType[];
@@ -14,11 +15,13 @@ function SecStep({ userSurveyFormData }: SecStepProps) {
   const { mutate } = useMutation(submitForm, {
     onSuccess: () => {
       setUserSurveyForm([]);
+      setIsSubmitted(true);
     },
   });
   const [formValue, setFormValue] = useState<UserSurveyForm[]>([]);
   const [isAgreed, setIsAgreed] = useState(false);
   const [isValid, setIsValid] = useState<boolean>(false);
+  const [isSubmitted, setIsSubmitted] = useState(true);
 
   const { setUserSurveyForm, userSurveyForm, price } = useUserSurveyForm();
   const checkRequiredQuestions = (formValue: UserSurveyForm[]) => {
@@ -69,6 +72,7 @@ function SecStep({ userSurveyFormData }: SecStepProps) {
       >
         예약하기
       </UserSurveyFormSubmitButton>
+      {isSubmitted && <CompleteModal />}
     </div>
   );
 }
