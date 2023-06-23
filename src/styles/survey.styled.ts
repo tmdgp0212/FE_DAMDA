@@ -429,17 +429,21 @@ export const UserSurveyFormDateWrapper = styled.div`
       line-height: 19px;
     }
   }
-
+  .select-time-list {
+    display: flex;
+    gap: 1rem;
+  }
   .select-wrapper {
     margin-top: 1.2rem;
   }
 
   .select-list {
-    display: grid;
-    gap: 12px;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
 
     .select-item {
+      max-width: 100px;
       margin-top: 1.2rem;
       flex-basis: 100%;
       height: 5rem;
