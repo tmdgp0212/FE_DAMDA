@@ -35,7 +35,7 @@ function FormElements({ data, handleUpdateFormValue }: FormElementsProps) {
     case 'DATE':
       return <DateSelect formData={data} handleUpdateFormValue={handleUpdateFormValue} />;
     default:
-      return <div></div>;
+      return <>에러가 발생했습니다!! 관리자 에게 알려주세요!</>;
   }
 }
 

@@ -21,7 +21,7 @@ function SecStep({ userSurveyFormData }: SecStepProps) {
   const [formValue, setFormValue] = useState<UserSurveyForm[]>([]);
   const [isAgreed, setIsAgreed] = useState(false);
   const [isValid, setIsValid] = useState<boolean>(false);
-  const [isSubmitted, setIsSubmitted] = useState(true);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const { setUserSurveyForm, userSurveyForm, price } = useUserSurveyForm();
   const checkRequiredQuestions = (formValue: UserSurveyForm[]) => {
@@ -41,7 +41,6 @@ function SecStep({ userSurveyFormData }: SecStepProps) {
 
     const addressFront = copiedForm.find((data) => data.questionIdentify === 'ADDRESS');
 
-    console.log(addressFront);
     if (!addressFront) return alert('주소를 입력해주세요');
 
     const postForm: PostFormRequest = {
