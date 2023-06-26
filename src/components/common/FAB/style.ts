@@ -17,6 +17,10 @@ export const MainFABContainer = styled.div`
     bottom: 80px;
     right: ${theme.size.max_width};
   }
+
+  @media (min-width: 1200px) {
+    right: calc(50% - ${theme.size.max_width});
+  }
 `;
 
 export const MainFABButton = styled.button<{ color: string }>`

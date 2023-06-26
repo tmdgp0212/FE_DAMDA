@@ -21,6 +21,7 @@ function Layout({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   const mainContainerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref);
+  const pathname = router.pathname;
 
   useEffect(() => {
     setHistory(router.pathname);
@@ -37,7 +38,9 @@ function Layout({ children }: { children: React.ReactNode }) {
           <div ref={mainContainerRef}>{children}</div>
         </HeaderContext.Provider>
         <Footer />
-        <FabButton mainContainerRef={mainContainerRef} />
+        {pathname !== '/manager/accept' && pathname !== '/manager/completed' && pathname !== '/completed-user' && (
+          <FabButton mainContainerRef={mainContainerRef} />
+        )}
       </S.Main>
     </S.Layout>
   );
