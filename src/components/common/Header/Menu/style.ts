@@ -22,6 +22,10 @@ export const MenuBackground = styled(motion.div)`
     left: inherit;
     right: 0px;
   }
+
+  @media (min-width: 1200px) {
+    right: calc(50% - ${theme.size.max_width});
+  }
 `;
 
 export const MenuBarContainer = styled(motion.div)`
