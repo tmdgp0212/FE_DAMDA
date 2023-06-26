@@ -97,9 +97,9 @@ function CheckModal({ setIsSubmitClicked }: CheckModalProps) {
       region,
       certificateStatus,
       certificateStatusEtc,
-      fieldExperience,
+      fieldExperience: fieldExperience === '' ? '입력없음' : fieldExperience,
       mainJobStatus,
-      mainJobStatusEtc,
+      mainJobStatusEtc: !mainJobStatus ? '입력없음' : mainJobStatusEtc,
       vehicle,
     });
   };
