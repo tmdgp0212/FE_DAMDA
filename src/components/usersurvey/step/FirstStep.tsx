@@ -15,6 +15,7 @@ function FirstStep({ handleNextStep, userSurveyFormData }: FirstStepProps) {
 
   const { setUserSurveyForm, userSurveyForm, setPrice, setPerPerson, setServiceDuration } = useUserSurveyForm();
   const checkRequiredQuestions = (formValue: UserSurveyForm[]) => {
+    if (formValue.length === 0) return;
     const requiredQuestionsIndex = userSurveyFormData
       .filter((data) => data.required)
       .map((data) => data.questionNumber);
