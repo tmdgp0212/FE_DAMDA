@@ -66,6 +66,7 @@ export const UserSurveyFormTitle = styled.h1`
   font-size: 20px;
   font-weight: 900;
   margin-bottom: 2rem;
+  word-break: keep-all;
 `;
 
 export const UserSurveyFormInputWrapper = styled.div`
