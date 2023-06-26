@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { buttonPriceGroup } from '@/constants/mainButtonText';
 import * as S from '@/styles/Main.styled';
 import { BsArrowUpLeft, BsChevronDown } from 'react-icons/bs';
+import Link from 'next/link';
 
 function ThirdButtonGroup() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,9 +12,9 @@ function ThirdButtonGroup() {
       {buttonPriceGroup.map((item, index) => {
         if (index === 3) {
           return (
-            <S.MainRequestButton key={index} width={45}>
-              {item.title}
-            </S.MainRequestButton>
+            <Link key={index} href="/usersurvey">
+              <S.MainRequestButton width={45}>{item.title}</S.MainRequestButton>
+            </Link>
           );
         }
         if (index === 2) {
