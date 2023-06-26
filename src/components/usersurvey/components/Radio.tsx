@@ -15,7 +15,7 @@ const variants: Variants = {
     color: '#fff',
   },
 };
-function Radio({ handleUpdateFormValue, formData }: UserSurveyFormRadioProps) {
+function Radio({ handleUpdateFormValue, formData, children }: UserSurveyFormRadioProps) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const { questionTitle: title, categoryList, questionNumber, placeHolder, questionIdentify } = formData;
 
@@ -71,6 +71,7 @@ function Radio({ handleUpdateFormValue, formData }: UserSurveyFormRadioProps) {
           <span>{placeHolder}</span>
         </Link>
       )}
+      {children && children}
     </UserSurveyFormRadioWrapper>
   );
 }

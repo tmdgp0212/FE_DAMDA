@@ -7,6 +7,7 @@ import Radio from '@/components/usersurvey/components/Radio';
 import { FormElementsProps } from '@/types/components/form';
 import DateSelect from '@/components/usersurvey/components/DateSelect';
 import AdditionalInput from '@/components/usersurvey/components/AdditionalInput';
+import ServiceDuration from '@/components/usersurvey/components/example/ServiceDuration';
 
 function FormElements({ data, handleUpdateFormValue }: FormElementsProps) {
   const { questionIdentify } = data;
@@ -15,6 +16,8 @@ function FormElements({ data, handleUpdateFormValue }: FormElementsProps) {
     questionIdentify === 'RESERVATIONENTER' ||
     questionIdentify === 'RESERVATIONNOTE' ||
     questionIdentify === 'RESERVATIONREQUEST';
+
+  const isServiceDuration = questionIdentify === 'SERVICEDURATION';
 
   if (questionIdentify === 'ADDRESS')
     return <AddressSelect handleUpdateFormValue={handleUpdateFormValue} formData={data} />;
@@ -26,12 +29,22 @@ function FormElements({ data, handleUpdateFormValue }: FormElementsProps) {
       return isOptional ? (
         <AdditionalInput formData={data} handleUpdateFormValue={handleUpdateFormValue} />
       ) : (
-        <Input formData={data} handleUpdateFormValue={handleUpdateFormValue} />
+        <Input formData={data} handleUpdateFormValue={handleUpdateFormValue}>
+          {isServiceDuration && <ServiceDuration />}
+        </Input>
       );
     case 'SELECT':
-      return <Select formData={data} handleUpdateFormValue={handleUpdateFormValue} />;
+      return (
+        <Select formData={data} handleUpdateFormValue={handleUpdateFormValue}>
+          {isServiceDuration && <ServiceDuration />}
+        </Select>
+      );
     case 'RADIO':
-      return <Radio formData={data} handleUpdateFormValue={handleUpdateFormValue} />;
+      return (
+        <Radio formData={data} handleUpdateFormValue={handleUpdateFormValue}>
+          {isServiceDuration && <ServiceDuration />}
+        </Radio>
+      );
     case 'DATE':
       return <DateSelect formData={data} handleUpdateFormValue={handleUpdateFormValue} />;
     default:

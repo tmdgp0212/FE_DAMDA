@@ -1,14 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { UserSurveyFormInputWrapper } from '@/styles/survey.styled';
-import { UserSurveyFormTitleProps } from '@/types/components/form';
-import {
-  convertQuestionIdentifierToKorean,
-  convertQuestionIdentifierToPlaceholder,
-  replaceStringsWithTags,
-} from '@/utils';
+import { UserSurveyFormStringProps } from '@/types/components/form';
+import { convertQuestionIdentifierToKorean } from '@/utils';
 import { UserSurveyForm, useUserSurveyForm } from '@/store/userSurvey';
 
-function Input({ handleUpdateFormValue, formData }: UserSurveyFormTitleProps) {
+function Input({ handleUpdateFormValue, formData, children }: UserSurveyFormStringProps) {
   const { userSurveyForm } = useUserSurveyForm();
   const { questionNumber, questionTitle, questionIdentify, placeHolder } = formData;
   const inputRef = useRef<HTMLInputElement>(null);
@@ -48,6 +44,7 @@ function Input({ handleUpdateFormValue, formData }: UserSurveyFormTitleProps) {
         {questionIdentify && <p>{convertQuestionIdentifierToKorean(questionIdentify)}</p>}
         <input type="text" placeholder={placeHolder} onChange={onChangeHandler} ref={inputRef} />
       </div>
+      {children && children}
     </UserSurveyFormInputWrapper>
   );
 }

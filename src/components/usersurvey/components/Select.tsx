@@ -6,7 +6,7 @@ import { AnimatePresence, Variants } from 'framer-motion';
 import { AiOutlineDown } from 'react-icons/ai';
 import { UserSurveyForm, useUserSurveyForm } from '@/store/userSurvey';
 
-function Select({ handleUpdateFormValue, formData }: UserSurveyFormSelectProps) {
+function Select({ handleUpdateFormValue, formData, children }: UserSurveyFormSelectProps) {
   const { questionTitle: title, categoryList, questionNumber, questionIdentify, placeHolder } = formData;
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<string>('');
@@ -64,6 +64,7 @@ function Select({ handleUpdateFormValue, formData }: UserSurveyFormSelectProps) 
           </UserSurveyFormSelectBox>
         )}
       </AnimatePresence>
+      {children && children}
     </UserSurveyFormSelectWrapper>
   );
 }
