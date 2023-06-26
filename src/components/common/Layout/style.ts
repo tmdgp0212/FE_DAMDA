@@ -6,6 +6,12 @@ export const Layout = styled.div`
     display: grid;
     grid-template-columns: 1fr auto;
   }
+
+  @media (min-width: 1200px) {
+    display: grid;
+    grid-template-columns: 360px auto;
+    justify-content: center;
+  }
 `;
 
 export const Main = styled.div`
@@ -14,7 +20,7 @@ export const Main = styled.div`
   position: relative;
   overflow-y: scroll;
   margin: 0 auto;
-  max-width: ${theme.size.max_width};
+  width: ${theme.size.max_width};
   height: 100vh;
   background-color: #fff;
 

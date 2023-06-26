@@ -18,6 +18,15 @@ export const ModalBackground = styled.div`
     width: 100vw;
     left: 0;
   }
+
+  @media (min-width: 810px) {
+    left: inherit;
+    right: 0px;
+  }
+
+  @media (min-width: 1200px) {
+    right: calc(50% - ${theme.size.max_width});
+  }
 `;
 
 export const Modal = styled.div`
