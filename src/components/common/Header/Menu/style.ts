@@ -17,6 +17,11 @@ export const MenuBackground = styled(motion.div)`
     width: 100vw;
     left: 0;
   }
+
+  @media (min-width: 810px) {
+    left: inherit;
+    right: 0px;
+  }
 `;
 
 export const MenuBarContainer = styled(motion.div)`
@@ -31,6 +36,10 @@ export const MenuBarContainer = styled(motion.div)`
 
   @media (max-width: 420px) {
     right: 0;
+  }
+
+  @media (min-width: 810px) {
+    right: 0px;
   }
 `;
 

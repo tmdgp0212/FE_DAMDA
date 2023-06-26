@@ -5,11 +5,11 @@ import ImageSlide from './ImageSlide';
 import { dateFormatter, isNewReview } from '@/utils/date';
 import { useState } from 'react';
 import ReviewModal from './ReviewModal';
-import { ReviewRes } from '@/types/review';
+import { ReviewData, ReviewRes } from '@/types/review';
 import { nameMarker } from '@/utils/nameMarker';
 
 interface ReviewProps {
-  review: ReviewRes;
+  review: ReviewData;
 }
 
 function ReviewItem({ review }: ReviewProps) {

@@ -15,7 +15,7 @@ function MainLayOut() {
 
   return (
     <S.MainContainer ref={mainCotainerRef}>
-      <FABButton goTop={goToTop} />
+      {/* <FABButton goTop={goToTop} /> */}
       <S.MainTitleContainer>
         <h1>
           내 옷장 속 <br /> 숨겨진 가능성을 <br /> 열다

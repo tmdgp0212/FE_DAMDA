@@ -1,7 +1,12 @@
 import theme from '@/styles/theme';
 import styled from '@emotion/styled';
 
-export const Layout = styled.div``;
+export const Layout = styled.div`
+  @media (min-width: 810px) {
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+`;
 
 export const Main = styled.div`
   display: grid;
@@ -25,5 +30,15 @@ export const Main = styled.div`
     &::-webkit-scrollbar {
       display: none;
     }
+  }
+`;
+
+export const Side = styled.div`
+  display: none;
+
+  @media (min-width: 810px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;
