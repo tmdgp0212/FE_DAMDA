@@ -1,8 +1,8 @@
 import React from 'react';
 import AcceptLayout from '@/components/manager/accept/AcceptLayout';
 
-function Index() {
+function Id() {
   return <AcceptLayout />;
 }
 
-export default Index;
+export default Id;
