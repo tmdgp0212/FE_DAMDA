@@ -3,9 +3,11 @@ import { UserSurveyFormInputWrapper } from '@/styles/survey.styled';
 import { UserSurveyFormStringProps } from '@/types/components/form';
 import { convertQuestionIdentifierToKorean } from '@/utils';
 import { UserSurveyForm, useUserSurveyForm } from '@/store/userSurvey';
+import useAuthStore from '@/store/auth';
 
 function Input({ handleUpdateFormValue, formData, children }: UserSurveyFormStringProps) {
   const { userSurveyForm } = useUserSurveyForm();
+  const { user } = useAuthStore();
   const { questionNumber, questionTitle, questionIdentify, placeHolder } = formData;
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -27,15 +29,26 @@ function Input({ handleUpdateFormValue, formData, children }: UserSurveyFormStri
     });
   };
 
+  const handleUserData = () => {
+    if (!user.data) return;
+    const { phoneNumber, username } = user.data;
+
+    if (phoneNumber && questionIdentify === 'APPLICANTCONACTINFO') inputRef.current!.value = phoneNumber;
+    if (username && questionIdentify === 'APPLICANTNAME') inputRef.current!.value = username;
+  };
+
   useEffect(() => {
     if (!!userSurveyForm) {
       const currentData = userSurveyForm.find((data) => data.questionNumber === questionNumber);
-      console.log(currentData);
       if (currentData) {
         inputRef.current!.value = currentData.answer;
       }
     }
   }, []);
+
+  useEffect(() => {
+    handleUserData();
+  }, [user]);
 
   return (
     <UserSurveyFormInputWrapper>
