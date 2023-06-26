@@ -96,7 +96,7 @@ function CheckModal({ setIsSubmitClicked }: CheckModalProps) {
       activityDay,
       region,
       certificateStatus,
-      certificateStatusEtc,
+      certificateStatusEtc: certificateStatusEtc || '입력없음',
       fieldExperience: fieldExperience === '' ? '입력없음' : fieldExperience,
       mainJobStatus,
       mainJobStatusEtc: !mainJobStatus ? '입력없음' : mainJobStatusEtc,
