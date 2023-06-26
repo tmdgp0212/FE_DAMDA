@@ -8,7 +8,6 @@ import { useMutation } from '@tanstack/react-query';
 import { submitForm } from '@/apis/form';
 import CompleteModal from '@/components/usersurvey/components/Modal/CompleteModal';
 import FailModal from '@/components/usersurvey/components/Modal/FailModal';
-import { AxiosError } from 'axios';
 
 interface SecStepProps {
   userSurveyFormData: UserSurveyFormDataType[];
