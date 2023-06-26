@@ -33,8 +33,28 @@ function Input({ handleUpdateFormValue, formData, children }: UserSurveyFormStri
     if (!user.data) return;
     const { phoneNumber, username } = user.data;
 
-    if (phoneNumber && questionIdentify === 'APPLICANTCONACTINFO') inputRef.current!.value = phoneNumber;
-    if (username && questionIdentify === 'APPLICANTNAME') inputRef.current!.value = username;
+    if (phoneNumber && questionIdentify === 'APPLICANTCONACTINFO') {
+      inputRef.current!.value = phoneNumber;
+      handleUpdateFormValue((prev) => {
+        const isExist = prev.find((data) => data.questionNumber === questionNumber);
+        if (isExist) {
+          return prev.map((data) => (data.questionNumber === questionNumber ? { ...data, answer: phoneNumber } : data));
+        } else {
+          return [...prev, { questionNumber, answer: phoneNumber, questionIdentify }];
+        }
+      });
+    }
+    if (username && questionIdentify === 'APPLICANTNAME') {
+      inputRef.current!.value = username;
+      handleUpdateFormValue((prev) => {
+        const isExist = prev.find((data) => data.questionNumber === questionNumber);
+        if (isExist) {
+          return prev.map((data) => (data.questionNumber === questionNumber ? { ...data, answer: username } : data));
+        } else {
+          return [...prev, { questionNumber, answer: username, questionIdentify }];
+        }
+      });
+    }
   };
 
   useEffect(() => {
