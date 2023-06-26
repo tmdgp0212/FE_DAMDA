@@ -5,6 +5,7 @@ export const FooterContainer = styled.footer`
   color: #fff;
   font-size: 1.4rem;
   background-color: ${theme.colors.main_blue};
+  cursor: default;
 `;
 
 export const Folder = styled.div`
@@ -36,6 +37,10 @@ export const Footer = styled.div`
       display: flex;
       gap: 16px;
       font-weight: 300;
+
+      .header {
+        min-width: max-content;
+      }
     }
   }
 
@@ -44,6 +49,10 @@ export const Footer = styled.div`
     gap: 16px;
     margin-top: 22px;
     font-weight: 300;
+
+    span {
+      cursor: pointer;
+    }
   }
 
   .bold {

@@ -1,19 +1,14 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import * as S from '@/styles/Main.styled';
-import { BsArrowUpRight } from 'react-icons/bs';
-
-const buttonElementGroup = [
-  '설문을 작성하고 간편하게 신청하세요!',
-  '정리수납 전문가들을 연결해드립니다!',
-  '정리 서비스와 함께 정리 팁도 알려드려요!',
-  '결제는 서비스를 받으신 후에!',
-];
-
-const buttonRequestGroup = ['간편 견적', '상담 신청'];
+import { mainContentSection } from '@/constants/mainContentSection';
+import { replaceStringsWithTags } from '@/utils';
 
 function MainLayOut() {
+  const mainCotainerRef = useRef<HTMLDivElement | null>(null);
+
   return (
-    <S.MainContainer>
+    <S.MainContainer ref={mainCotainerRef}>
+      {/* <FABButton goTop={goToTop} /> */}
       <S.MainTitleContainer>
         <h1>
           내 옷장 속 <br /> 숨겨진 가능성을 <br /> 열다
@@ -23,35 +18,32 @@ function MainLayOut() {
         </p>
       </S.MainTitleContainer>
       <S.MainContentContainer>
-        <S.MainButtonGroupContainer>
-          {buttonElementGroup.map((element, index) => {
-            if (index === 1)
-              return (
-                <>
-                  <S.MainRequestGroupContainer>
-                    <div className="desc">
-                      <BsArrowUpRight />
-                      <p>이렇게 진행됩니다!</p>
-                    </div>
-                    <div className="btn">
-                      {buttonRequestGroup.map((item) => (
-                        <S.MainRequestButton key={item}>{item}</S.MainRequestButton>
-                      ))}
-                    </div>
-                  </S.MainRequestGroupContainer>
-                  <S.MainContentButton index={index} key={index}>
-                    {index + 1}. {element}
-                  </S.MainContentButton>
-                </>
-              );
-
-            return (
-              <S.MainContentButton index={index} key={index}>
-                {index + 1}. {element}
-              </S.MainContentButton>
-            );
-          })}
-        </S.MainButtonGroupContainer>
+        {mainContentSection.map((item, index) => (
+          <S.MainContentSection key={index}>
+            {item.emoji && (
+              <S.MainDescContainer>
+                <span>{item.emoji}</span>
+                {item.reverse ? (
+                  <>
+                    {item.h1 && <h1 dangerouslySetInnerHTML={replaceStringsWithTags(item.h1)}></h1>}
+                    {item.p && <p dangerouslySetInnerHTML={replaceStringsWithTags(item.p)}></p>}
+                  </>
+                ) : (
+                  <>
+                    {item.p && <p dangerouslySetInnerHTML={replaceStringsWithTags(item.p)}></p>}
+                    {item.h1 && <h1 dangerouslySetInnerHTML={replaceStringsWithTags(item.h1)}></h1>}
+                  </>
+                )}
+                {item.type === 'image' && <S.MainYoldaService src="/img/yoldaService.png" />}
+              </S.MainDescContainer>
+            )}
+            {item.type === 'button' ? (
+              <S.MainButtonGroupContainer groupIndex={index}>{item.contents}</S.MainButtonGroupContainer>
+            ) : (
+              item.contents
+            )}
+          </S.MainContentSection>
+        ))}
       </S.MainContentContainer>
     </S.MainContainer>
   );

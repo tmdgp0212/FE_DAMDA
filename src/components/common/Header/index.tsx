@@ -1,19 +1,41 @@
-import Link from 'next/link';
 import * as S from './style';
+import HeaderLayout from './HeaderLayout';
+import { useEffect, useState, useContext } from 'react';
+import Menu from './Menu';
+import useAuthStore from '@/store/auth';
+import { useRouter } from 'next/router';
+import { HeaderContext } from '../Layout';
+import { useAuth } from '@/hook/useAuth';
 
 function Header() {
+  const router = useRouter();
+  const { user } = useAuthStore((state) => state);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const getUserData = useAuth();
+  const context = useContext(HeaderContext);
+
+  const toSurvey = () => {
+    if (context?.isInView) return;
+    router.push('/usersurvey');
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, []);
+
   return (
-    <S.Header>
-      <S.Logo className="ir-text">
-        <Link href={'/'}>열다</Link>
-      </S.Logo>
-      <S.HeaderButtons>
-        {/* 무료견적 버튼은 홈 화면에서 상단탭을 지나면(간편견적, 상담신청 버튼을 지나면) 보여지도록 */}
-        <S.EstimateButton>무료견적</S.EstimateButton>
-        <S.LoginButton className="ir-text">login</S.LoginButton>
-        <S.SideMenuButton className="ir-text">menu</S.SideMenuButton>
-      </S.HeaderButtons>
-    </S.Header>
+    <>
+      <S.Header isMenuOpen={isMenuOpen}>
+        <HeaderLayout
+          user={user}
+          isMenuOpen={isMenuOpen}
+          menuHandler={setIsMenuOpen}
+          toSurvey={toSurvey}
+          isInView={context?.isInView}
+        />
+      </S.Header>
+      <Menu isMenuOpen={isMenuOpen} menuHandler={setIsMenuOpen} />
+    </>
   );
 }
 

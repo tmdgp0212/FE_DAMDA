@@ -1,10 +1,8 @@
 @import './reset.css';
 @import './pretendard.css';
 
-body {
-  overflow: hidden;
-  font-family: 'pretendard';
-  background-color: #aaa;
+html {
+  font-size: 10px;
 }
 
 * {
@@ -12,12 +10,15 @@ body {
   font-family: 'pretendard';
 }
 
-html {
-  font-size: 10px;
+body {
+  overflow: hidden;
+  font-family: 'pretendard';
+  font-size: 1.4rem;
+  background-color: #f2f2f2;
 }
 
 .ir-text {
-  text-indent: 100%;
+  text-indent: 105%;
   white-space: nowrap;
   overflow: hidden;
 }

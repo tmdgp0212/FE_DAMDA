@@ -1,7 +1,8 @@
 import React from 'react';
+import ManagerApplyLayout from '@/components/apply/ManagerApplyLayout';
 
 function ManagerApplyPage() {
-  return <div>ManagerApplyPage</div>;
+  return <ManagerApplyLayout />;
 }
 
 export default ManagerApplyPage;
