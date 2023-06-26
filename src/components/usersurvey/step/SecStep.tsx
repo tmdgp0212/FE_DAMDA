@@ -6,19 +6,31 @@ import Requirement from '@/components/usersurvey/components/Requirement';
 import { UserSurveyFormSubmitButton } from '@/styles/survey.styled';
 import { useMutation } from '@tanstack/react-query';
 import { submitForm } from '@/apis/form';
+import CompleteModal from '@/components/usersurvey/components/Modal/CompleteModal';
+import FailModal from '@/components/usersurvey/components/Modal/FailModal';
+import { AxiosError } from 'axios';
 
 interface SecStepProps {
   userSurveyFormData: UserSurveyFormDataType[];
 }
 function SecStep({ userSurveyFormData }: SecStepProps) {
-  const { mutate } = useMutation(submitForm, {
-    onSuccess: () => {
-      setUserSurveyForm([]);
-    },
-  });
   const [formValue, setFormValue] = useState<UserSurveyForm[]>([]);
   const [isAgreed, setIsAgreed] = useState(false);
   const [isValid, setIsValid] = useState<boolean>(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
+  const [isError, setIsError] = useState(false);
+  const { mutate } = useMutation(submitForm, {
+    onSuccess: () => {
+      setUserSurveyForm([]);
+      setIsSubmitted(true);
+    },
+    onError: (error: any) => {
+      setErrorMsg(error.response.data.message as string);
+      setUserSurveyForm([]);
+      setIsError(true);
+    },
+  });
 
   const { setUserSurveyForm, userSurveyForm, price } = useUserSurveyForm();
   const checkRequiredQuestions = (formValue: UserSurveyForm[]) => {
@@ -35,10 +47,8 @@ function SecStep({ userSurveyFormData }: SecStepProps) {
 
   const handleSubmit = () => {
     const copiedForm = [...formValue, ...userSurveyForm];
-
     const addressFront = copiedForm.find((data) => data.questionIdentify === 'ADDRESS');
 
-    console.log(addressFront);
     if (!addressFront) return alert('주소를 입력해주세요');
 
     const postForm: PostFormRequest = {
@@ -69,6 +79,8 @@ function SecStep({ userSurveyFormData }: SecStepProps) {
       >
         예약하기
       </UserSurveyFormSubmitButton>
+      {isSubmitted && <CompleteModal />}
+      {isError && <FailModal errorMsg={errorMsg} />}
     </div>
   );
 }

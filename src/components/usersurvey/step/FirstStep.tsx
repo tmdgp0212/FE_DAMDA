@@ -13,8 +13,9 @@ function FirstStep({ handleNextStep, userSurveyFormData }: FirstStepProps) {
   const [formValue, setFormValue] = useState<UserSurveyForm[]>([]);
   const [isValid, setIsValid] = useState<boolean>(false);
 
-  const { setUserSurveyForm, userSurveyForm, setPrice, setPerPerson } = useUserSurveyForm();
+  const { setUserSurveyForm, userSurveyForm, setPrice, setPerPerson, setServiceDuration } = useUserSurveyForm();
   const checkRequiredQuestions = (formValue: UserSurveyForm[]) => {
+    if (formValue.length === 0) return;
     const requiredQuestionsIndex = userSurveyFormData
       .filter((data) => data.required)
       .map((data) => data.questionNumber);
@@ -29,6 +30,12 @@ function FirstStep({ handleNextStep, userSurveyFormData }: FirstStepProps) {
   const checkPersonNTime = (formValue: UserSurveyForm[]) => {
     const person = formValue.find((data) => data.questionIdentify === 'AFEWSERVINGS')?.answer;
     const time = formValue.find((data) => data.questionIdentify === 'SERVICEDURATION')?.answer;
+
+    if (time) {
+      const timeNum = time.replace(/\D/g, '');
+      if (timeNum === '' || timeNum === '0') return;
+      setServiceDuration(Number(timeNum));
+    }
 
     if (!person || !time) return;
 
