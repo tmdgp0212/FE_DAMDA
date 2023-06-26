@@ -87,6 +87,12 @@ export interface getAddressListType {
   data: AddressList;
 }
 
+export interface validCodeType {
+  status: number;
+  message: string;
+  data: boolean;
+}
+
 export interface PostFormType {
   questionNumber: number;
   questionIdentify: QuestionIdentifier;
