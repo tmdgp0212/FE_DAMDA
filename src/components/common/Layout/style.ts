@@ -20,7 +20,7 @@ export const Main = styled.div`
   position: relative;
   overflow-y: scroll;
   margin: 0 auto;
-  max-width: ${theme.size.max_width};
+  width: ${theme.size.max_width};
   height: 100vh;
   background-color: #fff;
 
