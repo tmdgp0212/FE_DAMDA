@@ -1,6 +1,7 @@
 import React from 'react';
 import { managerAcceptanceType } from '@/types/constants/manager';
 import * as S from './accept.styled';
+import { MatchingManagerData } from '@/apis/manager';
 
 const ManagerDummyData: managerAcceptanceType = {
   id: 1,
@@ -40,7 +41,8 @@ const convertKorean = (key: string) => {
       return '요청사항';
   }
 };
-function AcceptLayout() {
+
+function AcceptLayout({ data }: { data: MatchingManagerData }) {
   return (
     <S.AcceptWrapper>
       <S.AcceptTitle>
