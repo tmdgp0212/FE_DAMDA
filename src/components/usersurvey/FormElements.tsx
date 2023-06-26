@@ -7,6 +7,7 @@ import Radio from '@/components/usersurvey/components/Radio';
 import { FormElementsProps } from '@/types/components/form';
 import DateSelect from '@/components/usersurvey/components/DateSelect';
 import AdditionalInput from '@/components/usersurvey/components/AdditionalInput';
+import ServiceDuration from '@/components/usersurvey/components/example/ServiceDuration';
 
 function FormElements({ data, handleUpdateFormValue }: FormElementsProps) {
   const { questionIdentify } = data;
@@ -16,66 +17,38 @@ function FormElements({ data, handleUpdateFormValue }: FormElementsProps) {
     questionIdentify === 'RESERVATIONNOTE' ||
     questionIdentify === 'RESERVATIONREQUEST';
 
+  const isServiceDuration = questionIdentify === 'SERVICEDURATION';
+
   if (questionIdentify === 'ADDRESS')
-    return (
-      <AddressSelect
-        title={data.questionTitle}
-        handleUpdateFormValue={handleUpdateFormValue}
-        questionNumber={data.questionNumber}
-        placeholder={data.questionIdentify}
-      />
-    );
+    return <AddressSelect handleUpdateFormValue={handleUpdateFormValue} formData={data} />;
 
   switch (data.questionType) {
     case 'TITLE':
       return <Title title={data.questionTitle} />;
     case 'STRING':
       return isOptional ? (
-        <AdditionalInput
-          title={data.questionTitle}
-          placeholder={data.questionIdentify}
-          questionNumber={data.questionNumber}
-          handleUpdateFormValue={handleUpdateFormValue}
-        />
+        <AdditionalInput formData={data} handleUpdateFormValue={handleUpdateFormValue} />
       ) : (
-        <Input
-          title={data.questionTitle}
-          placeholder={data.questionIdentify}
-          questionNumber={data.questionNumber}
-          handleUpdateFormValue={handleUpdateFormValue}
-        />
+        <Input formData={data} handleUpdateFormValue={handleUpdateFormValue}>
+          {isServiceDuration && <ServiceDuration />}
+        </Input>
       );
     case 'SELECT':
       return (
-        <Select
-          category={data.categoryList!}
-          placeholder={data.questionIdentify}
-          title={data.questionTitle}
-          questionNumber={data.questionNumber}
-          handleUpdateFormValue={handleUpdateFormValue}
-        />
+        <Select formData={data} handleUpdateFormValue={handleUpdateFormValue}>
+          {isServiceDuration && <ServiceDuration />}
+        </Select>
       );
     case 'RADIO':
       return (
-        <Radio
-          title={data.questionTitle}
-          category={data.categoryList!}
-          placeholder={data.questionIdentify}
-          questionNumber={data.questionNumber}
-          handleUpdateFormValue={handleUpdateFormValue}
-        />
+        <Radio formData={data} handleUpdateFormValue={handleUpdateFormValue}>
+          {isServiceDuration && <ServiceDuration />}
+        </Radio>
       );
     case 'DATE':
-      return (
-        <DateSelect
-          title={data.questionTitle}
-          placeholder={data.questionIdentify}
-          questionNumber={data.questionNumber}
-          handleUpdateFormValue={handleUpdateFormValue}
-        />
-      );
+      return <DateSelect formData={data} handleUpdateFormValue={handleUpdateFormValue} />;
     default:
-      return <div></div>;
+      return <>에러가 발생했습니다!! 관리자 에게 알려주세요!</>;
   }
 }
 

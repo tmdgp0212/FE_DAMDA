@@ -20,38 +20,18 @@ const variants: Variants = {
   },
 };
 
-const timeCategory = [
-  {
-    id: 1,
-    time: '오전 9시',
-    timeValue: '09:00:00',
-  },
-  {
-    id: 2,
-    time: '오전 10시',
-    timeValue: '10:00:00',
-  },
-  {
-    id: 3,
-    time: '오전 11시',
-    timeValue: '11:00:00',
-  },
-  {
-    id: 4,
-    time: '오후 1시',
-    timeValue: '13:00:00',
-  },
-  {
-    id: 5,
-    time: '오후 2시',
-    timeValue: '14:00:00',
-  },
-  {
-    id: 6,
-    time: '오후 3시',
-    timeValue: '15:00:00',
-  },
-];
+const formatTime = (timeString: string) => {
+  const timeParts = timeString.split(' ');
+  const isPm = timeParts[0];
+  let hour = parseInt(timeParts[1], 10);
+
+  if (isPm === '오후') {
+    hour += 12;
+  }
+
+  return hour.toString().padStart(2, '0') + ':00:00';
+};
+
 function CustomCaption(props: CaptionProps) {
   const { goToMonth, nextMonth, previousMonth } = useNavigation();
   return (
@@ -67,10 +47,14 @@ function CustomCaption(props: CaptionProps) {
   );
 }
 
-function DateSelect({ title, placeholder, questionNumber, handleUpdateFormValue }: UserSurveyDateProps) {
+function DateSelect({ handleUpdateFormValue, formData }: UserSurveyDateProps) {
+  const { questionNumber, questionTitle, placeHolder, questionIdentify, categoryList: timeList } = formData;
   const [isDayOpen, setIsDayOpen] = useState(false);
   const [selectedDay, setSelectedDay] = useState<Date | undefined>(undefined);
   const [selectedTime, setSelectedTime] = useState('');
+
+  const AmTimeList = timeList?.filter((time) => time.category.includes('오전'));
+  const PmTimeList = timeList?.filter((time) => time.category.includes('오후'));
 
   const handleDayClick = (day: Date) => {
     setIsDayOpen(false);
@@ -79,12 +63,13 @@ function DateSelect({ title, placeholder, questionNumber, handleUpdateFormValue 
 
   const handleTimeClick = (time: string) => {
     if (!selectedDay) return;
-
+    const formattedTime = formatTime(time);
     setSelectedTime(time);
+
     const currentData: UserSurveyForm = {
       questionNumber,
-      answer: `${format(selectedDay as Date, 'yyyy-MM-dd')} ${time}`,
-      questionIdentifier: placeholder,
+      answer: `${format(selectedDay as Date, 'yyyy-MM-dd')} ${formattedTime}`,
+      questionIdentify,
     };
 
     handleUpdateFormValue((prev) => {
@@ -95,11 +80,13 @@ function DateSelect({ title, placeholder, questionNumber, handleUpdateFormValue 
         return [...prev, currentData];
       }
     });
+
+    console.log(currentData);
   };
 
   return (
     <UserSurveyFormDateWrapper>
-      <div className="title">{title}</div>
+      <div className="title">{questionTitle}</div>
       <div className="select-body" onClick={() => setIsDayOpen(!isDayOpen)}>
         <span>
           {selectedDay
@@ -125,18 +112,34 @@ function DateSelect({ title, placeholder, questionNumber, handleUpdateFormValue 
       <div className="select-wrapper">
         <span>시작하고 싶은 시간을 선택해주세요.</span>
         <div className="select-list">
-          {timeCategory.map((time, index) => (
-            <motion.span
-              className="select-item"
-              key={index}
-              whileHover="hover"
-              animate={selectedTime === time.timeValue ? 'hover' : 'none'}
-              variants={variants}
-              onClick={() => handleTimeClick(time.timeValue)}
-            >
-              {time.time}
-            </motion.span>
-          ))}
+          <div className="select-time-list am">
+            {AmTimeList?.map((time, index) => (
+              <motion.span
+                className="select-item"
+                key={index}
+                whileHover="hover"
+                variants={variants}
+                animate={selectedTime === time.category ? 'hover' : 'none'}
+                onClick={() => handleTimeClick(time.category)}
+              >
+                {time.category}
+              </motion.span>
+            ))}
+          </div>
+          <div className="select-time-list pm">
+            {PmTimeList?.map((time, index) => (
+              <motion.span
+                className="select-item"
+                key={index}
+                whileHover="hover"
+                variants={variants}
+                animate={selectedTime === time.category ? 'hover' : 'none'}
+                onClick={() => handleTimeClick(time.category)}
+              >
+                {time.category}
+              </motion.span>
+            ))}
+          </div>
         </div>
       </div>
     </UserSurveyFormDateWrapper>

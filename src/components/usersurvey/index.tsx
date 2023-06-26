@@ -14,11 +14,11 @@ function Index() {
 
   const router = useRouter();
   const UsersurveyRef = useRef<HTMLDivElement | null>(null);
-  const [steps, setSteps] = useState<0 | 1>(1);
+  const [steps, setSteps] = useState<0 | 1>(0);
   const [userSurveyFormData, setUserSurveyFormData] = useState<UserSurveyFormDataType[]>([]);
   const [userSurveyFormDataSec, setUserSurveyFormDataSec] = useState<UserSurveyFormDataType[]>([]);
 
-  const { userSurveyForm } = useUserSurveyForm();
+  const { price, perPerson, serviceDuration } = useUserSurveyForm();
   const handleNextStep = () => {
     setSteps(1);
   };
@@ -47,6 +47,7 @@ function Index() {
     setUserSurveyFormData(firstStep);
     setUserSurveyFormDataSec(secStep);
   }, [data]);
+
   return (
     <S.UserSurveyWrapper ref={UsersurveyRef}>
       <S.ProgressBar />
@@ -56,6 +57,16 @@ function Index() {
         {steps === 0 && <FirstStep handleNextStep={handleNextStep} userSurveyFormData={userSurveyFormData} />}
         {steps === 1 && <SecStep userSurveyFormData={userSurveyFormDataSec} />}
       </S.UserSurveyFormWrapper>
+      {price === 0 ? null : (
+        <div className="footer">
+          <div className="price">
+            견적(현금가) <span>{price}원</span>
+          </div>
+          <div className="des">
+            작업 매니저 <span>{perPerson}명</span> / 작업 시간 <span>{serviceDuration} 시간</span>
+          </div>
+        </div>
+      )}
     </S.UserSurveyWrapper>
   );
 }

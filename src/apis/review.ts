@@ -1,13 +1,14 @@
-import { ReviewRes } from '@/types/review';
+import { BestReviewRes, ReviewRes } from '@/types/review';
 import { instance } from './instance';
 
 export const getReviews = async () => {
-  const res = await instance.get<ReviewRes[]>('/review');
+  const res = await instance.get<ReviewRes>('/user/review/list');
+  console.log(res);
   return res.data;
 };
 
 export const getBestReview = async () => {
-  //경로 아직 모름 @.@
-  const res = await instance.get<ReviewRes>('/review/best');
+  const res = await instance.get<BestReviewRes>('/review/best');
+  console.log(res);
   return res.data;
 };

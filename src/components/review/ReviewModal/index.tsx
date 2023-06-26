@@ -4,13 +4,13 @@ import BadgeBest from '../../../../public/icons/badge_best.svg';
 import BadgeNew from '../../../../public/icons/badge_new.svg';
 import ModalContainer from '@/components/common/ModalContainer';
 import * as S from './style';
-import { ReviewRes } from '@/types/review';
+import { ReviewData, ReviewRes } from '@/types/review';
 import { nameMarker } from '@/utils/nameMarker';
 import { dateFormatter } from '@/utils/date';
 import React, { useState } from 'react';
 
 interface ModalProps {
-  review: ReviewRes;
+  review: ReviewData;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 

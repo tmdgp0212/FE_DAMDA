@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { UserSurveyFormSelectProps } from '@/types/components/form';
 import { UserSurveyFormSelectBox, UserSurveyFormSelectWrapper } from '@/styles/survey.styled';
-import { convertQuestionIdentifierToPlaceholder } from '@/utils';
-import { AnimatePresence, Variants } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { AiOutlineDown } from 'react-icons/ai';
 import { UserSurveyForm, useUserSurveyForm } from '@/store/userSurvey';
 
-function Select({ category, placeholder, title, handleUpdateFormValue, questionNumber }: UserSurveyFormSelectProps) {
+function Select({ handleUpdateFormValue, formData, children }: UserSurveyFormSelectProps) {
+  const { questionTitle: title, categoryList, questionNumber, questionIdentify, placeHolder } = formData;
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<string>('');
 
@@ -23,7 +23,7 @@ function Select({ category, placeholder, title, handleUpdateFormValue, questionN
     const currentData: UserSurveyForm = {
       questionNumber,
       answer: category,
-      questionIdentifier: placeholder,
+      questionIdentify,
     };
 
     handleUpdateFormValue((prev) => {
@@ -49,13 +49,13 @@ function Select({ category, placeholder, title, handleUpdateFormValue, questionN
     <UserSurveyFormSelectWrapper>
       <span className="title">{title}</span>
       <div className="select" onClick={handleOnOpen}>
-        <span>{selected === '' ? convertQuestionIdentifierToPlaceholder(placeholder) : selected}</span>
+        <span>{selected === '' ? placeHolder : selected}</span>
         <AiOutlineDown />
       </div>
       <AnimatePresence>
         {isOpen && (
           <UserSurveyFormSelectBox>
-            {category.map((data) => (
+            {categoryList.map((data) => (
               <div className="select-item" key={data.id} onClick={() => handleSelectOnClick(data.category)}>
                 {data.category}
               </div>
@@ -63,6 +63,7 @@ function Select({ category, placeholder, title, handleUpdateFormValue, questionN
           </UserSurveyFormSelectBox>
         )}
       </AnimatePresence>
+      {children && children}
     </UserSurveyFormSelectWrapper>
   );
 }

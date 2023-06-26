@@ -1,7 +1,6 @@
 export type managerAcceptanceType = {
   id: number;
   manager: string;
-
   serviceInfo: serviceInfoType;
   reservationInfo: reservationType;
 };

@@ -3,12 +3,12 @@ import * as S from './style';
 import ImageSlide from '../ImageSlide';
 import DownArrow from '../../../../public/icons/angle-down.svg';
 import UpArrow from '../../../../public/icons/angle-up.svg';
-import { ReviewRes } from '@/types/review';
+import { ReviewData, ReviewRes } from '@/types/review';
 import { nameMarker } from '@/utils/nameMarker';
 import { dateFormatter } from '@/utils/date';
 
 interface BestReviewProps {
-  bestReview: ReviewRes;
+  bestReview: ReviewData;
 }
 
 const BestReview = ({ bestReview }: BestReviewProps) => {

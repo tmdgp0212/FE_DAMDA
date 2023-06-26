@@ -13,7 +13,7 @@ export const SwiperContainer = styled.div<{ isBest: boolean | undefined }>`
   height: 214px;
 
   @media (max-width: 420px) {
-    width: calc(100vw - 52px);
+    width: calc(100vw - 42px);
   }
 
   .swiper-pagination {
@@ -49,6 +49,10 @@ export const SwiperContainer = styled.div<{ isBest: boolean | undefined }>`
   .swiper-slide {
     position: relative;
     height: 214px;
+
+    img {
+      object-fit: cover;
+    }
 
     &::after {
       ${theme.font.regular_12}
