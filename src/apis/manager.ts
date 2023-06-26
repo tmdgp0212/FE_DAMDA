@@ -6,7 +6,18 @@ export const postManagerForm = async (formData: Store) => {
   return response.data;
 };
 
-export const getManagerAccept = async (id: number) => {
-  const response = await instance.get<boolean>(`/manager/form/accept/${id}`);
-  return response.data;
-};
+export interface MatchingData {
+  status: number;
+  message: string;
+  data: MatchingManagerData;
+}
+
+export interface MatchingManagerData {
+  reservationId: number;
+  serviceDate: string;
+  servings: string;
+  serviceAddress: string;
+  serviceHours: string;
+  managerName: string;
+  data: MatchingManagerData;
+}
