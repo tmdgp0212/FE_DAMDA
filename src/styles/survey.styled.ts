@@ -78,6 +78,13 @@ export const UserSurveyFormInputWrapper = styled.div`
     line-height: 160%;
     margin-bottom: 1.2rem;
   }
+  .p-wrapper {
+    display: flex;
+    gap: 12px;
+  }
+  .input-wrapper {
+    display: flex;
+  }
   .input {
     height: 6rem;
     display: flex;
