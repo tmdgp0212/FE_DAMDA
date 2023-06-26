@@ -48,8 +48,6 @@ function Index() {
     setUserSurveyFormDataSec(secStep);
   }, [data]);
 
-  console.log(price);
-
   return (
     <S.UserSurveyWrapper ref={UsersurveyRef}>
       <S.ProgressBar />
