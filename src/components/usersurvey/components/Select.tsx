@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { UserSurveyFormSelectProps } from '@/types/components/form';
 import { UserSurveyFormSelectBox, UserSurveyFormSelectWrapper } from '@/styles/survey.styled';
-import { convertQuestionIdentifierToPlaceholder } from '@/utils';
-import { AnimatePresence, Variants } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { AiOutlineDown } from 'react-icons/ai';
 import { UserSurveyForm, useUserSurveyForm } from '@/store/userSurvey';
 
