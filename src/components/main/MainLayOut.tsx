@@ -2,16 +2,9 @@ import React, { useRef } from 'react';
 import * as S from '@/styles/Main.styled';
 import { mainContentSection } from '@/constants/mainContentSection';
 import { replaceStringsWithTags } from '@/utils';
-import FABButton from '@/components/main/FABButton';
 
 function MainLayOut() {
   const mainCotainerRef = useRef<HTMLDivElement | null>(null);
-
-  const goToTop = () => {
-    if (mainCotainerRef.current) {
-      mainCotainerRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <S.MainContainer ref={mainCotainerRef}>
