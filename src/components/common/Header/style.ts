@@ -69,6 +69,7 @@ export const EstimateButton = styled(motion.button)`
   font-size: 1.6rem;
   background-color: ${theme.colors.main_blue};
   border-radius: 6px;
+  cursor: pointer;
 `;
 
 const Icon = styled.div`
