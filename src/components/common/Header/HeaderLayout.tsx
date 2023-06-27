@@ -40,9 +40,7 @@ function HeaderLayout({ user, isMenuOpen, menuHandler, toSurvey, isInView }: Hea
           </S.EstimateButton>
           <S.LoginButton className="ir-text">
             {user.data ? (
-              <S.ProfileImage>
-                <Image src={user.data.profileImage} alt="profileImage" fill />
-              </S.ProfileImage>
+              <S.ProfileImage>{/* <Image src={user.data.profileImage} alt="profileImage" fill /> */}</S.ProfileImage>
             ) : (
               <Link href={'/login'}>login</Link>
             )}
