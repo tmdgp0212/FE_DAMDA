@@ -45,6 +45,7 @@ function Input({ handleUpdateFormValue, formData, children }: UserSurveyFormStri
   const inputRef = useRef<HTMLInputElement>(null);
 
   const isCodeInput = questionIdentify === 'SALECODE';
+  const isName = questionIdentify === 'APPLICANTNAME';
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -87,7 +88,7 @@ function Input({ handleUpdateFormValue, formData, children }: UserSurveyFormStri
             data.questionNumber === questionNumber ? { ...data, answer: filteredPhoneNumber } : data,
           );
         } else {
-          return [...prev, { questionNumber, answer: phoneNumber, questionIdentify }];
+          return [...prev, { questionNumber, answer: filteredPhoneNumber, questionIdentify }];
         }
       });
     }
@@ -140,7 +141,7 @@ function Input({ handleUpdateFormValue, formData, children }: UserSurveyFormStri
             placeholder={placeHolder}
             onChange={isCodeInput ? onCodeInputHandler : onChangeHandler}
             ref={inputRef}
-            maxLength={isCodeInput ? 6 : undefined}
+            maxLength={isCodeInput ? 6 : isName ? 5 : 15}
           />
           {isValidCode !== null ? isValidCode ? <Success /> : <Error /> : null}
         </div>
