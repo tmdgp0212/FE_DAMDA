@@ -1,10 +1,10 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-const getAxiosInstance = () => {
+const getAxiosInstance = (contentType: string) => {
   const config: AxiosRequestConfig = {
     baseURL: 'https://api.damda.store/api/v1/',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': contentType,
       'Access-Control-Allow-Origin': 'https://api.damda.store',
       'Access-Control-Allow-Credentials': true,
     },
@@ -16,4 +16,5 @@ const getAxiosInstance = () => {
   return instance;
 };
 
-export const instance = getAxiosInstance();
+export const instance = getAxiosInstance('application/json');
+export const multiPartInstance = getAxiosInstance('multipart/form-data');

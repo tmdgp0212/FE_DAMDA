@@ -5,6 +5,8 @@ import { Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query
 import theme from '@/styles/theme';
 import GlobalHead from '@/components/common/GlobalHead';
 import Layout from '@/components/common/Layout';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,6 +27,7 @@ export default function App({ Component, pageProps }: AppProps) {
           </Layout>
         </ThemeProvider>
       </Hydrate>
+      <ToastContainer autoClose={3000} position="top-center" />
     </QueryClientProvider>
   );
 }

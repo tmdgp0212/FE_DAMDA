@@ -27,16 +27,14 @@ export const SaleTitleContainer = styled.div`
   position: relative;
 `;
 
-export const SaleTitleImg = styled.div<{ backgorundImg: string }>`
-  background-image: url('/img/sale_main1.png');
+export const SaleTitleImg = styled.div`
+  background-image: url('/img/saleMain1.png');
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: 70%;
   height: 100%;
 `;
 
 export const ImgCover = styled.div`
-  background: linear-gradient(to right, #ffffff 20.04%, rgba(255, 255, 255, 0) 95%);
   position: absolute;
   width: 100%;
   height: 100%;
@@ -62,7 +60,6 @@ export const SaleClosetContainer = styled.div`
     margin-bottom: 1rem;
   }
 `;
-
 
 // 그래프 섹션
 export const SaleGraphContainer = styled.div`
@@ -90,9 +87,9 @@ export const EstimateTitle = styled.div`
 export const EstimateImg = styled.div`
   width: 100%;
   height: 65%;
-  background-image: url('/img/sale_main2.png');
+  background-image: url('/img/saleMain2.png');
   background-repeat: no-repeat;
-  background-size: 140%;
+  background-size: cover;
   background-position: center;
   margin-top: 10rem;
   p {
