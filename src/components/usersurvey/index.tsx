@@ -9,6 +9,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getFormList } from '@/apis/form';
 import { UserSurveyFormDataType } from '@/types/api/formTypes';
 import { getTotalPrice } from '@/utils';
+import useAuthStore from '@/store/auth';
 
 function Index() {
   const { data } = useQuery(['FormList'], getFormList);
@@ -20,6 +21,8 @@ function Index() {
   const [userSurveyFormDataSec, setUserSurveyFormDataSec] = useState<UserSurveyFormDataType[]>([]);
 
   const { price, perPerson, serviceDuration, isSale, setPrice } = useUserSurveyForm();
+  const { user } = useAuthStore();
+
   const handleNextStep = () => {
     setSteps(1);
   };
@@ -31,6 +34,11 @@ function Index() {
   const goBack = () => {
     router.back();
   };
+
+  useEffect(() => {
+    if (user.isLogin) return;
+    router.push('/login');
+  }, [user.isLogin]);
 
   useEffect(() => {
     if (UsersurveyRef.current) {
