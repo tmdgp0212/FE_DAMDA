@@ -1,9 +1,8 @@
 import React from 'react';
 import * as S from '@/styles/Main.styled';
 import Carousel from '@/components/common/Carousel';
-import { CarouselItem } from '@/components/common/Carousel/type';
 import { useQuery } from '@tanstack/react-query';
-import { getBestReview, getReviews } from '@/apis/review';
+import { getReviews } from '@/apis/review';
 
 function UserReview() {
   const { data: review } = useQuery(['review'], getReviews);
