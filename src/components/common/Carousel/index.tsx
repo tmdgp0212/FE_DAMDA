@@ -2,9 +2,7 @@ import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
-import { CarouselItem } from '@/components/common/Carousel/type';
 import * as S from './style';
-import UserReview from '@/components/common/Carousel/UserReview';
 import BestReview from '@/components/review/BestReview';
 import { ReviewData } from '@/types/review';
 
@@ -27,7 +25,7 @@ function Index({ carouselItems }: CarouselProps) {
       >
         {carouselItems.map((item, index) => (
           <SwiperSlide className="swiper-item" key={index}>
-            <BestReview bestReview={item} />
+            <BestReview bestReview={item} isMain={true} />
           </SwiperSlide>
         ))}
       </Swiper>

@@ -44,6 +44,23 @@ function Index() {
     if (!data) return;
 
     const copiedData = data.sort((a, b) => a.questionOrder - b.questionOrder);
+
+    copiedData
+      .find((data) => data.questionIdentify === 'SERVICEDURATION')
+      ?.categoryList.sort((a, b) => {
+        const durationA = parseFloat(a.category[0]);
+        const durationB = parseFloat(b.category[0]);
+        return durationA - durationB;
+      });
+
+    copiedData
+      .find((data) => data.questionIdentify === 'AFEWSERVINGS')
+      ?.categoryList.sort((a, b) => {
+        const personA = parseFloat(a.category[0]);
+        const personB = parseFloat(b.category[0]);
+        return personA - personB;
+      });
+
     const firstStep = copiedData.filter((data) => data.page === 1);
     const secStep = copiedData.filter((data) => data.page === 2);
 

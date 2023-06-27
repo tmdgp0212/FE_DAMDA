@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export const CarouselWrapper = styled(motion.div)`
   position: relative;
-  width: 100%;
+  width: 32rem;
   height: 32rem;
 
   .mySwiper {
@@ -11,7 +11,7 @@ export const CarouselWrapper = styled(motion.div)`
   }
 
   .swiper-item {
-    width: 100%;
+    width: 32rem;
     height: 32rem;
   }
 `;
