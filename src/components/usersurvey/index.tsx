@@ -38,7 +38,7 @@ function Index() {
   useEffect(() => {
     if (user.isLogin) return;
     router.push('/login');
-  }, []);
+  }, [user.isLogin]);
 
   useEffect(() => {
     if (UsersurveyRef.current) {
