@@ -11,6 +11,40 @@ export const UserSurveyWrapper = styled.div`
     width: 2.4rem;
     height: 2.4rem;
   }
+
+  .footer {
+    width: 100%;
+    height: 5rem;
+    max-width: 360px;
+    margin: 0 auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    gap: 1.2rem;
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+
+    backdrop-filter: blur(5px);
+
+    .price {
+      font-size: 16px;
+
+      span {
+        font-size: 24px;
+        font-weight: 700;
+      }
+    }
+    .des {
+      font-size: 16px;
+      span {
+        font-weight: 700;
+      }
+    }
+  }
 `;
 
 export const ProgressBar = styled.div``;
@@ -32,6 +66,7 @@ export const UserSurveyFormTitle = styled.h1`
   font-size: 20px;
   font-weight: 900;
   margin-bottom: 2rem;
+  word-break: keep-all;
 `;
 
 export const UserSurveyFormInputWrapper = styled.div`
@@ -43,6 +78,13 @@ export const UserSurveyFormInputWrapper = styled.div`
     font-size: 16px;
     line-height: 160%;
     margin-bottom: 1.2rem;
+  }
+  .p-wrapper {
+    display: flex;
+    gap: 12px;
+  }
+  .input-wrapper {
+    display: flex;
   }
   .input {
     height: 6rem;
@@ -395,17 +437,21 @@ export const UserSurveyFormDateWrapper = styled.div`
       line-height: 19px;
     }
   }
-
+  .select-time-list {
+    display: flex;
+    gap: 1rem;
+  }
   .select-wrapper {
     margin-top: 1.2rem;
   }
 
   .select-list {
-    display: grid;
-    gap: 12px;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
 
     .select-item {
+      max-width: 100px;
       margin-top: 1.2rem;
       flex-basis: 100%;
       height: 5rem;
@@ -578,4 +624,69 @@ export const UserSurveyFormSubmitButton = styled(motion.div)`
   font-size: 16px;
   line-height: 19px;
   color: ${({ theme }) => theme.colors.yolda_gray_4};
+`;
+
+export const UserSurveyCompleteModal = styled(motion.div)`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 35rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.8rem;
+  padding: 4.8rem 6rem;
+  background-color: #fff;
+  border-radius: 5px;
+  z-index: 1000;
+
+  svg {
+    width: 9.6em;
+    height: 9.6rem;
+  }
+
+  .body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.8rem;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    text-align: center;
+
+    h1 {
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 135%;
+    }
+
+    span {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 160%;
+    }
+
+    p {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 135%;
+    }
+  }
+`;
+
+export const UserSurveyCompleteModalOverlay = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
 `;

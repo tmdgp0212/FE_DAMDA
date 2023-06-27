@@ -7,13 +7,13 @@ import DownArrow from '../../../public/icons/angle-down.svg';
 import BannerSlide from './BannerSlide';
 import BestReview from './BestReview';
 import { slide1, slide2 } from '@/constants/reviewPageSlideItems';
-import { ReviewRes } from '@/types/review';
+import { ReviewData } from '@/types/review';
 import { useInView } from 'framer-motion';
 import * as S from '../../styles/Review.styled';
 
 interface ReviewProps {
-  posts: ReviewRes[];
-  bestReview: ReviewRes;
+  posts: ReviewData[];
+  bestReview: ReviewData;
   page: number;
   pageLength: number;
   pagingHandler: (page: number) => void;

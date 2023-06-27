@@ -20,7 +20,7 @@ import React from 'react';
  * - RESERVATIONNOTE: 알아야 할 사항
  * - RESERVATIONREQUEST: 요청사항
  * - SALEAGENT: 판매대행
- * - RECOMMENDEDCODE: 추천인 코드
+ * - SALECODE: 추천인 코드
  * - OPTIONAL: 추가적인 자료
  *
  * @public
@@ -39,7 +39,7 @@ export type QuestionIdentifier =
   | 'RESERVATIONNOTE'
   | 'RESERVATIONREQUEST'
   | 'SALEAGENT'
-  | 'RECOMMENDEDCODE'
+  | 'SALECODE'
   | 'OPTIONAL';
 
 /**
@@ -85,6 +85,25 @@ export interface getAddressListType {
   status: number;
   message: string;
   data: AddressList;
+}
+
+export interface validCodeType {
+  status: number;
+  message: string;
+  data: boolean;
+}
+
+export interface PostFormType {
+  questionNumber: number;
+  questionIdentify: QuestionIdentifier;
+  answer: string;
+}
+
+export interface PostFormRequest {
+  submit: PostFormType[];
+  addressFront: string;
+  price: number;
+  servicePerson: number;
 }
 
 export interface AddressList {
