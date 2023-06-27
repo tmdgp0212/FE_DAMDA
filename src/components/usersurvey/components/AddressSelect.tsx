@@ -70,6 +70,8 @@ function AddressSelect({ handleUpdateFormValue, formData }: UserSurveyFormAddres
       questionIdentify,
     };
 
+    if (currentData.answer === '  ') return;
+
     handleUpdateFormValue((prev) => {
       const isExist = prev.find((data) => data.questionNumber === questionNumber);
       if (isExist) {
