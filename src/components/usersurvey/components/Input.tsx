@@ -29,14 +29,16 @@ const variants: Variants = {
 function Input({ handleUpdateFormValue, formData, children }: UserSurveyFormStringProps) {
   const { questionNumber, questionTitle, questionIdentify, placeHolder } = formData;
   const [isValidCode, setIsValidCode] = useState<boolean | null>(null);
-  const { userSurveyForm } = useUserSurveyForm();
+  const { userSurveyForm, setIsSale } = useUserSurveyForm();
   const { user } = useAuthStore();
   const { mutate } = useMutation(validateSaleCode, {
     onSuccess: (data) => {
       if (data) {
         setIsValidCode(true);
+        setIsSale(true);
       } else {
         setIsValidCode(false);
+        setIsSale(false);
       }
     },
   });

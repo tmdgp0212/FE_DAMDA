@@ -1,7 +1,7 @@
 export const closetProcedureData = [
   {
     title: '1단계. 정리할 공간 파악 및 방향성 수립',
-    img: '/img/Closet_carousel1.png',
+    img: '/img/closetCarousel1.png',
     content: [
       '매니저가 정리 서비스를 받을 공간을 정확하게 파악하며 최적의 정리 계획을 세워요.',
       '고객님이 선호하시는 수납 방식이 있다면 적극적으로 반영하여 적합한 수납 방식을 찾아요.',
@@ -9,7 +9,7 @@ export const closetProcedureData = [
   },
   {
     title: '2단계. 의류 처분 환경 제공',
-    img: '/img/sale_main1.png',
+    img: '/img/closetCarousel2.png',
     content: [
       '최고의 정리는 비움이기 때문에 고객님이 잘 입지 않는 옷들을 처분할 수 있도록 도와드려요.',
       '고객님의 옷장 속 묵혀진 옷들을 카테고리 별로 한 눈에 확인하며 쉽게 처분할 수 있어요.',
@@ -17,7 +17,7 @@ export const closetProcedureData = [
   },
   {
     title: '3단계. 분류된 의류 수납',
-    img: '/img/Closet_carousel3.png',
+    img: '/img/closetCarousel3.png',
     content: [
       '고객님이 처분을 결정한 의류를 제외한 의류들을 기준에 따라 수납해요.',
       '고객님의 취향에 따라 깔끔하게 수납해 드려요.',
@@ -25,7 +25,7 @@ export const closetProcedureData = [
   },
   {
     title: '4단계. 의류 처분 서비스 연계',
-    img: '/img/Closet_carousel4.png',
+    img: '/img/closetCarousel4.png',
     content: [
       '처분할 의류들 중 판매하고 싶은 의류가 있다면 [의류 판매 대행]서비스로 연결을 도와드려요.',
       '처분할 의류 중 기부/폐기하고 싶은 의류가 있다면 [기부/폐기 서비스]로 연결해 드려요.',
@@ -36,24 +36,24 @@ export const closetProcedureData = [
 export const ClosetProData = [
   {
     title: '수익창출',
-    img: '/img/Closet_pro1.png',
+    img: '/img/closetPro1.png',
     content: '나에게 안 입는 옷이 누군가에게는 It item!br옷장 안에 잠들어 있는 옷을 판매하여 부가 수익을 창출하세요.',
   },
   {
     title: '여유로운 아침',
-    img: '/img/Closet_pro2.png',
+    img: '/img/closetPro2.png',
     content:
       '아침마다 어지러운 옷장 속에서 출근 복장을 찾다 늦어서 허둥대지 마세요. br정리된 옷장을 통해 출근길의 여유로움을 느껴보세요.',
   },
   {
     title: '환경보호',
-    img: '/img/Closet_pro3.png',
+    img: '/img/closetPro3.png',
     content:
       '매년 버려지는 옷이 26만 톤이나 된다는 사실, 알고 계셨나요? 안입는 옷은 버리지 말고 판매하여 수익도 얻고 환경도 보호해요.',
   },
   {
     title: '의류 관리',
-    img: '/img/Closet_pro4.png',
+    img: '/img/closetPro4.png',
     content:
       '옷장 한 구석에서 오래 전에 구입한 비싼 옷이 오염되어 있던 것을 발견한 적이 있으신가요? br옷이 상하지 않게 관리하는 첫걸음은 옷을 정리하는 것입니다. 옷장에 방치되어 있던 옷들을 정리해 보세요!',
   },

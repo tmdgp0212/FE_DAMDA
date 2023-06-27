@@ -50,7 +50,7 @@ function CustomerCenterLayout() {
             <br /> 내용이 없으신가요?
           </h2>
 
-          <Link href="https://accounts.kakao.com/login/?continue=http%3A%2F%2Fpf.kakao.com%2F_ksPxixj%2Fchat%3Fapi_ver%3D1.1%26kakao_agent%3Dsdk%252F1.43.1%2520os%252Fjavascript%2520sdk_type%252Fjavascript%2520lang%252Fko-KR%2520device%252FWin32%2520origin%252Fhttps%25253A%25252F%25252Fyolda.kr%26app_key%3D6840dd88707cb50fd39088f3624bd147%26referer%3Dhttps%253A%252F%252Fyolda.kr%252F#login">
+          <Link href="https://www.yolda.me/login/chat" target="_blank" rel="noopener noreferrer">
             1:1 상담 신청
           </Link>
         </S.PersonalConsultation>

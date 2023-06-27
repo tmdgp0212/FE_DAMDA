@@ -66,6 +66,10 @@ export const getTotalPrice = (time: number, person: number) => {
         price = 99900;
         perPerson = 1;
       }
+      if (time === 6) {
+        price = 119900;
+        perPerson = 1;
+      }
       break;
     case 2:
     case 3:
@@ -81,8 +85,16 @@ export const getTotalPrice = (time: number, person: number) => {
         price = 199900;
         perPerson = 2;
       }
+      if (time === 6) {
+        price = 199900;
+        perPerson = 2;
+      }
       break;
     case 4:
+      if (time === 3) {
+        price = 129900;
+        perPerson = 4;
+      }
       if (time === 4) {
         price = 159900;
         perPerson = 4;
