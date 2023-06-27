@@ -96,6 +96,7 @@ export const TabContentImg = styled.div<{ backgorundImg: string }>`
   height: 25rem;
   background-image: ${({ backgorundImg }) => `url(${backgorundImg})`};
   background-repeat: no-repeat;
+  background-size: cover;
   margin-top: 1.5rem;
 `;
 export const TabContentText = styled.div`
@@ -159,6 +160,7 @@ export const EstimateImg = styled.div<{ backgorundImg: string }>`
   border-radius: 0.5rem;
   background-image: ${({ backgorundImg }) => `url(${backgorundImg})`};
   background-repeat: no-repeat;
+  background-size: cover;
 `;
 
 // 후기 모음

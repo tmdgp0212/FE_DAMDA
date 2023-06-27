@@ -7,6 +7,8 @@ import { useRouter } from 'next/router';
 import { getService, postImg } from '@/apis/completed';
 import { QueryClient, useMutation, useQuery } from '@tanstack/react-query';
 import { ReservationData } from '@/types/completed';
+import Image from 'next/image';
+import { toast } from 'react-toastify';
 
 export interface ImagesType {
   before: string[];
@@ -39,8 +41,15 @@ const Completed: React.FC = () => {
   // API 데이터 가져오기
   const router = useRouter();
   const serviceId = router.query.id;
-  const { data, isError, isLoading } = useQuery(['service', serviceId], () =>
-    getService(serviceId as string).then((res) => res.data),
+  const { data, isLoading } = useQuery(
+    ['service', serviceId],
+    () => getService(serviceId as string).then((res) => res.data),
+    {
+      onError: () => {
+        toast.error('서비스 정보를 가져오는데 실패했습니다.');
+        router.push('/');
+      },
+    },
   );
 
   const managerName = data?.managerNames?.join(', ') || '';
@@ -49,19 +58,22 @@ const Completed: React.FC = () => {
   const mainAddress = words.slice(0, 2).join(' ');
   const subAddress = words.slice(2).join(' ');
 
-  useEffect(() => {
-    if (isError) {
-      router.push('/');
-    }
-  }, [isError]);
-
   const mutation = useMutation((formData: FormData) => postImg(serviceId as string, formData), {
     onSuccess: () => {
       router.push('/manager/completed/success');
+      toast.success('이미지 업로드에 성공했습니다.');
+    },
+    onError: () => {
+      toast.error('이미지 업로드에 실패했습니다.');
     },
   });
 
-  if (isLoading) return <div>로딩중...</div>;
+  if (isLoading)
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '90%' }}>
+        <Image src="/icons/loading.gif" alt="loading" width="200" height="100" />
+      </div>
+    );
 
   const handleImagePreview = (
     event: React.ChangeEvent<HTMLInputElement>,

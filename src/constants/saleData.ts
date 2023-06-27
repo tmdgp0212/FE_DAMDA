@@ -3,7 +3,7 @@ import { ProcedureData } from '../types/constants/Procedure';
 export const saleProcedureData: ProcedureData[] = [
   {
     title: '1단계. 판매할 의류 잡화 정보 수집',
-    img: '/img/sale_card1.png',
+    img: '/img/saleCard1.png',
     content: [
       '고객님으로부터 서비스 대상에 맞는 의류/잡화 정보를 수집해요.',
       '서비스 신청 양식을 통해 사진을 포함한 상품 기본 정보를 접수해요.',
@@ -11,7 +11,7 @@ export const saleProcedureData: ProcedureData[] = [
   },
   {
     title: '2단계. 검증된 셀러들이 다양한 채널에서 판매',
-    img: '/img/sale_card2.png',
+    img: '/img/saleCard2.png',
     content: [
       '중O나라, 당O마켓,번O장터 등 모든 중고의류 시장에서 동시다발적으로 판매를 진행해요.',
       '고객님이 판매가 범위를 직접 설정하면 그 범위 내에서 판매를 진행해요.',
@@ -20,7 +20,7 @@ export const saleProcedureData: ProcedureData[] = [
   },
   {
     title: '3단계. 판매 확정 및 상품 발송',
-    img: '/img/sale_card3.png',
+    img: '/img/saleCard3.png',
     content: [
       '최종적으로 구매자가 결정되면 셀러들로부터 거래 정보를 전달받아 고객님께 전달드려요.',
       '고객님은 전달받은 거래 정보에 따라 상품을 구매자에게 발송해요.',
@@ -28,7 +28,7 @@ export const saleProcedureData: ProcedureData[] = [
   },
   {
     title: '4단계. 정산 받기',
-    img: '/img/sale_card4.png',
+    img: '/img/saleCard4.png',
     content: ['상품 판매가 완료되면 판매 금액에 따라 대행 수수료를 차감한 후 정산해드려요.'],
   },
 ];

@@ -4,6 +4,7 @@ import FormElements from '@/components/usersurvey/FormElements';
 import { UserSurveyForm, useUserSurveyForm } from '@/store/userSurvey';
 import { UserSurveyFormNextBox } from '@/styles/survey.styled';
 import { getTotalPrice } from '@/utils';
+import { isValidAnswer } from '@/utils/isValidAnswer';
 
 interface FirstStepProps {
   handleNextStep: () => void;
@@ -23,8 +24,9 @@ function FirstStep({ handleNextStep, userSurveyFormData }: FirstStepProps) {
     const isAllRequiredQuestionsAnswered = requiredQuestionsIndex.every((questionNumber) => {
       return formValue.some((data) => data.questionNumber === questionNumber);
     });
-
-    setIsValid(isAllRequiredQuestionsAnswered);
+    const msg = isValidAnswer(formValue);
+    console.log(formValue);
+    setIsValid(msg.length === 0 && isAllRequiredQuestionsAnswered);
   };
 
   const checkPersonNTime = (formValue: UserSurveyForm[]) => {

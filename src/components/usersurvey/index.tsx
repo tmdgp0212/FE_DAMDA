@@ -8,6 +8,8 @@ import { useUserSurveyForm } from '@/store/userSurvey';
 import { useQuery } from '@tanstack/react-query';
 import { getFormList } from '@/apis/form';
 import { UserSurveyFormDataType } from '@/types/api/formTypes';
+import { getTotalPrice } from '@/utils';
+import useAuthStore from '@/store/auth';
 
 function Index() {
   const { data } = useQuery(['FormList'], getFormList);
@@ -18,7 +20,8 @@ function Index() {
   const [userSurveyFormData, setUserSurveyFormData] = useState<UserSurveyFormDataType[]>([]);
   const [userSurveyFormDataSec, setUserSurveyFormDataSec] = useState<UserSurveyFormDataType[]>([]);
 
-  const { price, perPerson, serviceDuration } = useUserSurveyForm();
+  const { price, perPerson, serviceDuration, isSale, setPrice } = useUserSurveyForm();
+
   const handleNextStep = () => {
     setSteps(1);
   };
@@ -35,18 +38,46 @@ function Index() {
     if (UsersurveyRef.current) {
       UsersurveyRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-  }, []);
+  }, [steps]);
 
   useEffect(() => {
     if (!data) return;
 
     const copiedData = data.sort((a, b) => a.questionOrder - b.questionOrder);
+
+    copiedData
+      .find((data) => data.questionIdentify === 'SERVICEDURATION')
+      ?.categoryList.sort((a, b) => {
+        const durationA = parseFloat(a.category[0]);
+        const durationB = parseFloat(b.category[0]);
+        return durationA - durationB;
+      });
+
+    copiedData
+      .find((data) => data.questionIdentify === 'AFEWSERVINGS')
+      ?.categoryList.sort((a, b) => {
+        const personA = parseFloat(a.category[0]);
+        const personB = parseFloat(b.category[0]);
+        return personA - personB;
+      });
+
     const firstStep = copiedData.filter((data) => data.page === 1);
     const secStep = copiedData.filter((data) => data.page === 2);
 
     setUserSurveyFormData(firstStep);
     setUserSurveyFormDataSec(secStep);
   }, [data]);
+
+  useEffect(() => {
+    if (isSale) {
+      const copiedPrice = price;
+      const salePrice = Math.floor(copiedPrice * 0.9);
+      setPrice(salePrice);
+    } else {
+      const copiedPrice = getTotalPrice(serviceDuration, perPerson);
+      setPrice(copiedPrice.price);
+    }
+  }, [isSale]);
 
   return (
     <S.UserSurveyWrapper ref={UsersurveyRef}>
