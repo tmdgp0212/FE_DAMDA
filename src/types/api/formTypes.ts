@@ -102,7 +102,7 @@ export interface PostFormType {
 export interface PostFormRequest {
   submit: PostFormType[];
   addressFront: string;
-  price: number;
+  totalPrice: number;
   servicePerson: number;
 }
 

@@ -51,7 +51,8 @@ function Index() {
 
   useEffect(() => {
     if (isSale) {
-      const salePrice = Math.floor(price * 0.9);
+      const copiedPrice = price;
+      const salePrice = Math.floor(copiedPrice * 0.9);
       setPrice(salePrice);
     } else {
       const copiedPrice = getTotalPrice(serviceDuration, perPerson);

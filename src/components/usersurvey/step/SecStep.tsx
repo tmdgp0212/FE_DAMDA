@@ -52,7 +52,7 @@ function SecStep({ userSurveyFormData }: SecStepProps) {
 
     const postForm: PostFormRequest = {
       submit: copiedForm as PostFormType[],
-      price,
+      totalPrice: price,
       addressFront: addressFront?.answer.split(' ')[1],
       servicePerson: 1,
     };
