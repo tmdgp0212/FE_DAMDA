@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 import theme from '@/styles/theme';
+import Link from 'next/link';
 
 export const MainContainer = styled.div`
   display: flex;
@@ -66,12 +67,17 @@ export const MainTitleContainer = styled.div`
 `;
 
 export const MainContentContainer = styled.div`
+  overflow: hidden;
   margin-top: -10%;
-  width: 100%;
+  width: ${theme.size.max_width};
   padding: ${({ theme }) => theme.padding.mobile};
   display: flex;
   flex-direction: column;
   gap: 7.2rem;
+
+  @media (max-width: 420px) {
+    width: 100vw;
+  }
 `;
 
 export const MainButtonGroupContainer = styled.div<{ groupIndex: number }>`
@@ -406,9 +412,9 @@ export const MainReSellerTableGraph = styled(motion.div)<{ graphsize: number }>`
   border-radius: 3px;
 `;
 
-export const MainMoreReviewButton = styled.div`
-  margin-top: 2.4rem;
+export const MainMoreReviewButton = styled(Link)`
   display: flex;
+  margin-top: 2.4rem;
   justify-content: end;
   font-weight: 500;
   font-size: 14px;
