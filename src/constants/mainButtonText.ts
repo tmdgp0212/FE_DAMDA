@@ -13,7 +13,7 @@ export const buttonRequestGroup: buttonRequestGroupType[] = [
   },
   {
     title: '상담 신청',
-    to: '/request',
+    to: 'https://www.yolda.me/login/chat',
   },
 ];
 

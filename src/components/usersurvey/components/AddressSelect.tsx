@@ -11,6 +11,7 @@ import { Variants, motion } from 'framer-motion';
 import { useUserSurveyForm } from '@/store/userSurvey';
 import { useQuery } from '@tanstack/react-query';
 import { getAddressList } from '@/apis/form';
+import { AddressList } from '@/types/api/formTypes';
 
 const variants: Variants = {
   whileHover: {
@@ -24,13 +25,14 @@ const makeFullAddress = (mainAddress?: string, subAddress?: string, detailAddres
 
 function AddressSelect({ handleUpdateFormValue, formData }: UserSurveyFormAddressProps) {
   const { questionNumber, questionTitle, placeHolder, questionIdentify } = formData;
+  const [addressList, setAddressList] = useState<AddressList>({});
   const [mainAddress, setMainAddress] = useState<string>('');
   const [subAddress, setSubAddress] = useState<string>('');
   const [detailAddress, setDetailAddress] = useState<string>('');
   const [isMainAddressOpen, setIsMainAddressOpen] = useState(false);
   const [isSubAddressOpen, setIsSubAddressOpen] = useState(false);
 
-  const { data: addressList } = useQuery(['address'], getAddressList);
+  const { data } = useQuery(['address'], getAddressList);
 
   const { userSurveyForm } = useUserSurveyForm();
 
@@ -51,6 +53,15 @@ function AddressSelect({ handleUpdateFormValue, formData }: UserSurveyFormAddres
   const handleDetailAddress = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDetailAddress(e.target.value);
   };
+
+  useEffect(() => {
+    if (data) {
+      Object.keys(data).forEach((key) => {
+        data[key].push('더 많은 지역이 추가될 예정입니다!');
+      });
+      setAddressList(data);
+    }
+  }, [data]);
 
   useEffect(() => {
     const currentData = {

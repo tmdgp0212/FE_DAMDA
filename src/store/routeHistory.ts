@@ -13,8 +13,6 @@ const useRouteStore = create<RouteStore>()(
 
       setHistory: (path) => {
         set((state) => {
-          console.log('history =' + state.history);
-          console.log('path =' + path);
           if (path === '/login') return { ...state };
           if (state.history.length > 5) state.history.splice(4, 1);
           return { ...state, history: [path, ...state.history] };

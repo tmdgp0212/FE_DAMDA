@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import theme from '@/styles/theme';
-import { css } from '@emotion/react';
 import { motion } from 'framer-motion';
 
 export const Header = styled.header<{ isMenuOpen: boolean }>`
