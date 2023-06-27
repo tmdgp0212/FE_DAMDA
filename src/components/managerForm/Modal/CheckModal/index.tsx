@@ -21,8 +21,8 @@ function CheckModal({ setIsSubmitClicked }: CheckModalProps) {
 
   // state
   const {
-    name,
-    phone,
+    managerName,
+    managerPhoneNumber,
     activityDay,
     region,
     certificateStatus,
@@ -88,11 +88,11 @@ function CheckModal({ setIsSubmitClicked }: CheckModalProps) {
     .join(' / ');
 
   const submitHandler = () => {
-    const phoneNumberWithoutDash = phone.replace(/-/g, '');
+    const phoneNumberWithoutDash = managerPhoneNumber.replace(/-/g, '');
 
     mutate({
-      name,
-      phone: phoneNumberWithoutDash,
+      managerName,
+      managerPhoneNumber: phoneNumberWithoutDash,
       activityDay,
       region,
       certificateStatus,
@@ -124,12 +124,12 @@ function CheckModal({ setIsSubmitClicked }: CheckModalProps) {
               <dl>
                 <div>
                   <dt>이름</dt>
-                  <dd>{name}</dd>
+                  <dd>{managerName}</dd>
                 </div>
 
                 <div>
                   <dt>연락처</dt>
-                  <dd>{phone}</dd>
+                  <dd>{managerPhoneNumber}</dd>
                 </div>
 
                 <div>

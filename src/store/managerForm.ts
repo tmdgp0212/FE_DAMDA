@@ -2,8 +2,8 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 export type Store = {
-  name: string;
-  phone: string;
+  managerName: string;
+  managerPhoneNumber: string;
   activityDay: boolean[];
   region: { [key: string]: string[] };
   certificateStatus: string;
@@ -38,8 +38,8 @@ type Actions = {
 const useManagerFormStore = create<Store & Actions>()(
   persist(
     (set) => ({
-      name: '',
-      phone: '',
+      managerName: '',
+      managerPhoneNumber: '',
       activityDay: [false, false, false, false, false, false, false],
       region: { 서울특별시: [], 경기도: [] },
       certificateStatus: '',
@@ -49,10 +49,10 @@ const useManagerFormStore = create<Store & Actions>()(
       mainJobStatusEtc: null,
       vehicle: null,
 
-      setManagerName: (name) => set(() => ({ name })),
-      clearManagerName: () => set(() => ({ name: '' })),
-      setPhoneNumber: (phoneNumber) => set(() => ({ phone: phoneNumber })),
-      clearPhoneNumber: () => set(() => ({ phone: '' })),
+      setManagerName: (managerName) => set(() => ({ managerName })),
+      clearManagerName: () => set(() => ({ managerName: '' })),
+      setPhoneNumber: (managerPhoneNumber) => set(() => ({ managerPhoneNumber })),
+      clearPhoneNumber: () => set(() => ({ managerPhoneNumber: '' })),
       setDay: (index, isChecked) =>
         set((state) => ({
           activityDay: state.activityDay.map((value, i) => (i === index ? isChecked : value)),
@@ -150,8 +150,8 @@ const useManagerFormStore = create<Store & Actions>()(
     {
       name: 'manager-form-store',
       partialize: (state) => ({
-        name: state.name,
-        phone: state.phone,
+        managerName: state.managerName,
+        managerPhoneNumber: state.managerPhoneNumber,
         activityDay: state.activityDay,
         region: state.region,
         certificateStatus: state.certificateStatus,
