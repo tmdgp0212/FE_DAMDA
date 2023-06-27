@@ -31,6 +31,7 @@ export const TransitionButton = styled.button`
   background-color: #fff;
   border: 1px solid ${theme.colors.yolda_black_1};
   border-radius: 5px;
+  cursor: pointer;
 
   &.active {
     background-color: ${theme.colors.sub_blue_3};
