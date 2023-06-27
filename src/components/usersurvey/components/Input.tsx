@@ -78,11 +78,14 @@ function Input({ handleUpdateFormValue, formData, children }: UserSurveyFormStri
     const { phoneNumber, username } = user.data;
 
     if (phoneNumber && questionIdentify === 'APPLICANTCONACTINFO') {
-      inputRef.current!.value = phoneNumber.split('-').join('');
+      const filteredPhoneNumber = phoneNumber.split('-').join('');
+      inputRef.current!.value = filteredPhoneNumber;
       handleUpdateFormValue((prev) => {
         const isExist = prev.find((data) => data.questionNumber === questionNumber);
         if (isExist) {
-          return prev.map((data) => (data.questionNumber === questionNumber ? { ...data, answer: phoneNumber } : data));
+          return prev.map((data) =>
+            data.questionNumber === questionNumber ? { ...data, answer: filteredPhoneNumber } : data,
+          );
         } else {
           return [...prev, { questionNumber, answer: phoneNumber, questionIdentify }];
         }
@@ -113,10 +116,6 @@ function Input({ handleUpdateFormValue, formData, children }: UserSurveyFormStri
   useEffect(() => {
     handleUserData();
   }, [user]);
-
-  useEffect(() => {
-    console.log(isValidCode);
-  }, [isValidCode]);
 
   return (
     <UserSurveyFormInputWrapper>
