@@ -50,7 +50,7 @@ function ClosetPage() {
   return (
     <S.ClosetContainer>
       <S.ClosetTitleContainer>
-        <S.ClosetTitleImg backgorundImg={'/img/Closet_main.png'} />
+        <S.ClosetTitleImg backgorundImg={'/img/MainClothBg.png'} />
         <S.ImgCover>
           <h1>옷장 정리</h1>
           <p>
