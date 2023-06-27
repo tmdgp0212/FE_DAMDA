@@ -28,7 +28,7 @@ function SalePage() {
   return (
     <S.SaleContainer>
       <S.SaleTitleContainer>
-        <S.SaleTitleImg backgorundImg={'/img/sale_main1.png'} />
+        <S.SaleTitleImg />
         <S.ImgCover>
           <h1>
             안 입는 옷도
