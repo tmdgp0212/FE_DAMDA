@@ -35,7 +35,7 @@ export const UserReviewWrapper = styled.div<{
     background-size: cover;
     background-position: center;
     border-radius: 5px;
-    border: 2px solid ${({ theme }) => theme.colors.main_blue};
+    border: 1px solid ${({ theme }) => theme.colors.main_blue};
     border-bottom: none;
   }
 
