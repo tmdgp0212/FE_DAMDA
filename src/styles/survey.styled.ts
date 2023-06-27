@@ -654,6 +654,10 @@ export const UserSurveyCompleteModal = styled(motion.div)`
     gap: 1.8rem;
   }
 
+  strong {
+    font-weight: 800;
+  }
+
   .content {
     display: flex;
     flex-direction: column;

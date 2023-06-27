@@ -24,13 +24,16 @@ const convertKorean = (key: string) => {
 function Matching({
   data,
   handleAccept,
+  children,
 }: {
   data: managerAcceptanceType;
   handleAccept: ({ status }: { status: 'YES' | 'NO' }) => void;
+  children?: React.ReactNode;
 }) {
   const { serviceInfo, reservationInfo, manager } = data;
   return (
     <S.AcceptWrapper>
+      {children}
       <S.AcceptTitle>
         {manager} 매니저님! <br /> 서비스요청이 들어왔어요 💁‍♀️
       </S.AcceptTitle>
