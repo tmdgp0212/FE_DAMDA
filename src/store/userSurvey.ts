@@ -1,8 +1,9 @@
 import { create } from 'zustand';
+import { QuestionIdentifier } from '@/types/api/formTypes';
 
 export type UserSurveyForm = {
   questionNumber: number;
-  questionIdentify: string;
+  questionIdentify: QuestionIdentifier;
   answer: string;
 };
 
