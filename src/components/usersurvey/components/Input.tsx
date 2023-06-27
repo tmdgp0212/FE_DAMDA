@@ -36,6 +36,11 @@ function Input({ handleUpdateFormValue, formData, children }: UserSurveyFormStri
       if (data) {
         setIsValidCode(true);
         setIsSale(true);
+
+        if (typeof data === 'string') {
+          setIsValidCode(false);
+          setIsSale(false);
+        }
       } else {
         setIsValidCode(false);
         setIsSale(false);
