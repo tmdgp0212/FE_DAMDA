@@ -21,7 +21,6 @@ function Index() {
   const [userSurveyFormDataSec, setUserSurveyFormDataSec] = useState<UserSurveyFormDataType[]>([]);
 
   const { price, perPerson, serviceDuration, isSale, setPrice } = useUserSurveyForm();
-  const { user } = useAuthStore();
 
   const handleNextStep = () => {
     setSteps(1);
@@ -34,11 +33,6 @@ function Index() {
   const goBack = () => {
     router.back();
   };
-
-  useEffect(() => {
-    if (user.isLogin) return;
-    router.push('/login');
-  }, [user.isLogin]);
 
   useEffect(() => {
     if (UsersurveyRef.current) {

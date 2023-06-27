@@ -78,7 +78,7 @@ function Input({ handleUpdateFormValue, formData, children }: UserSurveyFormStri
     const { phoneNumber, username } = user.data;
 
     if (phoneNumber && questionIdentify === 'APPLICANTCONACTINFO') {
-      inputRef.current!.value = phoneNumber;
+      inputRef.current!.value = phoneNumber.split('-').join('');
       handleUpdateFormValue((prev) => {
         const isExist = prev.find((data) => data.questionNumber === questionNumber);
         if (isExist) {
