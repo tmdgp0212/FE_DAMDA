@@ -8,6 +8,7 @@ import { useUserSurveyForm } from '@/store/userSurvey';
 import { useQuery } from '@tanstack/react-query';
 import { getFormList } from '@/apis/form';
 import { UserSurveyFormDataType } from '@/types/api/formTypes';
+import { getTotalPrice } from '@/utils';
 
 function Index() {
   const { data } = useQuery(['FormList'], getFormList);
@@ -18,7 +19,7 @@ function Index() {
   const [userSurveyFormData, setUserSurveyFormData] = useState<UserSurveyFormDataType[]>([]);
   const [userSurveyFormDataSec, setUserSurveyFormDataSec] = useState<UserSurveyFormDataType[]>([]);
 
-  const { price, perPerson, serviceDuration } = useUserSurveyForm();
+  const { price, perPerson, serviceDuration, isSale, setPrice } = useUserSurveyForm();
   const handleNextStep = () => {
     setSteps(1);
   };
@@ -35,7 +36,7 @@ function Index() {
     if (UsersurveyRef.current) {
       UsersurveyRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-  }, []);
+  }, [steps]);
 
   useEffect(() => {
     if (!data) return;
@@ -47,6 +48,16 @@ function Index() {
     setUserSurveyFormData(firstStep);
     setUserSurveyFormDataSec(secStep);
   }, [data]);
+
+  useEffect(() => {
+    if (isSale) {
+      const salePrice = Math.floor(price * 0.9);
+      setPrice(salePrice);
+    } else {
+      const copiedPrice = getTotalPrice(serviceDuration, perPerson);
+      setPrice(copiedPrice.price);
+    }
+  }, [isSale]);
 
   return (
     <S.UserSurveyWrapper ref={UsersurveyRef}>
