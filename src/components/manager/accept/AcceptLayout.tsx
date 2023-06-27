@@ -16,7 +16,7 @@ function AcceptLayout({ data }: { data: managerAcceptanceType }) {
   const { mutate } = useMutation(postManagerAccept, {});
 
   const handleAccept = ({ status }: { status: 'YES' | 'NO' }) => {
-    // mutate({ id: Number(path), accept: status });
+    mutate({ id: Number(path), accept: status });
     setIsAccept(status === 'YES');
   };
 
