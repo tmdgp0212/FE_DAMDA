@@ -92,3 +92,51 @@ export const AcceptButton = styled.button`
     color: ${({ theme }) => theme.colors.yolda_black_1};
   }
 `;
+
+export const YesPageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 32px 20px;
+
+  gap: 56px;
+
+  h1 {
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 135%;
+  }
+
+  button {
+    background-color: ${({ theme }) => theme.colors.main_blue};
+    color: #fff;
+  }
+`;
+
+export const NoPageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 32px 20px;
+
+  .header {
+    display: flex;
+    gap: 52px;
+    flex-direction: column;
+
+    h1 {
+      font-size: 20px;
+      font-weight: 900;
+      line-height: 135%;
+    }
+    p {
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 160%;
+    }
+  }
+
+  button {
+    background-color: ${({ theme }) => theme.colors.main_blue};
+    color: #fff;
+    margin-top: 407px;
+  }
+`;
