@@ -27,31 +27,34 @@ function HeaderLayout({ user, isMenuOpen, menuHandler, toSurvey, isInView }: Hea
         )}
       </S.Logo>
       {/* pathname 값을 비교하여 조건에 맞는 경우에만 HeaderButtons 컴포넌트를 렌더링 */}
-      {pathname !== '/manager/accept' && pathname !== '/manager/completed' && pathname !== '/completed-user' && (
-        <S.HeaderButtons>
-          <S.EstimateButton
-            onClick={toSurvey}
-            initial={{ opacity: 1 }}
-            animate={{ opacity: isInView ? 0 : 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            무료견적
-          </S.EstimateButton>
-          <S.LoginButton className="ir-text">
-            {user.data ? (
-              <S.ProfileImage>
-                <Image src={user.data.profileImage} alt="profileImage" fill />
-              </S.ProfileImage>
-            ) : (
-              <Link href={'/login'}>login</Link>
-            )}
-          </S.LoginButton>
-          <S.SideMenuButton className="ir-text" isMenuOpen={isMenuOpen} onClick={() => menuHandler((prev) => !prev)}>
-            menu
-          </S.SideMenuButton>
-        </S.HeaderButtons>
-      )}
+      {pathname !== '/manager/accept' &&
+        pathname !== '/manager/completed' &&
+        pathname !== '/completed-user' &&
+        pathname !== '/manager/completed/success' && (
+          <S.HeaderButtons>
+            <S.EstimateButton
+              onClick={toSurvey}
+              initial={{ opacity: 1 }}
+              animate={{ opacity: isInView ? 0 : 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              무료견적
+            </S.EstimateButton>
+            <S.LoginButton className="ir-text">
+              {user.data ? (
+                <S.ProfileImage>
+                  <Image src={user.data.profileImage} alt="profileImage" fill />
+                </S.ProfileImage>
+              ) : (
+                <Link href={'/login'}>login</Link>
+              )}
+            </S.LoginButton>
+            <S.SideMenuButton className="ir-text" isMenuOpen={isMenuOpen} onClick={() => menuHandler((prev) => !prev)}>
+              menu
+            </S.SideMenuButton>
+          </S.HeaderButtons>
+        )}
     </>
   );
 }

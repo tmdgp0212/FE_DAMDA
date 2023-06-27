@@ -35,40 +35,30 @@ export const ServiceInfoWrap = styled.button`
 
 export const ServiceInfo = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1.6fr;
+`;
 
-  .span-1 {
-    grid-column: span 1;
-  }
-
-  .span-2 {
-    grid-column: span 2;
-  }
+export const ItemWrap = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 `;
 
 export const ServiceInfoItem = styled.div`
+  display: grid;
+  gap: 8px;
+  border: 1px solid #181818;
+  border-radius: 8px;
   padding: 10px 16px;
-  ${({ theme }) => theme.border.inputBorder};
+`;
 
+export const ServiceInfoText = styled.p`
+  ${({ theme }) => theme.font.bold_19}
+`;
+
+// 전 후 사진
+export const ServiceImgForm = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 2px;
-
-  h3 {
-    font-weight: 800;
-    font-size: 18px;
-    line-height: 135%;
-  }
-
-  span {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
-  }
-  p {
-    ${({ theme }) => theme.font.bold_14}
-  }
+  justify-content: space-between;
 `;
 
 export const ServiceImgText = styled.p`
@@ -96,6 +86,7 @@ export const InputLabel = styled.label`
   border: 1px solid #181818;
   border-radius: 8px;
   padding: 0 1.2rem;
+  margin-bottom: 16px;
 `;
 
 export const PlusButton = styled(BsPlus)`
@@ -107,10 +98,11 @@ export const ButtonWrap = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  margin-bottom: 20px;
+  margin: 8rem 0 2rem 0;
 `;
 
 export const Button = styled.button<{ color: string }>`
+  cursor: pointer;
   width: 100%;
   height: 48px;
   background-color: ${({ theme, color }) => (color === 'white' ? '#fff' : theme.colors.main_blue)};

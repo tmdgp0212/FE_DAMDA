@@ -9,7 +9,7 @@ export type Store = {
   certificateStatus: string;
   certificateStatusEtc: any;
   fieldExperience: string;
-  mainJobStatus: boolean | null;
+  mainJobStatus: boolean | string | null;
   mainJobStatusEtc: any;
   vehicle: boolean | null;
 };
@@ -139,7 +139,7 @@ const useManagerFormStore = create<Store & Actions>()(
       },
       setManagerLicenseEtc: (certificateEtc) => set(() => ({ certificateStatusEtc: certificateEtc })),
       clearManagerLicenseEtc: () => set(() => ({ certificateStatusEtc: '' })),
-      nullManagerLicenseEtc: () => set(() => ({ certificateStatusEtc: null })),
+      nullManagerLicenseEtc: () => set(() => ({ certificateStatusEtc: '입력없음' })),
       setFieldExperience: (experience) => set(() => ({ fieldExperience: experience })),
       setMainJob: (job) => set(() => ({ mainJobStatus: job })),
       setMainJobEtc: (job) => set(() => ({ mainJobStatusEtc: job })),

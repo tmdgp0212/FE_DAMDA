@@ -96,10 +96,10 @@ function CheckModal({ setIsSubmitClicked }: CheckModalProps) {
       activityDay,
       region,
       certificateStatus,
-      certificateStatusEtc,
-      fieldExperience,
+      certificateStatusEtc: certificateStatusEtc || '입력없음',
+      fieldExperience: fieldExperience === '' ? '입력없음' : fieldExperience,
       mainJobStatus,
-      mainJobStatusEtc,
+      mainJobStatusEtc: !mainJobStatus ? '입력없음' : mainJobStatusEtc,
       vehicle,
     });
   };
