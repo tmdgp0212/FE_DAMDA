@@ -3,7 +3,7 @@ import * as S from './style';
 import ImageSlide from '../ImageSlide';
 import DownArrow from '../../../../public/icons/angle-down.svg';
 import UpArrow from '../../../../public/icons/angle-up.svg';
-import { ReviewData, ReviewRes } from '@/types/review';
+import { ReviewData } from '@/types/review';
 import { nameMarker } from '@/utils/nameMarker';
 import { dateFormatter } from '@/utils/date';
 import Link from 'next/link';

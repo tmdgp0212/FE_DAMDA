@@ -5,7 +5,6 @@ import 'swiper/swiper.min.css';
 import * as S from './style';
 import BestReview from '@/components/review/BestReview';
 import { ReviewData } from '@/types/review';
-import Link from 'next/link';
 
 interface CarouselProps {
   carouselItems: ReviewData[];
