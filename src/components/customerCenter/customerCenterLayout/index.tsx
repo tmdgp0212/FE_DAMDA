@@ -50,7 +50,9 @@ function CustomerCenterLayout() {
             <br /> 내용이 없으신가요?
           </h2>
 
-          <Link href="https://www.yolda.me/login/chat">1:1 상담 신청</Link>
+          <Link href="https://www.yolda.me/login/chat" target="_blank" rel="noopener noreferrer">
+            1:1 상담 신청
+          </Link>
         </S.PersonalConsultation>
       </S.CustomerCenterContent>
     </>
