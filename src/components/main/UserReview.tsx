@@ -17,7 +17,7 @@ function UserReview() {
   return (
     <>
       {review && <Carousel carouselItems={combinedArray} height={32} width={100} />}
-      <S.MainMoreReviewButton>더 많은 후기 보러가기</S.MainMoreReviewButton>
+      <S.MainMoreReviewButton href={'/review'}>더 많은 후기 보러가기</S.MainMoreReviewButton>
     </>
   );
 }
