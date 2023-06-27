@@ -27,6 +27,30 @@ const dummyBest = {
   after: ['https://img.etoday.co.kr/pto_db/2019/02/600/20190225135415_1304548_1200_800.jpg'],
 };
 
+const dummyPay = [
+  {
+    id: 1,
+    title: '1인 가구 실제',
+    pay: '60,000',
+    name: '김아무개',
+    img: '/img/closetPay1.png',
+  },
+  {
+    id: 2,
+    title: '2인 가구 실제',
+    pay: '120,000',
+    name: '박감자',
+    img: '/img/closetPay2.png',
+  },
+  {
+    id: 3,
+    title: '3인 가구 실제',
+    pay: '150,000',
+    name: '이오이',
+    img: '/img/closetPay3.png',
+  },
+];
+
 function ClosetPage() {
   const [activeTab, setActiveTab] = useState(0);
   const [activeEstimateTab, setActiveEstimateTab] = useState(0);
@@ -116,13 +140,15 @@ function ClosetPage() {
           </S.TabButton>
         </S.EstimateButtonWrap>
         <S.EstimateContent>
-          <S.EstimatePayWrap></S.EstimatePayWrap>
-          <S.EstimateImg backgorundImg={closetEsimateData[0].img} />
+          <S.EstimatePayWrap>
+            <SwiperSlide key={dummyPay[activeEstimateTab].id}></SwiperSlide>
+          </S.EstimatePayWrap>
+          <S.EstimateImg backgorundImg={dummyPay[activeEstimateTab].img} />
           <S.EstimatePay focus={true}>
-            1인 가구 실제
-            <h2>60,000원</h2>
+            {dummyPay[activeEstimateTab].title}
+            <h2>{dummyPay[activeEstimateTab].pay}원</h2>
           </S.EstimatePay>
-          <p>{closetEsimateData[0].userName.replace(/(?<=.{1})./gi, '*')}님의 후기</p>
+          <p>{dummyPay[activeEstimateTab].name.replace(/(?<=.{1})./gi, '*')}님의 후기</p>
         </S.EstimateContent>
       </S.ClosetEstimateContainer>
       <S.ClosetReviewContainer>
