@@ -26,9 +26,7 @@ function Index({ carouselItems }: CarouselProps) {
       >
         {carouselItems.map((item, index) => (
           <SwiperSlide className="swiper-item" key={index}>
-            <Link href="/review">
-              <BestReview bestReview={item} />
-            </Link>
+            <BestReview bestReview={item} isMain={true} />
           </SwiperSlide>
         ))}
       </Swiper>

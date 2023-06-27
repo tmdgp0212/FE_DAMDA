@@ -6,19 +6,29 @@ import UpArrow from '../../../../public/icons/angle-up.svg';
 import { ReviewData, ReviewRes } from '@/types/review';
 import { nameMarker } from '@/utils/nameMarker';
 import { dateFormatter } from '@/utils/date';
+import Link from 'next/link';
 
 interface BestReviewProps {
   bestReview: ReviewData;
+  isMain?: boolean;
 }
 
-const BestReview = ({ bestReview }: BestReviewProps) => {
+const BestReview = ({ bestReview, isMain }: BestReviewProps) => {
   const [isCardOpen, setIsCardOpen] = useState(false);
 
   return (
     <S.BestReview className="best_review">
-      <div className="prograss_container">
-        <ImageSlide beforeImage={bestReview.before[0]} afterImage={bestReview.after[0]} isBest={true} />
-      </div>
+      {isMain ? (
+        <Link href={'/review'}>
+          <div className="prograss_container">
+            <ImageSlide beforeImage={bestReview.before[0]} afterImage={bestReview.after[0]} isBest={true} />
+          </div>
+        </Link>
+      ) : (
+        <div className="prograss_container">
+          <ImageSlide beforeImage={bestReview.before[0]} afterImage={bestReview.after[0]} isBest={true} />
+        </div>
+      )}
       <S.ReviewCard isCardOpen={isCardOpen} onClick={() => setIsCardOpen(!isCardOpen)}>
         <div className="card_header">
           <div className="arrow_icon">{isCardOpen ? <UpArrow /> : <DownArrow />}</div>
