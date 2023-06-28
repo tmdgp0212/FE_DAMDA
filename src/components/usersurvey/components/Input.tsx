@@ -98,6 +98,7 @@ function Input({ handleUpdateFormValue, formData, children }: UserSurveyFormStri
       });
     }
     if (username && questionIdentify === 'APPLICANTNAME') {
+      if (username === '조회되지않음') return;
       inputRef.current!.value = username;
       handleUpdateFormValue((prev) => {
         const isExist = prev.find((data) => data.questionNumber === questionNumber);
