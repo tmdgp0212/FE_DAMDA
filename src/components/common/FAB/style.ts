@@ -2,10 +2,11 @@ import theme from '@/styles/theme';
 import styled from '@emotion/styled';
 
 export const MainFABContainer = styled.div`
+  display: flex;
   position: fixed;
   bottom: 200px;
   right: calc(50% - ${theme.size.max_width} / 2);
-  display: flex;
+  color: #000;
   flex-direction: column;
   z-index: 3;
 
