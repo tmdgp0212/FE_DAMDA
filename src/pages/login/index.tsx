@@ -19,7 +19,12 @@ function Login() {
       try {
         await getToken(code);
         getUserData();
-        router.push(history[0]);
+
+        if (router.pathname === '/manager/accept/[id]') {
+          router.push(history[0]);
+        } else {
+          router.push('/');
+        }
       } catch (err) {
         throw new Error('Failed to fetch access token from Kakao');
       }
