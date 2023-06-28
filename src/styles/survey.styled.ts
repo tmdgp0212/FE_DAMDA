@@ -295,6 +295,14 @@ export const UserSurveyFormSelectWrapper = styled.div`
       padding: 0 0.5rem;
     }
   }
+  a {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: right;
+    text-decoration-line: underline;
+    color: ${({ theme }) => theme.colors.main_blue};
+  }
 `;
 
 export const UserSurveyFormSelectBox = styled.div`
