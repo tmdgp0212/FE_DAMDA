@@ -4,6 +4,7 @@ import { UserSurveyFormSelectBox, UserSurveyFormSelectWrapper } from '@/styles/s
 import { AnimatePresence } from 'framer-motion';
 import { AiOutlineDown } from 'react-icons/ai';
 import { UserSurveyForm, useUserSurveyForm } from '@/store/userSurvey';
+import Link from 'next/link';
 
 function Select({ handleUpdateFormValue, formData, children }: UserSurveyFormSelectProps) {
   const { questionTitle: title, categoryList, questionNumber, questionIdentify, placeHolder } = formData;
@@ -64,6 +65,11 @@ function Select({ handleUpdateFormValue, formData, children }: UserSurveyFormSel
         )}
       </AnimatePresence>
       {children && children}
+      {questionIdentify === 'SERVICEDURATION' && (
+        <Link href="https://www.yolda.me/login/chat">
+          <span>{placeHolder}</span>
+        </Link>
+      )}
     </UserSurveyFormSelectWrapper>
   );
 }

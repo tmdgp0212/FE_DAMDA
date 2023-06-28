@@ -67,7 +67,7 @@ function Radio({ handleUpdateFormValue, formData, children }: UserSurveyFormRadi
         ))}
       </div>
       {questionIdentify === 'SERVICEDURATION' && (
-        <Link href="/kakao">
+        <Link href="https://www.yolda.me/login/chat">
           <span>{placeHolder}</span>
         </Link>
       )}
