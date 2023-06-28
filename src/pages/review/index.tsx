@@ -38,7 +38,6 @@ function ReviewPage({ reviews, bestReview }: ReviewPageProps) {
 
   const reviewPaging = (page: number) => {
     setPage(page);
-    console.log(reviews);
     const startIdx = (page - 1) * 3;
     const endIdx = startIdx + 3;
     const filteredReviews = reviews.data.filter((review, idx) => idx >= startIdx && endIdx > idx);
