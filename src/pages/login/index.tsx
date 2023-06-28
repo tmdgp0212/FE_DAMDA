@@ -17,7 +17,6 @@ function Login() {
 
     if (code) {
       try {
-        console.log('successKaKaoLogin');
         await getToken(code);
         getUserData();
         router.push(history[0]);
