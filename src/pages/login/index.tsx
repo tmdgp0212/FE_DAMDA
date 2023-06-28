@@ -16,9 +16,13 @@ function Login() {
     const code = params.get('code');
 
     if (code) {
-      await getToken(code);
-      getUserData();
-      router.push(history[0]);
+      try {
+        await getToken(code);
+        getUserData();
+        router.push(history[0]);
+      } catch (err) {
+        throw new Error('Failed to fetch access token from Kakao');
+      }
     } else {
       handleLogin();
     }
