@@ -10,9 +10,16 @@ export const Overlay = styled.div`
   align-items: center;
   width: ${theme.size.max_width};
   height: 100%;
+  background-color: rgba(66, 66, 66, 0.88);
   z-index: 20;
 
-  background-color: rgba(66, 66, 66, 0.88);
+  @media screen and (min-width: 810px) {
+    position: absolute;
+    top: -52px;
+    left: 0;
+    align-items: flex-start;
+    height: 100%;
+  }
 `;
 
 export const Modal = styled.div<{ textCenter: boolean }>`
@@ -24,6 +31,11 @@ export const Modal = styled.div<{ textCenter: boolean }>`
   border-radius: 5px;
   background-color: #ffffff;
   text-align: ${({ textCenter }) => textCenter && 'center'};
+
+  @media screen and (min-width: 810px) {
+    position: sticky;
+    top: calc(344px / 2);
+  }
 
   img {
     display: inline-block;

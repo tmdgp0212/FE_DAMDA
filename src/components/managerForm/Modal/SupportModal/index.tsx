@@ -6,8 +6,8 @@ import * as S from './style';
 
 function SupportModal() {
   return (
-    <U.Overlay>
-      <U.Modal textCenter={true} style={{ position: 'relative' }}>
+    <S.SupportOverlay>
+      <S.SupportModal textCenter={true} style={{ position: 'relative' }}>
         <Image src="/icons/check-circle-outline.svg" alt="check-circle-outline" width={96} height={96} />
 
         <h2>지원완료</h2>
@@ -22,8 +22,8 @@ function SupportModal() {
         <S.StyledLink href="/">
           <Image src="/icons/close-icon.svg" alt="close-icon" width={24} height={24} />
         </S.StyledLink>
-      </U.Modal>
-    </U.Overlay>
+      </S.SupportModal>
+    </S.SupportOverlay>
   );
 }
 

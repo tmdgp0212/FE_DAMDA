@@ -75,6 +75,7 @@ export const BenefitContainer = styled.section`
   img {
     display: block;
     width: 100%;
+    object-fit: cover;
   }
 
   a {

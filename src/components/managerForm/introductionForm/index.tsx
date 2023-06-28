@@ -10,20 +10,19 @@ interface IntroductionFormProps {
 }
 
 function IntroductionForm({ setIsNameValid, setIsPhoneNumberValid }: IntroductionFormProps) {
-  const { name, phone, setManagerName, setPhoneNumber, clearManagerName, clearPhoneNumber } = useManagerFormStore(
-    (state) => state,
-  );
+  const { managerName, managerPhoneNumber, setManagerName, setPhoneNumber, clearManagerName, clearPhoneNumber } =
+    useManagerFormStore((state) => state);
 
   const [nameErrorMessage, setErrorMessage] = useState('');
   const [phoneErrorMessage, setPhoneErrorMessage] = useState('');
 
-  if (name !== '' && !nameErrorMessage) {
+  if (managerName !== '' && !nameErrorMessage) {
     setIsNameValid(true);
   } else {
     setIsNameValid(false);
   }
 
-  if (phone && !phoneErrorMessage) {
+  if (managerPhoneNumber && !phoneErrorMessage) {
     setIsPhoneNumberValid(true);
   } else {
     setIsPhoneNumberValid(false);
@@ -85,9 +84,9 @@ function IntroductionForm({ setIsNameValid, setIsPhoneNumberValid }: Introductio
         <span>이름</span>
 
         <S.InputWrapper isError={nameErrorMessage}>
-          <input type="text" value={name} placeholder="김열다" onChange={nameChangeHandler} />
+          <input type="text" value={managerName} placeholder="김열다" onChange={nameChangeHandler} />
 
-          {name && (
+          {managerName && (
             <S.Icon type="button" style={{ cursor: 'pointer' }} onClick={nameClearHandler}>
               <Image src="/icons/input-clear-icon.svg" alt="input-clear-icon" fill />
             </S.Icon>
@@ -109,13 +108,13 @@ function IntroductionForm({ setIsNameValid, setIsPhoneNumberValid }: Introductio
         <S.InputWrapper isError={phoneErrorMessage}>
           <input
             type="text"
-            value={phone}
+            value={managerPhoneNumber}
             maxLength={13}
             placeholder="010-0000-0000"
             onChange={phoneNumberChangeHandler}
           />
 
-          {phone && (
+          {managerPhoneNumber && (
             <S.Icon type="button" style={{ cursor: 'pointer' }} onClick={phoneNumberClearHandler}>
               <Image src="/icons/input-clear-icon.svg" alt="input-clear-icon" fill />
             </S.Icon>

@@ -12,6 +12,11 @@ export const postManagerAccept = async ({ id, accept }: { id: number; accept: 'Y
   return response.data;
 };
 
+export const getMatchingData = async (pathId: any) => {
+  const res = await instance.get<MatchingData>('/matching/accept/' + pathId);
+  return res.data.data;
+};
+
 export interface MatchingData {
   status: number;
   message: string;

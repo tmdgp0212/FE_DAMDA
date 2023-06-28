@@ -8,7 +8,6 @@ export const MainContainer = styled.div`
   flex-direction: column;
   height: fit-content;
   position: relative;
-  margin-bottom: 34rem;
 `;
 
 export const MainFABContainer = styled.div`
@@ -312,6 +311,10 @@ export const MainDescContainer = styled.div`
   margin-bottom: 3.2rem;
   position: relative;
   z-index: 2;
+  &:last-child {
+    height: 327px;
+    margin-bottom: 17rem;
+  }
   p {
     ${({ theme }) => theme.font.light_14};
     font-weight: 400;
@@ -424,11 +427,11 @@ export const MainMoreReviewButton = styled(Link)`
 `;
 
 export const MainYoldaService = styled.img`
-  width: 380px;
-  height: 40rem;
+  width: 360px;
+  height: 383px;
   position: absolute;
   border: none;
-  right: -20px;
+  right: -50px;
   top: -26px;
   z-index: -9;
 `;
