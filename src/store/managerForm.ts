@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 export type Store = {
+  // aaaaaaaaa
   managerName: string;
   managerPhoneNumber: string;
   activityDay: boolean[];
