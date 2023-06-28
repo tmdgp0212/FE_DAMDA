@@ -3,16 +3,16 @@ import React, { useEffect, useState } from 'react';
 import ManagerForm from '@/components/managerForm';
 import CheckModal from '@/components/managerForm/Modal/CheckModal';
 import { useRouter } from 'next/router';
+import useAuthStore from '@/store/auth';
 
 function ManagerFormPage() {
   const [isSubmitClicked, setIsSubmitClicked] = useState(false);
   const router = useRouter();
+  const { user } = useAuthStore();
 
   useEffect(() => {
-    const tokenString = localStorage.getItem('login-state');
-    const token = tokenString ? JSON.parse(tokenString) : null;
-    if (!token.state.isLogin) router.push('/login');
-  }, [router]);
+    if (user.isLogin === false) router.push('/login');
+  }, [router, user.isLogin]);
 
   return (
     <>
