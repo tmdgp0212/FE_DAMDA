@@ -7,9 +7,11 @@ import { salePopupData, saleProcedureData } from '../../constants/saleData';
 import { replaceStringsWithTags } from '@/utils';
 import ProcedureCarousel from '@/components/sale/Swiper';
 import Popup from '@/components/sale/Popup';
+import { useRouter } from 'next/router';
 
 function SalePage() {
-  const [popupStates, setPopupStates] = React.useState(salePopupData.map(() => false));
+  const [popupStates, setPopupStates] = React.useState<boolean[]>(salePopupData.map(() => false));
+  const router = useRouter();
 
   const togglePopup = (index: number) => {
     setPopupStates((prevState) => {
@@ -19,10 +21,14 @@ function SalePage() {
     });
   };
 
+  const handleNavigation = (route: string) => {
+    router.push(route);
+  };
+
   return (
     <S.SaleContainer>
       <S.SaleTitleContainer>
-        <S.SaleTitleImg backgorundImg={'/img/sale_main1.png'} />
+        <S.SaleTitleImg />
         <S.ImgCover>
           <h1>
             안 입는 옷도
@@ -62,7 +68,7 @@ function SalePage() {
             closeHeight={'70px'}
           />
         ))}
-        <BlueButton title="옷장 정리 서비스 바로가기" width="100%" />
+        <BlueButton title="옷장 정리 서비스 바로가기" width="100%" onClick={() => handleNavigation('/closet')} />
       </S.SaleClosetContainer>
       <S.SaleGraphContainer>
         <h1>
@@ -77,7 +83,15 @@ function SalePage() {
           <br />또 다른 누군가에게는 가치있는 옷일 수 있으니까요
         </p>
         <MainResellerGraph />
-        <BlueButton title="상담 신청" width="50%" />
+        <BlueButton
+          title="상담 신청"
+          width="50%"
+          onClick={() =>
+            handleNavigation(
+              'https://accounts.kakao.com/login/?continue=http%3A%2F%2Fpf.kakao.com%2F_ksPxixj%2Fchat%3Fapi_ver%3D1.1%26kakao_agent%3Dsdk%252F1.43.1%2520os%252Fjavascript%2520sdk_type%252Fjavascript%2520lang%252Fko-KR%2520device%252FWin32%2520origin%252Fhttps%25253A%25252F%25252Fyolda.kr%26app_key%3D6840dd88707cb50fd39088f3624bd147%26referer%3Dhttps%253A%252F%252Fyolda.kr%252F#login',
+            )
+          }
+        />
       </S.SaleGraphContainer>
       <S.SaleEstimateContainer>
         <S.EstimateTitle>
@@ -103,7 +117,7 @@ function SalePage() {
           </p>
           <FiArrowDownRight style={{ fontSize: '30px' }} />
         </S.SaleButton>
-        <BlueButton title="무료 견적 받기" width="50%" />
+        <BlueButton title="무료 견적 받기" width="50%" onClick={() => handleNavigation('/usersurvey')} />
       </S.SaleEstimateContainer>
     </S.SaleContainer>
   );

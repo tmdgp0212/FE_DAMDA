@@ -8,6 +8,7 @@ import { useMutation } from '@tanstack/react-query';
 import { submitForm } from '@/apis/form';
 import CompleteModal from '@/components/usersurvey/components/Modal/CompleteModal';
 import FailModal from '@/components/usersurvey/components/Modal/FailModal';
+import { isValidAnswer } from '@/utils/isValidAnswer';
 
 interface SecStepProps {
   userSurveyFormData: UserSurveyFormDataType[];
@@ -41,7 +42,9 @@ function SecStep({ userSurveyFormData }: SecStepProps) {
       return formValue.some((data) => data.questionNumber === questionNumber);
     });
 
-    setIsValid(isAgreed && isAllRequiredQuestionsAnswered);
+    const msg = isValidAnswer(formValue);
+
+    setIsValid(isAgreed && isAllRequiredQuestionsAnswered && msg.length === 0);
   };
 
   const handleSubmit = () => {
@@ -52,12 +55,10 @@ function SecStep({ userSurveyFormData }: SecStepProps) {
 
     const postForm: PostFormRequest = {
       submit: copiedForm as PostFormType[],
-      price,
+      totalPrice: price,
       addressFront: addressFront?.answer.split(' ')[1],
       servicePerson: 1,
     };
-
-    console.log(postForm);
 
     setUserSurveyForm(copiedForm);
     mutate(postForm);

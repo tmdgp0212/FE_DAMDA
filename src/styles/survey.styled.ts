@@ -1,6 +1,35 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 
+export const UserLoginNeed = styled.div`
+  padding: 120px 20px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+
+  h1 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 160%;
+  }
+
+  button {
+    width: 100%;
+    height: 5rem;
+    border-radius: 5px;
+    background-color: ${({ theme }) => theme.colors.main_blue};
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    border: none;
+  }
+`;
+
 export const UserSurveyWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -14,7 +43,7 @@ export const UserSurveyWrapper = styled.div`
 
   .footer {
     width: 100%;
-    height: 5rem;
+    height: 10rem;
     max-width: 360px;
     margin: 0 auto;
     bottom: 0;
@@ -26,7 +55,7 @@ export const UserSurveyWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: end;
+    justify-content: center;
 
     backdrop-filter: blur(5px);
 
@@ -652,6 +681,10 @@ export const UserSurveyCompleteModal = styled(motion.div)`
     flex-direction: column;
     align-items: center;
     gap: 1.8rem;
+  }
+
+  strong {
+    font-weight: 800;
   }
 
   .content {

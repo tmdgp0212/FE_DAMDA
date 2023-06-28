@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export const CarouselWrapper = styled(motion.div)`
   position: relative;
-  width: 100%;
+  width: 32rem;
   height: 32rem;
 
   .mySwiper {
@@ -11,7 +11,7 @@ export const CarouselWrapper = styled(motion.div)`
   }
 
   .swiper-item {
-    width: 100%;
+    width: 32rem;
     height: 32rem;
   }
 `;
@@ -35,7 +35,7 @@ export const UserReviewWrapper = styled.div<{
     background-size: cover;
     background-position: center;
     border-radius: 5px;
-    border: 2px solid ${({ theme }) => theme.colors.main_blue};
+    border: 1px solid ${({ theme }) => theme.colors.main_blue};
     border-bottom: none;
   }
 

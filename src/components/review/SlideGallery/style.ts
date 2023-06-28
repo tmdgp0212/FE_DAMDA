@@ -27,6 +27,7 @@ export const SwiperContainer = styled.div`
       border-radius: 5px;
       box-sizing: border-box;
       border: 2px solid transparent;
+      cursor: pointer;
     }
 
     .swiper-slide-thumb-active {

@@ -8,13 +8,13 @@ export interface AuthStore {
 }
 
 export interface UserState {
-  isLogin: boolean;
+  isLogin: boolean | null;
   data: UserData | null;
 }
 
 const useAuthStore = create<AuthStore>((set) => ({
   user: {
-    isLogin: false,
+    isLogin: null,
     data: null,
   },
   setUser: (data: UserData) => set((state) => ({ user: { isLogin: true, data } })),
