@@ -21,7 +21,6 @@ function Header() {
 
   useEffect(() => {
     getUserData();
-    console.log(user);
   }, []);
 
   return (
