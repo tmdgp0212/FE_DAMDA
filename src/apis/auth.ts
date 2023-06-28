@@ -7,12 +7,9 @@ import { LoginRes, UserRes } from '@/types/auth';
  * @return 로그인정보 data
  */
 export const getToken = async (code: string) => {
-  try {
-    const response = await instance.get<LoginRes>(`/member/code?code=${code}`);
-    return response.data;
-  } catch (error) {
-    throw new Error('Failed to fetch access token from Kakao');
-  }
+  const response = await instance.get<LoginRes>(`/member/code?code=${code}`);
+  console.log(response.data);
+  return response.data;
 };
 
 /**
