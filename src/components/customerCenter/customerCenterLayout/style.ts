@@ -7,6 +7,7 @@ export const CustomerCenterHeader = styled.header`
 
   img {
     object-fit: cover;
+    opacity: 0.7;
   }
 `;
 
