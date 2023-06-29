@@ -7,11 +7,12 @@ import { faqType } from '@/types/constants/faqType';
 import * as S from './style';
 
 interface FAQItemProps {
+  type: string;
   faq: faqType;
   index: number;
 }
 
-function FAQItem({ faq, index }: FAQItemProps) {
+function FAQItem({ type, faq, index }: FAQItemProps) {
   const [isFAQOpen, setIsFAQOpen] = useState(index === 0 ? true : false);
   const [height, setHeight] = useState<string>('');
   const descRef = useRef<HTMLDivElement | null>(null);
@@ -51,8 +52,8 @@ function FAQItem({ faq, index }: FAQItemProps) {
         </S.CardHeader>
 
         <S.CardContent isFAQOpen={isFAQOpen} style={{ height }}>
-          <hr />
-          <p ref={descRef}>{contents}</p>
+          {type === 'manager-apply' && <p dangerouslySetInnerHTML={replaceStringsWithTags(contents)} ref={descRef}></p>}
+          {type === 'support' && <p ref={descRef}>{contents}</p>}
         </S.CardContent>
       </S.FAQCard>
     </S.FAQItem>

@@ -57,7 +57,7 @@ function CustomerCenterLayout() {
           activeCategory={activeCategory}
           setActiveCategory={setActiveCategory}
         />
-        <FrequentlyAskedQuestions enteredFAQs={data} />
+        <FrequentlyAskedQuestions type="support" enteredFAQs={data} />
 
         <S.PersonalConsultation>
           <h2>
