@@ -10,12 +10,12 @@ interface CompletedUserProps {
 }
 
 function CompletedUserLayout({ code, copyMessageRef, isLoading, isError, copy }: CompletedUserProps) {
-  if (isError)
-    return (
-      <S.CompletedUserContainer>
-        <div className="error">유효하지 않은 접근입니다</div>
-      </S.CompletedUserContainer>
-    );
+  // if (isError)
+  //   return (
+  //     <S.CompletedUserContainer>
+  //       <div className="error">유효하지 않은 접근입니다</div>
+  //     </S.CompletedUserContainer>
+  //   );
   if (isLoading)
     return (
       <S.CompletedUserContainer>
