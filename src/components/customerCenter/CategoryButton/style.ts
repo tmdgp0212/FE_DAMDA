@@ -12,7 +12,7 @@ export const CategoryFilterButton = styled.button<{ isActive: boolean }>`
   white-space: nowrap;
 
   &:hover {
-    color: ${({ theme, isActive }) => (isActive ? theme.colors.main_blue : '#ffffff')};
+    color: ${({ theme, isActive }) => (isActive ? '#ffffff' : '#ffffff')};
     background-color: ${({ theme, isActive }) => (isActive ? theme.colors.main_blue : theme.colors.main_blue)};
   }
 `;
