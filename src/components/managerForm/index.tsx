@@ -82,7 +82,6 @@ function ManagerForm({ setIsSubmitClicked }: ManagerFormProps) {
     e.preventDefault();
 
     if (isManagerFormValid) {
-      console.log(formData);
       setIsSubmitClicked(true);
     }
   };

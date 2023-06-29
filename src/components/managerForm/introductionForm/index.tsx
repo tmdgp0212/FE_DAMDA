@@ -78,13 +78,25 @@ function IntroductionForm({ setIsNameValid, setIsPhoneNumberValid }: Introductio
     clearPhoneNumber();
   };
 
+  const keyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Backspace' && managerName.length === 1) {
+      setManagerName('');
+    }
+  };
+
   return (
     <>
       <S.FormInput>
         <span>이름</span>
 
         <S.InputWrapper isError={nameErrorMessage}>
-          <input type="text" value={managerName} placeholder="김열다" onChange={nameChangeHandler} />
+          <input
+            type="text"
+            value={managerName}
+            placeholder="김열다"
+            onChange={nameChangeHandler}
+            onKeyDown={keyDownHandler}
+          />
 
           {managerName && (
             <S.Icon type="button" style={{ cursor: 'pointer' }} onClick={nameClearHandler}>
