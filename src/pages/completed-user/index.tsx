@@ -1,14 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import CompletedUserLayout from '@/components/completedUser/CompletedUserLayout';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { getDiscountCode } from '@/apis/code';
 
 function CompletedUser() {
   const router = useRouter();
-  const { data, isLoading, isError } = useQuery(['code'], () => getDiscountCode(String(router.query.id)));
+  const { mutate, data, isLoading, isError } = useMutation((id: string) => getDiscountCode(id));
 
   const copyMessageRef = useRef<HTMLDivElement | null>(null);
+  const [id, setId] = useState('');
   const [code, setCode] = useState('');
 
   const copy = () => {
@@ -25,8 +26,16 @@ function CompletedUser() {
 
   useEffect(() => {
     if (!data) return;
-    setCode(data.data);
+
+    setCode(data);
   }, [data]);
+
+  useEffect(() => {
+    if (router.query.id) {
+      setId(String(router.query.id));
+      mutate(router.query.id as string);
+    }
+  }, [router.query.id]);
 
   return (
     <CompletedUserLayout
