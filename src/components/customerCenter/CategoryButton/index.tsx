@@ -36,7 +36,7 @@ function CategoryButton({ category, filterFAQHandler, activeCategory, setActiveC
   };
 
   return (
-    <S.CategoryFilterButton type="button" isActive={isActive}>
+    <S.CategoryFilterButton type="button" isActive={isActive} onClick={() => clickHandler(category)}>
       {renderCategory()}
     </S.CategoryFilterButton>
   );

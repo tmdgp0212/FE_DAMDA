@@ -18,6 +18,7 @@ function CustomerCenterLayout() {
     queryFn: getFAQs,
   });
 
+  const [data, setData] = useState([]);
   const [categories, setCategories] = useState<string[]>([]);
   const [activeCategory, setActiveCategory] = useState('전체');
 
@@ -26,9 +27,13 @@ function CustomerCenterLayout() {
     setCategories(allCategories);
   }, [faqs]);
 
+  useEffect(() => {
+    setData(faqs);
+  }, [faqs]);
+
   const filterFAQHandler = (category: string) => {
-    if (category === '전체') return setData(customerCenterFAQs);
-    const newData = customerCenterFAQs.filter((faq) => faq.qnaCategory === category);
+    if (category === '전체') return setData(faqs);
+    const newData = faqs?.filter((faq: faqType) => faq.qnaCategory === category);
     setData(newData);
   };
 
@@ -52,7 +57,7 @@ function CustomerCenterLayout() {
           activeCategory={activeCategory}
           setActiveCategory={setActiveCategory}
         />
-        <FrequentlyAskedQuestions enteredFAQs={faqs} />
+        <FrequentlyAskedQuestions enteredFAQs={data} />
 
         <S.PersonalConsultation>
           <h2>
