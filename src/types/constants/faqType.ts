@@ -1,6 +1,6 @@
 export type faqType = {
   title: string;
-  description: string;
+  contents: string;
   info?: string;
-  category?: string;
+  qnaCategory?: string;
 };
