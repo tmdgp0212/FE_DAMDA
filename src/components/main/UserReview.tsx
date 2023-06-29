@@ -21,6 +21,12 @@ function UserReview() {
 
   return (
     <>
+      {!reviewData && (
+        <S.MainTitleContainer>
+          <h1>후기를 불러오는 중입니다...</h1>
+          <p>만약 오랜 시간 동안 불러와지지 않는 다면 관리자에게 즉시 연락해주세요!</p>
+        </S.MainTitleContainer>
+      )}
       {reviewData && <Carousel carouselItems={reviewData} height={32} width={100} />}
       <S.MainMoreReviewButton href={'/review'}>더 많은 후기 보러가기</S.MainMoreReviewButton>
     </>
