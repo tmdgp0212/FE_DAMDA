@@ -47,7 +47,6 @@ function LocationSelectionForm({ isLocationOptionsOpen, setIsLocationOptionsOpen
   };
 
   const filterTagHandler = (districtItem: string) => {
-    console.log('clicked');
     setRemoveTag(districtItem);
   };
 
