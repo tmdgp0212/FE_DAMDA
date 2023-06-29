@@ -6,7 +6,6 @@ import { getFAQs } from '@/apis/support';
 
 import FrequentlyAskedQuestions from '@/components/common/FAQ/FrequentlyAskedQuestions';
 import Category from '../Category';
-import { customerCenterFAQs } from '@/constants/customerCenterFAQs';
 import customerCenterImg from 'public/img/customerServiceCenter.png';
 
 import * as S from './style';
