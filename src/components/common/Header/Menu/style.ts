@@ -70,3 +70,5 @@ export const Section = styled.div`
     }
   }
 `;
+
+export const Logout = styled.div``;
