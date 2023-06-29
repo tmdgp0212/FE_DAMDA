@@ -56,4 +56,8 @@ export const CardContent = styled.div<{ isFAQOpen: boolean }>`
       text-decoration: none;
     }
   }
+
+  p {
+    white-space: pre-wrap;
+  }
 `;

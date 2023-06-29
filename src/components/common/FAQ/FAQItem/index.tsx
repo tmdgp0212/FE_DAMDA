@@ -15,7 +15,24 @@ function FAQItem({ faq, index }: FAQItemProps) {
   const [isFAQOpen, setIsFAQOpen] = useState(index === 0 ? true : false);
   const [height, setHeight] = useState<string>('');
   const descRef = useRef<HTMLDivElement | null>(null);
-  const { title, description, info, category } = faq;
+  const { title, contents, info, qnaCategory } = faq;
+
+  const renderFaqCategory = () => {
+    let transformedCategory;
+    switch (qnaCategory) {
+      case 'PRICE':
+        return (transformedCategory = '가격');
+
+      case 'SERVICE':
+        return (transformedCategory = '서비스 관련');
+
+      case 'ETC':
+        return (transformedCategory = '기타');
+
+      default:
+        break;
+    }
+  };
 
   useEffect(() => {
     if (descRef.current !== null) {
@@ -29,13 +46,13 @@ function FAQItem({ faq, index }: FAQItemProps) {
         {isFAQOpen ? <FiArrowUpLeft /> : <FiArrowDownRight />}
 
         <S.CardHeader>
-          <strong>{info || category}</strong>
+          <strong>{info || renderFaqCategory()}</strong>
           <h3>{title}</h3>
         </S.CardHeader>
 
         <S.CardContent isFAQOpen={isFAQOpen} style={{ height }}>
           <hr />
-          {<p dangerouslySetInnerHTML={replaceStringsWithTags(description)} ref={descRef}></p>}
+          <p ref={descRef}>{contents}</p>
         </S.CardContent>
       </S.FAQCard>
     </S.FAQItem>

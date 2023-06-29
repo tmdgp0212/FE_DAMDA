@@ -11,7 +11,7 @@ interface FAQListProps {
 function FAQList({ faqList }: FAQListProps) {
   return (
     <S.FAQList>
-      {faqList.map((faq, index) => (
+      {faqList?.map((faq, index) => (
         <FAQItem key={faq.title} faq={faq} index={index} />
       ))}
     </S.FAQList>
