@@ -80,7 +80,6 @@ function IntroductionForm({ setIsNameValid, setIsPhoneNumberValid }: Introductio
 
   const keyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Backspace' && managerName.length === 1) {
-      console.log(managerName);
       setManagerName('');
     }
   };
