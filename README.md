@@ -63,9 +63,6 @@
       <div>
         <img src="https://github.com/Final-DAMDA/FE_DAMDA/assets/112364408/922637b0-91b6-47cb-b30a-49c37b94752a" width="1020">
       </div>
-<!--       <div align="center">
-        반응형 웹 구현
-      </div> -->
     </th>
   </tr>
   <tr>
@@ -180,6 +177,33 @@
       <div align="center">
         사용자 서비스 완료 폼<br />
         (서비스 완료 시 사용자에게 카톡으로 페이지 링크가 전송됩니다)
+      </div>
+    </th>
+  </tr>
+  <tr>
+    <th colspan="2">
+      <div>
+        <img src="https://github.com/Final-DAMDA/FE_DAMDA/assets/112364408/d2753b52-eae9-4e13-8ddb-0408df5ed16a" width="1020">
+      </div>
+    </th>
+  </tr>
+    <tr>
+    <th colspan="2">
+      <div>
+        <img src="https://github.com/Final-DAMDA/FE_DAMDA/assets/112364408/7fff28b5-7c4b-4810-a5d0-16387f852944" width="1020">
+      </div>
+    </th>
+  </tr>
+    <tr>
+    <th colspan="2">
+      <div>
+        <img src="https://github.com/Final-DAMDA/FE_DAMDA/assets/112364408/0ec8be50-fb60-4149-9915-71877f2d5380" width="1020">
+      </div>
+    </th>
+  </tr>
+    <tr>
+    <th colspan="2">
+        <img src="https://github.com/Final-DAMDA/FE_DAMDA/assets/112364408/43831ad4-1fc8-4f28-8085-8cac41f35e52" width="1020">
       </div>
     </th>
   </tr>
