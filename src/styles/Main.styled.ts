@@ -10,31 +10,31 @@ export const MainContainer = styled.div`
   position: relative;
 `;
 
-// export const MainFABContainer = styled.div`
-//   position: fixed;
-//   bottom: 258px;
-//   right: calc(50% - ${theme.size.max_width} / 2);
-//   display: flex;
-//   flex-direction: column;
-//   z-index: 3;
-// `;
+export const MainFABContainer = styled.div`
+  position: fixed;
+  bottom: 258px;
+  right: calc(50% - ${theme.size.max_width} / 2);
+  display: flex;
+  flex-direction: column;
+  z-index: 3;
+`;
 
-// export const MainFABButton = styled.button<{ color: string }>`
-//   cursor: pointer;
-//   width: 5.8rem;
-//   height: 4.5rem;
-//   border-width: 1px 0 1px 1px;
-//   border-style: solid;
-//   border-color: #212121;
-//   border-radius: 5px 0 0 5px;
-//   padding: 0 0.8rem;
-//   background-color: ${({ color }) => color};
+export const MainFABButton = styled.button<{ color: string }>`
+  cursor: pointer;
+  width: 5.8rem;
+  height: 4.5rem;
+  border-width: 1px 0 1px 1px;
+  border-style: solid;
+  border-color: #212121;
+  border-radius: 5px 0 0 5px;
+  padding: 0 0.8rem;
+  background-color: ${({ color }) => color};
 
-//   svg {
-//     width: 3rem;
-//     height: 3rem;
-//   }
-// `;
+  svg {
+    width: 3rem;
+    height: 3rem;
+  }
+`;
 
 export const MainTitleContainer = styled.div`
   padding: ${({ theme }) => theme.padding.mobile};
