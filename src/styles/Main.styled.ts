@@ -10,31 +10,31 @@ export const MainContainer = styled.div`
   position: relative;
 `;
 
-export const MainFABContainer = styled.div`
-  position: fixed;
-  bottom: 258px;
-  right: calc(50% - ${theme.size.max_width} / 2);
-  display: flex;
-  flex-direction: column;
-  z-index: 3;
-`;
+// export const MainFABContainer = styled.div`
+//   position: fixed;
+//   bottom: 258px;
+//   right: calc(50% - ${theme.size.max_width} / 2);
+//   display: flex;
+//   flex-direction: column;
+//   z-index: 3;
+// `;
 
-export const MainFABButton = styled.button<{ color: string }>`
-  cursor: pointer;
-  width: 5.8rem;
-  height: 4.5rem;
-  border-width: 1px 0 1px 1px;
-  border-style: solid;
-  border-color: #212121;
-  border-radius: 5px 0 0 5px;
-  padding: 0 0.8rem;
-  background-color: ${({ color }) => color};
+// export const MainFABButton = styled.button<{ color: string }>`
+//   cursor: pointer;
+//   width: 5.8rem;
+//   height: 4.5rem;
+//   border-width: 1px 0 1px 1px;
+//   border-style: solid;
+//   border-color: #212121;
+//   border-radius: 5px 0 0 5px;
+//   padding: 0 0.8rem;
+//   background-color: ${({ color }) => color};
 
-  svg {
-    width: 3rem;
-    height: 3rem;
-  }
-`;
+//   svg {
+//     width: 3rem;
+//     height: 3rem;
+//   }
+// `;
 
 export const MainTitleContainer = styled.div`
   padding: ${({ theme }) => theme.padding.mobile};
@@ -152,8 +152,8 @@ export const MainContentSection = styled.section``;
 export const MainPersonButton = styled(MainContentButton)<{ itemIndex: number }>`
   padding: 1rem 1.6rem;
   display: flex;
+  justify-content: center;
   flex-direction: column;
-  gap: 2px;
   position: relative;
   width: ${({ itemIndex }) => {
     switch (itemIndex) {
@@ -179,8 +179,10 @@ export const MainPersonButton = styled(MainContentButton)<{ itemIndex: number }>
 export const MainPriceButton = styled(MainContentButton)<{ index: number }>`
   position: relative;
   display: flex;
+  justify-content: center;
   flex-direction: column;
-  gap: 2px;
+  padding-bottom: 5px;
+  padding-left: 15px;
   width: ${({ index }) => {
     switch (index) {
       case 0:
@@ -221,7 +223,7 @@ export const MainPriceButton = styled(MainContentButton)<{ index: number }>`
 
   .how {
     position: absolute;
-    right: -100%;
+    right: -90%;
   }
 `;
 
